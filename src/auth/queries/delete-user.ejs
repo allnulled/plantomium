@@ -1,0 +1,19 @@
+<%
+
+const user_id = sqlString.escape(parameters.user_id)
+const previousDeletions = [
+	["sessions", "id_user"],
+	["combo_user_and_group", "id_user"],
+	["combo_user_and_permission", "id_user"]
+]
+for(let index=0; index < previousDeletions.length; index++) {
+	const [tableBrute, columnBrute] = previousDeletions[index];
+	const table = sqlString.escapeId(tableBrute);
+	const column = sqlString.escapeId(columnBrute);
+%>
+DELETE FROM <%-table%>
+  WHERE <%-table%>.<%-column%>;
+<%
+}
+%>
+DELETE FROM users WHERE users.id = <%-user_id%>;

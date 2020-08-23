@@ -1,0 +1,9 @@
+<%
+const table = sqlString.escapeId(actorClass.Table);
+const {
+  where = [],
+} = parameters.input;
+const whereFinal = cms.utils.toSelectWhereSql(where, actorClass.Schema);
+%>
+DELETE FROM <%-table%>
+WHERE <%-whereFinal%>;

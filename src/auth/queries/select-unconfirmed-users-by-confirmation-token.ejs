@@ -1,0 +1,9 @@
+<%
+const { confirmation_token: confirmation_tokenBrute } = parameters;
+const { confirmation_token } = {
+  confirmation_token: sqlString.escape(confirmation_tokenBrute)
+};
+%>
+SELECT * 
+  FROM unconfirmed_users
+  WHERE confirmation_token = <%-confirmation_token%>;

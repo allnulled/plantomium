@@ -1,0 +1,32 @@
+<%
+
+const fieldsUser = cms.utils.toSelectFieldsSql(cms.originalSchema.constraints.users.attributes, "users");
+const fieldsGroup = cms.utils.toSelectFieldsSql(cms.originalSchema.constraints.groups.attributes, "groups");
+const fieldsPermission = cms.utils.toSelectFieldsSql(cms.originalSchema.constraints.permissions.attributes, "permissions");
+const fieldsSession = cms.utils.toSelectFieldsSql(cms.originalSchema.constraints.sessions.attributes, "sessions");
+
+const session_token = sqlString.escape(parameters.session_token);
+
+%>
+SELECT 
+    <%-fieldsUser%>,
+    <%-fieldsGroup%>,
+    <%-fieldsPermission%>,
+    <%-fieldsSession%>
+  FROM sessions
+    LEFT JOIN users
+      ON users.id = sessions.id_user
+    LEFT JOIN combo_user_and_permission
+      ON combo_user_and_permission.id_user = users.id
+    LEFT JOIN combo_user_and_group
+      ON combo_user_and_group.id_user = users.id
+    LEFT JOIN combo_group_and_permission
+      ON combo_group_and_permission.id_group = combo_user_and_group.id_group
+    LEFT JOIN groups
+      ON groups.id = combo_user_and_group.id_group
+    LEFT JOIN permissions
+      ON permissions.id IN (
+        combo_user_and_permission.id_permission,
+        combo_group_and_permission.id_permission
+      )
+  WHERE sessions.session_token = <%-session_token%>;

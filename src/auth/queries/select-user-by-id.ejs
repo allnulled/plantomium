@@ -1,0 +1,11 @@
+<%
+	
+const path = require("path");
+const id = sqlString.escape(parameters.id);
+const fields = cms.utils.toSelectFieldsSql(Object.keys(cms.originalSchema.columns.users), "users");
+
+%>
+SELECT <%-fields%>
+  FROM users
+  WHERE
+    users.id = <%-id%>

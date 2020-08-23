@@ -1,0 +1,17 @@
+<%
+const table = sqlString.escapeId(actorClass.Table);
+const {
+  where = undefined,
+  join = undefined,
+} = parameters.input;
+const whereFinal = cms.utils.toSelectWhereSql(where);
+const joinFinal = cms.utils.toSelectJoinSql(join);
+%>
+SELECT COUNT(*) AS Total
+  FROM <%-table%>
+  <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
+  <%-joinFinal ? ("JOIN " + joinFinal) : "# no JOIN..." %>
+  # no ORDER BY
+  # no LIMIT
+  # no OFFSET
+;

@@ -1,0 +1,18 @@
+<%
+const table = sqlString.escapeId(actorClass.Table);
+const {
+  where,
+  data
+} = parameters.input;
+const whereFinal = cms.utils.toSelectWhereSql(where);
+const dataFinal = cms.utils.toUpdateValuesSql(data);
+if(dataFinal.length === 0) {
+	throw new Error("Required data on update-many")
+}
+if(whereFinal.length === 0) {
+	throw new Error("Required at least 1 <where> condition on update-many")
+}
+%>
+UPDATE <%-table%>
+SET <%-dataFinal%>
+WHERE <%-whereFinal%>;

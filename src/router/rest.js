@@ -1,0 +1,20 @@
+module.exports = function(cms, router) {
+	cms.rest.controllers.comboCompoundAndPlant.create().mountToRouter(router);
+	cms.rest.controllers.comboEnvironmentAndPlant.create().mountToRouter(router);
+	cms.rest.controllers.comboImageAndPlant.create().mountToRouter(router);
+	cms.rest.controllers.comboImageAndSpecimen.create().mountToRouter(router);
+	cms.rest.controllers.comboLocalizationAndPlant.create().mountToRouter(router);
+	cms.rest.controllers.comboTraitAndPlant.create().mountToRouter(router);
+	cms.rest.controllers.comboTraitAndSpecimen.create().mountToRouter(router);
+	cms.rest.controllers.comboUsageAndPlant.create().mountToRouter(router);
+	cms.rest.controllers.compound.create().mountToRouter(router);
+	cms.rest.controllers.configuration.create().mountToRouter(router);
+	cms.rest.controllers.environment.create().mountToRouter(router);
+	cms.rest.controllers.image.create().mountToRouter(router);
+	cms.rest.controllers.localization.create().mountToRouter(router);
+	cms.rest.controllers.permissions.create().mountToRouter(router);
+	cms.rest.controllers.plant.create().mountToRouter(router);
+	cms.rest.controllers.specimen.create().mountToRouter(router);
+	cms.rest.controllers.trait.create().mountToRouter(router);
+	cms.rest.controllers.usages.create().mountToRouter(router);
+}

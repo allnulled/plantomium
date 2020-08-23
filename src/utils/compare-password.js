@@ -1,0 +1,25 @@
+const bcrypt = require("bcrypt");
+const asynchandler = require("@allnulled/asynchandler");
+
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/utils/compare-password.js`
+ * 
+ * @name `comparePassword`
+ * @type 
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+module.exports = function(passwordTry, passwordHash) {
+	return new Promise(function(ok, fail) {
+		bcrypt.compare(passwordTry, passwordHash, asynchandler(ok, fail));
+	});
+}

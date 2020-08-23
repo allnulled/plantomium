@@ -1,0 +1,18 @@
+<%
+const table = sqlString.escapeId(actorClass.Table);
+const columnKeys = Object.keys(actorClass.Schema.columns);
+const fields = columnKeys.map(ck => sqlString.escapeId(ck));
+const values = [];
+
+for(let index=0; index < columnKeys.length; index++) {
+  const field = columnKeys[index];
+  const fieldValue = parameters.input.data[field];
+  const value = sqlString.escape(fieldValue || null);
+  values.push(value);
+}
+%>
+INSERT INTO <%-table%> (
+    <%-fields.join(",\n    ")%>
+) VALUES (
+    <%-values.join(",\n    ")%>
+);

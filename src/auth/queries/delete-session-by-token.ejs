@@ -1,0 +1,8 @@
+<%
+
+const session_token = sqlString.escape(parameters.session_token);
+
+%>
+DELETE
+  FROM sessions 
+  WHERE sessions.session_token = <%-session_token%>

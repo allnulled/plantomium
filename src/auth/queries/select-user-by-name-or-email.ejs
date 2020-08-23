@@ -1,0 +1,17 @@
+<%
+const path = require("path");
+const originalSchemaPath = path.resolve(process.env.PROJECT_ROOT, process.env.SCHEMA_OUTPUT);
+const originalSchema = require(originalSchemaPath);
+const userFields = cms.utils.toSelectFieldsSql(Object.keys(originalSchema.columns.users), "users");
+const { name, email } = {
+  name: sqlString.escape(parameters.name),
+  email: sqlString.escape(parameters.email),
+};
+  
+%>
+SELECT <%-userFields%> 
+  FROM users
+  WHERE (
+    users.name = <%-name%>
+    OR users.email = <%-email%>
+  );

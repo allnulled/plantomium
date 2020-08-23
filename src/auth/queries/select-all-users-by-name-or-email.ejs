@@ -1,0 +1,13 @@
+<%
+const { name: nameBrute, email: emailBrute } = parameters;
+const { name, email } = {
+  name: sqlString.escape(nameBrute),
+  email: sqlString.escape(emailBrute),
+};
+%>
+SELECT * 
+  FROM users, unconfirmed_users
+  WHERE users.name = <%-name%>
+  OR  unconfirmed_users.name = <%-name%>
+  OR  users.email = <%-email%>
+  OR  unconfirmed_users.email = <%-email%>;

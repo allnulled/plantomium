@@ -1,0 +1,9 @@
+<%
+
+const recovery_token = sqlString.escape(parameters.recovery_token);
+const fields = cms.utils.toSelectFieldsSql(cms.originalSchema.constraints.users.attributes, "users");
+
+%>
+SELECT <%-fields%>
+  FROM users
+  WHERE users.recovery_token = <%-recovery_token%>;
