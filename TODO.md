@@ -6,7 +6,8 @@
 
 #### v0.0.2
 
-  - 
+  - feature/rest:get-file
+  - feature/rest:set-file
 
 #### v0.0.3
 
