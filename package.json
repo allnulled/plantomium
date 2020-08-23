@@ -17,7 +17,7 @@
     "dev": "nodemon --exec 'npm run test' --ignore src/config --ignore src/rest --ignore src/router/rest.js -e js,json,ejs",
     "start": "node index.js",
     "test": "mocha test/*.test.js --bail",
-    "test2": "npm run control:reset-db && npm run test",
+    "test:reset": "npm run control:reset-db && npm run test",
     "cover": "nyc --reporter=html npm run test",
     "control:reset-db": "node ./src/control/reset-db.js"
   },

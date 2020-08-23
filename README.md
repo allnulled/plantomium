@@ -8,9 +8,10 @@ Vaya a [`Plantomium REFERENCE`](./REFERENCE.md) si quiere consultar directamente
 
 1. [Índice](#indice)
 2. [Sobre Plantomium](#sobre-plantomium)
-3. [Sobre las bondades de Plantomium](#sobre-las-bondades-de-plantomium)
-4. [Sobre la API de Plantomium](#sobre-la-api-de-plantomium)
-5. [Sobre...](#sobre)
+3. [Sobre la documentación de Plantomium](#sobre-la-documentacion-de-plantomium)
+4. [Sobre las bondades de Plantomium](#sobre-las-bondades-de-plantomium)
+5. [Sobre la API de Plantomium](#sobre-la-api-de-plantomium)
+6. [Sobre...](#sobre)
 
 ## Sobre Plantomium
 
@@ -23,6 +24,17 @@ Plantomium ofrece una abstracción, con *una serie de bondades aparte*, entre:
   - [`http`](#): el protocolo principal para comunicarse unidireccionalmente con la web.
   - [`socket.io`](#): el protocolo secundario para comunicarse bidireccionalmente con la web.
   - [`mysql`](#): el sistema de bases de datos principal.
+
+## Sobre la documentación de Plantomium
+
+Hay varios ficheros que complementan la documentación del `Plantomium README`:
+
+  - [`Plantomium README`](./README.md): documento presente
+  - [`Plantomium REFERENCE`](./REFERENCE.md): documento que explica toda la API intensivamente
+  - [`Plantomium CHANGELOG`](./CHANGELOG.md): documento que registra los cambios que se van produciendo en la aplicación
+  - [`Plantomium FEATURES`](./FEATURES.md): documento que lista y explica cada rama que se crea como `feature/xxx`
+  - [`Plantomium FIXES`](./FIXES.md): documento que lista y explica cada rama que se crea como `fix/xxx`
+  - [`Plantomium TODO`](./TODO.md): documento que lista las tareas que se anticipan
 
 ## Sobre las bondades de Plantomium
 
