@@ -2,7 +2,7 @@
 
 Bienvenid@ al `Plantomium README`.
 
-Vaya a [`Plantomium REFERENCE`](./REFERENCE.html) si quiere consultar directamente la API.
+Vaya a [`Plantomium REFERENCE`](./REFERENCE.md) si quiere consultar directamente la API.
 
 ## Índice
 
