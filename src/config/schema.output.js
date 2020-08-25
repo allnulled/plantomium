@@ -4263,6 +4263,46 @@ module.exports = {
           $referencedTable: null,
           $referencedColumn: null
         }
+      },
+      profile_picture: {
+        order: 8,
+        model: 'Users',
+        table: 'users',
+        column: 'profile_picture',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 400,
+        database: 'plants_bd',
+        archetype: 'varchar(400)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'users',
+          $column: 'profile_picture',
+          $columnType: 'varchar(400)',
+          $isColumnNullable: 'YES',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 8,
+          $maximumCharactersLength: 400,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: null,
+          $referencedTable: null,
+          $referencedColumn: null
+        }
       }
     }
   },
@@ -4802,7 +4842,8 @@ module.exports = {
         'full_name',
         'email',
         'recovery_token',
-        'deactivation'
+        'deactivation',
+        'profile_picture'
       ],
       primaryKeys: [
         'id'

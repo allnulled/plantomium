@@ -64,57 +64,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/actors/authenticate.js`
-
-
-
-**Location**:  `cms.auth.actors.authenticate`
-
-
-**Name**:  authenticate
-
-
-**Type**:  `async function`
-
-
-**Receives**: 
-
-
- - `parameters:Object` - user password and name or email
-
-
-**Returns**: 
-
-
- - `Promise<data:Object>`
-
-
- - `Promise<data.user:Object>` - data of the user itself
-
-
- - `Promise<data.groups:Object>` - data of the user groups
-
-
- - `Promise<data.permssions:Object>` - data of the user permissions
-
-
- - `Promise<data.sessions:Object>` - data of the user sessions
-
-
-**Throws**: 
-
-
- - `No user found on authenticate`
-
-
-**Description**:  method that gets the session data and inserts a new session.
-
-
-
-
-
-----
-
 ### `/src/auth/actors/change.js`
 
 
@@ -169,35 +118,51 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/actors/logout.js`
+### `/src/auth/actors/authenticate.js`
 
 
 
-**Name**:  `logout`
+**Location**:  `cms.auth.actors.authenticate`
 
 
-**Type**:  
+**Name**:  authenticate
 
 
-**Has**:  
+**Type**:  `async function`
 
 
-**Uses**:  
+**Receives**: 
 
 
-**Modifies**:  
+ - `parameters:Object` - user password and name or email
 
 
-**Receives**:  
+**Returns**: 
 
 
-**Returns**:  
+ - `Promise<data:Object>`
 
 
-**Throws**:  
+ - `Promise<data.user:Object>` - data of the user itself
 
 
-**Description**:  
+ - `Promise<data.groups:Object>` - data of the user groups
+
+
+ - `Promise<data.permssions:Object>` - data of the user permissions
+
+
+ - `Promise<data.sessions:Object>` - data of the user sessions
+
+
+**Throws**: 
+
+
+ - `No user found on authenticate`
+
+
+**Description**:  method that gets the session data and inserts a new session.
+
 
 
 
@@ -281,6 +246,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 **Description**:  method that confirms an unconfirmed_user as user
 
+
+
+
+
+----
+
+### `/src/auth/actors/logout.js`
+
+
+
+**Name**:  `logout`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
 
 
 
@@ -497,11 +497,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/login.js`
+### `/src/auth/controllers/confirm.js`
 
 
 
-**Name**:  `login`
+**Name**:  `confirm`
 
 
 **Type**:  
@@ -532,11 +532,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/confirm.js`
+### `/src/auth/controllers/login.js`
 
 
 
-**Name**:  `confirm`
+**Name**:  `login`
 
 
 **Type**:  
@@ -1442,41 +1442,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/stop-server.js`
-
-
-
-**Name**:  `stopServer`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/deploy/regenerate-rest/generated/templates/table.middleware.js`
 
 
@@ -1512,11 +1477,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/email/agents/agent.js`
+### `/src/deploy/stop-server.js`
 
 
 
-**Name**:  `agent`
+**Name**:  `stopServer`
 
 
 **Type**:  
@@ -1552,6 +1517,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `administrator`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/email/agents/agent.js`
+
+
+
+**Name**:  `agent`
 
 
 **Type**:  
@@ -2177,361 +2177,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.base.js`
 
 
 
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
+**Name**:  `table.actor.base`
 
 
 **Type**:  
@@ -2672,6 +2322,391 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `table.actor.base`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
 
 
 **Type**:  
@@ -2877,11 +2912,46 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/regenerate-rest/generated/templates/table.actor.base.js`
+### `/src/deploy/regenerate-rest/generated/templates/table.controller.js`
 
 
 
-**Name**:  `table.actor.base`
+**Name**:  `table.controller`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-rest/generated/templates/table.controller.js`
+
+
+
+**Name**:  `table.controller`
 
 
 **Type**:  
@@ -3507,46 +3577,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/regenerate-rest/generated/templates/table.controller.js`
+### `/src/rest/handlers/delete-one.js`
 
 
 
-**Name**:  `table.controller`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-rest/generated/templates/table.controller.js`
-
-
-
-**Name**:  `table.controller`
+**Name**:  `deleteOne`
 
 
 **Type**:  
@@ -3612,116 +3647,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/delete-one.js`
-
-
-
-**Name**:  `deleteOne`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/rest/handlers/file-get.js`
 
 
 
 **Name**:  `fileGet`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/rest/handlers/file-set.js`
-
-
-
-**Name**:  `fileSet`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/rest/handlers/get-one.js`
-
-
-
-**Name**:  `getOne`
 
 
 **Type**:  
@@ -3787,11 +3717,81 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/rest/handlers/file-set.js`
+
+
+
+**Name**:  `fileSet`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/rest/handlers/handler.js`
 
 
 
 **Name**:  `handler`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/rest/handlers/get-one.js`
+
+
+
+**Name**:  `getOne`
 
 
 **Type**:  
@@ -3892,6 +3892,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/rest/handlers/put-one.js`
+
+
+
+**Name**:  `putOne`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/rest/handlers/put-many.js`
 
 
@@ -3932,41 +3967,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `schema`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/rest/handlers/put-one.js`
-
-
-
-**Name**:  `putOne`
 
 
 **Type**:  
@@ -4452,11 +4452,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/middlewares/middleware.js`
+### `/src/deploy/regenerate-rest/generated/templates/table.middleware.js`
 
 
 
-**Name**:  `middleware`
+**Name**:  `table.middleware`
 
 
 **Type**:  
@@ -4487,11 +4487,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/regenerate-rest/generated/templates/table.middleware.js`
+### `/src/rest/middlewares/middleware.js`
 
 
 
-**Name**:  `table.middleware`
+**Name**:  `middleware`
 
 
 **Type**:  
@@ -4837,11 +4837,46 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/debug-error.js`
+### `/src/store/index.js`
 
 
 
-**Name**:  `debugError`
+**Name**:  `index`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/router/routes.js`
+
+
+
+**Name**:  `routes`
 
 
 **Type**:  
@@ -4942,11 +4977,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/encrypt-password.js`
+### `/src/utils/debug-error.js`
 
 
 
-**Name**:  `encryptPassword`
+**Name**:  `debugError`
 
 
 **Type**:  
@@ -4977,11 +5012,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/erroneous-json-response.js`
+### `/src/utils/encrypt-password.js`
 
 
 
-**Name**:  `erroneousJsonResponse`
+**Name**:  `encryptPassword`
 
 
 **Type**:  
@@ -5047,11 +5082,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/generate-token.js`
+### `/src/utils/erroneous-json-response.js`
 
 
 
-**Name**:  `generateToken`
+**Name**:  `erroneousJsonResponse`
 
 
 **Type**:  
@@ -5087,6 +5122,76 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `formatBearerToken`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/utils/generate-token.js`
+
+
+
+**Name**:  `generateToken`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/utils/generate-virtual-schema.js`
+
+
+
+**Name**:  `generateVirtualSchema`
 
 
 **Type**:  
@@ -5222,81 +5327,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/store/index.js`
+### `/src/utils/successful-json-response.js`
 
 
 
-**Name**:  `index`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/router/routes.js`
-
-
-
-**Name**:  `routes`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/utils/generate-virtual-schema.js`
-
-
-
-**Name**:  `generateVirtualSchema`
+**Name**:  `successfulJsonResponse`
 
 
 **Type**:  
@@ -5467,11 +5502,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/successful-json-response.js`
+### `/src/utils/to-select-fields-sql.js`
 
 
 
-**Name**:  `successfulJsonResponse`
+**Name**:  `toSelectFieldsSql`
 
 
 **Type**:  
@@ -5502,11 +5537,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-select-fields-sql.js`
+### `/src/utils/to-select-limit-sql.js`
 
 
 
-**Name**:  `toSelectFieldsSql`
+**Name**:  `toSelectLimitSql`
 
 
 **Type**:  
@@ -5642,81 +5677,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-select-where-sql.js`
-
-
-
-**Name**:  `toSelectWhereSql`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/utils/to-update-values-sql.js`
 
 
 
 **Name**:  `toUpdateValuesSql`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/utils/to-select-limit-sql.js`
-
-
-
-**Name**:  `toSelectLimitSql`
 
 
 **Type**:  
@@ -5755,6 +5720,1232 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/utils/to-select-where-sql.js`
+
+
+
+**Name**:  `toSelectWhereSql`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+
+
+**Name**:  `unconfirmed_users`
+
+
+**Type**:  [SQL table]
+
+
+**Description**.
+
+
+**Has**:  
+
+
+  - `id:integer`
+
+
+  - `name:varchar`
+
+
+  - `password:varchar`
+
+
+  - `full_name:varchar`
+
+
+  - `email:varchar`
+
+
+  - `confirmation_token:varchar`
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
 
 
 **Has**:  

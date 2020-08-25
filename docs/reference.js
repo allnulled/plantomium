@@ -2,6 +2,8 @@ const path = require("path");
 const ALL_PATTERN = [
 	path.resolve(__dirname, "..", "index.js"),
 	path.resolve(__dirname, "..", "src/*" + "*/*.js"),
+	path.resolve(__dirname, "..", "src/*" + "*/*.ejs"),
+	path.resolve(__dirname, "..", "src/*" + "*/*.sql"),
 ];
 const ALL_ORDERED = [
 	path.resolve(__dirname, "..", "src/auth/actors/authenticate.js"),

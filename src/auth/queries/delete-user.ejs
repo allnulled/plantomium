@@ -1,4 +1,22 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 
 const user_id = sqlString.escape(parameters.user_id)
 const previousDeletions = [
@@ -14,6 +32,24 @@ for(let index=0; index < previousDeletions.length; index++) {
 DELETE FROM <%-table%>
   WHERE <%-table%>.<%-column%>;
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 }
 %>
 DELETE FROM users WHERE users.id = <%-user_id%>;

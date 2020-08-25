@@ -58,6 +58,8 @@
  *   - `variable1:Tipo1 <variable2:Tipo2>`
  *   - `variable1:Tipo1 <variable2:Tipo2, variable3:Tipo3>`
  *   - `variable1:Tipo1 <variable2:Tipo2 <variable3:Tipo3, variable4:Tipo4> >`
+ *   - `variable1.propiedad1:TipoPropiedad1`
+ *   - `variable1.propiedad1:TipoPropiedad1 <variable2:Tipo2>`
  * 
  * 
  */

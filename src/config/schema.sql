@@ -13,6 +13,22 @@ drop table if exists combo_user_and_group;
 drop table if exists combo_user_and_permission;
 drop table if exists combo_group_and_permission;
 
+/**
+ * 
+ * ----
+ * 
+ * @name `unconfirmed_users`
+ * @type [SQL table]
+ * @description
+ * @has 
+ * @has  - `id:integer`
+ * @has  - `name:varchar`
+ * @has  - `password:varchar`
+ * @has  - `full_name:varchar`
+ * @has  - `email:varchar`
+ * @has  - `confirmation_token:varchar`
+ * 
+ */
 create table unconfirmed_users (
   id integer primary key auto_increment,
   name varchar(200) unique,
@@ -29,7 +45,8 @@ create table users (
   full_name varchar(400) not null,
   email varchar(300) not null unique,
   recovery_token varchar(400),
-  deactivation tinyint(1) default 0
+  deactivation tinyint(1) default 0,
+  profile_picture varchar(400) default null
 );
 
 create table groups (

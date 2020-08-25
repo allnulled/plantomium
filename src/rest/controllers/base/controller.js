@@ -3,9 +3,19 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const ENABLE_JSON = [
-	bodyParser.urlencoded({ extended: true }),
-	bodyParser.json({ extended: true })
+	bodyParser.urlencoded({
+		extended: true
+	}),
+	bodyParser.json({
+		extended: true
+	})
 ];
+const upload = multer({
+	dest: path.resolve(process.env.PROJECT_ROOT, STORAGE_FOLDER)
+});
+const getFileFields = function() {
+
+};
 
 class BaseController {
 
@@ -37,6 +47,9 @@ class BaseController {
 		this.actor = new this.constructor.Actor(parameters);
 	}
 
+	upload.single('avatar')
+
+
 	mountToRouter(app) {
 		const parameters = {};
 		this.slug = this.constructor.Actor.DatabaseSchema.general.slug;
@@ -49,7 +62,7 @@ class BaseController {
 		// Crud:
 		app.get(this.slugTable, this.getMany(parameters));
 		app.get(this.slugTableId, this.getOne(parameters));
-		
+
 		app.put(this.slugTable, ENABLE_JSON, this.putMany(parameters));
 		app.put(this.slugTableId, ENABLE_JSON, this.putOne(parameters));
 
@@ -59,7 +72,10 @@ class BaseController {
 		app.delete(this.slugTableId, ENABLE_JSON, this.deleteOne(parameters));
 		// Files:
 		app.get(this.slugTableFileId, this.getFile(parameters));
-		app.post(this.slugTableFileId, this.postFile(parameters));
+		app.post(this.slugTableFileId, upload.fields([{
+			name: 'file',
+			maxCount: 1
+		}]), this.postFile(parameters));
 	}
 
 	schema(parameters = {}) {

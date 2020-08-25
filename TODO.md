@@ -1,123 +1,79 @@
 ## TODO
 
-#### v0.0.2
+#### Sprint 0001:
 
-  - [ ] feature/rest-get-file
-    - [ ] actor and controller
-    - [ ] using store
-    - [ ] test of the controller
-  - [ ] feature/rest-set-file
-    - [ ] actor and controller
-    - [ ] using store
-    - [ ] test of the controller
-  - [ ] feature/rest-authorized
-    - [ ] actor and middleware of:
-      - [ ] only-user.js
-      - [ ] only-group.js
-      - [ ] only-permission.js
-      - [ ] only-authenticated.js
-    - [ ] test of everything
-  - [ ] feature/rest-with-options
-    - [ ] bind where to select one · ( table, column )
-    - [ ] bind where to select many · ( table, column )
-    - [ ] bind where to put one · ( table, column )
-    - [ ] bind where to put many · ( table, column )
-    - [ ] bind where to delete one · ( table, column )
-    - [ ] bind where to delete many · ( table, column )
-    - [ ] bind join to select many · ( table, column )
-    - [ ] bind limit to select many · ( table, column )
-    - [ ] bind offset to select many · ( table, column )
-    - [ ] bind cascade to delete one · ( table, column )
-    - [ ] bind cascade to delete many · ( table, column )
-    - [ ] bind requireAuthentication to select one · ( table, column )
-    - [ ] bind requireAuthentication to select many · ( table, column )
-    - [ ] bind requireAuthentication to post one · ( table, column )
-    - [ ] bind requireAuthentication to post many · ( table, column )
-    - [ ] bind requireAuthentication to put one · ( table, column )
-    - [ ] bind requireAuthentication to put many · ( table, column )
-    - [ ] bind requireAuthentication to delete one · ( table, column )
-    - [ ] bind requireAuthentication to delete many · ( table, column )
-    - [ ] bind requireAuthentication to schema · ( table, column )
-    - [ ] bind requireAuthentication to get file · ( table, column )
-    - [ ] bind requireAuthentication to set file · ( table, column )
-    - [ ] bind requirePermission to select one · ( table, column )
-    - [ ] bind requirePermission to select many · ( table, column )
-    - [ ] bind requirePermission to post one · ( table, column )
-    - [ ] bind requirePermission to post many · ( table, column )
-    - [ ] bind requirePermission to put one · ( table, column )
-    - [ ] bind requirePermission to put many · ( table, column )
-    - [ ] bind requirePermission to delete one · ( table, column )
-    - [ ] bind requirePermission to delete many · ( table, column )
-    - [ ] bind requirePermission to schema · ( table, column )
-    - [ ] bind requirePermission to get file · ( table, column )
-    - [ ] bind requirePermission to set file · ( table, column )
-    - [ ] bind requireGroup to select one · ( table, column )
-    - [ ] bind requireGroup to select many · ( table, column )
-    - [ ] bind requireGroup to post one · ( table, column )
-    - [ ] bind requireGroup to post many · ( table, column )
-    - [ ] bind requireGroup to put one · ( table, column )
-    - [ ] bind requireGroup to put many · ( table, column )
-    - [ ] bind requireGroup to delete one · ( table, column )
-    - [ ] bind requireGroup to delete many · ( table, column )
-    - [ ] bind requireGroup to schema · ( table, column )
-    - [ ] bind requireGroup to get file · ( table, column )
-    - [ ] bind requireGroup to set file · ( table, column )
-    - [ ] bind requireUser to select one · ( table, column )
-    - [ ] bind requireUser to select many · ( table, column )
-    - [ ] bind requireUser to post one · ( table, column )
-    - [ ] bind requireUser to post many · ( table, column )
-    - [ ] bind requireUser to put one · ( table, column )
-    - [ ] bind requireUser to put many · ( table, column )
-    - [ ] bind requireUser to delete one · ( table, column )
-    - [ ] bind requireUser to delete many · ( table, column )
-    - [ ] bind requireUser to schema · ( table, column )
-    - [ ] bind requireUser to get file · ( table, column )
-    - [ ] bind requireUser to set file · ( table, column )
-    - [ ] bind excludeAuthentication to select one · ( table, column )
-    - [ ] bind excludeAuthentication to select many · ( table, column )
-    - [ ] bind excludeAuthentication to post one · ( table, column )
-    - [ ] bind excludeAuthentication to post many · ( table, column )
-    - [ ] bind excludeAuthentication to put one · ( table, column )
-    - [ ] bind excludeAuthentication to put many · ( table, column )
-    - [ ] bind excludeAuthentication to delete one · ( table, column )
-    - [ ] bind excludeAuthentication to delete many · ( table, column )
-    - [ ] bind excludeAuthentication to schema · ( table, column )
-    - [ ] bind excludeAuthentication to get file · ( table, column )
-    - [ ] bind excludeAuthentication to set file · ( table, column )
-    - [ ] bind excludePermission to select one · ( table, column )
-    - [ ] bind excludePermission to select many · ( table, column )
-    - [ ] bind excludePermission to post one · ( table, column )
-    - [ ] bind excludePermission to post many · ( table, column )
-    - [ ] bind excludePermission to put one · ( table, column )
-    - [ ] bind excludePermission to put many · ( table, column )
-    - [ ] bind excludePermission to delete one · ( table, column )
-    - [ ] bind excludePermission to delete many · ( table, column )
-    - [ ] bind excludePermission to schema · ( table, column )
-    - [ ] bind excludePermission to get file · ( table, column )
-    - [ ] bind excludePermission to set file · ( table, column )
-    - [ ] bind excludeGroup to select one · ( table, column )
-    - [ ] bind excludeGroup to select many · ( table, column )
-    - [ ] bind excludeGroup to post one · ( table, column )
-    - [ ] bind excludeGroup to post many · ( table, column )
-    - [ ] bind excludeGroup to put one · ( table, column )
-    - [ ] bind excludeGroup to put many · ( table, column )
-    - [ ] bind excludeGroup to delete one · ( table, column )
-    - [ ] bind excludeGroup to delete many · ( table, column )
-    - [ ] bind excludeGroup to schema · ( table, column )
-    - [ ] bind excludeGroup to get file · ( table, column )
-    - [ ] bind excludeGroup to set file · ( table, column )
-    - [ ] bind excludeUser to select one · ( table, column )
-    - [ ] bind excludeUser to select many · ( table, column )
-    - [ ] bind excludeUser to post one · ( table, column )
-    - [ ] bind excludeUser to post many · ( table, column )
-    - [ ] bind excludeUser to put one · ( table, column )
-    - [ ] bind excludeUser to put many · ( table, column )
-    - [ ] bind excludeUser to delete one · ( table, column )
-    - [ ] bind excludeUser to delete many · ( table, column )
-    - [ ] bind excludeUser to schema · ( table, column )
-    - [ ] bind excludeUser to get file · ( table, column )
-    - [ ] bind excludeUser to set file · ( table, column )
-    - [ ] test of everything
+  - [ ] feature/rest-files
+    - [ ] test failing
+    - [ ] cms.actors.(getFile|setFile)
+    - [ ] an (actor|controller) files
+    - [ ] using process.env.STORAGE_FOLDER
+    - [ ] test passing
+  - [ ] feature/rest-auth-basics
+    - [ ] test failing
+    - [ ] an (actor | middleware) of only-(user|group|permission|authentication)
+    - [ ] test passing
+  - [ ] feature/...
+  - [ ] feature/rest-authorization
+    - [ ] test failing of:
+        (
+            requireOn | 
+            excludeOn
+        )
+        (
+            schema |
+            get |
+            getOne |
+            getMany |
+            post |
+            postOne |
+            postMany |
+            put |
+            putOne |
+            putMany |
+            delete |
+            deleteOne |
+            deleteMany |
+            getFile |
+            postFile
+        )
+        (
+            authentication | 
+            privilege | 
+            group | 
+            user 
+        )
+    - [ ] Las opciones se entienden en esta expresión lógica:
+    ```
+    ({table}.(requireOn|excludeOn) | {table}.{column}.(requireOn|excludeOn)) = {
+        schema |
+        get |
+        getOne |
+        getMany |
+        post |
+        postOne |
+        postMany |
+        put |
+        putOne |
+        putMany |
+        delete |
+        deleteOne |
+        deleteMany |
+        getFile |
+        postFile: {
+            authentication: false,
+            privilege: [...],
+            group: [...],
+            user: [...],
+        }
+    }
+    ```
+    - [ ] test passing
+  - [ ] feature/rest-history
+    - [ ] select all the deleted items, taking care of:
+      - [ ] where
+      - [ ] cascadeDelete
+
+
 
 #### v0.0.3
 

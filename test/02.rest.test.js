@@ -95,17 +95,18 @@ describe("REST Test", function() {
 		}
 	});
 
-	it("can POST ONE FILE", async function() {
+	it("can GET ONE FILE", async function() {
 		try {
-			// const response = await axios.post(T.url("/api/v1/user/file"))
+			const response = await axios.get(T.url("/api/v1/user/profile_picture/1"));
+
 		} catch(error) {
 			throw error;
 		}
 	});
 
-	it("can GET ONE FILE", async function() {
+	it("can POST ONE FILE", async function() {
 		try {
-			// const response = await axios.get(T.url("/api/v1/user/file"))
+			// const response = await axios.post(T.url("/api/v1/user/file"))
 		} catch(error) {
 			throw error;
 		}
