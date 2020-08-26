@@ -17,4 +17,5 @@ module.exports = function(cms, router) {
 	cms.rest.controllers.specimen.create().mountToRouter(router);
 	cms.rest.controllers.trait.create().mountToRouter(router);
 	cms.rest.controllers.usages.create().mountToRouter(router);
+	cms.rest.controllers.users.create().mountToRouter(router);
 }

@@ -51,6 +51,9 @@ class BaseHandler {
 				if (parameters.exit) {
 					return parameters.exit;
 				}
+				if(parameters.exitSilently) {
+					return;
+				}
 			}
 			return out || parameters.output;
 		} catch (error) {
@@ -83,14 +86,31 @@ class BaseHandler {
 		throw new Error("Method <onPreJobs> must be overriden");
 	}
 
-	onPrepareQuery(parameters) {
+	async onPrepareQuery(parameters) {
 		cms.utils.trace("rest.handler.onPrepareQuery");
-		return this.onPrepareQueries(parameters);
+		try {
+			parameters.queries = [];
+			if(this.constructor.QueryFiles) {
+				for (let index = 0; index < this.constructor.QueryFiles.length; index++) {
+					const queryFile = this.constructor.QueryFiles[index];
+					const query = await this.renderFile(queryFile, parameters);
+					parameters.queries[index] = query;
+				}
+			}
+		} catch (error) {
+			throw error;
+		}
 	}
 
-	onQuery(parameters) {
+	async onQuery(parameters) {
 		cms.utils.trace("rest.handler.onQuery");
-		return this.onRunQueries(parameters);
+		try {
+			parameters.results = await Promise.all(parameters.queries.map(q => this.onExecuteQuery(q)));
+			parameters.result = parameters.results[parameters.results.length > 0 ? parameters.results.length - 1 : null];
+		} catch (error) {
+			cms.utils.debugError("{handler}.onRunQueries", error);
+			throw error;
+		}
 	}
 
 	onFormatOutput(parameters) {
@@ -130,29 +150,10 @@ class BaseHandler {
 
 	async onPrepareQueries(parameters) {
 		cms.utils.trace("rest.handler.onPrepareQueries");
-		try {
-			parameters.queries = [];
-			for (let index = 0; index < this.constructor.QueryFiles.length; index++) {
-				const queryFile = this.constructor.QueryFiles[index];
-				const query = await this.renderFile(queryFile, parameters);
-				parameters.queries[index] = query;
-			}
-		} catch (error) {
-			throw error;
-		}
 	}
 
 	async onRunQueries(parameters) {
 		cms.utils.trace("rest.handler.onRunQueries");
-		try {
-			parameters.results = await Promise.all(parameters.queries.map(q => {
-				return this.onExecuteQuery(q);
-			}));
-			parameters.result = parameters.results[parameters.results.length - 1];
-		} catch (error) {
-			cms.utils.debugError("{handler}.onRunQueries", error);
-			throw error;
-		}
 	}
 
 	onExecuteQuery(query) {

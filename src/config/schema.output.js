@@ -4860,7 +4860,6 @@ module.exports = {
     maxSessionsPerUser: 10,
     hiddenTables: [
       'sessions',
-      'users',
       'unconfirmed_users',
       'groups',
       'combo_user_and_group',

@@ -1,17 +1,22 @@
-
+const fs = require("fs");
+const path = require("path");
 const BaseHandler = require(__dirname + "/../handler.js");
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 
-class FileGetBaseHandler extends BaseHandler {
+class GetFileBaseHandler extends BaseHandler {
 
 	static get Operation() {
-		return "fileGet";
+		return "getFile";
 	}
 
 	static get QueryFile() {
 		return [
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs")
 		];
+	}
+
+	onStart(parameters) {
+		cms.utils.trace("rest.handlers.getFile.onStart");
 	}
 
 	onAuthorize(parameters) {
@@ -30,6 +35,13 @@ class FileGetBaseHandler extends BaseHandler {
 	onFormatInput(parameters) {
 		cms.utils.trace("rest.handlers.getFile.onFormatInput");
 		// @TODO: format input parameters
+		if(parameters.request) {
+			parameters.table = this.actor.constructor.Table;
+			parameters.id = parameters.request.params.id;
+			parameters.column = parameters.request.params.column;
+			parameters.extension = parameters.request.params.extension;
+			parameters.file = parameters.request.file ? parameters.request.file : {};
+		}
 	}
 
 	onPreJobs(parameters) {
@@ -44,7 +56,17 @@ class FileGetBaseHandler extends BaseHandler {
 
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.getFile.onQuery");
-		// @TODO: query
+		const filename = `${parameters.table}.${parameters.column}.${parameters.id}.${parameters.extension}`;
+		const filepath = path.resolve(process.env.PROJECT_ROOT, process.env.STORAGE_FOLDER, filename);
+		return new Promise(function(ok, fail) {
+			fs.exists(filepath, existsFile => {
+				if(!existsFile) {
+					return fail(new Error(`File <${filepath}> was not found`));
+				}
+				parameters.filepath = filepath;
+				return ok();
+			});
+		});
 	}
 
 	onFormatOutput(parameters) {
@@ -67,11 +89,12 @@ class FileGetBaseHandler extends BaseHandler {
 		// @TODO: broadcast changes
 	}
 
-	onResults(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onResults");
-		parameters.output = "Fuck you";
+	onResult(parameters) {
+		cms.utils.trace("rest.handlers.getFile.onResult");
+		parameters.output = parameters.filepath;
+		return parameters.output;
 	}
 
 }
 
-module.exports = FileGetBaseHandler;
+module.exports = GetFileBaseHandler;

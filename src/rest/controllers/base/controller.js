@@ -2,20 +2,6 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 const path = require("path");
 const bodyParser = require("body-parser");
 const multer = require("multer");
-const ENABLE_JSON = [
-	bodyParser.urlencoded({
-		extended: true
-	}),
-	bodyParser.json({
-		extended: true
-	})
-];
-const upload = multer({
-	dest: path.resolve(process.env.PROJECT_ROOT, STORAGE_FOLDER)
-});
-const getFileFields = function() {
-
-};
 
 class BaseController {
 
@@ -39,6 +25,36 @@ class BaseController {
 		return {}
 	}
 
+	static get DEFAULT_POST_OPTIONS() {
+		return [
+			bodyParser.urlencoded({
+				extended: true
+			}),
+			bodyParser.json({
+				extended: true
+			})
+		];
+	}
+
+	static enablePost() {
+		return this.DEFAULT_POST_OPTIONS;
+	}
+
+	static enablePostFile() {
+		return multer({
+			storage: multer.diskStorage({
+				destination: (request, file, callback) => {
+					const folder = path.resolve(process.env.PROJECT_ROOT, process.env.STORAGE_FOLDER);
+					callback(null, folder);
+				},
+				filename: (request, file, callback) => {
+					const filename = `${this.Table}.${request.params.column}.${request.params.id}${path.extname(file.originalname)}`;
+					callback(null, filename);
+				},
+			})
+		}).single("file");
+	}
+
 	constructor(parameters = {}) {
 		this.currentSchema = {
 			table: this.constructor.Actor.DatabaseSchema.constraints[this.constructor.Table],
@@ -47,15 +63,13 @@ class BaseController {
 		this.actor = new this.constructor.Actor(parameters);
 	}
 
-	upload.single('avatar')
-
-
 	mountToRouter(app) {
 		const parameters = {};
 		this.slug = this.constructor.Actor.DatabaseSchema.general.slug;
 		this.slugTable = path.join(this.slug, this.constructor.Table.replace(/_/g, "-"));
 		this.slugTableId = path.join(this.slugTable, ":id");
-		this.slugTableFileId = path.join(this.slugTable, ":column/:id");
+		this.slugTableIdAndColumn = path.join(this.slugTable, ":id/:column");
+		this.slugTableIdAndColumnWithExtension = path.join(this.slugTableIdAndColumn, ":extension");
 		this.slugTableSchema = path.join(this.slugTable, "@");
 		// Schema:
 		app.get(this.slugTableSchema, this.schema(parameters));
@@ -63,19 +77,16 @@ class BaseController {
 		app.get(this.slugTable, this.getMany(parameters));
 		app.get(this.slugTableId, this.getOne(parameters));
 
-		app.put(this.slugTable, ENABLE_JSON, this.putMany(parameters));
-		app.put(this.slugTableId, ENABLE_JSON, this.putOne(parameters));
+		app.put(this.slugTable, this.constructor.enablePost(), this.putMany(parameters));
+		app.put(this.slugTableId, this.constructor.enablePost(), this.putOne(parameters));
 
-		app.post(this.slugTable, ENABLE_JSON, this.postMany(parameters));
-		app.post(this.slugTableId, ENABLE_JSON, this.postOne(parameters));
-		app.delete(this.slugTable, ENABLE_JSON, this.deleteMany(parameters));
-		app.delete(this.slugTableId, ENABLE_JSON, this.deleteOne(parameters));
+		app.post(this.slugTable, this.constructor.enablePost(), this.postMany(parameters));
+		app.post(this.slugTableId, this.constructor.enablePost(), this.postOne(parameters));
+		app.delete(this.slugTable, this.constructor.enablePost(), this.deleteMany(parameters));
+		app.delete(this.slugTableId, this.constructor.enablePost(), this.deleteOne(parameters));
 		// Files:
-		app.get(this.slugTableFileId, this.getFile(parameters));
-		app.post(this.slugTableFileId, upload.fields([{
-			name: 'file',
-			maxCount: 1
-		}]), this.postFile(parameters));
+		app.get(this.slugTableIdAndColumnWithExtension, this.getFile(parameters));
+		app.post(this.slugTableIdAndColumn, this.constructor.enablePostFile(), this.setFile(parameters));
 	}
 
 	schema(parameters = {}) {
@@ -241,6 +252,11 @@ class BaseController {
 					parameters,
 					controller: this
 				});
+				// Esta llamada necesita servir ficheros, NO JSON.
+				// Por esta razón se añade esta condición.
+				if(typeof data === "string") {
+					return response.sendFile(data);
+				}
 				return this.onSuccess(data, request, response, next);
 			} catch (error) {
 				return this.onError(error, request, response, next);
@@ -248,10 +264,10 @@ class BaseController {
 		}
 	}
 
-	postFile(parameters = {}) {
+	setFile(parameters = {}) {
 		return async (request, response, next) => {
 			try {
-				const data = await this.actor.postFile({
+				const data = await this.actor.setFile({
 					request,
 					response,
 					next,

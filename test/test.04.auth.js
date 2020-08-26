@@ -2,9 +2,10 @@ const {
 	expect
 } = require("chai");
 const axios = require("axios");
-const cms = require(__dirname + "/../src/cms.js");
 
-describe("AUTH Test", function() {
+describe("Auth test", function() {
+
+	const cms = require(__dirname + "/../src/cms.js");
 
 	this.timeout(10 * 1000);
 
@@ -12,6 +13,7 @@ describe("AUTH Test", function() {
 
 	it("can LOAD", async function() {
 		try {
+			await cms.initialized;
 			expect(typeof cms).to.equal("object");
 		} catch (error) {
 			throw error;
@@ -39,6 +41,7 @@ describe("AUTH Test", function() {
 			expect(typeof responseRegister.data.data).to.equal("object");
 			confirmation_token = responseRegister.data.data.confirmation_token;
 		} catch (error) {
+			console.error(error);
 			throw error;
 		}
 	});
@@ -172,4 +175,4 @@ describe("AUTH Test", function() {
 		}
 	});
 
-})
+});

@@ -78,12 +78,12 @@ class BaseActor {
 		return this.handlers.deleteMany.start(parameters);
 	}
 
-	fileGet(parameters) {
-		return this.handlers.fileGet.start(parameters);
+	getFile(parameters) {
+		return this.handlers.getFile.start(parameters);
 	}
 
-	fileSet(parameters) {
-		return this.handlers.fileSet.start(parameters);
+	setFile(parameters) {
+		return this.handlers.setFile.start(parameters);
 	}
 
 }

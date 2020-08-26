@@ -27,7 +27,7 @@ module.exports = {
 			maxSessionsPerUser: 10,
 			hiddenTables: [
 				"sessions",
-				"users",
+				//"users",
 				"unconfirmed_users",
 				"groups",
 				//"permissions",

@@ -1,11 +1,11 @@
 # Sprint-1
 
   [✓] REST Files:
-    [✓] GET
+    [ ] GET
       [✓] picar test de get-file
-      [ ] picar test de set-file
-    [ ] SET
       [ ] pasar test de get-file
+    [ ] SET
+      [✓] picar test de set-file
       [ ] pasar test de set-file
   [ ] REST Options:
     [ ] WHERE (+ policy: 3)

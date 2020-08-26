@@ -2,16 +2,20 @@
 const BaseHandler = require(__dirname + "/../handler.js");
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 
-class FileSetBaseHandler extends BaseHandler {
+class SetFileBaseHandler extends BaseHandler {
 
 	static get Operation() {
-		return "fileSet";
+		return "setFile";
 	}
 
 	static get QueryFile() {
 		return [
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs")
 		];
+	}
+
+	onStart(parameters) {
+		cms.utils.trace("rest.handlers.setFile.onStart");
 	}
 
 	onAuthorize(parameters) {
@@ -30,6 +34,12 @@ class FileSetBaseHandler extends BaseHandler {
 	onFormatInput(parameters) {
 		cms.utils.trace("rest.handlers.setFile.onFormatInput");
 		// @TODO: format input parameters
+		if(parameters.request) {
+			parameters.table = this.actor.constructor.Table;
+			parameters.id = parameters.request.params.id;
+			parameters.column = parameters.request.params.column;
+			parameters.file = parameters.request.file ? parameters.request.file : {};
+		}
 	}
 
 	onPreJobs(parameters) {
@@ -39,12 +49,11 @@ class FileSetBaseHandler extends BaseHandler {
 
 	onPrepareQuery(parameters) {
 		cms.utils.trace("rest.handlers.setFile.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
 	}
 
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.setFile.onQuery");
-		return super.onQuery(parameters);
+		
 	}
 
 	onFormatOutput(parameters) {
@@ -67,11 +76,11 @@ class FileSetBaseHandler extends BaseHandler {
 		// @TODO: broadcast changes
 	}
 
-	onResults(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onResults");
-		parameters.output = "Fuck you";
+	onResult(parameters) {
+		cms.utils.trace("rest.handlers.setFile.onResult");
+		parameters.output = parameters.id + ":" + parameters.column;
 	}
 
 }
 
-module.exports = FileSetBaseHandler;
+module.exports = SetFileBaseHandler;
