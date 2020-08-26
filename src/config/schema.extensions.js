@@ -16,7 +16,26 @@
  * 
  */
 module.exports = {
-	perTable: {},
+	perTable: {
+		users: {
+			restOptions: {
+				where: [],
+				join: [],
+				limit: "",
+				offset: "",
+				sort: [],
+				policy: {
+					where: "",
+					join: "",
+					limit: "",
+					offset: "",
+					sort: "",
+				},
+				recursiveSelect: {},
+				cascadeDelete: []
+			}
+		}
+	},
 	general: {
 		general: {
 			slug: "/api/v1",
@@ -38,6 +57,6 @@ module.exports = {
 			hiddenColumns: [
 				//{ table: "permissions", column: "id" },
 			]
-		}
+		},
 	}
 }

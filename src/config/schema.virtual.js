@@ -2097,15 +2097,31 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [],
+      restOptions: {
+        where: [],
+        join: [],
+        limit: '',
+        offset: '',
+        sort: [],
+        policy: {
+          where: '',
+          join: '',
+          limit: '',
+          offset: '',
+          sort: ''
+        },
+        recursiveSelect: {},
+        cascadeDelete: []
+      }
     }
   },
   general: {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
-    debugSql: true,
+    debugSql: false,
     debugErrors: true,
-    debugTraces: true,
+    debugTraces: false,
     maxSessionsPerUser: 10,
     hiddenTables: [
       'sessions',

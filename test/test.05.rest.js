@@ -7,7 +7,7 @@ const FormData = require("form-data");
 const cms = require(__dirname + "/../src/cms.js");
 const Utils = require(__dirname + "/utils.js");
 
-describe("Rest test", function() {
+describe("REST test: controllers", function() {
 
 	this.timeout(10 * 1000);
 
