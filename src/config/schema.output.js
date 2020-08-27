@@ -4724,7 +4724,29 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [],
+      rest: {
+        where: [
+          [
+            'permissions.name',
+            'notlike',
+            '%8'
+          ]
+        ],
+        join: undefined,
+        limit: undefined,
+        offset: undefined,
+        sort: undefined,
+        policy: {
+          where: undefined,
+          join: undefined,
+          limit: undefined,
+          offset: undefined,
+          sort: undefined
+        },
+        recursiveSelect: {},
+        cascadeDelete: []
+      }
     },
     plant: {
       database: 'plants_bd',
@@ -4848,29 +4870,13 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
-      foreignKeys: [],
-      restOptions: {
-        where: [],
-        join: [],
-        limit: '',
-        offset: '',
-        sort: [],
-        policy: {
-          where: '',
-          join: '',
-          limit: '',
-          offset: '',
-          sort: ''
-        },
-        recursiveSelect: {},
-        cascadeDelete: []
-      }
+      foreignKeys: []
     }
   },
   general: {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
-    debugSql: false,
+    debugSql: true,
     debugErrors: true,
     debugTraces: false,
     maxSessionsPerUser: 10,
@@ -4882,6 +4888,11 @@ module.exports = {
       'combo_user_and_permission',
       'combo_group_and_permission'
     ],
-    hiddenColumns: []
+    hiddenColumns: [
+      'users.password',
+      'users.recovery_token',
+      'users.email',
+      'users.deactivation'
+    ]
   }
 };

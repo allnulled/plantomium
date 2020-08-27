@@ -17,10 +17,20 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(selectFields = [], defaultTable = undefined) {
+module.exports = function(selectFields = [], table = undefined) {
 	let sql = "";
-	if(selectFields.length === 0) {
-		return "*";
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	const attrs = typeof table === "string" ? cms.utils.dataGetter(cms, ["schema", "constraints", table, "attributes"], undefined) : undefined;
+	const hasNoFields = selectFields.length === 0;
+	if(hasNoFields) {
+		if(typeof table === "undefined") {
+			return "*";
+		} else if(table in cms.schema.constraints) {
+			const fieldsSql = attrs.map(attr => sqlString.escapeId(`${table}.${attr}`) + ` as '${table}.${attr}'`).join(",\n  ");
+			return fieldsSql;
+		} else {
+			throw new Error("Parameters <table> not found in schema. [ERR:009]");
+		}
 	}
 	for(let index=0; index < selectFields.length; index++) {
 		let field = selectFields[index];
@@ -32,9 +42,9 @@ module.exports = function(selectFields = [], defaultTable = undefined) {
 			sql += ",\n    ";
 		}
 		if(field.length === 1) {
-			if(defaultTable) {
-				sql += sqlString.escapeId(defaultTable) + "." + sqlString.escapeId(field[0]);
-				alias = defaultTable + "." + field[0];
+			if(table) {
+				sql += sqlString.escapeId(table) + "." + sqlString.escapeId(field[0]);
+				alias = table + "." + field[0];
 			} else {
 				sql += sqlString.escapeId(field[0]);
 				alias = false;

@@ -8,19 +8,19 @@
       [✓] picar test de set-file
       [✓] pasar test de set-file
   [ ] REST Options:
-    [ ] WHERE (+ policy: 3)
+    [✓] WHERE
+      [✓] picar test
+      [✓] pasar test
+    [ ] JOIN
       [ ] picar test
       [ ] pasar test
-    [ ] JOIN (+ policy: 3)
+    [ ] LIMIT
       [ ] picar test
       [ ] pasar test
-    [ ] LIMIT (+ policy: 2)
+    [ ] OFFSET
       [ ] picar test
       [ ] pasar test
-    [ ] OFFSET (+ policy: 2)
-      [ ] picar test
-      [ ] pasar test
-    [ ] SORT (+ policy: 3)
+    [ ] SORT
       [ ] picar test
       [ ] pasar test
     [ ] RECURSIVE SELECT
@@ -30,7 +30,7 @@
       [ ] picar test
       [ ] pasar test
   [ ] Other REST Options:
-    [ ] {table}.{column=*}.{operation=*}:
+    [ ] {Table}.{Column=*}.{Operation=*}:
       [ ] requireUser
       [ ] requireGroup
       [ ] requirePrivilege
@@ -39,7 +39,37 @@
       [ ] excludeGroup
       [ ] excludePrivilege
       [ ] excludeAuthentication
-  
+    [ ] Operations:
+      [ ] schema
+      [ ] get
+      [ ] getOne
+      [ ] getMany
+      [ ] post
+      [ ] postOne
+      [ ] postMany
+      [ ] put
+      [ ] putOne
+      [ ] putMany
+      [ ] delete
+      [ ] deleteOne
+      [ ] deleteMany
+      [ ] getOneFile
+      [ ] setOneFile
+  [ ] Autogenerate axios client
+  [ ] Options:
+    [ ] per table
+      [ ] ...
+    [ ] per column
+      [ ] ...
+    [ ] per operation 
+  [ ] REST History support
+    [ ] create tables
+    [ ] insert each event from lifecycle
+    [ ] insert each deleted registry from lifecycle
+
+
+
+
 # DONE:
 
   [✓] mejorado "npm run docs" al añadir ficheros tipo .ejs

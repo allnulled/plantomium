@@ -17,19 +17,21 @@
  */
 module.exports = {
 	perTable: {
-		users: {
-			restOptions: {
-				where: [],
-				join: [],
-				limit: "",
-				offset: "",
-				sort: [],
+		permissions: {
+			rest: {
+				where: [
+					["permissions.name", "notlike", "%8"]
+				], // default: 	[]
+				join: undefined, // default: 	[]
+				limit: undefined, // default: 	""
+				offset: undefined, // default: 	""
+				sort: undefined, // default: 	[]
 				policy: {
-					where: "",
-					join: "",
-					limit: "",
-					offset: "",
-					sort: "",
+					where: undefined, // default: 	""
+					join: undefined, // default: 	""
+					limit: undefined, // default: 	""
+					offset: undefined, // default: 	""
+					sort: undefined, // default: 	""
 				},
 				recursiveSelect: {},
 				cascadeDelete: []
@@ -55,7 +57,10 @@ module.exports = {
 				"combo_group_and_permission",
 			],
 			hiddenColumns: [
-				//{ table: "permissions", column: "id" },
+				"users.password",
+				"users.recovery_token",
+				"users.email",
+				"users.deactivation",
 			]
 		},
 	}

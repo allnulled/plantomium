@@ -42,7 +42,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_compound_and_plant_ibfk_2',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -66,7 +74,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_compound_and_plant_ibfk_1',
+            model: 'Compound',
+            table: 'compound',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -164,7 +180,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_environment_and_plant_ibfk_2',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -188,7 +212,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_environment_and_plant_ibfk_1',
+            model: 'Environment',
+            table: 'environment',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -262,7 +294,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_image_and_plant_ibfk_2',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -286,7 +326,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_image_and_plant_ibfk_1',
+            model: 'Image',
+            table: 'image',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -360,7 +408,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_image_and_specimen_ibfk_2',
+            model: 'Specimen',
+            table: 'specimen',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -384,7 +440,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_image_and_specimen_ibfk_1',
+            model: 'Image',
+            table: 'image',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -458,7 +522,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_localization_and_plant_ibfk_2',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -482,7 +554,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_localization_and_plant_ibfk_1',
+            model: 'Localization',
+            table: 'localization',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -556,7 +636,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_trait_and_plant_ibfk_2',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -580,7 +668,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_trait_and_plant_ibfk_1',
+            model: 'Trait',
+            table: 'trait',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -654,7 +750,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_trait_and_specimen_ibfk_2',
+            model: 'Specimen',
+            table: 'specimen',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -678,7 +782,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_trait_and_specimen_ibfk_1',
+            model: 'Trait',
+            table: 'trait',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -752,7 +864,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_usage_and_plant_ibfk_2',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -776,7 +896,15 @@ module.exports = {
         isUnsigned: false,
         isForeignKey: true,
         isUnique: false,
-        referencesTo: [],
+        referencesTo: [
+          {
+            id: 'combo_usage_and_plant_ibfk_1',
+            model: 'Usages',
+            table: 'usages',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -827,7 +955,14 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboCompoundAndPlant',
+            table: 'combo_compound_and_plant',
+            column: 'id_compound',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -931,6 +1066,38 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'int(11)'
       },
+      id_user: {
+        order: 2,
+        model: 'Configuration',
+        table: 'configuration',
+        column: 'id_user',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: true,
+        referencesTo: [
+          {
+            id: 'configuration_ibfk_1',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
       aspect: {
         order: 3,
         model: 'Configuration',
@@ -999,7 +1166,14 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboEnvironmentAndPlant',
+            table: 'combo_environment_and_plant',
+            column: 'id_environment',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -1073,7 +1247,20 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboImageAndPlant',
+            table: 'combo_image_and_plant',
+            column: 'id_image',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboImageAndSpecimen',
+            table: 'combo_image_and_specimen',
+            column: 'id_image',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -1097,6 +1284,38 @@ module.exports = {
         isForeignKey: false,
         isUnique: false,
         referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_user: {
+        order: 3,
+        model: 'Image',
+        table: 'image',
+        column: 'id_user',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'image_ibfk_1',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -1147,7 +1366,14 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboLocalizationAndPlant',
+            table: 'combo_localization_and_plant',
+            column: 'id_localization',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -1203,6 +1429,43 @@ module.exports = {
       }
     },
     permissions: {
+      id: {
+        order: 1,
+        model: 'Permissions',
+        table: 'permissions',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [
+          {
+            model: 'ComboGroupAndPermission',
+            table: 'combo_group_and_permission',
+            column: 'id_permission',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboUserAndPermission',
+            table: 'combo_user_and_permission',
+            column: 'id_permission',
+            isPrimaryKey: false
+          }
+        ],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
       name: {
         order: 2,
         model: 'Permissions',
@@ -1247,7 +1510,44 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboCompoundAndPlant',
+            table: 'combo_compound_and_plant',
+            column: 'id_plant',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboEnvironmentAndPlant',
+            table: 'combo_environment_and_plant',
+            column: 'id_plant',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboImageAndPlant',
+            table: 'combo_image_and_plant',
+            column: 'id_plant',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboLocalizationAndPlant',
+            table: 'combo_localization_and_plant',
+            column: 'id_plant',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboTraitAndPlant',
+            table: 'combo_trait_and_plant',
+            column: 'id_plant',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboUsageAndPlant',
+            table: 'combo_usage_and_plant',
+            column: 'id_plant',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -1369,7 +1669,20 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboImageAndSpecimen',
+            table: 'combo_image_and_specimen',
+            column: 'id_specimen',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboTraitAndSpecimen',
+            table: 'combo_trait_and_specimen',
+            column: 'id_specimen',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -1393,6 +1706,38 @@ module.exports = {
         isForeignKey: false,
         isUnique: false,
         referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_user: {
+        order: 3,
+        model: 'Specimen',
+        table: 'specimen',
+        column: 'id_user',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'specimen_ibfk_1',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
         referencedBy: [],
         optionsList: null,
         maxTextLength: null,
@@ -1443,7 +1788,20 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboTraitAndPlant',
+            table: 'combo_trait_and_plant',
+            column: 'id_trait',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboTraitAndSpecimen',
+            table: 'combo_trait_and_specimen',
+            column: 'id_trait',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -1517,7 +1875,14 @@ module.exports = {
         isForeignKey: false,
         isUnique: true,
         referencesTo: [],
-        referencedBy: [],
+        referencedBy: [
+          {
+            model: 'ComboUsageAndPlant',
+            table: 'combo_usage_and_plant',
+            column: 'id_usage',
+            isPrimaryKey: false
+          }
+        ],
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
@@ -1573,6 +1938,67 @@ module.exports = {
       }
     },
     users: {
+      id: {
+        order: 1,
+        model: 'Users',
+        table: 'users',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [
+          {
+            model: 'ComboUserAndGroup',
+            table: 'combo_user_and_group',
+            column: 'id_user',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ComboUserAndPermission',
+            table: 'combo_user_and_permission',
+            column: 'id_user',
+            isPrimaryKey: false
+          },
+          {
+            model: 'Configuration',
+            table: 'configuration',
+            column: 'id_user',
+            isPrimaryKey: false
+          },
+          {
+            model: 'Image',
+            table: 'image',
+            column: 'id_user',
+            isPrimaryKey: false
+          },
+          {
+            model: 'Sessions',
+            table: 'sessions',
+            column: 'id_user',
+            isPrimaryKey: false
+          },
+          {
+            model: 'Specimen',
+            table: 'specimen',
+            column: 'id_user',
+            isPrimaryKey: false
+          }
+        ],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
       name: {
         order: 2,
         model: 'Users',
@@ -1590,30 +2016,6 @@ module.exports = {
         isUnsigned: null,
         isForeignKey: false,
         isUnique: true,
-        referencesTo: [],
-        referencedBy: [],
-        optionsList: null,
-        maxTextLength: 200,
-        database: 'plants_bd',
-        archetype: 'varchar(200)'
-      },
-      password: {
-        order: 3,
-        model: 'Users',
-        table: 'users',
-        column: 'password',
-        type: 'text',
-        typeTerm: 'varchar',
-        subtype: 'varchar',
-        'default': null,
-        extra: false,
-        isPrimaryKey: false,
-        isAutoIncrement: null,
-        isNullable: false,
-        isFloat: null,
-        isUnsigned: null,
-        isForeignKey: false,
-        isUnique: false,
         referencesTo: [],
         referencedBy: [],
         optionsList: null,
@@ -1644,78 +2046,6 @@ module.exports = {
         maxTextLength: 400,
         database: 'plants_bd',
         archetype: 'varchar(400)'
-      },
-      email: {
-        order: 5,
-        model: 'Users',
-        table: 'users',
-        column: 'email',
-        type: 'text',
-        typeTerm: 'varchar',
-        subtype: 'varchar',
-        'default': null,
-        extra: false,
-        isPrimaryKey: false,
-        isAutoIncrement: null,
-        isNullable: false,
-        isFloat: null,
-        isUnsigned: null,
-        isForeignKey: false,
-        isUnique: true,
-        referencesTo: [],
-        referencedBy: [],
-        optionsList: null,
-        maxTextLength: 300,
-        database: 'plants_bd',
-        archetype: 'varchar(300)'
-      },
-      recovery_token: {
-        order: 6,
-        model: 'Users',
-        table: 'users',
-        column: 'recovery_token',
-        type: 'text',
-        typeTerm: 'varchar',
-        subtype: 'varchar',
-        'default': null,
-        extra: false,
-        isPrimaryKey: false,
-        isAutoIncrement: null,
-        isNullable: false,
-        isFloat: null,
-        isUnsigned: null,
-        isForeignKey: false,
-        isUnique: false,
-        referencesTo: [],
-        referencedBy: [],
-        optionsList: null,
-        maxTextLength: 400,
-        database: 'plants_bd',
-        archetype: 'varchar(400)'
-      },
-      deactivation: {
-        order: 7,
-        model: 'Users',
-        table: 'users',
-        column: 'deactivation',
-        type: 'boolean',
-        typeTerm: 'tinyint',
-        subtype: 'tinyint',
-        'default': '0',
-        extra: false,
-        isPrimaryKey: false,
-        isAutoIncrement: null,
-        isNullable: false,
-        isFloat: null,
-        isUnsigned: null,
-        isForeignKey: false,
-        isUnique: false,
-        referencesTo: [],
-        referencedBy: [],
-        optionsList: null,
-        maxTextLength: null,
-        database: 'plants_bd',
-        archetype: 'tinyint(1)'
       },
       profile_picture: {
         order: 8,
@@ -1749,6 +2079,7 @@ module.exports = {
       model: 'ComboCompoundAndPlant',
       table: 'combo_compound_and_plant',
       attributes: [
+        'id',
         'id_plant',
         'id_compound',
         'percentage',
@@ -1777,6 +2108,7 @@ module.exports = {
       model: 'ComboEnvironmentAndPlant',
       table: 'combo_environment_and_plant',
       attributes: [
+        'id',
         'id_plant',
         'id_environment',
         'description'
@@ -1804,6 +2136,7 @@ module.exports = {
       model: 'ComboImageAndPlant',
       table: 'combo_image_and_plant',
       attributes: [
+        'id',
         'id_plant',
         'id_image',
         'description'
@@ -1831,6 +2164,7 @@ module.exports = {
       model: 'ComboImageAndSpecimen',
       table: 'combo_image_and_specimen',
       attributes: [
+        'id',
         'id_specimen',
         'id_image',
         'description'
@@ -1858,6 +2192,7 @@ module.exports = {
       model: 'ComboLocalizationAndPlant',
       table: 'combo_localization_and_plant',
       attributes: [
+        'id',
         'id_plant',
         'id_localization',
         'description'
@@ -1885,6 +2220,7 @@ module.exports = {
       model: 'ComboTraitAndPlant',
       table: 'combo_trait_and_plant',
       attributes: [
+        'id',
         'id_plant',
         'id_trait',
         'description'
@@ -1912,6 +2248,7 @@ module.exports = {
       model: 'ComboTraitAndSpecimen',
       table: 'combo_trait_and_specimen',
       attributes: [
+        'id',
         'id_specimen',
         'id_trait',
         'description'
@@ -1939,6 +2276,7 @@ module.exports = {
       model: 'ComboUsageAndPlant',
       table: 'combo_usage_and_plant',
       attributes: [
+        'id',
         'id_plant',
         'id_usage',
         'description'
@@ -1966,6 +2304,8 @@ module.exports = {
       model: 'Compound',
       table: 'compound',
       attributes: [
+        'id',
+        'name',
         'referencia',
         'description'
       ],
@@ -1979,19 +2319,30 @@ module.exports = {
       model: 'Configuration',
       table: 'configuration',
       attributes: [
+        'id',
+        'id_user',
         'aspect',
         'value'
       ],
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [
+        {
+          constraint: 'configuration_ibfk_1',
+          column: 'id_user',
+          referencedTable: 'users',
+          referencedColumn: 'id'
+        }
+      ]
     },
     environment: {
       database: 'plants_bd',
       model: 'Environment',
       table: 'environment',
       attributes: [
+        'id',
+        'name',
         'description'
       ],
       primaryKeys: [
@@ -2004,19 +2355,30 @@ module.exports = {
       model: 'Image',
       table: 'image',
       attributes: [
+        'id',
         'id_specimen',
+        'id_user',
         'description'
       ],
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [
+        {
+          constraint: 'image_ibfk_1',
+          column: 'id_user',
+          referencedTable: 'users',
+          referencedColumn: 'id'
+        }
+      ]
     },
     localization: {
       database: 'plants_bd',
       model: 'Localization',
       table: 'localization',
       attributes: [
+        'id',
+        'name',
         'description'
       ],
       primaryKeys: [
@@ -2028,17 +2390,44 @@ module.exports = {
       database: 'plants_bd',
       model: 'Permissions',
       table: 'permissions',
-      attributes: [],
+      attributes: [
+        'id',
+        'name'
+      ],
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [],
+      rest: {
+        where: [
+          [
+            'permissions.name',
+            'notlike',
+            '%8'
+          ]
+        ],
+        join: undefined,
+        limit: undefined,
+        offset: undefined,
+        sort: undefined,
+        policy: {
+          where: undefined,
+          join: undefined,
+          limit: undefined,
+          offset: undefined,
+          sort: undefined
+        },
+        recursiveSelect: {},
+        cascadeDelete: []
+      }
     },
     plant: {
       database: 'plants_bd',
       model: 'Plant',
       table: 'plant',
       attributes: [
+        'id',
+        'name',
         'name_scientific',
         'name_popular',
         'description'
@@ -2053,19 +2442,30 @@ module.exports = {
       model: 'Specimen',
       table: 'specimen',
       attributes: [
+        'id',
         'id_plant',
+        'id_user',
         'description'
       ],
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [
+        {
+          constraint: 'specimen_ibfk_1',
+          column: 'id_user',
+          referencedTable: 'users',
+          referencedColumn: 'id'
+        }
+      ]
     },
     trait: {
       database: 'plants_bd',
       model: 'Trait',
       table: 'trait',
       attributes: [
+        'id',
+        'name',
         'description'
       ],
       primaryKeys: [
@@ -2078,6 +2478,8 @@ module.exports = {
       model: 'Usages',
       table: 'usages',
       attributes: [
+        'id',
+        'name',
         'description'
       ],
       primaryKeys: [
@@ -2090,36 +2492,21 @@ module.exports = {
       model: 'Users',
       table: 'users',
       attributes: [
-        'recovery_token',
-        'deactivation',
+        'id',
+        'name',
+        'full_name',
         'profile_picture'
       ],
       primaryKeys: [
         'id'
       ],
-      foreignKeys: [],
-      restOptions: {
-        where: [],
-        join: [],
-        limit: '',
-        offset: '',
-        sort: [],
-        policy: {
-          where: '',
-          join: '',
-          limit: '',
-          offset: '',
-          sort: ''
-        },
-        recursiveSelect: {},
-        cascadeDelete: []
-      }
+      foreignKeys: []
     }
   },
   general: {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
-    debugSql: false,
+    debugSql: true,
     debugErrors: true,
     debugTraces: false,
     maxSessionsPerUser: 10,
@@ -2131,6 +2518,11 @@ module.exports = {
       'combo_user_and_permission',
       'combo_group_and_permission'
     ],
-    hiddenColumns: []
+    hiddenColumns: [
+      'users.password',
+      'users.recovery_token',
+      'users.email',
+      'users.deactivation'
+    ]
   }
 }

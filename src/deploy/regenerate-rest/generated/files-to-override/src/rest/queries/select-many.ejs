@@ -26,12 +26,12 @@ const {
   sort = undefined,
   page = 1,
 } = parameters.input;
-const fieldsFinal = cms.utils.toSelectFieldsSql(fields);
-const whereFinal = cms.utils.toSelectWhereSql(where);
-const joinFinal = cms.utils.toSelectJoinSql(join);
-const orderFinal = cms.utils.toSelectOrderSql(sort);
-const limitFinal = cms.utils.toSelectLimitSql(limit);
-const offsetFinal = cms.utils.toSelectOffsetSql(limit, page);
+const fieldsFinal = cms.utils.toSelectFieldsSql(fields, actorClass.Table);
+const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
+const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
+const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
+const limitFinal = cms.utils.toSelectLimitSql(limit, actorClass.Table);
+const offsetFinal = cms.utils.toSelectOffsetSql(limit, page, actorClass.Table);
 %>
 SELECT <%-fieldsFinal%>
   FROM <%-table%>

@@ -30,7 +30,7 @@ describe("Auth test", function() {
 	};
 
 	const debugResponses = function(...args) {
-		console.log(...args);
+		//console.log(...args);
 	}
 
 	it("can REGISTER", async function() {
