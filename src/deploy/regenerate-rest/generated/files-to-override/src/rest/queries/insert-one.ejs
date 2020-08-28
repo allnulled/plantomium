@@ -29,6 +29,7 @@ for(let index=0; index < columnKeys.length; index++) {
   values.push(value);
 }
 %>
+# insert one:
 INSERT INTO <%-table%> (
     <%-fields.join(",\n    ")%>
 ) VALUES (

@@ -22,7 +22,8 @@ const {
   id,
   where = [],
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql([[ "id", "=", id]], actorClass.Schema);
+const whereFinal = cms.utils.toSelectWhereSql([[ "id", "=", id]], false, actorClass.Table, true);
 %>
+# delete one:
 DELETE FROM <%-table%>
 WHERE <%-whereFinal%>;

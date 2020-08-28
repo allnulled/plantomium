@@ -59,7 +59,7 @@ describe("REST test: controllers", function() {
 			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions/1"));
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
-			expect(responsePermissions.data.data.name).to.equal("some permission");
+			expect(responsePermissions.data.data["permissions.name"]).to.equal("some permission");
 		} catch (error) {
 			throw error;
 		}
@@ -76,7 +76,7 @@ describe("REST test: controllers", function() {
 			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions/1"));
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
-			expect(responsePermissions.data.data.name).to.equal("some other permission");
+			expect(responsePermissions.data.data["permissions.name"]).to.equal("some other permission");
 		} catch (error) {
 			throw error;
 		}

@@ -22,7 +22,6 @@ module.exports = {
 				where: [
 					["permissions.name", "notlike", "%8"]
 				], // default: 	[]
-				join: undefined, // default: 	[]
 				limit: undefined, // default: 	""
 				offset: undefined, // default: 	""
 				sort: undefined, // default: 	[]
@@ -35,6 +34,20 @@ module.exports = {
 				},
 				recursiveSelect: {},
 				cascadeDelete: []
+			}
+		},
+		groups: {
+			rest: {
+				join: [
+					["combo_group_and_permission", "combo_group_and_permission.id_group", "=", "groups.id"],
+					["permissions", "permissions.id", "=", "combo_group_and_permission.id_permission"]
+				], // default: 	[]
+				/*
+				formatBy: [
+					["groups", "id"], 
+					["permissions", "id"]
+				]
+				//*/
 			}
 		}
 	},
@@ -50,11 +63,11 @@ module.exports = {
 				"sessions",
 				//"users",
 				"unconfirmed_users",
-				"groups",
+				// "groups",
 				//"permissions",
 				"combo_user_and_group",
 				"combo_user_and_permission",
-				"combo_group_and_permission",
+				// "combo_group_and_permission",
 			],
 			hiddenColumns: [
 				"users.password",

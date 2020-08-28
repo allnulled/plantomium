@@ -82,7 +82,11 @@ class GetOneBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.getOne.onResult");
-		parameters.output = parameters.result[0] || null;
+		parameters.output = parameters.result || null;
+		const joinedTables = cms.utils.dataGetter(cms, ["schema", "constraints", this.actor.constructor.Table, "rest", "join"], []);
+		if(Object.keys(joinedTables).length === 0) {
+			parameters.output = parameters.result[0] || null;
+		}
 		return parameters.output;
 	}
 

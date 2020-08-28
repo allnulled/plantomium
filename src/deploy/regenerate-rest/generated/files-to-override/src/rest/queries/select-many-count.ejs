@@ -33,6 +33,7 @@ const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 const limitFinal = cms.utils.toSelectLimitSql(limit, actorClass.Table);
 const offsetFinal = cms.utils.toSelectOffsetSql(limit, page, actorClass.Table);
 %>
+# select many count:
 SELECT COUNT(*) AS Total
   FROM <%-table%>
   <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>

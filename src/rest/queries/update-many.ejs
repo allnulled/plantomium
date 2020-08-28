@@ -22,7 +22,7 @@ const {
   where,
   data
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql(where);
+const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
 const dataFinal = cms.utils.toUpdateValuesSql(data);
 if(dataFinal.length === 0) {
 	throw new Error("Required data on update-many")
@@ -31,6 +31,7 @@ if(whereFinal.length === 0) {
 	throw new Error("Required at least 1 <where> condition on update-many")
 }
 %>
+# update many:
 UPDATE <%-table%>
 SET <%-dataFinal%>
 WHERE <%-whereFinal%>;

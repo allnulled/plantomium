@@ -4675,7 +4675,23 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [],
+      rest: {
+        join: [
+          [
+            'combo_group_and_permission',
+            'combo_group_and_permission.id_group',
+            '=',
+            'groups.id'
+          ],
+          [
+            'permissions',
+            'permissions.id',
+            '=',
+            'combo_group_and_permission.id_permission'
+          ]
+        ]
+      }
     },
     image: {
       database: 'plants_bd',
@@ -4733,7 +4749,6 @@ module.exports = {
             '%8'
           ]
         ],
-        join: undefined,
         limit: undefined,
         offset: undefined,
         sort: undefined,
@@ -4883,10 +4898,8 @@ module.exports = {
     hiddenTables: [
       'sessions',
       'unconfirmed_users',
-      'groups',
       'combo_user_and_group',
-      'combo_user_and_permission',
-      'combo_group_and_permission'
+      'combo_user_and_permission'
     ],
     hiddenColumns: [
       'users.password',

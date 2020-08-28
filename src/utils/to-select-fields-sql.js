@@ -17,47 +17,91 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(selectFields = [], table = undefined) {
+module.exports = function(selectFields = undefined, tablesParam = []) {
 	let sql = "";
+	let isStarted = false;
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
-	const attrs = typeof table === "string" ? cms.utils.dataGetter(cms, ["schema", "constraints", table, "attributes"], undefined) : undefined;
-	const hasNoFields = selectFields.length === 0;
-	if(hasNoFields) {
-		if(typeof table === "undefined") {
-			return "*";
-		} else if(table in cms.schema.constraints) {
-			const fieldsSql = attrs.map(attr => sqlString.escapeId(`${table}.${attr}`) + ` as '${table}.${attr}'`).join(",\n  ");
-			return fieldsSql;
-		} else {
-			throw new Error("Parameters <table> not found in schema. [ERR:009]");
-		}
-	}
-	for(let index=0; index < selectFields.length; index++) {
-		let field = selectFields[index];
-		let alias = "";
-		if(typeof field === "string") {
-			field = [].concat(field);
-		}
-		if(index !== 0) {
-			sql += ",\n    ";
-		}
-		if(field.length === 1) {
-			if(table) {
-				sql += sqlString.escapeId(table) + "." + sqlString.escapeId(field[0]);
-				alias = table + "." + field[0];
-			} else {
-				sql += sqlString.escapeId(field[0]);
-				alias = false;
+	const tables = Array.isArray(tablesParam) ? tablesParam : (typeof tablesParam === "string" ) ? [tablesParam] : null;
+	const hasFields = typeof selectFields !== "undefined";
+	// console.log(tables ? tables[0] : null, hasFields);
+	if(!hasFields) {
+		// console.log("has no fields", selectFields);
+		// 1. Iterate over provided tables:
+		// console.log("iterating tables");
+		for(let indexTables=0; indexTables < tables.length; indexTables++) {
+			const table = tables[indexTables];
+			// console.log("table", table);
+			if(typeof table !== "string") {
+				throw new Error("Required <tablesParam.*> to be a string on toSelectFieldsSql [ERR: 021]");
 			}
-		} else if(selectFields.length === 2) {
-			sql += sqlString.escapeId(field[0]) + "." + sqlString.escapeId(field[1]);
-			alias = field[0] + "." + field[1];
+			// 2. Add self fields
+			cms.schema.constraints[table].attributes.forEach(attr => {
+				const field = table + "." + attr;
+				sql += isStarted ? ",\n  " : "";
+				sql += sqlString.escapeId(field);
+				sql += " AS '" + field + "'";
+				isStarted = true;
+			});
+			// 3. Get the joins of the table:
+			const joins = cms.utils.getJoinedTables(table);
+			const joinTables = Object.keys(joins);
+			// console.log(joinTables);
+			// 4. Get only main tables
+			joinTables.forEach(joinTable => {
+				cms.schema.constraints[joinTable].attributes.forEach(attr => {
+					const field = joinTable + "." + attr;
+					sql += isStarted ? ",\n  " : "";
+					sql += sqlString.escapeId(field);
+					sql += " AS '" + field + "'";
+					isStarted = true;
+				});
+			});
+			// 5. Add fields of the joined tables too
+
+		}
+	} else if(Array.isArray(selectFields)) {
+		// console.log("has fields", selectFields);
+		if(selectFields.length) {
+			// console.log("iterating fields");
+			for(let index=0; index < selectFields.length; index++) {
+				const fieldBrute = selectFields[index];
+				if(typeof fieldBrute !== "string") {
+					throw new Error("Required <selectFields.*> to be a string [ERR:025]");
+				}
+				// console.log("fieldBrute:", fieldBrute);
+				const fieldTmp = fieldBrute.split(".");
+				const fieldTable = (fieldTmp.length > 1) ? fieldTmp[0] : (tables.length > 0) ? tables[0] : undefined;
+				const fieldColumn = (fieldTmp.length > 1) ? fieldTmp[1] : fieldTmp[0];
+				const field = ((typeof fieldTable === "string") ? (fieldTable + ".") : "") + (fieldColumn);
+				sql += (isStarted) ? ",\n  " : "";
+				sql += `${sqlString.escapeId(field)}`;
+				sql += " AS '" + field + "'";
+				isStarted = true;
+			}
 		} else {
-			throw new Error("Field format not supported to select fields SQL");
+			if(tables.length) {
+				// console.log("has table at least");
+				const mainTable = tables[0];
+				const tableFields = cms.schema.constraints[mainTable].attributes;
+				for(let indexFields=0; indexFields < tableFields.length; indexFields++) {
+					// console.log("iterating fields");
+					const column = tableFields[indexFields];
+					const field = mainTable + "." + column;
+					sql += (isStarted) ? ",\n  " : "";
+					sql += `${sqlString.escapeId(field)}`;
+					sql += " AS '" + field + "'";
+					isStarted = true;
+				}
+			} else {
+				// console.log("has no table neither");
+				sql += "*";
+			}
 		}
-		if(alias) {
-			sql += " as '" + alias + "'";
-		}
+	} else {
+		throw new Error("Required <selectFields> to be an array or undefined on toSelectFieldsSql [ERR:020]");
+	}
+	if(sql === "") {
+		sql = "*";
 	}
 	return sql;
 }

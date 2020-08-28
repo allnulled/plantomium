@@ -1,17 +1,4 @@
 const sqlString = require("sqlstring");
-const ENABLED_OPS = [ "=", ">", ">=", "<", "<=", "!=", "in", "notin", "like", "notlike"];
-const OP_TRANSLATION = {
-	"=": "=",
-	">": ">",
-	">=": ">=",
-	"<": "<",
-	"<=": "<=",
-	"!=": "!=",
-	"in": "in",
-	"notin": "not in",
-	"like": "like",
-	"notlike": "not like",
-}
 /**
  * 
  * ----
@@ -30,6 +17,7 @@ const OP_TRANSLATION = {
  * 
  */
 module.exports = function(selectWhereParam, prependAnd = false, tablename = false, applyConstraints = true) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 	let sql = prependAnd === true ? " AND " : "";
 	// 0. Do validations
 	if(typeof selectWhereParam === "undefined") {
@@ -82,12 +70,12 @@ module.exports = function(selectWhereParam, prependAnd = false, tablename = fals
 			throw new Error("Every <selectWhere> rule must be an array (of 3 items) [ERR:003]");
 		}
 		const [ op1, opSymbol, op2 ] = rule;
-		if(ENABLED_OPS.indexOf(opSymbol) === -1) {
-			throw new Error("Not allowed operation with <" + op + "> [ERR:004]");
+		if(!(opSymbol in cms.utils.operationTranslations)) {
+			throw new Error("Not allowed operation with <" + opSymbol + "> [ERR:004]");
 		}
 		// @TODO: ALLOW IN+!IN OPERATIONS WITH ARRAYS AS 3RD ARGUMENT
 		// @TODO: ALLOW PROP2PROP OPERATION WITH ARRAYS OF 2 ITEMS AS 3RD ARGUMENT
-		const op = OP_TRANSLATION[opSymbol];
+		const op = cms.utils.operationTranslations[opSymbol];
 		if(index !== 0) {
 			sql += "\n  AND";
 		}

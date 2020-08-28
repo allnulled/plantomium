@@ -8,27 +8,50 @@
       [✓] picar test de set-file
       [✓] pasar test de set-file
   [ ] REST Options:
-    [✓] WHERE
+    [ ] WHERE
       [✓] picar test
       [✓] pasar test
+      [ ] asegurar su uso en:
+        [✓] SELECT MANY
+        [✓] SELECT ONE
+        [ ] UPDATE MANY
+        [✓] UPDATE ONE
+        [ ] DELETE MANY
+        [✓] DELETE ONE
     [ ] JOIN
       [ ] picar test
       [ ] pasar test
+      [ ] asegurar su uso en:
+        [ ] SELECT MANY
+        [ ] SELECT ONE
     [ ] LIMIT
       [ ] picar test
       [ ] pasar test
+      [ ] asegurar su uso en:
+        [ ] SELECT MANY
+        [ ] SELECT ONE
     [ ] OFFSET
       [ ] picar test
       [ ] pasar test
+      [ ] asegurar su uso en:
+        [ ] SELECT MANY
+        [ ] SELECT ONE
     [ ] SORT
       [ ] picar test
       [ ] pasar test
+      [ ] asegurar su uso en:
+        [ ] SELECT MANY
+        [ ] SELECT ONE
     [ ] RECURSIVE SELECT
       [ ] picar test
       [ ] pasar test
     [ ] CASCADE DELETE
       [ ] picar test
       [ ] pasar test
+    [ ] FORMAT BY
+      [ ] picar test
+      [ ] pasar test
+      [ ] asegurar su uso en:
   [ ] Other REST Options:
     [ ] {Table}.{Column=*}.{Operation=*}:
       [ ] requireUser

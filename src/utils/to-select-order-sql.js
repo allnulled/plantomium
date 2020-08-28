@@ -18,7 +18,5 @@ const sqlString = require("sqlstring");
  * 
  */
 module.exports = function(selectOrder = []) {
-	let sql = sqlString.escapeId("id");
-	
-	return sql;
+	return selectOrder.map(item => sqlString.escapeId(item)).join(", ") || "";
 }
