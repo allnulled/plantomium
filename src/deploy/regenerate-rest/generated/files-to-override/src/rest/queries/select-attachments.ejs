@@ -26,19 +26,17 @@ const {
   sort = undefined,
   page = 1,
 } = parameters.input;
-const fieldsFinal = cms.utils.toSelectFieldsSql(fields, actorClass.Table);
+const ids = [].concat(parameters.all.result).map(item => item[actorClass.Table + ".id"]);
+const fieldsFinal = cms.utils.toSelectFieldsSql(undefined, actorClass.Table, true, false);
 const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
 const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
 const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 const limitFinal = cms.utils.toSelectLimitSql(limit, actorClass.Table);
 const offsetFinal = cms.utils.toSelectOffsetSql(limit, page, actorClass.Table);
 %>
-# select many count:
-SELECT COUNT(*) AS Total
+# select attachments:
+SELECT
+  <%-fieldsFinal%>
   FROM <%-table%>
-  <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
-/*<%-joinFinal ? (joinFinal) : "# no JOIN..." %>*/
-  <%-orderFinal ? ("ORDER BY " + orderFinal) : "# no ORDER BY..." %>
-  <%-limitFinal ? ("LIMIT " + limitFinal) : "# no LIMIT..." %>
-  <%-offsetFinal ? ("OFFSET " + offsetFinal) : "# no OFFSET..." %>
+<%-joinFinal%>  WHERE <%-table%>.<%-sqlString.escapeId("id")%> IN (<%-sqlString.escape(ids)%>)
 ;

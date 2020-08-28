@@ -17,7 +17,7 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(selectFields = undefined, tablesParam = []) {
+module.exports = function(selectFields = undefined, tablesParam = [], enableJoins = true, enableTable = true) {
 	let sql = "";
 	let isStarted = false;
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
@@ -28,6 +28,7 @@ module.exports = function(selectFields = undefined, tablesParam = []) {
 		// console.log("has no fields", selectFields);
 		// 1. Iterate over provided tables:
 		// console.log("iterating tables");
+		IteratingTables:
 		for(let indexTables=0; indexTables < tables.length; indexTables++) {
 			const table = tables[indexTables];
 			// console.log("table", table);
@@ -35,14 +36,19 @@ module.exports = function(selectFields = undefined, tablesParam = []) {
 				throw new Error("Required <tablesParam.*> to be a string on toSelectFieldsSql [ERR: 021]");
 			}
 			// 2. Add self fields
-			cms.schema.constraints[table].attributes.forEach(attr => {
-				const field = table + "." + attr;
-				sql += isStarted ? ",\n  " : "";
-				sql += sqlString.escapeId(field);
-				sql += " AS '" + field + "'";
-				isStarted = true;
-			});
+			if(enableTable) {
+				cms.schema.constraints[table].attributes.forEach(attr => {
+					const field = table + "." + attr;
+					sql += isStarted ? ",\n  " : "";
+					sql += sqlString.escapeId(field);
+					sql += " AS '" + field + "'";
+					isStarted = true;
+				});
+			}
 			// 3. Get the joins of the table:
+			if(!enableJoins) {
+				continue IteratingTables;
+			}
 			const joins = cms.utils.getJoinedTables(table);
 			const joinTables = Object.keys(joins);
 			// console.log(joinTables);

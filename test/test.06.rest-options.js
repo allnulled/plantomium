@@ -126,9 +126,15 @@ describe("REST test: options", function() {
 			// SELECT ONE:
 			const id08 = parseInt(response3.data.data.items[0]["permissions.id"]) - 1;
 			const response4 = await axios.get(Utils.url("/api/v1/permissions/" + id08));
-			expect(response4.data.data).to.equal(null);
+			expect(typeof response4.data).to.equal("object");
+			expect(typeof response4.data.data).to.equal("object");
+			expect(typeof response4.data.data.item).to.equal("object");
+			expect(response4.data.data.item).to.equal(null);
 			const response5 = await axios.get(Utils.url("/api/v1/permissions/" + (id08 + 1)));
-			expect(response5.data.data["permissions.id"]).to.equal(response3.data.data.items[0]["permissions.id"]);
+			expect(typeof response5.data).to.equal("object");
+			expect(typeof response5.data.data).to.equal("object");
+			expect(typeof response5.data.data.item).to.equal("object");
+			expect(response5.data.data.item["permissions.id"]).to.equal(response3.data.data.items[0]["permissions.id"]);
 			// UPDATE ONE:
 			const response6 = await axios.put(Utils.url("/api/v1/permissions/" + id08), {
 				name: "modified name"
@@ -143,8 +149,8 @@ describe("REST test: options", function() {
 			expect(response8.data.data).to.equal(null);
 			const response9 = await axios.delete(Utils.url("/api/v1/permissions/" + (id08 + 1)));
 			expect(response9.data.data["permissions.id"]).to.equal(response3.data.data.items[0]["permissions.id"]);
-			// @TODO: UPDATE MANY
-			// @TODO: DELETE MANY
+			// @TODO: WHERE IN: UPDATE MANY
+			// @TODO: WHERE IN: DELETE MANY
 		} catch (error) {
 			throw error;
 		}
@@ -152,8 +158,23 @@ describe("REST test: options", function() {
 
 	it("can understand <rest.join> extension option", async function() {
 		try {
+			// EN "SELECT ONE":
 			const responseGroup5 = await axios.get(Utils.url("/api/v1/groups/5"));
-			// expect(responseGroup5.data).to.equal(20);
+			expect(typeof responseGroup5.data).to.equal("object");
+			expect(typeof responseGroup5.data.data).to.equal("object");
+			expect(typeof responseGroup5.data.data.item).to.equal("object");
+			expect(typeof responseGroup5.data.data.attachments).to.equal("object");
+			expect(responseGroup5.data.data.attachments.length).to.equal(6);
+			// EN "SELECT MANY":
+			const responseGroup5_2 = await axios.get(Utils.url('/api/v1/groups?where=[["id","=",5]]'));
+			expect(typeof responseGroup5_2.data.data).to.equal("object");
+			expect(typeof responseGroup5_2.data).to.equal("object");
+			expect(typeof responseGroup5_2.data.data).to.equal("object");
+			expect(typeof responseGroup5_2.data.data.items).to.equal("object");
+			expect(typeof responseGroup5_2.data.data.attachments).to.equal("object");
+			expect(responseGroup5_2.data.data.total).to.equal(1);
+			expect(responseGroup5_2.data.data.items[0]["groups.id"]).to.equal(5);
+			expect(responseGroup5_2.data.data.attachments.length).to.equal(6);
 		} catch (error) {
 			throw error;
 		}

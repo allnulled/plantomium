@@ -37,7 +37,7 @@ const offsetFinal = cms.utils.toSelectOffsetSql(limit, page, actorClass.Table);
 SELECT COUNT(*) AS Total
   FROM <%-table%>
   <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
-  <%-joinFinal ? ("JOIN " + joinFinal) : "# no JOIN..." %>
+/*<%-joinFinal ? (joinFinal) : "# no JOIN..." %>*/
   <%-orderFinal ? ("ORDER BY " + orderFinal) : "# no ORDER BY..." %>
   <%-limitFinal ? ("LIMIT " + limitFinal) : "# no LIMIT..." %>
   <%-offsetFinal ? ("OFFSET " + offsetFinal) : "# no OFFSET..." %>

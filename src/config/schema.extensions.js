@@ -25,13 +25,6 @@ module.exports = {
 				limit: undefined, // default: 	""
 				offset: undefined, // default: 	""
 				sort: undefined, // default: 	[]
-				policy: {
-					where: undefined, // default: 	""
-					join: undefined, // default: 	""
-					limit: undefined, // default: 	""
-					offset: undefined, // default: 	""
-					sort: undefined, // default: 	""
-				},
 				recursiveSelect: {},
 				cascadeDelete: []
 			}
@@ -48,6 +41,13 @@ module.exports = {
 					["permissions", "id"]
 				]
 				//*/
+			}
+		},
+		combo_group_and_permission: {
+			rest: {
+				limit: 10,
+				offset: 1,
+				sort: []
 			}
 		}
 	},

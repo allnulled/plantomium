@@ -14,6 +14,12 @@ class GetOneBaseHandler extends BaseHandler {
 		];
 	}
 
+	static get LaterQueryFiles() {
+		return [
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-attachments.ejs"),
+		];
+	}
+
 	onStart(parameters) {
 		cms.utils.trace("rest.handlers.getOne.onStart");
 		
@@ -82,11 +88,10 @@ class GetOneBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.getOne.onResult");
-		parameters.output = parameters.result || null;
-		const joinedTables = cms.utils.dataGetter(cms, ["schema", "constraints", this.actor.constructor.Table, "rest", "join"], []);
-		if(Object.keys(joinedTables).length === 0) {
-			parameters.output = parameters.result[0] || null;
-		}
+		parameters.output = {
+			item: parameters.result[0] || null,
+			attachments: parameters.laterResult || null,
+		};
 		return parameters.output;
 	}
 

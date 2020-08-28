@@ -15,6 +15,12 @@ class GetManyBaseHandler extends BaseHandler {
 		];
 	}
 
+	static get LaterQueryFiles() {
+		return [
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-attachments.ejs"),
+		];
+	}
+
 	onStart(parameters) {
 		cms.utils.trace("rest.handlers.getMany.onStart");
 		
@@ -98,6 +104,7 @@ class GetManyBaseHandler extends BaseHandler {
 			input: parameters.input,
 			total: parameters.results[0][0].Total,
 			items: parameters.result,
+			attachments: parameters.laterResult || null,
 		};
 		return parameters.output;
 	}

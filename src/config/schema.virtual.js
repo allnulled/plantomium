@@ -2309,7 +2309,12 @@ module.exports = {
           referencedTable: 'permissions',
           referencedColumn: 'id'
         }
-      ]
+      ],
+      rest: {
+        limit: 10,
+        offset: 1,
+        sort: []
+      }
     },
     combo_image_and_plant: {
       database: 'plants_bd',
@@ -2618,13 +2623,6 @@ module.exports = {
         limit: undefined,
         offset: undefined,
         sort: undefined,
-        policy: {
-          where: undefined,
-          join: undefined,
-          limit: undefined,
-          offset: undefined,
-          sort: undefined
-        },
         recursiveSelect: {},
         cascadeDelete: []
       }

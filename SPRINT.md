@@ -18,12 +18,12 @@
         [✓] UPDATE ONE
         [ ] DELETE MANY
         [✓] DELETE ONE
-    [ ] JOIN
-      [ ] picar test
-      [ ] pasar test
-      [ ] asegurar su uso en:
-        [ ] SELECT MANY
-        [ ] SELECT ONE
+    [✓] JOIN
+      [✓] picar test
+      [✓] pasar test
+      [✓] asegurar su uso en:
+        [✓] SELECT MANY
+        [✓] SELECT ONE
     [ ] LIMIT
       [ ] picar test
       [ ] pasar test
@@ -48,10 +48,6 @@
     [ ] CASCADE DELETE
       [ ] picar test
       [ ] pasar test
-    [ ] FORMAT BY
-      [ ] picar test
-      [ ] pasar test
-      [ ] asegurar su uso en:
   [ ] Other REST Options:
     [ ] {Table}.{Column=*}.{Operation=*}:
       [ ] requireUser

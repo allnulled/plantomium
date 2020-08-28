@@ -12,6 +12,14 @@ class BaseHandler {
 		throw new Error("Static property <Operation> must override its getter");
 	}
 
+	static get QueryFiles() {
+		throw new Error("Static property <QueryFiles> must override its getter");
+	}
+
+	static get LaterQueryFiles() {
+		return false;
+	}
+
 	constructor(options = {}) {
 		Object.assign(this, options);
 		this.operation = this.constructor.Operation;
@@ -107,6 +115,19 @@ class BaseHandler {
 		try {
 			parameters.results = await Promise.all(parameters.queries.map(q => this.onExecuteQuery(q)));
 			parameters.result = parameters.results[parameters.results.length > 0 ? parameters.results.length - 1 : null];
+			if(this.constructor.LaterQueryFiles) {
+				parameters.laterQueries = [];
+				for (let index = 0; index < this.constructor.LaterQueryFiles.length; index++) {
+					const queryFile = this.constructor.LaterQueryFiles[index];
+					const query = await this.renderFile(queryFile, { ...parameters, all: parameters });
+					parameters.laterQueries[index] = query;
+				}
+				const hasResults = parameters.result !== null && parameters.result.length !== 0;
+				if(parameters.laterQueries.length !== 0 && hasResults) {
+					parameters.laterResults = await Promise.all(parameters.laterQueries.map(q => this.onExecuteQuery(q)));
+					parameters.laterResult = parameters.laterResults[parameters.laterResults.length > 0 ? parameters.laterResults.length - 1 : null];
+				}
+			}
 		} catch (error) {
 			cms.utils.debugError("{handler}.onRunQueries", error);
 			throw error;
