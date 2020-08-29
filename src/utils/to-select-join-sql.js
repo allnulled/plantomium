@@ -23,19 +23,18 @@ module.exports = function(selectJoinParams = [], tablename = undefined) {
 		throw new Error("Required <selectJoinParams> to be an array on toSelectJoinSql. [ERR:011]");
 	}
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
-	const joins = cms.utils.getJoinedTables(tablename, selectJoinParams);
+	const joins = cms.utils.getSchemaJoinedTables(tablename, selectJoinParams);
 	const joinKeys = Object.keys(joins);
 	for(let indexJoins=0; indexJoins < joinKeys.length; indexJoins++) {
 		const table = joinKeys[indexJoins];
 		const joinRules = joins[table];
-		sql += `  JOIN`;
 		for(let indexRules=0; indexRules < joinRules.length; indexRules++) {
 			const joinRule = joinRules[indexRules];
 			const [externalTable, externalColumn, operator, value] = joinRule;
 			// @TODO: check if tables and columns exist.
 			// @TODO: check if tables and columns have permissions enough.
 			if(indexRules === 0) {
-				sql += ` ${sqlString.escapeId(externalTable)}\n`;
+				sql += `  JOIN ${sqlString.escapeId(externalTable)}\n`;
 			}
 			const leftSide = sqlString.escapeId(externalColumn);
 			if(!(operator in cms.utils.operationTranslations)) {

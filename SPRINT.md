@@ -24,70 +24,67 @@
       [✓] asegurar su uso en:
         [✓] SELECT MANY
         [✓] SELECT ONE
-    [ ] LIMIT
-      [ ] picar test
-      [ ] pasar test
-      [ ] asegurar su uso en:
-        [ ] SELECT MANY
-        [ ] SELECT ONE
-    [ ] OFFSET
-      [ ] picar test
-      [ ] pasar test
-      [ ] asegurar su uso en:
-        [ ] SELECT MANY
-        [ ] SELECT ONE
-    [ ] SORT
-      [ ] picar test
-      [ ] pasar test
-      [ ] asegurar su uso en:
-        [ ] SELECT MANY
-        [ ] SELECT ONE
+    (29/08)
+    [✓] LIMIT 
+      [✓] picar test
+      [✓] pasar test
+      [✓] asegurar su uso en:
+        [✓] SELECT MANY
+        [✓] SELECT ONE
+    [✓] OFFSET
+      [✓] picar test
+      [✓] pasar test
+      [✓] asegurar su uso en:
+        [✓] SELECT MANY
+        [✓] SELECT ONE
+    [✓] SORT
+      [✓] picar test
+      [✓] pasar test
+      [✓] asegurar su uso en:
+        [✓] SELECT MANY
+        [✓] SELECT ONE
+
+
     [ ] RECURSIVE SELECT
       [ ] picar test
       [ ] pasar test
     [ ] CASCADE DELETE
       [ ] picar test
       [ ] pasar test
-  [ ] Other REST Options:
+  [ ] other REST Options:
     [ ] {Table}.{Column=*}.{Operation=*}:
-      [ ] requireUser
-      [ ] requireGroup
-      [ ] requirePrivilege
-      [ ] requireAuthentication
-      [ ] excludeUser
-      [ ] excludeGroup
-      [ ] excludePrivilege
-      [ ] excludeAuthentication
-    [ ] Operations:
-      [ ] schema
-      [ ] get
-      [ ] getOne
-      [ ] getMany
-      [ ] post
-      [ ] postOne
-      [ ] postMany
-      [ ] put
-      [ ] putOne
-      [ ] putMany
-      [ ] delete
-      [ ] deleteOne
-      [ ] deleteMany
-      [ ] getOneFile
-      [ ] setOneFile
-  [ ] Autogenerate axios client
-  [ ] Options:
-    [ ] per table
-      [ ] ...
-    [ ] per column
-      [ ] ...
-    [ ] per operation 
-  [ ] REST History support
+      [ ] require{User|Group|Privilege|Authenticated}
+      [ ] exclude{User|Group|Privilege|Authenticated}
+
+# Sprint-2
+  
+  [ ] only-{user|group|permission|authenticated} auth middlewares support
+  [ ] REST history support
     [ ] create tables
-    [ ] insert each event from lifecycle
-    [ ] insert each deleted registry from lifecycle
+    [ ] insert each {event|deleted registry} from lifecycle
+  [ ] broadcast operations support
+  [ ] secure application support (forced)
+  [ ] basic CLI (no commands needed)
+  [ ] clusterize runtime
 
+# Sprint-3
 
+  [ ] migrations and seeders support
+    [ ] CLI commands
+    [ ] 
+  [ ] send mails on:
+    [ ] confirmation
+    [ ] password changed
+    [ ] registration
+    [ ] unregistration
+  [ ] coverage: >80%
 
+# Sprint-4
+
+  [ ] CLI commands:
+    [ ] 
+  [ ] 
+  [ ] docs: names and descriptions
 
 # DONE:
 

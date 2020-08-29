@@ -27,6 +27,10 @@ module.exports = function(cms) {
 		process.exit(9);
 	}
 
+	global.LL = function(...args) {
+		console.log(...args);
+	}
+
 	cms.utils = {};
 
 	cms.utils.state = {

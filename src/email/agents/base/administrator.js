@@ -24,7 +24,7 @@ class AdministratorBaseAgent extends Agent {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		cms.utils.trace("email.agents.base.administrator.onSend");
 		return new Promise(function(ok, fail) {
-			if(process.env.EMAIL_PREVENTION === "true") {
+			if(["development", "test"].indexOf(process.env.NODE_ENV) !== -1) {
 				return ok();
 			} else {
 				return parameters.transporter.sendMail(parameters.parameters, asynchandler(ok, fail));

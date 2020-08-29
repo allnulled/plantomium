@@ -4,7 +4,7 @@
  * 
  * ### `/src/utils/get-joined-tables.js`
  * 
- * @name `getJoinedTables`
+ * @name `getSchemaJoinedTables`
  * @type 
  * @has 
  * @uses 

@@ -49,7 +49,7 @@ module.exports = function(selectFields = undefined, tablesParam = [], enableJoin
 			if(!enableJoins) {
 				continue IteratingTables;
 			}
-			const joins = cms.utils.getJoinedTables(table);
+			const joins = cms.utils.getSchemaJoinedTables(table);
 			const joinTables = Object.keys(joins);
 			// console.log(joinTables);
 			// 4. Get only main tables

@@ -1,0 +1,9 @@
+
+· Example:
+  ~$ ptm reset db
+
+· Syntax:
+  ~$ ptm reset db
+
+· Description:
+Caution! This command deletes the whole database, and creates the structure from the beginning.

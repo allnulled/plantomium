@@ -9810,6 +9810,12 @@
       "integrity": "sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==",
       "dev": true
     },
+    "cleesy": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/cleesy/-/cleesy-0.1.0.tgz",
+      "integrity": "sha512-qUUsQMpLcNRM68RR6jiIzu7bKpbF9abiNDcdfdLMNHruFy4r54YNMx5bmzwbMLFgzjUzhdkp/wG3+GtkLRa68w==",
+      "dev": true
+    },
     "cliui": {
       "version": "5.0.0",
       "resolved": "https://registry.npmjs.org/cliui/-/cliui-5.0.0.tgz",
@@ -38765,6 +38771,11 @@
       "version": "0.1.2",
       "resolved": "https://registry.npmjs.org/streamsearch/-/streamsearch-0.1.2.tgz",
       "integrity": "sha1-gIudDlb8Jz2Am6VzOOkpkZoanxo="
+    },
+    "string-argv": {
+      "version": "0.3.1",
+      "resolved": "https://registry.npmjs.org/string-argv/-/string-argv-0.3.1.tgz",
+      "integrity": "sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg=="
     },
     "string-width": {
       "version": "2.1.1",

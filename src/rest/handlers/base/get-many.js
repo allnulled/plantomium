@@ -47,7 +47,7 @@ class GetManyBaseHandler extends BaseHandler {
 				where: parameters.request.query.where,
 				join: parameters.request.query.join,
 				limit: parameters.request.query.limit || 20,
-				offset: parameters.request.query.offset,
+				offset: parameters.request.query.offset || 0,
 				order: parameters.request.query.order,
 				page: parameters.request.query.page || 1,
 			}
@@ -56,7 +56,7 @@ class GetManyBaseHandler extends BaseHandler {
 				where: parameters.where,
 				join: parameters.join,
 				limit: parameters.limit || 20,
-				offset: parameters.offset,
+				offset: parameters.offset || 0,
 				order: parameters.order,
 				page: parameters.page || 1,
 			}
@@ -102,7 +102,7 @@ class GetManyBaseHandler extends BaseHandler {
 		cms.utils.trace("rest.handlers.getMany.onResult");
 		parameters.output = {
 			input: parameters.input,
-			total: parameters.results[0][0].Total,
+			total: cms.utils.dataGetter(parameters, ["results", 0, 0, "Total"], null),
 			items: parameters.result,
 			attachments: parameters.laterResult || null,
 		};

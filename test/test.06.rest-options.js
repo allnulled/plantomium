@@ -175,6 +175,13 @@ describe("REST test: options", function() {
 			expect(responseGroup5_2.data.data.total).to.equal(1);
 			expect(responseGroup5_2.data.data.items[0]["groups.id"]).to.equal(5);
 			expect(responseGroup5_2.data.data.attachments.length).to.equal(6);
+			const responseGroup5_3 = await axios.get(Utils.url('/api/v1/groups?where=[["id",">",5], ["id","<",8]]'));
+			expect(typeof responseGroup5_3.data.data).to.equal("object");
+			expect(typeof responseGroup5_3.data).to.equal("object");
+			expect(typeof responseGroup5_3.data.data).to.equal("object");
+			expect(typeof responseGroup5_3.data.data.items).to.equal("object");
+			expect(typeof responseGroup5_3.data.data.attachments).to.equal("object");
+			expect(responseGroup5_3.data.data.total).to.equal(2);
 		} catch (error) {
 			throw error;
 		}
@@ -183,6 +190,13 @@ describe("REST test: options", function() {
 	it("can understand <rest.limit> option", async function() {
 		try {
 			// @TODO:
+			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data).to.equal("object");
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data.data.items).to.equal("object");
+			expect(typeof responseGaP.data.data.attachments).to.equal("object");
+			expect(responseGaP.data.data.items.length).to.equal(10);
 		} catch (error) {
 			throw error;
 		}
@@ -190,7 +204,13 @@ describe("REST test: options", function() {
 
 	it("can understand <rest.offset> option", async function() {
 		try {
-			// @TODO:
+			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data).to.equal("object");
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data.data.items).to.equal("object");
+			expect(typeof responseGaP.data.data.attachments).to.equal("object");
+			expect(responseGaP.data.data.items.length).to.equal(10);
 		} catch (error) {
 			throw error;
 		}
@@ -199,6 +219,16 @@ describe("REST test: options", function() {
 	it("can understand <rest.sort> option", async function() {
 		try {
 			// @TODO:
+			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data).to.equal("object");
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data.data.items).to.equal("object");
+			expect(typeof responseGaP.data.data.attachments).to.equal("object");
+			expect(responseGaP.data.data.items.length).to.equal(10);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.equal(6);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_group"]).to.equal(5);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_permission"]).to.equal(3);
 		} catch (error) {
 			throw error;
 		}
@@ -207,6 +237,10 @@ describe("REST test: options", function() {
 	it("can understand <rest.recursiveSelect> option", async function() {
 		try {
 			// @TODO:
+			// @TODO:
+			// @TODO:
+			// @TODO:
+			// @TODO:
 		} catch (error) {
 			throw error;
 		}
@@ -214,6 +248,10 @@ describe("REST test: options", function() {
 
 	it("can understand <rest.deleteCascade> option", async function() {
 		try {
+			// @TODO:
+			// @TODO:
+			// @TODO:
+			// @TODO:
 			// @TODO:
 		} catch (error) {
 			throw error;

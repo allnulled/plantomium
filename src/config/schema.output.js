@@ -4393,7 +4393,7 @@ module.exports = {
       rest: {
         limit: 10,
         offset: 1,
-        sort: []
+        order: 'combo_group_and_permission.id_group asc, combo_group_and_permission.id_permission asc'
       }
     },
     combo_image_and_plant: {

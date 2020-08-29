@@ -1,7 +1,7 @@
 const fs = require("fs");
 const mysql = require("mysql");
-const cms = require(__dirname + "/../cms.js");
-const schemaSql = fs.readFileSync(__dirname + "/../config/schema.sql").toString();
+const cms = require(process.cwd() + "/src/cms.js");
+const schemaSql = fs.readFileSync(process.cwd() + "/src/config/schema.sql").toString();
 
 
 /**
