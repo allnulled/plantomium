@@ -9,7 +9,6 @@ if(!fs.existsSync(commandPathAbsolute)) {
 	throw new Error("Command not found at: " + commandPathAbsolute);
 	return require(__dirname + "/print-help.js").call();
 }
-console.log("Executing...: " + commandPathAbsolute);
 const command = require(commandPathAbsolute);
 if(typeof command === "function") {
 	command(args);
