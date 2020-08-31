@@ -2,6 +2,7 @@ const {
 	expect
 } = require("chai");
 const axios = require("axios");
+const asynchandler = require("@allnulled/asynchandler");
 const fs = require("fs");
 const FormData = require("form-data");
 const cms = require(__dirname + "/../src/cms.js");
@@ -96,7 +97,7 @@ describe("REST test: options", function() {
 		}
 	});
 
-	it("can understand <rest.where> extension option", async function() {
+	it("can understand <schema.{table}.rest.where> extension option", async function() {
 		try {
 			// SELECT MANY:
 			const response = await axios.get(Utils.url("/api/v1/permissions"));
@@ -156,7 +157,7 @@ describe("REST test: options", function() {
 		}
 	});
 
-	it("can understand <rest.join> extension option", async function() {
+	it("can understand <schema.{table}.rest.join> extension option", async function() {
 		try {
 			// EN "SELECT ONE":
 			const responseGroup5 = await axios.get(Utils.url("/api/v1/groups/5"));
@@ -187,7 +188,7 @@ describe("REST test: options", function() {
 		}
 	});
 
-	it("can understand <rest.limit> option", async function() {
+	it("can understand <schema.{table}.rest.limit> option", async function() {
 		try {
 			// @TODO:
 			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
@@ -202,7 +203,7 @@ describe("REST test: options", function() {
 		}
 	});
 
-	it("can understand <rest.offset> option", async function() {
+	it("can understand <schema.{table}.rest.offset> option", async function() {
 		try {
 			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
 			expect(typeof responseGaP.data.data).to.equal("object");
@@ -211,21 +212,8 @@ describe("REST test: options", function() {
 			expect(typeof responseGaP.data.data.items).to.equal("object");
 			expect(typeof responseGaP.data.data.attachments).to.equal("object");
 			expect(responseGaP.data.data.items.length).to.equal(10);
-		} catch (error) {
-			throw error;
-		}
-	});
-
-	it("can understand <rest.sort> option", async function() {
-		try {
-			// @TODO:
-			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
-			expect(typeof responseGaP.data.data).to.equal("object");
-			expect(typeof responseGaP.data).to.equal("object");
-			expect(typeof responseGaP.data.data).to.equal("object");
-			expect(typeof responseGaP.data.data.items).to.equal("object");
-			expect(typeof responseGaP.data.data.attachments).to.equal("object");
-			expect(responseGaP.data.data.items.length).to.equal(10);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.not.equal(5);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_permission"]).to.not.equal(2);
 			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.equal(6);
 			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_group"]).to.equal(5);
 			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_permission"]).to.equal(3);
@@ -234,7 +222,82 @@ describe("REST test: options", function() {
 		}
 	});
 
-	it("can understand <rest.recursiveSelect> option", async function() {
+	it("can understand <schema.{table}.rest.sort> option", async function() {
+		try {
+			// @TODO:
+			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data).to.equal("object");
+			expect(typeof responseGaP.data.data).to.equal("object");
+			expect(typeof responseGaP.data.data.items).to.equal("object");
+			expect(typeof responseGaP.data.data.attachments).to.equal("object");
+			expect(responseGaP.data.data.items.length).to.equal(10);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.not.equal(1);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.not.equal(2);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.equal(6);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_group"]).to.equal(5);
+			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_permission"]).to.equal(3);
+		} catch (error) {
+			throw error;
+		}
+	});
+
+	it("can understand <schema.{table}.rest.deleteCascade> option", async function() {
+		try {
+			// @TODO:
+			// @TODO:
+			// @TODO:
+			// @TODO:
+			// @TODO:
+			/*
+			const dataCombos1 = [{
+				id_user:  5,
+				id_group: 5,
+			}, {
+				id_user:  6,
+				id_group: 5,
+			}, {
+				id_user:  15,
+				id_group: 5,
+			}, {
+				id_user:  16,
+				id_group: 5,
+			}, {
+				id_user:  2,
+				id_group: 5,
+			}, {
+				id_user:  3,
+				id_group: 5,
+			}, {
+				id_user:  5,
+				id_group: 8,
+			}, {
+				id_user:  6,
+				id_group: 8,
+			}, {
+				id_user:  15,
+				id_group: 8,
+			}, {
+				id_user:  16,
+				id_group: 8,
+			}, {
+				id_user:  2,
+				id_group: 8,
+			}, {
+				id_user:  3,
+				id_group: 8,
+			}];
+			const responseCombos1 = await axios.post(Utils.url("/api/v1/combo-user-and-group"), {
+				data: dataCombos1
+			});
+			//*/
+			// await axios.delete(Utils.url('/api/v1/group/1'))
+		} catch (error) {
+			throw error;
+		}
+	});
+
+	it("can understand <schema.{table}.rest.recursiveSelect> option", async function() {
 		try {
 			// @TODO:
 			// @TODO:
@@ -246,8 +309,15 @@ describe("REST test: options", function() {
 		}
 	});
 
-	it("can understand <rest.deleteCascade> option", async function() {
+	it("can understand <schema.hiddenTables> option", async function() {
 		try {
+			let testifier = 0;
+			try {
+				const responseSessions = await axios.get(Utils.url('/api/v1/unconfirmed_users'));
+			} catch(error) {
+				testifier++;
+			}
+			expect(testifier).to.equal(1);
 			// @TODO:
 			// @TODO:
 			// @TODO:
@@ -258,6 +328,18 @@ describe("REST test: options", function() {
 		}
 	});
 
-
+	it("can understand <schema.hiddenColumns> option", async function() {
+		try {
+			const insertUser = await new Promise(function(ok, fail) {
+				cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username', 'password', 'email@domain.com', 'Username Surname');", asynchandler(ok, fail));
+			});
+			const getUser = await axios.get(Utils.url('/api/v1/users/' + insertUser.insertId));
+			expect(typeof getUser.data.data.item).to.equal("object");
+			expect(getUser.data.data.item["users.name"]).to.equal("username");
+			expect(typeof getUser.data.data.item["users.password"]).to.equal("undefined");
+		} catch (error) {
+			throw error;
+		}
+	});
 
 });

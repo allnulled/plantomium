@@ -60,7 +60,6 @@ module.exports = {
 			debugTraces: process.env.DEBUG_TRACES === "true",
 			maxSessionsPerUser: 10,
 			hiddenTables: [
-				"sessions",
 				//"users",
 				"unconfirmed_users",
 				// "groups",
@@ -74,6 +73,7 @@ module.exports = {
 				"users.recovery_token",
 				"users.email",
 				"users.deactivation",
+				"sessions.session_token"
 			]
 		},
 	}

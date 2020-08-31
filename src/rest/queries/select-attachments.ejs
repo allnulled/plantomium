@@ -25,10 +25,13 @@ const {
   sort = undefined,
   page = 1,
 } = parameters.input;
+const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
+if(joinFinal.length === 0) {
+	return "";
+}
 const ids = [].concat(parameters.all.result).map(item => item[actorClass.Table + ".id"]);
 const fieldsFinal = cms.utils.toSelectFieldsSql([], actorClass.Table, true, false);
 const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
-const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
 const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 %>
 # select attachments:

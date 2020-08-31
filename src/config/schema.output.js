@@ -4894,7 +4894,6 @@ module.exports = {
     debugTraces: false,
     maxSessionsPerUser: 10,
     hiddenTables: [
-      'sessions',
       'unconfirmed_users',
       'combo_user_and_group',
       'combo_user_and_permission'
@@ -4903,7 +4902,8 @@ module.exports = {
       'users.password',
       'users.recovery_token',
       'users.email',
-      'users.deactivation'
+      'users.deactivation',
+      'sessions.session_token'
     ]
   }
 };

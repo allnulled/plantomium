@@ -45,10 +45,10 @@
         [✓] SELECT ONE
 
 
-    [ ] RECURSIVE SELECT
+    [ ] CASCADE DELETE
       [ ] picar test
       [ ] pasar test
-    [ ] CASCADE DELETE
+    [ ] RECURSIVE SELECT
       [ ] picar test
       [ ] pasar test
   [ ] other REST Options:

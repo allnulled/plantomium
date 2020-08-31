@@ -113,7 +113,9 @@ class BaseHandler {
 	async onQuery(parameters) {
 		cms.utils.trace("rest.handler.onQuery");
 		try {
-			parameters.results = await Promise.all(parameters.queries.map(q => this.onExecuteQuery(q)));
+			parameters.results = await Promise.all(parameters.queries
+				.filter(q => q !== "")
+				.map(q => this.onExecuteQuery(q)));
 			parameters.result = parameters.results[parameters.results.length > 0 ? parameters.results.length - 1 : null];
 			if(this.constructor.LaterQueryFiles) {
 				parameters.laterQueries = [];
@@ -124,7 +126,9 @@ class BaseHandler {
 				}
 				const hasResults = parameters.result !== null && parameters.result.length !== 0;
 				if(parameters.laterQueries.length !== 0 && hasResults) {
-					parameters.laterResults = await Promise.all(parameters.laterQueries.map(q => this.onExecuteQuery(q)));
+					parameters.laterResults = await Promise.all(parameters.laterQueries
+						.filter(q => q !== "")
+						.map(q => this.onExecuteQuery(q)));
 					parameters.laterResult = parameters.laterResults[parameters.laterResults.length > 0 ? parameters.laterResults.length - 1 : null];
 				}
 			}
