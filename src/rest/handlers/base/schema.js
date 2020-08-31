@@ -7,10 +7,6 @@ class SchemaBaseHandler extends BaseHandler {
 		return "schema";
 	}
 
-	static get QueryFile() {
-		return undefined;
-	}
-
 	onStart(parameters) {
 		cms.utils.trace("rest.handlers.schema.onStart");
 
@@ -36,11 +32,6 @@ class SchemaBaseHandler extends BaseHandler {
 	onPreJobs(parameters) {
 		cms.utils.trace("rest.handlers.schema.onPreJobs");
 		// @TODO: previous jobs
-	}
-
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.schema.onPrepareQuery");
-		// @TODO: prepare query
 	}
 
 	onQuery(parameters) {

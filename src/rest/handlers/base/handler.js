@@ -38,7 +38,6 @@ class BaseHandler {
 			"onValidate",
 			"onFormatInput",
 			"onPreJobs",
-			"onPrepareQuery",
 			"onQuery",
 			"onFormatOutput",
 			"onPostJobs",
@@ -94,8 +93,8 @@ class BaseHandler {
 		throw new Error("Method <onPreJobs> must be overriden");
 	}
 
-	async onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handler.onPrepareQuery");
+	async onQuery(parameters) {
+		cms.utils.trace("rest.handler.onQuery");
 		try {
 			parameters.queries = [];
 			if(this.constructor.QueryFiles) {
@@ -105,14 +104,6 @@ class BaseHandler {
 					parameters.queries[index] = query;
 				}
 			}
-		} catch (error) {
-			throw error;
-		}
-	}
-
-	async onQuery(parameters) {
-		cms.utils.trace("rest.handler.onQuery");
-		try {
 			parameters.results = await Promise.all(parameters.queries
 				.filter(q => q !== "")
 				.map(q => this.onExecuteQuery(q)));
@@ -171,10 +162,6 @@ class BaseHandler {
 			handler: this,
 			actorClass: this.actor.constructor
 		});
-	}
-
-	async onPrepareQueries(parameters) {
-		cms.utils.trace("rest.handler.onPrepareQueries");
 	}
 
 	async onRunQueries(parameters) {

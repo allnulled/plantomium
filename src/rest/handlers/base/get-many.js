@@ -68,11 +68,6 @@ class GetManyBaseHandler extends BaseHandler {
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
-	}
-
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.getMany.onQuery");
 		return super.onQuery(parameters);

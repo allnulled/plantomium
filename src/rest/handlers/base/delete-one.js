@@ -52,11 +52,6 @@ class DeleteOneBaseHandler extends BaseHandler {
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
-	}
-
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.deleteOne.onQuery");
 		return super.onQuery(parameters);

@@ -47,10 +47,6 @@ class SetFileBaseHandler extends BaseHandler {
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onPrepareQuery");
-	}
-
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.setFile.onQuery");
 		

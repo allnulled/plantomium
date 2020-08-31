@@ -56,11 +56,6 @@ class GetOneBaseHandler extends BaseHandler {
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
-	}
-
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.getOne.onQuery");
 		return super.onQuery(parameters);

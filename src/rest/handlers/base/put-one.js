@@ -10,7 +10,6 @@ class PutOneBaseHandler extends BaseHandler {
 
 	static get QueryFiles() {
 		return [
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/update-one.ejs"),
 		];
 	}
@@ -52,11 +51,6 @@ class PutOneBaseHandler extends BaseHandler {
 	onPreJobs(parameters) {
 		cms.utils.trace("rest.handlers.putOne.onPreJobs");
 		// @TODO: previous jobs
-	}
-
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
 	}
 
 	onQuery(parameters) {

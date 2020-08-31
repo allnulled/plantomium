@@ -11,7 +11,6 @@ class PutManyBaseHandler extends BaseHandler {
 	static get QueryFiles() {
 		return [
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/update-many.ejs"),
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many.ejs")
 		];
 	}
 
@@ -59,11 +58,6 @@ class PutManyBaseHandler extends BaseHandler {
 	onPreJobs(parameters) {
 		cms.utils.trace("rest.handlers.putMany.onPreJobs");
 		// @TODO: previous jobs
-	}
-
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.putMany.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
 	}
 
 	onQuery(parameters) {

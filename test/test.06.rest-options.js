@@ -242,6 +242,39 @@ describe("REST test: options", function() {
 		}
 	});
 
+	it("can understand <schema.hiddenTables> option", async function() {
+		try {
+			let testifier = 0;
+			try {
+				const responseSessions = await axios.get(Utils.url('/api/v1/unconfirmed_users'));
+			} catch(error) {
+				testifier++;
+			}
+			expect(testifier).to.equal(1);
+			// @TODO:
+			// @TODO:
+			// @TODO:
+			// @TODO:
+			// @TODO:
+		} catch (error) {
+			throw error;
+		}
+	});
+
+	it("can understand <schema.hiddenColumns> option", async function() {
+		try {
+			const insertUser = await new Promise(function(ok, fail) {
+				cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username', 'password', 'email@domain.com', 'Username Surname');", asynchandler(ok, fail));
+			});
+			const getUser = await axios.get(Utils.url('/api/v1/users/' + insertUser.insertId));
+			expect(typeof getUser.data.data.item).to.equal("object");
+			expect(getUser.data.data.item["users.name"]).to.equal("username");
+			expect(typeof getUser.data.data.item["users.password"]).to.equal("undefined");
+		} catch (error) {
+			throw error;
+		}
+	});
+
 	it("can understand <schema.{table}.rest.deleteCascade> option", async function() {
 		try {
 			// @TODO:
@@ -304,39 +337,6 @@ describe("REST test: options", function() {
 			// @TODO:
 			// @TODO:
 			// @TODO:
-		} catch (error) {
-			throw error;
-		}
-	});
-
-	it("can understand <schema.hiddenTables> option", async function() {
-		try {
-			let testifier = 0;
-			try {
-				const responseSessions = await axios.get(Utils.url('/api/v1/unconfirmed_users'));
-			} catch(error) {
-				testifier++;
-			}
-			expect(testifier).to.equal(1);
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
-		} catch (error) {
-			throw error;
-		}
-	});
-
-	it("can understand <schema.hiddenColumns> option", async function() {
-		try {
-			const insertUser = await new Promise(function(ok, fail) {
-				cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username', 'password', 'email@domain.com', 'Username Surname');", asynchandler(ok, fail));
-			});
-			const getUser = await axios.get(Utils.url('/api/v1/users/' + insertUser.insertId));
-			expect(typeof getUser.data.data.item).to.equal("object");
-			expect(getUser.data.data.item["users.name"]).to.equal("username");
-			expect(typeof getUser.data.data.item["users.password"]).to.equal("undefined");
 		} catch (error) {
 			throw error;
 		}

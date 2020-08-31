@@ -52,11 +52,6 @@ class DeleteManyBaseHandler extends BaseHandler {
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
-	}
-
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.deleteMany.onQuery");
 		return super.onQuery(parameters);

@@ -49,11 +49,6 @@ class GetFileBaseHandler extends BaseHandler {
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onPrepareQuery");
-		// @TODO: prepare query
-	}
-
 	onQuery(parameters) {
 		cms.utils.trace("rest.handlers.getFile.onQuery");
 		const filename = `${parameters.table}.${parameters.column}.${parameters.id}.${parameters.extension}`;
