@@ -79,7 +79,10 @@ class DeleteOneBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.deleteOne.onResult");
-		parameters.output = parameters.results[0] && parameters.results[0][0] ? parameters.results[0][0] : null;
+		parameters.output = {
+			item: cms.utils.dataGetter(parameters, ["results", 0, 0], null),
+			operation: cms.utils.dataGetter(parameters, ["results", 1], null),
+		};
 	}
 
 }

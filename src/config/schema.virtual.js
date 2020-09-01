@@ -2705,8 +2705,7 @@ module.exports = {
         limit: undefined,
         offset: undefined,
         sort: undefined,
-        recursiveSelect: {},
-        cascadeDelete: []
+        recursiveSelect: {}
       }
     },
     plant: {
@@ -2809,7 +2808,29 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [],
+      rest: {
+        cascadeDelete: [
+          {
+            template: 'delete',
+            table: 'combo_user_and_permission',
+            column: 'combo_user_and_permission.id_user'
+          },
+          {
+            template: 'delete',
+            table: 'combo_user_and_group',
+            column: 'combo_user_and_group.id_user'
+          },
+          {
+            template: 'update',
+            table: 'combo_user_and_comment',
+            column: 'combo_user_and_comment.id_user',
+            values: {
+              id_user: null
+            }
+          }
+        ]
+      }
     }
   },
   general: {
@@ -2817,7 +2838,7 @@ module.exports = {
     slugForAuth: '/auth/v1',
     debugSql: true,
     debugErrors: true,
-    debugTraces: false,
+    debugTraces: true,
     maxSessionsPerUser: 10,
     hiddenTables: [
       'unconfirmed_users',

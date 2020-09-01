@@ -1,3 +1,4 @@
+const util = require("util");
 const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
@@ -23,7 +24,10 @@ const importFresh = require("import-fresh");
 module.exports = function(cms) {
 
 	global.dd = function(...args) {
-		console.log(...args);
+		for(let index=0; index < args.length; index++) {
+			const arg = args[index];
+			console.log(util.inspect(arg, true, 5, true));
+		}
 		process.exit(9);
 	}
 

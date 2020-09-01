@@ -1,3 +1,5 @@
+const introspectableTypes = ["object", "string", "function"];
+
 module.exports = (data, selectorP, defaultValue) => {
     const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
     const selector = Array.isArray(selectorP) ? selectorP : [].concat(selectorP);
@@ -5,7 +7,8 @@ module.exports = (data, selectorP, defaultValue) => {
     let index = 0;
     while (index < selector.length) {
         const property = selector[index];
-        if (((["object", "string", "function"].indexOf(typeof dataItem) !== -1) || (index !== selector.length - 1)) && (property in dataItem)) {
+        const isIntrospectable = introspectableTypes.indexOf(typeof dataItem) !== -1;
+        if (isIntrospectable && (dataItem !== null) && (property in dataItem)) {
             dataItem = dataItem[property];
         } else {
             return defaultValue;

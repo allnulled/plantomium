@@ -16,7 +16,6 @@
  * @description 
  * 
  */
-
 const table = sqlString.escapeId(actorClass.Table);
 const columnKeys = Object.keys(actorClass.Schema.columns);
 const fields = columnKeys.map(ck => sqlString.escapeId(ck));

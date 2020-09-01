@@ -16,7 +16,6 @@
  * @description 
  * 
  */
-
 const table = sqlString.escapeId(actorClass.Table);
 const {
   fields = undefined,
@@ -29,7 +28,11 @@ const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
 if(joinFinal.length === 0) {
 	return "";
 }
-const ids = [].concat(parameters.all.result).map(item => item[actorClass.Table + ".id"]);
+const results = cms.utils.dataGetter(parameters, ["results", 0, 0], []);
+if(results.length === 0) {
+	return "";
+}
+const ids = [].concat(results || []).map(item => item[actorClass.Table + ".id"]);
 const fieldsFinal = cms.utils.toSelectFieldsSql([], actorClass.Table, true, false);
 const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
 const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);

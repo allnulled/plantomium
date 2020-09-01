@@ -36,7 +36,7 @@ describe("REST test: controllers", function() {
 			});
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
-			expect(responsePermissions.data.data.affectedRows).to.equal(1);
+			expect(responsePermissions.data.data.operation.affectedRows).to.equal(1);
 		} catch (error) {
 			throw error;
 		}
@@ -74,6 +74,7 @@ describe("REST test: controllers", function() {
 			});
 			expect(typeof responseUpdatePermissions.data).to.equal("object");
 			expect(typeof responseUpdatePermissions.data.data).to.equal("object");
+			expect(typeof responseUpdatePermissions.data.data.operation).to.equal("object");
 			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions/1"));
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
@@ -89,7 +90,8 @@ describe("REST test: controllers", function() {
 			const responseDeletePermissions = await axios.delete(Utils.url("/api/v1/permissions/1"));
 			expect(typeof responseDeletePermissions.data).to.equal("object");
 			expect(typeof responseDeletePermissions.data.data).to.equal("object");
-			expect(responseDeletePermissions.data.data["permissions.id"]).to.equal(1);
+			expect(typeof responseDeletePermissions.data.data.operation).to.equal("object");
+			expect(responseDeletePermissions.data.data.operation.affectedRows).to.equal(1);
 			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions"));
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");

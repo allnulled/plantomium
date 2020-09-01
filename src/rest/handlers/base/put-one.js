@@ -80,7 +80,9 @@ class PutOneBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.putOne.onResult");
-		parameters.output = parameters.result;
+		parameters.output = {
+			operation: cms.utils.dataGetter(parameters, ["results", 0], null)
+		};
 	}
 
 }

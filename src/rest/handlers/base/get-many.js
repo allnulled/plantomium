@@ -10,14 +10,14 @@ class GetManyBaseHandler extends BaseHandler {
 
 	static get QueryFiles() {
 		return [
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many-count.ejs"),
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many.ejs")
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many.ejs"),
+			"@" + path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many-count.ejs"),
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-attachments.ejs"),
 		];
 	}
 
 	static get LaterQueryFiles() {
 		return [
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-attachments.ejs"),
 		];
 	}
 
@@ -75,7 +75,7 @@ class GetManyBaseHandler extends BaseHandler {
 
 	onFormatOutput(parameters) {
 		cms.utils.trace("rest.handlers.getMany.onFormatOutput");
-		// @TODO: format output
+		
 	}
 
 	onPostJobs(parameters) {
@@ -97,9 +97,9 @@ class GetManyBaseHandler extends BaseHandler {
 		cms.utils.trace("rest.handlers.getMany.onResult");
 		parameters.output = {
 			input: parameters.input,
-			total: cms.utils.dataGetter(parameters, ["results", 0, 0, "Total"], null),
-			items: parameters.result,
-			attachments: parameters.laterResult || null,
+			total: cms.utils.dataGetter(parameters, ["results", 1, 0, "Total"], null),
+			items: cms.utils.dataGetter(parameters, ["results", 0], []),
+			attachments: cms.utils.dataGetter(parameters, ["results", 2], null),
 		};
 		return parameters.output;
 	}

@@ -10,12 +10,7 @@ class GetOneBaseHandler extends BaseHandler {
 
 	static get QueryFiles() {
 		return [
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs")
-		];
-	}
-
-	static get LaterQueryFiles() {
-		return [
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-attachments.ejs"),
 		];
 	}
@@ -84,8 +79,8 @@ class GetOneBaseHandler extends BaseHandler {
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.getOne.onResult");
 		parameters.output = {
-			item: parameters.result[0] || null,
-			attachments: parameters.laterResult || null,
+			item: cms.utils.dataGetter(parameters, ["results", "0", "0"], null),
+			attachments: cms.utils.dataGetter(parameters, ["results", "1"], undefined),
 		};
 		return parameters.output;
 	}

@@ -16,8 +16,10 @@ class BaseHandler {
 		throw new Error("Static property <QueryFiles> must override its getter");
 	}
 
-	static get LaterQueryFiles() {
-		return false;
+	static get QueryFilesSettings() {
+		return {
+			resultQuery: -1
+		}
 	}
 
 	constructor(options = {}) {
@@ -93,14 +95,58 @@ class BaseHandler {
 		throw new Error("Method <onPreJobs> must be overriden");
 	}
 
-	async onQuery(parameters) {
+	onQuery(parameters) {
 		cms.utils.trace("rest.handler.onQuery");
 		try {
 			parameters.queries = [];
+			parameters.results = [];
+			if(this.constructor.QueryFiles.length === 0) {
+				return;
+			}
+			const sortedFiles = [];
+			for(let index=0; index < this.constructor.QueryFiles.length; index++) {
+				const queryFileParam = this.constructor.QueryFiles[index];
+				const queryFile = this.normalizeQueryFile(queryFileParam);
+				if(!queryFile.template.startsWith("@")) {
+					sortedFiles.push([]);
+				}
+				sortedFiles[sortedFiles.length-1].push(queryFile);
+			}
+			let indexBlock = 0, indexFiles = 0, indexGeneral = 0;
+			return new Promise((ok, fail) => {
+				const next = () => {
+					if(!(indexBlock in sortedFiles)) {
+						return ok(parameters.results);
+					}
+					const currentBlock = sortedFiles[indexBlock];
+					if(!(indexFiles in currentBlock)) {
+						indexFiles = 0;
+						indexBlock++;
+						return next();
+					}
+					const currentFile = currentBlock[indexFiles];
+					indexFiles++;
+					this.createQueryFilePromise(
+						currentFile,
+						parameters,
+						indexBlock,
+						indexFiles,
+						indexGeneral++
+					).then(next).catch(fail);
+				};
+				return next();
+			});
+			/*
+			parameters.results = await Promise.all(sortedQueries.map(queryBlock => Promise.all(queryBlock)));
+			if(typeof parameters.results !== "object") {
+				return;
+			}
+			//*/
+			/*
 			if(this.constructor.QueryFiles) {
 				for (let index = 0; index < this.constructor.QueryFiles.length; index++) {
 					const queryFile = this.constructor.QueryFiles[index];
-					const query = await this.renderFile(queryFile, parameters);
+					const query = await this.onRenderFile(queryFile, parameters);
 					parameters.queries[index] = query;
 				}
 			}
@@ -112,7 +158,7 @@ class BaseHandler {
 				parameters.laterQueries = [];
 				for (let index = 0; index < this.constructor.LaterQueryFiles.length; index++) {
 					const queryFile = this.constructor.LaterQueryFiles[index];
-					const query = await this.renderFile(queryFile, { ...parameters, all: parameters });
+					const query = await this.onRenderFile(queryFile, { ...parameters, all: parameters });
 					parameters.laterQueries[index] = query;
 				}
 				const hasResults = parameters.result !== null && parameters.result.length !== 0;
@@ -123,14 +169,55 @@ class BaseHandler {
 					parameters.laterResult = parameters.laterResults[parameters.laterResults.length > 0 ? parameters.laterResults.length - 1 : null];
 				}
 			}
+			//*/
 		} catch (error) {
 			cms.utils.debugError("{handler}.onRunQueries", error);
 			throw error;
 		}
 	}
 
+	normalizeQueryFile(queryFileParam) {
+		const queryFileData = {};
+		if(typeof queryFileParam === "string") {
+			queryFileData.template = queryFileParam;
+		} else if(typeof queryFileParam === "object") {
+			Object.assign(queryFileData, queryFileParam);
+		} else {
+			throw new Error("Required <queryFileParam> to be a string or an object [ERR:030]");
+		}
+		if(typeof queryFileData.template !== "string") {
+			throw new Error("Required <queryFileData.template> to be a string [ERR:031]");
+		}
+		return queryFileData;
+	}
+
+	async createQueryFilePromise(queryFileData, parameters, indexBlock, indexQuery, indexGeneral) {
+		try {
+			const template = queryFileData.template.startsWith("@") ? queryFileData.template.substr(1) : queryFileData.template;
+			const querySource = await this.onRenderFile(template, {
+				...parameters,
+				indexBlock,
+				indexQuery,
+				queryData: queryFileData,
+			});
+			parameters.queries.push(querySource);
+			if(querySource === "") {
+				parameters.results[indexGeneral] = null;
+				return null;
+			}
+			const queryResult = await this.onExecuteQuery(querySource);
+			parameters.results[indexGeneral] = queryResult;
+			return queryResult;
+		} catch(error) {
+			cms.utils.debugError("{handler}.createQueryFilePromise", error);
+			throw error;
+		}
+	}
+
 	onFormatOutput(parameters) {
 		cms.utils.trace("rest.handler.onFormatOutput");
+		parameters.result = cms.utils.dataGetter(parameters, ["results"], []);
+		parameters.result = parameters.result[0] || null;
 		throw new Error("Method <onFormatOutput> must be overriden");
 	}
 
@@ -154,18 +241,14 @@ class BaseHandler {
 		throw new Error("Method <onResult> must be overriden");
 	}
 
-	renderFile(file, parameters) {
-		cms.utils.trace("rest.handler.renderFile");
+	onRenderFile(file, parameters) {
+		cms.utils.trace("rest.handler.onRenderFile");
 		return cms.utils.renderFile(file, {
 			cms,
 			parameters,
 			handler: this,
 			actorClass: this.actor.constructor
 		});
-	}
-
-	async onRunQueries(parameters) {
-		cms.utils.trace("rest.handler.onRunQueries");
 	}
 
 	onExecuteQuery(query) {

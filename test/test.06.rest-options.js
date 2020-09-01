@@ -35,7 +35,7 @@ describe("REST test: options", function() {
 				data: dataPermissions
 			});
 			expect(typeof responsePermissions.data.data).to.equal("object");
-			expect(responsePermissions.data.data.affectedRows).to.equal(items);
+			expect(responsePermissions.data.data.operation.affectedRows).to.equal(items);
 
 			// groups:
 			const dataGroups = [];
@@ -48,7 +48,7 @@ describe("REST test: options", function() {
 				data: dataGroups
 			});
 			expect(typeof responseGroups.data.data).to.equal("object");
-			expect(responseGroups.data.data.affectedRows).to.equal(items);
+			expect(responseGroups.data.data.operation.affectedRows).to.equal(items);
 			// permission_and_group:
 			const dataCombos1 = [{
 				id_group: 5,
@@ -91,7 +91,7 @@ describe("REST test: options", function() {
 				data: dataCombos1
 			});
 			expect(typeof responseCombos1.data.data).to.equal("object");
-			expect(responseCombos1.data.data.affectedRows).to.equal(dataCombos1.length);
+			expect(responseCombos1.data.data.operation.affectedRows).to.equal(dataCombos1.length);
 		} catch (error) {
 			throw error;
 		}
@@ -140,16 +140,16 @@ describe("REST test: options", function() {
 			const response6 = await axios.put(Utils.url("/api/v1/permissions/" + id08), {
 				name: "modified name"
 			});
-			expect(response6.data.data.affectedRows).to.equal(0);
+			expect(response6.data.data.operation.affectedRows).to.equal(0);
 			const response7 = await axios.put(Utils.url("/api/v1/permissions/" + (id08 + 1)), {
 				name: "modified name 1"
 			});
-			expect(response7.data.data.affectedRows).to.equal(1);
+			expect(response7.data.data.operation.affectedRows).to.equal(1);
 			// DELETE ONE:
 			const response8 = await axios.delete(Utils.url("/api/v1/permissions/" + id08));
-			expect(response8.data.data).to.equal(null);
+			expect(response8.data.data.item).to.equal(null);
 			const response9 = await axios.delete(Utils.url("/api/v1/permissions/" + (id08 + 1)));
-			expect(response9.data.data["permissions.id"]).to.equal(response3.data.data.items[0]["permissions.id"]);
+			expect(response9.data.data.item["permissions.id"]).to.equal(response3.data.data.items[0]["permissions.id"]);
 			// @TODO: WHERE IN: UPDATE MANY
 			// @TODO: WHERE IN: DELETE MANY
 		} catch (error) {
@@ -282,49 +282,7 @@ describe("REST test: options", function() {
 			// @TODO:
 			// @TODO:
 			// @TODO:
-			/*
-			const dataCombos1 = [{
-				id_user:  5,
-				id_group: 5,
-			}, {
-				id_user:  6,
-				id_group: 5,
-			}, {
-				id_user:  15,
-				id_group: 5,
-			}, {
-				id_user:  16,
-				id_group: 5,
-			}, {
-				id_user:  2,
-				id_group: 5,
-			}, {
-				id_user:  3,
-				id_group: 5,
-			}, {
-				id_user:  5,
-				id_group: 8,
-			}, {
-				id_user:  6,
-				id_group: 8,
-			}, {
-				id_user:  15,
-				id_group: 8,
-			}, {
-				id_user:  16,
-				id_group: 8,
-			}, {
-				id_user:  2,
-				id_group: 8,
-			}, {
-				id_user:  3,
-				id_group: 8,
-			}];
-			const responseCombos1 = await axios.post(Utils.url("/api/v1/combo-user-and-group"), {
-				data: dataCombos1
-			});
-			//*/
-			// await axios.delete(Utils.url('/api/v1/group/1'))
+			
 		} catch (error) {
 			throw error;
 		}

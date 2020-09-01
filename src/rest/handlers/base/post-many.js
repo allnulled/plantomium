@@ -78,7 +78,9 @@ class PostManyBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.postMany.onResult");
-		parameters.output = parameters.result;
+		parameters.output = {
+			operation: cms.utils.dataGetter(parameters, ["results", 0], null)
+		};
 	}
 
 }
