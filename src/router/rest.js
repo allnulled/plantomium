@@ -8,6 +8,8 @@ module.exports = function(cms, router) {
 	cms.rest.controllers.comboTraitAndPlant.create().mountToRouter(router);
 	cms.rest.controllers.comboTraitAndSpecimen.create().mountToRouter(router);
 	cms.rest.controllers.comboUsageAndPlant.create().mountToRouter(router);
+	cms.rest.controllers.comboUserAndGroup.create().mountToRouter(router);
+	cms.rest.controllers.comboUserAndPermission.create().mountToRouter(router);
 	cms.rest.controllers.compound.create().mountToRouter(router);
 	cms.rest.controllers.configuration.create().mountToRouter(router);
 	cms.rest.controllers.environment.create().mountToRouter(router);

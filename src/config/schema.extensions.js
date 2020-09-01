@@ -79,8 +79,8 @@ module.exports = {
 				"unconfirmed_users",
 				// "groups",
 				// "permissions",
-				"combo_user_and_group",
-				"combo_user_and_permission",
+				// "combo_user_and_group",
+				// "combo_user_and_permission",
 				// "combo_group_and_permission",
 			],
 			hiddenColumns: [

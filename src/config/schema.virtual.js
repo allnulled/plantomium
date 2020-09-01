@@ -1026,6 +1026,186 @@ module.exports = {
         archetype: 'text'
       }
     },
+    combo_user_and_group: {
+      id: {
+        order: 1,
+        model: 'ComboUserAndGroup',
+        table: 'combo_user_and_group',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_user: {
+        order: 2,
+        model: 'ComboUserAndGroup',
+        table: 'combo_user_and_group',
+        column: 'id_user',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'combo_user_and_group_ibfk_1',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_group: {
+        order: 3,
+        model: 'ComboUserAndGroup',
+        table: 'combo_user_and_group',
+        column: 'id_group',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'combo_user_and_group_ibfk_2',
+            model: 'Groups',
+            table: 'groups',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      }
+    },
+    combo_user_and_permission: {
+      id: {
+        order: 1,
+        model: 'ComboUserAndPermission',
+        table: 'combo_user_and_permission',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_user: {
+        order: 2,
+        model: 'ComboUserAndPermission',
+        table: 'combo_user_and_permission',
+        column: 'id_user',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'combo_user_and_permission_ibfk_1',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_permission: {
+        order: 3,
+        model: 'ComboUserAndPermission',
+        table: 'combo_user_and_permission',
+        column: 'id_permission',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'combo_user_and_permission_ibfk_2',
+            model: 'Permissions',
+            table: 'permissions',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      }
+    },
     compound: {
       id: {
         order: 1,
@@ -2566,6 +2746,60 @@ module.exports = {
         }
       ]
     },
+    combo_user_and_group: {
+      database: 'plants_bd',
+      model: 'ComboUserAndGroup',
+      table: 'combo_user_and_group',
+      attributes: [
+        'id',
+        'id_user',
+        'id_group'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [
+        {
+          constraint: 'combo_user_and_group_ibfk_1',
+          column: 'id_user',
+          referencedTable: 'users',
+          referencedColumn: 'id'
+        },
+        {
+          constraint: 'combo_user_and_group_ibfk_2',
+          column: 'id_group',
+          referencedTable: 'groups',
+          referencedColumn: 'id'
+        }
+      ]
+    },
+    combo_user_and_permission: {
+      database: 'plants_bd',
+      model: 'ComboUserAndPermission',
+      table: 'combo_user_and_permission',
+      attributes: [
+        'id',
+        'id_user',
+        'id_permission'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [
+        {
+          constraint: 'combo_user_and_permission_ibfk_1',
+          column: 'id_user',
+          referencedTable: 'users',
+          referencedColumn: 'id'
+        },
+        {
+          constraint: 'combo_user_and_permission_ibfk_2',
+          column: 'id_permission',
+          referencedTable: 'permissions',
+          referencedColumn: 'id'
+        }
+      ]
+    },
     compound: {
       database: 'plants_bd',
       model: 'Compound',
@@ -2841,9 +3075,7 @@ module.exports = {
     debugTraces: true,
     maxSessionsPerUser: 10,
     hiddenTables: [
-      'unconfirmed_users',
-      'combo_user_and_group',
-      'combo_user_and_permission'
+      'unconfirmed_users'
     ],
     hiddenColumns: [
       'users.password',

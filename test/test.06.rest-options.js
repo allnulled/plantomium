@@ -263,9 +263,7 @@ describe("REST test: options", function() {
 
 	it("can understand <schema.hiddenColumns> option", async function() {
 		try {
-			const insertUser = await new Promise(function(ok, fail) {
-				cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username', 'password', 'email@domain.com', 'Username Surname');", asynchandler(ok, fail));
-			});
+			const insertUser = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username', 'password', 'email@domain.com', 'Username Surname');", asynchandler(ok, fail)));
 			const getUser = await axios.get(Utils.url('/api/v1/users/' + insertUser.insertId));
 			expect(typeof getUser.data.data.item).to.equal("object");
 			expect(getUser.data.data.item["users.name"]).to.equal("username");
@@ -277,12 +275,31 @@ describe("REST test: options", function() {
 
 	it("can understand <schema.{table}.rest.deleteCascade> option", async function() {
 		try {
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			
+			const insertUser = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username2', 'password2', 'email2@domain2.com', 'Username Surname 2');", asynchandler(ok, fail)));
+			const userId = insertUser.insertId;
+			const insertPermission1 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO permissions (name) VALUES ('permission per user 1');", asynchandler(ok, fail)));
+			const insertPermission2 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO permissions (name) VALUES ('permission per user 2');", asynchandler(ok, fail)));
+			const insertPermission3 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO permissions (name) VALUES ('permission per user 3');", asynchandler(ok, fail)));
+			const insertUserPermission1 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_permission (id_user, id_permission) VALUES (${userId}, ${insertPermission1.insertId});`, asynchandler(ok, fail)));
+			const insertUserPermission2 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_permission (id_user, id_permission) VALUES (${userId}, ${insertPermission2.insertId});`, asynchandler(ok, fail)));
+			const insertUserPermission3 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_permission (id_user, id_permission) VALUES (${userId}, ${insertPermission3.insertId});`, asynchandler(ok, fail)));
+			const insertGroup1 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO groups (name) VALUES ('group per user 1');", asynchandler(ok, fail)));
+			const insertGroup2 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO groups (name) VALUES ('group per user 2');", asynchandler(ok, fail)));
+			const insertGroup3 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO groups (name) VALUES ('group per user 3');", asynchandler(ok, fail)));
+			const insertUserGroup1 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_group (id_user, id_group) VALUES (${userId}, ${insertGroup1.insertId});`, asynchandler(ok, fail)));
+			const insertUserGroup2 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_group (id_user, id_group) VALUES (${userId}, ${insertGroup2.insertId});`, asynchandler(ok, fail)));
+			const insertUserGroup3 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_group (id_user, id_group) VALUES (${userId}, ${insertGroup3.insertId});`, asynchandler(ok, fail)));
+			const comboUserAndPermissionResponse1 = await axios.get(Utils.url(`/api/v1/combo-user-and-permission?where=[["id_user", "=", "${userId}"]]`));
+			const comboUserAndGroupResponse1 = await axios.get(Utils.url(`/api/v1/combo-user-and-group?where=[["id_user", "=", "${userId}"]]`));
+			expect(comboUserAndPermissionResponse1.data.data.total).to.equal(3);
+			expect(comboUserAndGroupResponse1.data.data.total).to.equal(3);
+			const deleteUser = await axios.delete(Utils.url(`/api/v1/users/${userId}`));
+			const comboUserAndPermissionResponse2 = await axios.get(Utils.url(`/api/v1/combo-user-and-permission?where=[["id_user", "=", "${userId}"]]`));
+			const comboUserAndGroupResponse2 = await axios.get(Utils.url(`/api/v1/combo-user-and-group?where=[["id_user", "=", "${userId}"]]`));
+			/*
+			expect(comboUserAndPermissionResponse2.data.data.total).to.equal(0);
+			expect(comboUserAndGroupResponse2.data.data.total).to.equal(0);
+			//*/
 		} catch (error) {
 			throw error;
 		}

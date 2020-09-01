@@ -4915,9 +4915,7 @@ module.exports = {
     debugTraces: true,
     maxSessionsPerUser: 10,
     hiddenTables: [
-      'unconfirmed_users',
-      'combo_user_and_group',
-      'combo_user_and_permission'
+      'unconfirmed_users'
     ],
     hiddenColumns: [
       'users.password',
