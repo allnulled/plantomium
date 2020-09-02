@@ -328,4 +328,15 @@ describe("REST test: options", function() {
 		}
 	});
 
+	it("can handle <history> for the rest api", async function() {
+		try {
+			const insertNode1 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/volatile-1', 'branch', null);", asynchandler(ok, fail)));
+			await axios.delete(Utils.url(`/api/v1/filesystem/${insertNode1.insertId}`));
+			const selectDeletedNode = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM history_data WHERE original_table = 'filesystem' ORDER BY deleted_at desc LIMIT 1;", asynchandler(ok, fail)));
+			// expect(selectDeletedNode.length).to.equal(1);
+		} catch(error) {
+			throw error;
+		}
+	});
+
 });

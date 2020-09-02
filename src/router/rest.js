@@ -15,6 +15,8 @@ module.exports = function(cms, router) {
 	cms.rest.controllers.environment.create().mountToRouter(router);
 	cms.rest.controllers.filesystem.create().mountToRouter(router);
 	cms.rest.controllers.groups.create().mountToRouter(router);
+	cms.rest.controllers.historyData.create().mountToRouter(router);
+	cms.rest.controllers.historyEvent.create().mountToRouter(router);
 	cms.rest.controllers.image.create().mountToRouter(router);
 	cms.rest.controllers.localization.create().mountToRouter(router);
 	cms.rest.controllers.permissions.create().mountToRouter(router);

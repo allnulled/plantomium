@@ -12,7 +12,9 @@ class DeleteOneBaseHandler extends BaseHandler {
 		return [
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/helpers/delete-cascade.js"),
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-one.ejs")
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-one.ejs"),
+			// path.resolve(process.env.PROJECT_ROOT + "/src/history/queries/insert-data.ejs"),
+			path.resolve(process.env.PROJECT_ROOT + "/src/history/helpers/insert-data-from-delete.js"),
 		];
 	}
 

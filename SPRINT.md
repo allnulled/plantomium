@@ -62,6 +62,8 @@
   [ ] REST history support
     [ ] create tables
     [ ] insert each {event|deleted registry} from lifecycle
+  [ ] migrations and seeders support
+
   [ ] broadcast operations support
   [ ] secure application support (forced)
   [ ] basic CLI (no commands needed)
@@ -69,7 +71,6 @@
 
 # Sprint-3
 
-  [ ] migrations and seeders support
     [ ] CLI commands
     [ ] 
   [ ] send mails on:
