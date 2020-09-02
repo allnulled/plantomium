@@ -251,11 +251,6 @@ describe("REST test: options", function() {
 				testifier++;
 			}
 			expect(testifier).to.equal(1);
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
 		} catch (error) {
 			throw error;
 		}
@@ -289,6 +284,7 @@ describe("REST test: options", function() {
 			const insertUserGroup1 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_group (id_user, id_group) VALUES (${userId}, ${insertGroup1.insertId});`, asynchandler(ok, fail)));
 			const insertUserGroup2 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_group (id_user, id_group) VALUES (${userId}, ${insertGroup2.insertId});`, asynchandler(ok, fail)));
 			const insertUserGroup3 = await new Promise((ok, fail) => cms.rest.connection.query(`INSERT INTO combo_user_and_group (id_user, id_group) VALUES (${userId}, ${insertGroup3.insertId});`, asynchandler(ok, fail)));
+			// attachments still exist:
 			const comboUserAndPermissionResponse1 = await axios.get(Utils.url(`/api/v1/combo-user-and-permission?where=[["id_user", "=", "${userId}"]]`));
 			const comboUserAndGroupResponse1 = await axios.get(Utils.url(`/api/v1/combo-user-and-group?where=[["id_user", "=", "${userId}"]]`));
 			expect(comboUserAndPermissionResponse1.data.data.total).to.equal(3);
@@ -296,10 +292,9 @@ describe("REST test: options", function() {
 			const deleteUser = await axios.delete(Utils.url(`/api/v1/users/${userId}`));
 			const comboUserAndPermissionResponse2 = await axios.get(Utils.url(`/api/v1/combo-user-and-permission?where=[["id_user", "=", "${userId}"]]`));
 			const comboUserAndGroupResponse2 = await axios.get(Utils.url(`/api/v1/combo-user-and-group?where=[["id_user", "=", "${userId}"]]`));
-			/*
+			// attachments dont exist anymore:
 			expect(comboUserAndPermissionResponse2.data.data.total).to.equal(0);
 			expect(comboUserAndGroupResponse2.data.data.total).to.equal(0);
-			//*/
 		} catch (error) {
 			throw error;
 		}

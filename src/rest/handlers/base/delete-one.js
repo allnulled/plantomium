@@ -11,6 +11,7 @@ class DeleteOneBaseHandler extends BaseHandler {
 	static get QueryFiles() {
 		return [
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs"),
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/helpers/delete-cascade.js"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-one.ejs")
 		];
 	}
@@ -79,9 +80,10 @@ class DeleteOneBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.deleteOne.onResult");
+		//if(parameters.results[1]) dd(parameters.results[1])
 		parameters.output = {
 			item: cms.utils.dataGetter(parameters, ["results", 0, 0], null),
-			operation: cms.utils.dataGetter(parameters, ["results", 1], null),
+			operation: cms.utils.dataGetter(parameters, ["results", 2], null),
 		};
 	}
 

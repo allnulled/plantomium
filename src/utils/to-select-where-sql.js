@@ -79,7 +79,8 @@ module.exports = function(selectWhereParam, prependAnd = false, tablename = fals
 		if(index !== 0) {
 			sql += "\n  AND";
 		}
-		sql += ` ${sqlString.escapeId(op1)} ${op} ${sqlString.escape(op2)}`;
+		const op2Escaped = (["IN", "NOTIN"].indexOf(op) !== -1) ? ("(" + sqlString.escape(op2) + ")") : sqlString.escape(op2);
+		sql += ` ${sqlString.escapeId(op1)} ${op} ${op2Escaped}`;
 	}
 	// 4. Return sql code
 	return sql;

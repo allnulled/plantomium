@@ -64,6 +64,16 @@ module.exports = function(cms) {
 		});
 	};
 
+	cms.utils.fromDashToSnakeCase = function(text) {
+		return text.replace(/\-/g, "_");
+	};
+
+	cms.utils.fromSnakeToCapitalCase = function(text) {
+		return text.replace(/\_[a-z]/g, function(match) {
+			return match.replace("_", "").toUpperCase();
+		});
+	};
+
 	cms.utils.pad = function(txt, min = 2, digit = "0") {
 		let out = "";
 		const str = txt + "";

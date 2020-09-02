@@ -47,22 +47,18 @@ module.exports = {
 			rest: {
 				cascadeDelete: [
 					{
-						template: "delete", 
+						type: "delete",
+						// columnOrigin: "id",
 						table: "combo_user_and_permission",
-						column: "combo_user_and_permission.id_user"
+						column: "id_user",
 					},
 					{
-						template: "delete", 
+						type: "delete",
+						// columnOrigin: "id",
 						table: "combo_user_and_group",
-						column: "combo_user_and_group.id_user"
-					},
-					{
-						template: "update", 
-						table: "combo_user_and_comment",
-						column: "combo_user_and_comment.id_user",
-						values: { id_user: null }
+						column: "id_user",
 					}
-				]
+				],
 			}
 		}
 	},
@@ -70,9 +66,9 @@ module.exports = {
 		general: {
 			slug: "/api/v1",
 			slugForAuth: "/auth/v1",
-			debugSql: process.env.DEBUG_SQL === "true",
-			debugErrors: process.env.DEBUG_ERRORS === "true",
-			debugTraces: process.env.DEBUG_TRACES === "true",
+			debugSql: false, // process.env.DEBUG_SQL === "true",
+			debugErrors: true, // process.env.DEBUG_ERRORS === "true",
+			debugTraces: false, // process.env.DEBUG_TRACES === "true",
 			maxSessionsPerUser: 10,
 			hiddenTables: [
 				// "users",

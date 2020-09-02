@@ -126,13 +126,31 @@ class BaseHandler {
 					}
 					const currentFile = currentBlock[indexFiles];
 					indexFiles++;
-					this.createQueryFilePromise(
-						currentFile,
-						parameters,
-						indexBlock,
-						indexFiles,
-						indexGeneral++
-					).then(next).catch(fail);
+					if(currentFile.template.endsWith(".ejs")) {
+						this.createQueryFilePromise(
+							currentFile,
+							parameters,
+							indexBlock,
+							indexFiles,
+							indexGeneral++,
+						).then(next).catch(fail);
+					} else if(currentFile.template.endsWith(".js")) {
+						const injection = require(currentFile.template);
+						if(typeof injection !== "function") {
+							throw new Error("Required <currentFile.template> to be a string pointing to a js file that returns a function [ERR:034]");
+						}
+						return injection({
+							cms,
+							handler: this,
+							currentFile,
+							parameters,
+							indexBlock,
+							indexFiles,
+							indexGeneral: indexGeneral++,
+						}, next, fail);
+					} else {
+						throw new Error("Required <{handler}.constructor.QueryFiles> to be a string ending with '.ejs' or '.js' [ERR:033]");
+					}
 				};
 				return next();
 			});

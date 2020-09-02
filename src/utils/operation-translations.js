@@ -5,8 +5,8 @@ module.exports = {
 	"<": "<",
 	"<=": "<=",
 	"!=": "!=",
-	"in": "in",
-	"notin": "not in",
-	"like": "like",
-	"notlike": "not like",
+	"in": "IN",
+	"notin": "NOT IN",
+	"like": "LIKE",
+	"notlike": "NOT LIKE",
 };
