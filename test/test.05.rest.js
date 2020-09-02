@@ -11,7 +11,7 @@ describe("REST test: controllers", function() {
 
 	this.timeout(10 * 1000);
 
-	it("can LOAD", async function() {
+	it("can load", async function() {
 		try {
 			await cms.initialized;
 		} catch (error) {
@@ -19,7 +19,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can GET SCHEMA", async function() {
+	it("can get schema", async function() {
 		try {
 			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions/@"));
 			expect(typeof responsePermissions.data).to.equal("object");
@@ -29,7 +29,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can POST ONE", async function() {
+	it("can post one", async function() {
 		try {
 			const responsePermissions = await axios.post(Utils.url("/api/v1/permissions/0"), {
 				name: "some permission"
@@ -42,7 +42,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can GET MANY", async function() {
+	it("can get many", async function() {
 		try {
 			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions"));
 			expect(typeof responsePermissions.data).to.equal("object");
@@ -54,7 +54,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can GET ONE", async function() {
+	it("can get one", async function() {
 		try {
 			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions/1"));
 			expect(typeof responsePermissions.data).to.equal("object");
@@ -66,7 +66,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can PUT ONE", async function() {
+	it("can put one", async function() {
 		this.timeout(999999)
 		try {
 			const responseUpdatePermissions = await axios.put(Utils.url("/api/v1/permissions/1"), {
@@ -85,7 +85,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can DELETE ONE", async function() {
+	it("can delete one", async function() {
 		try {
 			const responseDeletePermissions = await axios.delete(Utils.url("/api/v1/permissions/1"));
 			expect(typeof responseDeletePermissions.data).to.equal("object");
@@ -102,7 +102,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can POST ONE FILE", async function() {
+	it("can post one file", async function() {
 		try {
 			const form = new FormData();
 			form.append("file", fs.createReadStream(__dirname + "/assets/ok.png"), { filename: "ok.png" });
@@ -116,7 +116,7 @@ describe("REST test: controllers", function() {
 		}
 	});
 
-	it("can GET ONE FILE", async function() {
+	it("can get one file", async function() {
 		try {
 			const response = await axios.get(Utils.url("/api/v1/users/1/profile_picture/png"));
 			expect(typeof response.data).to.equal("string");

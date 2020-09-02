@@ -17,6 +17,7 @@
     "docs:readme": "npm run docs:skm",
     "docs:reference": "node docs/reference.js",
     "docs:skm": "skemator compile \"docs/*.skm\" --png",
+    "docs:filetree": "tree . -I node_modules",
     "dev": "nodemon --exec 'npm run test' --ignore src/config --ignore src/rest --ignore src/router/rest.js -e js,json,ejs",
     "start": "node index.js",
     "test": "mocha test/test.*.js --bail",

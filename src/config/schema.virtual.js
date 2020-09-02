@@ -1498,6 +1498,131 @@ module.exports = {
         archetype: 'text'
       }
     },
+    filesystem: {
+      id: {
+        order: 1,
+        model: 'Filesystem',
+        table: 'filesystem',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      nodetype: {
+        order: 2,
+        model: 'Filesystem',
+        table: 'filesystem',
+        column: 'nodetype',
+        type: 'list',
+        typeTerm: 'enum',
+        subtype: 'enum',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: [
+          'branch',
+          'leaf'
+        ],
+        maxTextLength: 6,
+        database: 'plants_bd',
+        archetype: 'enum(\'branch\',\'leaf\')'
+      },
+      path: {
+        order: 3,
+        model: 'Filesystem',
+        table: 'filesystem',
+        column: 'path',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 200,
+        database: 'plants_bd',
+        archetype: 'varchar(200)'
+      },
+      contents: {
+        order: 4,
+        model: 'Filesystem',
+        table: 'filesystem',
+        column: 'contents',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text'
+      },
+      description: {
+        order: 5,
+        model: 'Filesystem',
+        table: 'filesystem',
+        column: 'description',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text'
+      }
+    },
     groups: {
       id: {
         order: 1,
@@ -2851,6 +2976,31 @@ module.exports = {
       ],
       foreignKeys: []
     },
+    filesystem: {
+      database: 'plants_bd',
+      model: 'Filesystem',
+      table: 'filesystem',
+      attributes: [
+        'id',
+        'nodetype',
+        'path',
+        'contents',
+        'description'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [],
+      rest: {
+        tree: {
+          pathColumn: 'path',
+          pathSeparator: '/',
+          typeColumn: 'node_type',
+          leafAlias: 'file',
+          branchAlias: 'folder'
+        }
+      }
+    },
     groups: {
       database: 'plants_bd',
       model: 'Groups',
@@ -2938,8 +3088,7 @@ module.exports = {
         ],
         limit: undefined,
         offset: undefined,
-        sort: undefined,
-        recursiveSelect: {}
+        sort: undefined
       }
     },
     plant: {
@@ -3062,9 +3211,9 @@ module.exports = {
   general: {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
-    debugSql: false,
+    debugSql: true,
     debugErrors: true,
-    debugTraces: false,
+    debugTraces: true,
     maxSessionsPerUser: 10,
     hiddenTables: [
       'unconfirmed_users'

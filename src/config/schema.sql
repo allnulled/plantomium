@@ -3,6 +3,9 @@ create database if not exists plants_bd;
 
 use plants_bd;
 
+##############################################
+## AUTHENTICATION ############################
+
 drop table if exists unconfirmed_users;
 drop table if exists users;
 drop table if exists groups;
@@ -13,22 +16,6 @@ drop table if exists combo_user_and_group;
 drop table if exists combo_user_and_permission;
 drop table if exists combo_group_and_permission;
 
-/**
- * 
- * ----
- * 
- * @name `unconfirmed_users`
- * @type [SQL table]
- * @description
- * @has 
- * @has  - `id:integer`
- * @has  - `name:varchar`
- * @has  - `password:varchar`
- * @has  - `full_name:varchar`
- * @has  - `email:varchar`
- * @has  - `confirmation_token:varchar`
- * 
- */
 create table unconfirmed_users (
   id integer primary key auto_increment,
   name varchar(200) unique,
@@ -99,6 +86,22 @@ create table combo_group_and_permission (
   foreign key (id_group) references groups(id),
   foreign key (id_permission) references permissions(id)
 );
+
+##############################################
+## FILESYSTEM ################################
+
+drop table if exists filesystem;
+
+create table filesystem (
+  id integer primary key auto_increment,
+  nodetype enum('branch', 'leaf'),
+  path varchar(200) not null unique,
+  contents text,
+  description text
+);
+
+##############################################
+## APPLICATION ###############################
 
 drop table if exists combo_trait_and_plant;
 drop table if exists combo_compound_and_plant;

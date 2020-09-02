@@ -45,9 +45,9 @@
         [✓] SELECT ONE
 
 
-    [ ] CASCADE DELETE
-      [ ] picar test
-      [ ] pasar test
+    [✓] CASCADE DELETE
+      [✓] picar test
+      [✓] pasar test
     [ ] RECURSIVE SELECT
       [ ] picar test
       [ ] pasar test

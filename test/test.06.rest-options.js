@@ -12,7 +12,7 @@ describe("REST test: options", function() {
 
 	this.timeout(10 * 1000);
 
-	it("can LOAD", async function() {
+	it("can load", async function() {
 		try {
 			await cms.initialized;
 		} catch (error) {
@@ -300,13 +300,29 @@ describe("REST test: options", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.recursiveSelect> option", async function() {
+	it("can understand <schema.{table}.rest.tree> option", async function() {
 		try {
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
-			// @TODO:
+			const insertNode1 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/', 'branch', null);", asynchandler(ok, fail)));
+			const insertNode2 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 1', 'branch', null);", asynchandler(ok, fail)));
+			const insertNode3 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 1/file 1.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode4 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 1/file 2.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode5 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 1/file 3.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode6 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 2', 'branch', null);", asynchandler(ok, fail)));
+			const insertNode7 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 2/file 4.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode8 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 2/file 5.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode9 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 2/file 6.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode10 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 3', 'branch', null);", asynchandler(ok, fail)));
+			const insertNode11 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 3/file 7.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode12 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 3/file 8.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const insertNode13 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 3/file 9.txt', 'leaf', '...');", asynchandler(ok, fail)));
+			const getRoot = await axios.get(Utils.url(`/api/v1/filesystem/${insertNode1.insertId}`));
+			const getFolder1 = await axios.get(Utils.url(`/api/v1/filesystem/${insertNode2.insertId}`));
+			const getFolder2 = await axios.get(Utils.url(`/api/v1/filesystem/${insertNode6.insertId}`));
+			const getFolder3 = await axios.get(Utils.url(`/api/v1/filesystem/${insertNode10.insertId}`));
+			expect(getRoot.data.data.children.length).to.equal(3);
+			expect(getFolder1.data.data.children.length).to.equal(3);
+			expect(getFolder2.data.data.children.length).to.equal(3);
+			expect(getFolder3.data.data.children.length).to.equal(3);
 		} catch (error) {
 			throw error;
 		}
