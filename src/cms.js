@@ -23,7 +23,6 @@ require("nodelive").PREFERRED_EDITOR = "gedit";
 require(__dirname + "/deploy/load-env.js")(cms);
 require(__dirname + "/deploy/load-api.js")(cms);
 
-
 cms.initialized = (async function() {
 	try {
 		cms.deploy.createApp(cms);

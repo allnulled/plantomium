@@ -43,8 +43,6 @@
       [✓] asegurar su uso en:
         [✓] SELECT MANY
         [✓] SELECT ONE
-
-
     [✓] CASCADE DELETE
       [✓] picar test
       [✓] pasar test
@@ -54,13 +52,37 @@
   [✓] HISTORY
     [✓] save each deleted item(s)
     [✓] save each REST & AUTH event
+  [✓] JSON store controllers
+    [✓] getter
+    [✓] setter
+    [✓] deleter
+    [✓] test demo
 
-  [ ] JSON store controllers
-    [ ] getter
-    [ ] setter
-    [ ] deleter
-    [ ] test demo
-
+  [ ] MIGRATIONS & SEEDERS
+    [ ] add migrations
+    [ ] add seeders
+    [ ] test for migrations (from CLI)
+    [ ] test for seeders (from CLI)
+    [ ] add all commands:
+      [ ] sequelize db:migrate
+      [ ] sequelize db:migrate:schema:timestamps:add
+      [ ] sequelize db:migrate:status
+      [ ] sequelize db:migrate:undo
+      [ ] sequelize db:migrate:undo:all
+      [ ] sequelize db:seed
+      [ ] sequelize db:seed:undo
+      [ ] sequelize db:seed:all
+      [ ] sequelize db:seed:undo:all
+      [ ] sequelize db:create
+      [ ] sequelize db:drop
+      [ ] sequelize init
+      [ ] sequelize init:config
+      [ ] sequelize init:migrations
+      [ ] sequelize init:models
+      [ ] sequelize init:seeders
+      [ ] sequelize migration:generate
+      [ ] sequelize model:generate
+      [ ] sequelize seed:generate
 
 
 
