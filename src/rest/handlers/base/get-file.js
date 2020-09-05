@@ -15,10 +15,6 @@ class GetFileBaseHandler extends BaseHandler {
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onStart");
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.getFile.onAuthorize");
 		if(!parameters.request) {

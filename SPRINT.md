@@ -48,16 +48,51 @@
     [✓] CASCADE DELETE
       [✓] picar test
       [✓] pasar test
-    [ ] RECURSIVE SELECT
-      [ ] picar test
-      [ ] pasar test
+    [✓] RECURSIVE SELECT
+      [✓] picar test
+      [✓] pasar test
+  [✓] HISTORY
+    [✓] save each deleted item(s)
+    [✓] save each REST & AUTH event
+
+  [ ] JSON store controllers
+    [ ] getter
+    [ ] setter
+    [ ] deleter
+    [ ] test demo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  [ ] BROADCAST
+    [ ] ...
+    
   [ ] other REST Options:
     [ ] {Table}.{Column=*}.{Operation=*}:
       [ ] require{User|Group|Privilege|Authenticated}
       [ ] exclude{User|Group|Privilege|Authenticated}
-
-# Sprint-2
-  
   [ ] only-{user|group|permission|authenticated} auth middlewares support
   [ ] REST history support
     [ ] create tables
@@ -68,8 +103,6 @@
   [ ] secure application support (forced)
   [ ] basic CLI (no commands needed)
   [ ] clusterize runtime
-
-# Sprint-3
 
     [ ] CLI commands
     [ ] 

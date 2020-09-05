@@ -16,11 +16,6 @@ class GetOneBaseHandler extends BaseHandler {
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onStart");
-		
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.getOne.onAuthorize");
 		if(!parameters.request) {

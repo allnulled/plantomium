@@ -7,11 +7,6 @@ class SchemaBaseHandler extends BaseHandler {
 		return "schema";
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.schema.onStart");
-
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.schema.onAuthorize");
 		if(!parameters.request) {

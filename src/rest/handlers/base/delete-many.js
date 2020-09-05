@@ -11,15 +11,10 @@ class DeleteManyBaseHandler extends BaseHandler {
 	static get QueryFiles() {
 		return [
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many.ejs"),
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-cascade.ejs"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-cascade.ejs"),
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-many.ejs")
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-many.ejs"),
+			path.resolve(process.env.PROJECT_ROOT + "/src/history/queries/insert-data.ejs")
 		];
-	}
-
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onStart");
-		
 	}
 
 	onAuthorize(parameters) {

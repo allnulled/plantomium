@@ -14,11 +14,6 @@ class PostManyBaseHandler extends BaseHandler {
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.postMany.onStart");
-
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.postMany.onAuthorize");
 		if(!parameters.request) {

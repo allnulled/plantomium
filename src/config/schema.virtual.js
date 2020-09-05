@@ -1735,32 +1735,8 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'varchar(40)'
       },
-      user_mac: {
-        order: 3,
-        model: 'HistoryData',
-        table: 'history_data',
-        column: 'user_mac',
-        type: 'text',
-        typeTerm: 'varchar',
-        subtype: 'varchar',
-        'default': null,
-        extra: false,
-        isPrimaryKey: false,
-        isAutoIncrement: null,
-        isNullable: false,
-        isFloat: null,
-        isUnsigned: null,
-        isForeignKey: false,
-        isUnique: false,
-        referencesTo: [],
-        referencedBy: [],
-        optionsList: null,
-        maxTextLength: 18,
-        database: 'plants_bd',
-        archetype: 'varchar(18)'
-      },
       user_agent: {
-        order: 4,
+        order: 3,
         model: 'HistoryData',
         table: 'history_data',
         column: 'user_agent',
@@ -1783,11 +1759,11 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'varchar(120)'
       },
-      user_identifier: {
-        order: 5,
+      user_id: {
+        order: 4,
         model: 'HistoryData',
         table: 'history_data',
-        column: 'user_identifier',
+        column: 'user_id',
         type: 'text',
         typeTerm: 'varchar',
         subtype: 'varchar',
@@ -1808,7 +1784,7 @@ module.exports = {
         archetype: 'varchar(20)'
       },
       original_table: {
-        order: 6,
+        order: 5,
         model: 'HistoryData',
         table: 'history_data',
         column: 'original_table',
@@ -1832,7 +1808,7 @@ module.exports = {
         archetype: 'varchar(120)'
       },
       request_data: {
-        order: 7,
+        order: 6,
         model: 'HistoryData',
         table: 'history_data',
         column: 'request_data',
@@ -1856,7 +1832,7 @@ module.exports = {
         archetype: 'text'
       },
       data: {
-        order: 8,
+        order: 7,
         model: 'HistoryData',
         table: 'history_data',
         column: 'data',
@@ -1880,7 +1856,7 @@ module.exports = {
         archetype: 'text'
       },
       metadata: {
-        order: 9,
+        order: 8,
         model: 'HistoryData',
         table: 'history_data',
         column: 'metadata',
@@ -1904,7 +1880,7 @@ module.exports = {
         archetype: 'text'
       },
       description: {
-        order: 10,
+        order: 9,
         model: 'HistoryData',
         table: 'history_data',
         column: 'description',
@@ -1928,7 +1904,7 @@ module.exports = {
         archetype: 'varchar(200)'
       },
       deleted_at: {
-        order: 11,
+        order: 10,
         model: 'HistoryData',
         table: 'history_data',
         column: 'deleted_at',
@@ -2001,32 +1977,8 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'varchar(40)'
       },
-      user_mac: {
-        order: 3,
-        model: 'HistoryEvent',
-        table: 'history_event',
-        column: 'user_mac',
-        type: 'text',
-        typeTerm: 'varchar',
-        subtype: 'varchar',
-        'default': null,
-        extra: false,
-        isPrimaryKey: false,
-        isAutoIncrement: null,
-        isNullable: false,
-        isFloat: null,
-        isUnsigned: null,
-        isForeignKey: false,
-        isUnique: false,
-        referencesTo: [],
-        referencedBy: [],
-        optionsList: null,
-        maxTextLength: 18,
-        database: 'plants_bd',
-        archetype: 'varchar(18)'
-      },
       user_agent: {
-        order: 4,
+        order: 3,
         model: 'HistoryEvent',
         table: 'history_event',
         column: 'user_agent',
@@ -2049,11 +2001,11 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'varchar(120)'
       },
-      user_identifier: {
-        order: 5,
+      user_id: {
+        order: 4,
         model: 'HistoryEvent',
         table: 'history_event',
-        column: 'user_identifier',
+        column: 'user_id',
         type: 'text',
         typeTerm: 'varchar',
         subtype: 'varchar',
@@ -2072,6 +2024,30 @@ module.exports = {
         maxTextLength: 20,
         database: 'plants_bd',
         archetype: 'varchar(20)'
+      },
+      original_table: {
+        order: 5,
+        model: 'HistoryEvent',
+        table: 'history_event',
+        column: 'original_table',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 120,
+        database: 'plants_bd',
+        archetype: 'varchar(120)'
       },
       event: {
         order: 6,
@@ -2145,8 +2121,32 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'text'
       },
-      deleted_at: {
+      description: {
         order: 9,
+        model: 'HistoryEvent',
+        table: 'history_event',
+        column: 'description',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 200,
+        database: 'plants_bd',
+        archetype: 'varchar(200)'
+      },
+      deleted_at: {
+        order: 10,
         model: 'HistoryEvent',
         table: 'history_event',
         column: 'deleted_at',
@@ -3521,9 +3521,8 @@ module.exports = {
       attributes: [
         'id',
         'user_ip',
-        'user_mac',
         'user_agent',
-        'user_identifier',
+        'user_id',
         'original_table',
         'request_data',
         'data',
@@ -3543,12 +3542,13 @@ module.exports = {
       attributes: [
         'id',
         'user_ip',
-        'user_mac',
         'user_agent',
-        'user_identifier',
+        'user_id',
+        'original_table',
         'event',
         'data',
         'metadata',
+        'description',
         'deleted_at'
       ],
       primaryKeys: [

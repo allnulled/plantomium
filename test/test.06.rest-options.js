@@ -330,10 +330,47 @@ describe("REST test: options", function() {
 
 	it("can handle <history> for the rest api", async function() {
 		try {
+			const selectDeletedNode1 = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM history_data WHERE original_table = 'filesystem' ORDER BY deleted_at desc LIMIT 1;", asynchandler(ok, fail)));
+			expect(selectDeletedNode1.length).to.equal(0);
 			const insertNode1 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/volatile-1', 'branch', null);", asynchandler(ok, fail)));
 			await axios.delete(Utils.url(`/api/v1/filesystem/${insertNode1.insertId}`));
-			const selectDeletedNode = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM history_data WHERE original_table = 'filesystem' ORDER BY deleted_at desc LIMIT 1;", asynchandler(ok, fail)));
-			// expect(selectDeletedNode.length).to.equal(1);
+			const selectDeletedNode2 = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM history_data WHERE original_table = 'filesystem' ORDER BY deleted_at desc LIMIT 1;", asynchandler(ok, fail)));
+			expect(selectDeletedNode2.length).to.equal(1);
+		} catch(error) {
+			throw error;
+		}
+	});
+
+	it("can handle <json stores>", async function() {
+		try {
+			fs.writeFileSync(process.env.PROJECT_ROOT + "/src/json/data/example.json", JSON.stringify({
+				meta: {
+					title: "Whatever 1"
+				}
+			}))
+			
+			const getResponse1 = await axios.get(Utils.url(`/json/example`));
+			expect(typeof getResponse1.data.data).to.equal("object");
+			expect(typeof getResponse1.data.data.meta).to.equal("object");
+			expect(typeof getResponse1.data.data.meta.title).to.equal("string");
+			
+			const getResponse2 = await axios.get(Utils.url(`/json/example`), { params: { select: JSON.stringify(["meta", "title"]) } });
+			expect(typeof getResponse2.data.data).to.equal("string");
+			expect(getResponse2.data.data).to.equal("Whatever 1");
+			
+			const setResponse = await axios.post(Utils.url(`/json/example`), { select: JSON.stringify(["meta", "title"]), value: JSON.stringify("Whatever 2") });
+			
+			const getResponse3 = await axios.get(Utils.url(`/json/example`));
+			expect(typeof getResponse3.data.data).to.equal("object");
+			expect(typeof getResponse3.data.data.meta.title).to.equal("string");
+			expect(getResponse3.data.data.meta.title).to.equal("Whatever 2");
+
+			const deleteResponse = await axios.delete(Utils.url(`/json/example`), { params: { select: JSON.stringify(["meta", "title"]), value: JSON.stringify("Whatever 2") } });
+
+			const getResponse4 = await axios.get(Utils.url(`/json/example`));
+			expect(typeof getResponse4.data.data).to.equal("object");
+			expect(typeof getResponse4.data.data.meta.title).to.equal("undefined");
+
 		} catch(error) {
 			throw error;
 		}

@@ -14,11 +14,6 @@ class PutOneBaseHandler extends BaseHandler {
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onStart");
-
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.putOne.onAuthorize");
 		if(!parameters.request) {

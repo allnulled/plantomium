@@ -74,6 +74,12 @@ module.exports = function(cms) {
 		});
 	};
 
+	cms.utils.fromCapitalToDashCase = function(text) {
+		return text.replace(/[A-Z]/g, function(match) {
+			return "-" + match.toLowerCase();
+		});
+	};
+
 	cms.utils.pad = function(txt, min = 2, digit = "0") {
 		let out = "";
 		const str = txt + "";

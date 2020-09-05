@@ -14,11 +14,6 @@ class PostOneBaseHandler extends BaseHandler {
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.postOne.onStart")
-
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.postOne.onAuthorize")
 		if(!parameters.request) {

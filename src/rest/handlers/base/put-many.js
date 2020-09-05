@@ -14,11 +14,6 @@ class PutManyBaseHandler extends BaseHandler {
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.putMany.onStart");
-
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.putMany.onAuthorize");
 		if(!parameters.request) {

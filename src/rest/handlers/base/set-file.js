@@ -14,10 +14,6 @@ class SetFileBaseHandler extends BaseHandler {
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onStart");
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.setFile.onAuthorize");
 		if(!parameters.request) {

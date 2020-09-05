@@ -23,5 +23,9 @@ module.exports = function(cms) {
 		templates: cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/email/templates"),
 	};
 	cms.store = require(process.env.PROJECT_ROOT + "/src/store/index.js");
+	cms.json = {
+		actors: cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/json/actors"),
+		controllers: cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/json/controllers"),
+	};
 	return cms;
 }

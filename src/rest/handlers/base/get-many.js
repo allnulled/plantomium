@@ -16,16 +16,6 @@ class GetManyBaseHandler extends BaseHandler {
 		];
 	}
 
-	static get LaterQueryFiles() {
-		return [
-		];
-	}
-
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onStart");
-		
-	}
-
 	onAuthorize(parameters) {
 		cms.utils.trace("rest.handlers.getMany.onAuthorize");
 		if(!parameters.request) {

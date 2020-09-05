@@ -36,6 +36,7 @@ class BaseHandler {
 		cms.utils.trace("rest.handler.getLifecycle");
 		return [
 			"onStart",
+			"onRegisterEvent",
 			"onAuthorize",
 			"onValidate",
 			"onFormatInput",
@@ -60,7 +61,7 @@ class BaseHandler {
 				if (parameters.exit) {
 					return parameters.exit;
 				}
-				if(parameters.exitSilently) {
+				if (parameters.exitSilently) {
 					return;
 				}
 			}
@@ -72,7 +73,19 @@ class BaseHandler {
 
 	onStart(parameters) {
 		cms.utils.trace("rest.handler.onStart");
-		throw new Error("Method <onStart> must be overriden");
+		parameters.queries = [];
+		parameters.results = [];
+	}
+
+	onRegisterEvent(parameters) {
+		cms.utils.trace("rest.handler.onRegisterEvent");
+		return this.createQueryFilePromise(
+			{template: process.env.PROJECT_ROOT + "/src/history/queries/insert-event.ejs"},
+			parameters,
+			undefined,
+			undefined,
+			undefined,
+		);
 	}
 
 	onAuthorize(parameters) {
@@ -98,35 +111,35 @@ class BaseHandler {
 	onQuery(parameters) {
 		cms.utils.trace("rest.handler.onQuery");
 		try {
-			parameters.queries = [];
-			parameters.results = [];
-			if(this.constructor.QueryFiles.length === 0) {
+			if (this.constructor.QueryFiles.length === 0) {
 				return;
 			}
 			const sortedFiles = [];
-			for(let index=0; index < this.constructor.QueryFiles.length; index++) {
+			for (let index = 0; index < this.constructor.QueryFiles.length; index++) {
 				const queryFileParam = this.constructor.QueryFiles[index];
 				const queryFile = this.normalizeQueryFile(queryFileParam);
-				if(!queryFile.template.startsWith("@")) {
+				if (!queryFile.template.startsWith("@")) {
 					sortedFiles.push([]);
 				}
-				sortedFiles[sortedFiles.length-1].push(queryFile);
+				sortedFiles[sortedFiles.length - 1].push(queryFile);
 			}
-			let indexBlock = 0, indexFiles = 0, indexGeneral = 0;
+			let indexBlock = 0,
+				indexFiles = 0,
+				indexGeneral = 0;
 			return new Promise((ok, fail) => {
 				const next = () => {
-					if(!(indexBlock in sortedFiles)) {
+					if (!(indexBlock in sortedFiles)) {
 						return ok(parameters.results);
 					}
 					const currentBlock = sortedFiles[indexBlock];
-					if(!(indexFiles in currentBlock)) {
+					if (!(indexFiles in currentBlock)) {
 						indexFiles = 0;
 						indexBlock++;
 						return next();
 					}
 					const currentFile = currentBlock[indexFiles];
 					indexFiles++;
-					if(currentFile.template.endsWith(".ejs")) {
+					if (currentFile.template.endsWith(".ejs")) {
 						this.createQueryFilePromise(
 							currentFile,
 							parameters,
@@ -134,9 +147,9 @@ class BaseHandler {
 							indexFiles,
 							indexGeneral++,
 						).then(next).catch(fail);
-					} else if(currentFile.template.endsWith(".js")) {
+					} else if (currentFile.template.endsWith(".js")) {
 						const injection = require(currentFile.template);
-						if(typeof injection !== "function") {
+						if (typeof injection !== "function") {
 							throw new Error("Required <currentFile.template> to be a string pointing to a js file that returns a function [ERR:034]");
 						}
 						return injection({
@@ -196,22 +209,26 @@ class BaseHandler {
 
 	normalizeQueryFile(queryFileParam) {
 		const queryFileData = {};
-		if(typeof queryFileParam === "string") {
+		if (typeof queryFileParam === "string") {
 			queryFileData.template = queryFileParam;
-		} else if(typeof queryFileParam === "object") {
+		} else if (typeof queryFileParam === "object") {
 			Object.assign(queryFileData, queryFileParam);
 		} else {
 			throw new Error("Required <queryFileParam> to be a string or an object [ERR:030]");
 		}
-		if(typeof queryFileData.template !== "string") {
+		if (typeof queryFileData.template !== "string") {
 			throw new Error("Required <queryFileData.template> to be a string [ERR:031]");
 		}
 		return queryFileData;
 	}
 
-	async createQueryFilePromise(queryFileData, parameters, indexBlock, indexQuery, indexGeneral) {
+	async createQueryFilePromise(queryFileData, parameters, indexBlock = undefined, indexQuery = undefined, indexGeneral = undefined) {
 		try {
-			const template = queryFileData.template.startsWith("@") ? queryFileData.template.substr(1) : queryFileData.template;
+			if(["string", "object"].indexOf(typeof queryFileData) === -1) {
+				throw new Error("Required <queryFileData> to be a string or object on createQueryFilePromise [ERR:040]");
+			}
+			const templateTmp = typeof queryFileData === "string" ? queryFileData : queryFileData.template;
+			const template = templateTmp.startsWith("@") ? templateTmp.substr(1) : templateTmp;
 			const querySource = await this.onRenderFile(template, {
 				...parameters,
 				indexBlock,
@@ -219,14 +236,18 @@ class BaseHandler {
 				queryData: queryFileData,
 			});
 			parameters.queries.push(querySource);
-			if(querySource === "") {
-				parameters.results[indexGeneral] = null;
+			if (querySource === "") {
+				if (typeof indexGeneral !== "undefined") {
+					parameters.results[indexGeneral] = null;
+				}
 				return null;
 			}
 			const queryResult = await this.onExecuteQuery(querySource);
-			parameters.results[indexGeneral] = queryResult;
+			if (typeof indexGeneral !== "undefined") {
+				parameters.results[indexGeneral] = queryResult;
+			}
 			return queryResult;
-		} catch(error) {
+		} catch (error) {
 			cms.utils.debugError("{handler}.createQueryFilePromise", error);
 			throw error;
 		}
@@ -272,7 +293,7 @@ class BaseHandler {
 	onExecuteQuery(query) {
 		cms.utils.trace("rest.handler.onExecuteQuery");
 		return new Promise((ok, fail) => {
-			if(cms.schema.general.debugSql) {
+			if (cms.schema.general.debugSql) {
 				console.log("\n\n[SQL:REST]_______________________________________________\n", query);
 
 			}
