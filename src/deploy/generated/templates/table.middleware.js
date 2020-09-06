@@ -8,7 +8,7 @@ class <%-tableData.model%>Middleware extends <%-tableData.model%>BaseMiddleware 
  * 
  * ----
  * 
- * ### `/src/deploy/regenerate-rest/generated/templates/table.middleware.js`
+ * ### `/src/deploy/generated/templates/table.middleware.js`
  * 
  * @name `table.middleware`
  * @type 

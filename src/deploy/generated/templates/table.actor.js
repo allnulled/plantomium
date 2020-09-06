@@ -8,7 +8,7 @@ class <%-tableData.model%>Actor extends <%-tableData.model%>BaseActor {
  * 
  * ----
  * 
- * ### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+ * ### `/src/deploy/generated/templates/table.actor.js`
  * 
  * @name `table.actor`
  * @type 

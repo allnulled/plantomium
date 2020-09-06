@@ -1,5 +1,272 @@
 module.exports = {
   columns: {
+    chatroom: {
+      id: {
+        order: 1,
+        model: 'Chatroom',
+        table: 'chatroom',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [
+          {
+            model: 'ChatroomMessage',
+            table: 'chatroom_message',
+            column: 'id_chatroom',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ChatroomParticipant',
+            table: 'chatroom_participant',
+            column: 'id_chatroom',
+            isPrimaryKey: false
+          }
+        ],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      namespace: {
+        order: 2,
+        model: 'Chatroom',
+        table: 'chatroom',
+        column: 'namespace',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 100,
+        database: 'plants_bd',
+        archetype: 'varchar(100)'
+      }
+    },
+    chatroom_message: {
+      id: {
+        order: 1,
+        model: 'ChatroomMessage',
+        table: 'chatroom_message',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_user: {
+        order: 2,
+        model: 'ChatroomMessage',
+        table: 'chatroom_message',
+        column: 'id_user',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'chatroom_message_ibfk_1',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_chatroom: {
+        order: 3,
+        model: 'ChatroomMessage',
+        table: 'chatroom_message',
+        column: 'id_chatroom',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'chatroom_message_ibfk_2',
+            model: 'Chatroom',
+            table: 'chatroom',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      message: {
+        order: 4,
+        model: 'ChatroomMessage',
+        table: 'chatroom_message',
+        column: 'message',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 500,
+        database: 'plants_bd',
+        archetype: 'varchar(500)'
+      }
+    },
+    chatroom_participant: {
+      id: {
+        order: 1,
+        model: 'ChatroomParticipant',
+        table: 'chatroom_participant',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_user: {
+        order: 2,
+        model: 'ChatroomParticipant',
+        table: 'chatroom_participant',
+        column: 'id_user',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'chatroom_participant_ibfk_1',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_chatroom: {
+        order: 3,
+        model: 'ChatroomParticipant',
+        table: 'chatroom_participant',
+        column: 'id_chatroom',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'chatroom_participant_ibfk_2',
+            model: 'Chatroom',
+            table: 'chatroom',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      }
+    },
     combo_compound_and_plant: {
       id: {
         order: 1,
@@ -2982,6 +3249,18 @@ module.exports = {
         referencesTo: [],
         referencedBy: [
           {
+            model: 'ChatroomMessage',
+            table: 'chatroom_message',
+            column: 'id_user',
+            isPrimaryKey: false
+          },
+          {
+            model: 'ChatroomParticipant',
+            table: 'chatroom_participant',
+            column: 'id_user',
+            isPrimaryKey: false
+          },
+          {
             model: 'ComboUserAndGroup',
             table: 'combo_user_and_group',
             column: 'id_user',
@@ -3098,6 +3377,74 @@ module.exports = {
     }
   },
   constraints: {
+    chatroom: {
+      database: 'plants_bd',
+      model: 'Chatroom',
+      table: 'chatroom',
+      attributes: [
+        'id',
+        'namespace'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: []
+    },
+    chatroom_message: {
+      database: 'plants_bd',
+      model: 'ChatroomMessage',
+      table: 'chatroom_message',
+      attributes: [
+        'id',
+        'id_user',
+        'id_chatroom',
+        'message'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [
+        {
+          constraint: 'chatroom_message_ibfk_1',
+          column: 'id_user',
+          referencedTable: 'users',
+          referencedColumn: 'id'
+        },
+        {
+          constraint: 'chatroom_message_ibfk_2',
+          column: 'id_chatroom',
+          referencedTable: 'chatroom',
+          referencedColumn: 'id'
+        }
+      ]
+    },
+    chatroom_participant: {
+      database: 'plants_bd',
+      model: 'ChatroomParticipant',
+      table: 'chatroom_participant',
+      attributes: [
+        'id',
+        'id_user',
+        'id_chatroom'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [
+        {
+          constraint: 'chatroom_participant_ibfk_1',
+          column: 'id_user',
+          referencedTable: 'users',
+          referencedColumn: 'id'
+        },
+        {
+          constraint: 'chatroom_participant_ibfk_2',
+          column: 'id_chatroom',
+          referencedTable: 'chatroom',
+          referencedColumn: 'id'
+        }
+      ]
+    },
     combo_compound_and_plant: {
       database: 'plants_bd',
       model: 'ComboCompoundAndPlant',

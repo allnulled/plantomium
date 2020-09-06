@@ -57,64 +57,46 @@
     [✓] setter
     [✓] deleter
     [✓] test demo
-
-  [ ] MIGRATIONS & SEEDERS
-    [ ] add migrations
-    [ ] add seeders
-    [ ] test for migrations (from CLI)
-    [ ] test for seeders (from CLI)
-    [ ] add all commands:
-      [ ] sequelize db:migrate
-      [ ] sequelize db:migrate:schema:timestamps:add
-      [ ] sequelize db:migrate:status
-      [ ] sequelize db:migrate:undo
-      [ ] sequelize db:migrate:undo:all
-      [ ] sequelize db:seed
-      [ ] sequelize db:seed:undo
-      [ ] sequelize db:seed:all
-      [ ] sequelize db:seed:undo:all
-      [ ] sequelize db:create
-      [ ] sequelize db:drop
-      [ ] sequelize init
-      [ ] sequelize init:config
-      [ ] sequelize init:migrations
-      [ ] sequelize init:models
-      [ ] sequelize init:seeders
-      [ ] sequelize migration:generate
-      [ ] sequelize model:generate
-      [ ] sequelize seed:generate
-
-cms show migrations - sequelize db:migrate:status
-cms migrate - sequelize db:migrate
-cms unmigrate - sequelize db:migrate:undo:all
-cms seed - sequelize db:seed
-cms unseed - sequelize db:seed:undo:all
-cms create migration - sequelize migration:generate
-cms create seed - sequelize seed:generate
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  [✓] MIGRATIONS & SEEDERS
+    [✓] add migrations
+    [✓] add seeders
+    [✓] test for migrations (from CLI)
+    [✓] test for seeders (from CLI)
+    [✓] add all commands:
+      [✓] cms show migrations - sequelize db:migrate:status
+      [✓] cms run migrations - sequelize db:migrate
+      [✓] cms run seeders - sequelize db:seed
+      [✓] cms rollback migrations - sequelize db:migrate:undo:all
+      [✓] cms rollback seeders - sequelize db:seed:undo:all
   [ ] BROADCAST
-    [ ] ...
+    [ ] emit every REST operations via socket.io
+  [ ] CHATTING
+    [ ] add chat operations
+      [ ] add cms.socket
+      [ ] extend onBroadcast for chatroom_message:POST
+        [ ] to make it emit the data
+        [ ] via socket.io
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
   [ ] other REST Options:
     [ ] {Table}.{Column=*}.{Operation=*}:

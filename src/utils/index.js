@@ -115,7 +115,7 @@ module.exports = function(cms) {
 	cms.utils.requireDirectory = function(directory, arg, exceptions = []) {
 		const directoryPath = path.resolve(directory);
 		const directoryFiles = fs.readdirSync(directoryPath);
-		const data = {};
+		let data = {};
 		const indexPosition = directoryFiles.indexOf("index.js");
 		if (indexPosition !== -1) {
 			directoryFiles.splice(indexPosition, 1);

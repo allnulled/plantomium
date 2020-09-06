@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const args = process.argv.splice(1);
+const cms = require(__dirname + "/../src/cms.js");
 args[0] = path.basename(args[0]);
 const commandPath = path.join(args.join("/").split("--")[0], "index.js");
 const commandPathAbsolute = path.resolve(__dirname, "..", "src/command", commandPath);

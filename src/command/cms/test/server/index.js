@@ -1,4 +1,2 @@
-const { exec } = require("child_process");
-const handleCommand = require(process.cwd() + "/src/utils/handle-command.js");
-
-exec("npm run test:reset", handleCommand(console.log, console.error))
+const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+module.exports = cms.utils.execSync("npm run test:reset", { cwd: process.env.PROJECT_ROOT });

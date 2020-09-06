@@ -8,7 +8,7 @@ class SessionsActor extends SessionsBaseActor {
  * 
  * ----
  * 
- * ### `/src/deploy/regenerate-rest/generated/templates/table.actor.js`
+ * ### `/src/deploy/generated/templates/table.actor.js`
  * 
  * @name `table.actor`
  * @type 
