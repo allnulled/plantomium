@@ -8,7 +8,7 @@ const FormData = require("form-data");
 const cms = require(__dirname + "/../src/cms.js");
 const Utils = require(__dirname + "/utils.js");
 
-describe("REST test: options", function() {
+describe("REST Test (options)", function() {
 
 	this.timeout(10 * 1000);
 
@@ -101,7 +101,7 @@ describe("REST test: options", function() {
 		try {
 			// SELECT MANY:
 			const response = await axios.get(Utils.url("/api/v1/permissions"));
-			expect(response.data.data.total).to.equal(18);
+			expect(response.data.data.total).to.equal(19);
 			const response2 = await axios.get(Utils.url("/api/v1/permissions"), {
 				params: {
 					where: JSON.stringify([

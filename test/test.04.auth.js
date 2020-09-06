@@ -3,7 +3,7 @@ const {
 } = require("chai");
 const axios = require("axios");
 
-describe("Auth test", function() {
+describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 
 	const cms = require(__dirname + "/../src/cms.js");
 

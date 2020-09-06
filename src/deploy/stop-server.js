@@ -21,7 +21,7 @@ module.exports = async function(cms) {
 		await cms.rest.connection.end();
 		await cms.auth.connection.end();
 	} catch (error) {
-		cms.utils.debugError("stopping server:", error);
+		console.error("stopping server:", error);
 		throw error;
 	}
 }

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const mysql = require("mysql");
 const cms = require(process.cwd() + "/src/cms.js");
-const schemaSql = fs.readFileSync(process.cwd() + "/src/config/schema.sql").toString();
+const runtime = require(process.cwd() + "/src/start.js");;
 
 
 /**
@@ -25,7 +25,9 @@ module.exports = (async function() {
 	
 	try {
 		
-		await cms.initialized;
+		await runtime;
+
+		const schemaSql = fs.readFileSync(process.cwd() + "/src/config/schema.sql").toString();
 
 		const connection = mysql.createConnection({
 			user: process.env.SCHEMA_DB_USER,

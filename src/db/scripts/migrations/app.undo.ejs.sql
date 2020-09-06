@@ -1,0 +1,16 @@
+drop table if exists combo_trait_and_plant;
+drop table if exists combo_trait_and_specimen;
+drop table if exists combo_compound_and_plant;
+drop table if exists combo_localization_and_plant;
+drop table if exists combo_environment_and_plant;
+drop table if exists combo_usage_and_plant;
+drop table if exists combo_image_and_plant;
+drop table if exists combo_image_and_specimen;
+drop table if exists localization;
+drop table if exists environment;
+drop table if exists trait;
+drop table if exists compound;
+drop table if exists usages;
+drop table if exists plant;
+drop table if exists image;
+drop table if exists specimen;

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const asynchandler = require("@allnulled/asynchandler");
-const basePath = path.resolve(__dirname);
+const cms = require(__dirname + "/../../cms.js");
 let message = "";
 
 const isFile = function(absolutePath) {
@@ -48,7 +48,7 @@ const showHelp = async function(absolutePath) {
 	}
 }
 
-showHelp(__dirname).then(ok => {
+module.exports = showHelp(__dirname).then(ok => {
 	console.log("[all commands]\n" + message + "\n");
 })
 

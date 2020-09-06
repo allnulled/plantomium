@@ -40,7 +40,19 @@ module.exports = function(cms) {
 			output: process.env.PROJECT_ROOT,
 		}
 	}).then(output => {
+		////////////////////////
+		cms.email = {};
+		cms.email.agents = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/email/agents");
+		cms.email.templates = cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/email/templates");
+		////////////////////////
+		cms.store = require(process.env.PROJECT_ROOT + "/src/store/index.js");
+		////////////////////////
+		cms.json = {};
+		cms.json.actors = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/json/actors");
+		cms.json.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/json/controllers");
+		////////////////////////
 		cms.router = require(process.env.PROJECT_ROOT + "/src/router/index.js")(cms);
+		////////////////////////
 		cms.rest = {};
 		cms.rest.originalSchema = output;
 		cms.rest.connection = require(process.env.PROJECT_ROOT + "/src/rest/connection.js");
@@ -49,6 +61,7 @@ module.exports = function(cms) {
 		cms.rest.actors = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/actors", cms);
 		cms.rest.middlewares = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/middlewares", cms);
 		cms.rest.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/controllers", cms);
+		////////////////////////
 		cms.auth = {};
 		cms.auth.connection = require(process.env.PROJECT_ROOT + "/src/auth/connection.js");
 		cms.auth.query = require(process.env.PROJECT_ROOT + "/src/auth/query.js");
@@ -56,12 +69,14 @@ module.exports = function(cms) {
 		cms.auth.actors = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/auth/actors", cms);
 		cms.auth.middlewares = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/auth/middlewares", cms);
 		cms.auth.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/auth/controllers", cms);
+		////////////////////////
 		cms.history = {};
 		cms.history.connection = require(process.env.PROJECT_ROOT + "/src/history/connection.js");
 		cms.history.actors = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/history/actors");
 		cms.history.middlewares = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/history/middlewares");
 		cms.history.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/history/controllers");
 		cms.history.queries = cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/history/queries");
+		////////////////////////
 		return output;
 	});
 }

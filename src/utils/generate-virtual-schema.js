@@ -108,7 +108,9 @@ module.exports = function(cms) {
 			});
 		});
 		// Remove the column itself:
-		delete vschema.columns[tablename][columnname];
+		if((tablename in vschema.columns) && (columnname in vschema.columns[tablename])) {
+			delete vschema.columns[tablename][columnname];
+		}
 	};
 
 	const removeSchemaField = function(vschema) {
@@ -127,12 +129,13 @@ module.exports = function(cms) {
 	removeSchemaField(vschema);
 
 	const hiddenTables = getHiddenTables(vschema);
-
 	const hiddenColumns = getHiddenColumns(vschema, hiddenTables);
+
 	hiddenTables.forEach(table => {
 		removeTable(table, vschema);
 	});
-	hiddenColumns.forEach(([table, column]) => {
+	hiddenColumns.forEach((columnData) => {
+		const [table, column] = columnData;
 		removeColumn(table, column, vschema);
 	});
 

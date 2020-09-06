@@ -1,5 +1,4 @@
 [cms test server]
-
  [Usage:] cms test server
- [Info: ]
+ [Info:]
    · Runs the tests for the server

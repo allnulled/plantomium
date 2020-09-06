@@ -84,8 +84,13 @@
       [ ] sequelize model:generate
       [ ] sequelize seed:generate
 
-
-
+cms show migrations - sequelize db:migrate:status
+cms migrate - sequelize db:migrate
+cms unmigrate - sequelize db:migrate:undo:all
+cms seed - sequelize db:seed
+cms unseed - sequelize db:seed:undo:all
+cms create migration - sequelize migration:generate
+cms create seed - sequelize seed:generate
 
 
 

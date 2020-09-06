@@ -1,5 +1,5 @@
-const JSONStoreFactory = require(process.env.PROJECT_ROOT + "/src/json/actors/json-store-factory.js");
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+const JSONStoreFactory = require(process.env.PROJECT_ROOT + "/src/json/actors/json-store-factory.js");
 
 class JSONStoreController {
 

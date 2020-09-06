@@ -7,9 +7,10 @@ const FormData = require("form-data");
 const cms = require(__dirname + "/../src/cms.js");
 const Utils = require(__dirname + "/utils.js");
 
-describe("REST test: controllers", function() {
+describe("REST Test (controllers)", function() {
 
 	this.timeout(10 * 1000);
+	let permissionInsertedId = 0;
 
 	it("can load", async function() {
 		try {
@@ -36,6 +37,7 @@ describe("REST test: controllers", function() {
 			});
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
+			permissionInsertedId = responsePermissions.data.data.operation.insertId;
 			expect(responsePermissions.data.data.operation.affectedRows).to.equal(1);
 		} catch (error) {
 			throw error;
@@ -48,7 +50,7 @@ describe("REST test: controllers", function() {
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
 			expect(typeof responsePermissions.data.data.items).to.equal("object");
-			expect(responsePermissions.data.data.items.length).to.equal(1);
+			expect(responsePermissions.data.data.items.length).to.equal(2); // administration and recently created "some permission"
 		} catch (error) {
 			throw error;
 		}
@@ -56,7 +58,7 @@ describe("REST test: controllers", function() {
 
 	it("can get one", async function() {
 		try {
-			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions/1"));
+			const responsePermissions = await axios.get(Utils.url(`/api/v1/permissions/${permissionInsertedId}`));
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
 			expect(typeof responsePermissions.data.data.item).to.equal("object");
@@ -69,13 +71,13 @@ describe("REST test: controllers", function() {
 	it("can put one", async function() {
 		this.timeout(999999)
 		try {
-			const responseUpdatePermissions = await axios.put(Utils.url("/api/v1/permissions/1"), {
+			const responseUpdatePermissions = await axios.put(Utils.url(`/api/v1/permissions/${permissionInsertedId}`), {
 				name: "some other permission"
 			});
 			expect(typeof responseUpdatePermissions.data).to.equal("object");
 			expect(typeof responseUpdatePermissions.data.data).to.equal("object");
 			expect(typeof responseUpdatePermissions.data.data.operation).to.equal("object");
-			const responsePermissions = await axios.get(Utils.url("/api/v1/permissions/1"));
+			const responsePermissions = await axios.get(Utils.url(`/api/v1/permissions/${permissionInsertedId}`));
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
 			expect(typeof responsePermissions.data.data.item).to.equal("object");
@@ -96,7 +98,7 @@ describe("REST test: controllers", function() {
 			expect(typeof responsePermissions.data).to.equal("object");
 			expect(typeof responsePermissions.data.data).to.equal("object");
 			expect(typeof responsePermissions.data.data.items).to.equal("object");
-			expect(responsePermissions.data.data.items.length).to.equal(0);
+			expect(responsePermissions.data.data.items.length).to.equal(1);
 		} catch (error) {
 			throw error;
 		}

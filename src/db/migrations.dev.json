@@ -1,3 +1,6 @@
 [
-  "00000000000000-schema.js"
+  "00000000000100-authentication.js",
+  "00000000000200-history.js",
+  "00000000000300-filesystem.js",
+  "00000000000500-app.js"
 ]

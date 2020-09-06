@@ -1,7 +1,6 @@
 [cms reset db]
-
  [Usage:] cms reset db
- [Info: ]
+ [Info:]
    · Deletes the database and creates the structure from the beginning.
    · Database structure is defined at:
      - src/config/schema.sql

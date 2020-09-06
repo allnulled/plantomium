@@ -63,4 +63,4 @@
  * 
  * 
  */
-module.exports = require(__dirname + "/src/cms.js");
+module.exports = require(__dirname + "/src/start.js");
