@@ -69,8 +69,9 @@
       [✓] cms rollback migrations - sequelize db:migrate:undo:all
       [✓] cms rollback seeders - sequelize db:seed:undo:all
   [ ] BROADCAST
+    [ ] add test that connects to socket.io
     [ ] emit every REST operations via socket.io
-  [ ] CHATTING
+  [ ] CHATING
     [ ] add chat operations
       [ ] add cms.socket
       [ ] extend onBroadcast for chatroom_message:POST

@@ -119,7 +119,7 @@ module.exports = function(cms) {
 		const indexPosition = directoryFiles.indexOf("index.js");
 		if (indexPosition !== -1) {
 			directoryFiles.splice(indexPosition, 1);
-			const index = cms.utils.requireDirectoryFile(directoryPath, "index.js");
+			const index = cms.utils.requireDirectoryFile(directoryPath, "index.js", arg);
 			if (typeof index === "object") {
 				data = index;
 			}
@@ -134,7 +134,7 @@ module.exports = function(cms) {
 						.fromDashToCapitalCase(path.basename(file))
 						.replace(/^([0-9]+\.)+/g, "")
 						.replace(/\.js$/g, "");
-					data[fileId] = cms.utils.requireDirectoryFile(directoryPath, filename);
+					data[fileId] = cms.utils.requireDirectoryFile(directoryPath, filename, arg);
 				}
 			}
 		}

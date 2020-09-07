@@ -20,8 +20,10 @@ module.exports = async function(cms) {
 		await cms.server.close();
 		await cms.rest.connection.end();
 		await cms.auth.connection.end();
+		await cms.socket.broadcast.socket.server.close();
+		await cms.socket.chat.socket.server.close();
 	} catch (error) {
-		console.error("stopping server:", error);
+		console.error("ERROR stopping server:", error);
 		throw error;
 	}
 }

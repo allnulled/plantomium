@@ -8,7 +8,7 @@ cms.initialized = (async function() {
 			try {
 				await cms.deploy.regenerateRest(cms);
 				cms.deploy.mountRouter(cms);
-				cms.deploy.mountSockets(cms);
+				await cms.deploy.mountSockets(cms);
 				return await new Promise((ok, fail) => cms.deploy.startServer(cms, ok)); 
 			} catch(error) {
 				throw error;

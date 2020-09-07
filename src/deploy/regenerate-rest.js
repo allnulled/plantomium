@@ -77,10 +77,6 @@ module.exports = function(cms) {
 		cms.history.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/history/controllers");
 		cms.history.queries = cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/history/queries");
 		////////////////////////
-		cms.socket = {};
-		cms.socket.broadcast = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/socket/broadcast");
-		cms.socket.chat = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/socket/chat");
-		////////////////////////
 		return output;
 	});
 }

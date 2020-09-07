@@ -16,5 +16,8 @@
  * 
  */
 module.exports = function(cms) {
-	// @TODO:
+	////////////////////////
+	cms.socket = {};
+	cms.socket.broadcast = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/socket/broadcast", cms);
+	cms.socket.chat = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/socket/chat", cms);
 }
