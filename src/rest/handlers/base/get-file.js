@@ -75,11 +75,6 @@ class GetFileBaseHandler extends BaseHandler {
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onBroadcast");
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.getFile.onResult");
 		parameters.output = parameters.filepath;

@@ -63,11 +63,6 @@ class SetFileBaseHandler extends BaseHandler {
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onBroadcast");
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.setFile.onResult");
 		parameters.output = parameters.id + ":" + parameters.column;

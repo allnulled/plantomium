@@ -40,8 +40,9 @@ describe("MIGRATIONS and SEEDERS Test", function() {
 	after(async function() {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		const execSync = cms.utils.execSync;
-		execSync("cms rollback seeders", { cwd: process.env.PROJECT_ROOT });
-		execSync("cms rollback migrations", { cwd: process.env.PROJECT_ROOT });
+		// execSync("cms rollback seeders", { cwd: process.env.PROJECT_ROOT });
+		// execSync("cms rollback migrations", { cwd: process.env.PROJECT_ROOT });
+		execSync("cms reset database", { cwd: process.env.PROJECT_ROOT });
 		execSync("cms run migrations", { cwd: process.env.PROJECT_ROOT });
 		execSync("cms run seeders", { cwd: process.env.PROJECT_ROOT });
 	})

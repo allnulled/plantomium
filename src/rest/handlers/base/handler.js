@@ -167,40 +167,6 @@ class BaseHandler {
 				};
 				return next();
 			});
-			/*
-			parameters.results = await Promise.all(sortedQueries.map(queryBlock => Promise.all(queryBlock)));
-			if(typeof parameters.results !== "object") {
-				return;
-			}
-			//*/
-			/*
-			if(this.constructor.QueryFiles) {
-				for (let index = 0; index < this.constructor.QueryFiles.length; index++) {
-					const queryFile = this.constructor.QueryFiles[index];
-					const query = await this.onRenderFile(queryFile, parameters);
-					parameters.queries[index] = query;
-				}
-			}
-			parameters.results = await Promise.all(parameters.queries
-				.filter(q => q !== "")
-				.map(q => this.onExecuteQuery(q)));
-			parameters.result = parameters.results[parameters.results.length > 0 ? parameters.results.length - 1 : null];
-			if(this.constructor.LaterQueryFiles) {
-				parameters.laterQueries = [];
-				for (let index = 0; index < this.constructor.LaterQueryFiles.length; index++) {
-					const queryFile = this.constructor.LaterQueryFiles[index];
-					const query = await this.onRenderFile(queryFile, { ...parameters, all: parameters });
-					parameters.laterQueries[index] = query;
-				}
-				const hasResults = parameters.result !== null && parameters.result.length !== 0;
-				if(parameters.laterQueries.length !== 0 && hasResults) {
-					parameters.laterResults = await Promise.all(parameters.laterQueries
-						.filter(q => q !== "")
-						.map(q => this.onExecuteQuery(q)));
-					parameters.laterResult = parameters.laterResults[parameters.laterResults.length > 0 ? parameters.laterResults.length - 1 : null];
-				}
-			}
-			//*/
 		} catch (error) {
 			cms.utils.debugError("{handler}.onRunQueries", error);
 			throw error;
@@ -272,7 +238,7 @@ class BaseHandler {
 
 	onBroadcast(parameters) {
 		cms.utils.trace("rest.handler.onBroadcast");
-		throw new Error("Method <onBroadcast> must be overriden");
+		cms.socket.broadcast.emit("rest_event", cms.utils.dehydrateRequest(parameters.request));
 	}
 
 	onResult(parameters) {

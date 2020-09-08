@@ -67,11 +67,6 @@ class GetOneBaseHandler extends BaseHandler {
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onBroadcast");
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.getOne.onResult");
 		parameters.output = {};

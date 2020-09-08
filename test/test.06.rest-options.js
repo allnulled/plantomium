@@ -268,7 +268,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.deleteCascade> option", async function() {
+	it("can understand <schema.{table}.rest.cascadeDelete> option", async function() {
 		try {
 			const insertUser = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username2', 'password2', 'email2@domain2.com', 'Username Surname 2');", asynchandler(ok, fail)));
 			const userId = insertUser.insertId;

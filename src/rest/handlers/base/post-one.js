@@ -66,11 +66,6 @@ class PostOneBaseHandler extends BaseHandler {
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.postOne.onBroadcast")
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.postOne.onResult")
 		parameters.output = {

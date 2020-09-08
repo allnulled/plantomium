@@ -15,6 +15,6 @@
  * @description 
  * 
  */
-module.exports = (...whereUsers) => async function(request, response, next) {
-	response.json({ok:"ok"})
+module.exports = (...wheres) => async function(request, response, next) {
+	
 };

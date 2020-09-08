@@ -49,11 +49,6 @@ class SchemaBaseHandler extends BaseHandler {
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.schema.onBroadcast");
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.schema.onResult");
 		return parameters.output = parameters.result;

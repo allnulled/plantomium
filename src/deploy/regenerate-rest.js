@@ -36,7 +36,7 @@ module.exports = function(cms) {
 		},
 		generator: {
 			schema: [outputVirtualPath],
-			directories: [__dirname + "/regenerate-rest/generated"],
+			directories: [__dirname + "/generated"],
 			output: process.env.PROJECT_ROOT,
 		}
 	}).then(output => {

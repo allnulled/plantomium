@@ -69,11 +69,6 @@ class DeleteManyBaseHandler extends BaseHandler {
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onBroadcast");
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.deleteMany.onResult");
 		parameters.output = {

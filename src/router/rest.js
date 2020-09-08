@@ -1,4 +1,7 @@
 module.exports = function(cms, router) {
+	cms.rest.controllers.chatroom.create().mountToRouter(router);
+	cms.rest.controllers.chatroomMessage.create().mountToRouter(router);
+	cms.rest.controllers.chatroomParticipant.create().mountToRouter(router);
 	cms.rest.controllers.comboCompoundAndPlant.create().mountToRouter(router);
 	cms.rest.controllers.comboEnvironmentAndPlant.create().mountToRouter(router);
 	cms.rest.controllers.comboGroupAndPermission.create().mountToRouter(router);

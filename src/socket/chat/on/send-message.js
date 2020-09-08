@@ -1,4 +1,3 @@
-module.exports = function() {
-	const { cms, server, socket } = this;
-	socket.emit("send_message_answer", { data: 200 });
+module.exports = function(message) {
+	this.socket.emit("message_sent", message);
 }

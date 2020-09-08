@@ -11,7 +11,7 @@ for(let index=0; index < cascadeDeletes.length; index++) {
 	const { table, column } = cascadeDelete;
 	const columnDestination = cms.utils.dataGetter(cms, ["schema", "columns", table, column], false);
 	if(!columnDestination) {
-		throw new Error("Required <deleteCascade.*.table|column> to exist in schema [ERR:032]");
+		throw new Error("Required <cascadeDelete.{n}.(table & column)> to exist in <schema.columns.*> [ERR:032]");
 	}
 	const tableEscaped = sqlString.escapeId(table);
 	const fields = cms.utils.toSelectFieldsSql(undefined, actorClass.Table, false);

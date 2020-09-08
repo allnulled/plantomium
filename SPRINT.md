@@ -77,6 +77,8 @@
       [ ] extend onBroadcast for chatroom_message:POST
         [ ] to make it emit the data
         [ ] via socket.io
+  [ ] MIDDLEWARES FOR AUTH:
+    [ ] only-{user|group|permission|authenticated} auth middlewares support
 
 
 
@@ -103,7 +105,6 @@
     [ ] {Table}.{Column=*}.{Operation=*}:
       [ ] require{User|Group|Privilege|Authenticated}
       [ ] exclude{User|Group|Privilege|Authenticated}
-  [ ] only-{user|group|permission|authenticated} auth middlewares support
   [ ] REST history support
     [ ] create tables
     [ ] insert each {event|deleted registry} from lifecycle
