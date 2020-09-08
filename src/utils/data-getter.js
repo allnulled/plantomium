@@ -2,6 +2,9 @@ const introspectableTypes = ["object", "string", "function"];
 
 module.exports = (data, selectorP, defaultValue) => {
     const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+    if(!Array.isArray(selectorP)) {
+        throw new Error("Required <selector> to be an array of strings [ERR:789]");
+    }
     const selector = Array.isArray(selectorP) ? selectorP : [].concat(selectorP);
     let dataItem = data;
     let index = 0;

@@ -30,7 +30,7 @@ for(let index=0; index < previousDeletions.length; index++) {
 	const column = sqlString.escapeId(columnBrute);
 %>
 DELETE FROM <%-table%>
-  WHERE <%-table%>.<%-column%>;
+  WHERE <%-table%>.<%-column%> = <%-sqlString.escape(user_id)%>;
 <%
 /**
  * 
@@ -52,4 +52,4 @@ DELETE FROM <%-table%>
 
 }
 %>
-DELETE FROM users WHERE users.id = <%-user_id%>;
+DELETE FROM users WHERE users.id = <%-sqlString.escape(user_id)%>;

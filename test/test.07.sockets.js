@@ -39,9 +39,16 @@ describe("SOCKETS Test", function() {
 		const chatUrl = baseUrl + "/chat";
 		const client = socketClient(chatUrl);
 		client.connect();
+		let footprint = 0;
 		client.on("message_sent", function(message) {
 			expect(typeof message).to.equal("object");
 			expect(message.msg).to.equal("Hello!");
+			footprint += 100;
+			client.emit("send_message", {msg: "x".repeat(501)});
+		});
+		client.on("message_error", function(message) {
+			expect(typeof message).to.equal("object");
+			expect(footprint).to.equal(100);
 			client.disconnect();
 			ok();
 		});

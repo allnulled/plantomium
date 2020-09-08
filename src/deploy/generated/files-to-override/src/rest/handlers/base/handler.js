@@ -80,7 +80,7 @@ class BaseHandler {
 	onRegisterEvent(parameters) {
 		cms.utils.trace("rest.handler.onRegisterEvent");
 		return this.createQueryFilePromise(
-			{template: process.env.PROJECT_ROOT + "/src/history/queries/insert-event.ejs"},
+			{template: process.env.PROJECT_ROOT + "/src/history/queries/insert-event.ejs", history: true},
 			parameters,
 			undefined,
 			undefined,
@@ -193,13 +193,14 @@ class BaseHandler {
 			if(["string", "object"].indexOf(typeof queryFileData) === -1) {
 				throw new Error("Required <queryFileData> to be a string or object on createQueryFilePromise [ERR:040]");
 			}
-			const templateTmp = typeof queryFileData === "string" ? queryFileData : queryFileData.template;
+			const queryFileDataFormatted = this.normalizeQueryFile(queryFileData);
+			const templateTmp = queryFileDataFormatted.template;
 			const template = templateTmp.startsWith("@") ? templateTmp.substr(1) : templateTmp;
 			const querySource = await this.onRenderFile(template, {
 				...parameters,
 				indexBlock,
 				indexQuery,
-				queryData: queryFileData,
+				queryData: queryFileDataFormatted,
 			});
 			parameters.queries.push(querySource);
 			if (querySource === "") {
@@ -208,7 +209,7 @@ class BaseHandler {
 				}
 				return null;
 			}
-			const queryResult = await this.onExecuteQuery(querySource);
+			const queryResult = await this.onExecuteQuery(querySource, queryFileDataFormatted);
 			if (typeof indexGeneral !== "undefined") {
 				parameters.results[indexGeneral] = queryResult;
 			}
@@ -256,12 +257,15 @@ class BaseHandler {
 		});
 	}
 
-	onExecuteQuery(query) {
+	onExecuteQuery(query, options = {}) {
 		cms.utils.trace("rest.handler.onExecuteQuery");
 		return new Promise((ok, fail) => {
-			if (cms.schema.general.debugSql) {
+			if(options.history === true) {
+				if(cms.schema.general.debugSqlHistory === true) {
+					console.log("\n\n[SQL:HISTORY]____________________________________________\n", query);
+				}
+			} else if (cms.schema.general.debugSql) {
 				console.log("\n\n[SQL:REST]_______________________________________________\n", query);
-
 			}
 			this.actor.connection.query(query, (error, data) => {
 				if (error) {

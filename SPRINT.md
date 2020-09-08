@@ -68,19 +68,51 @@
       [✓] cms run seeders - sequelize db:seed
       [✓] cms rollback migrations - sequelize db:migrate:undo:all
       [✓] cms rollback seeders - sequelize db:seed:undo:all
-  [ ] BROADCAST
-    [ ] add test that connects to socket.io
-    [ ] emit every REST operations via socket.io
-  [ ] CHATING
-    [ ] add chat operations
-      [ ] add cms.socket
-      [ ] extend onBroadcast for chatroom_message:POST
-        [ ] to make it emit the data
-        [ ] via socket.io
+  [✓] BROADCAST
+    [✓] add test that connects to socket.io
+    [✓] emit every REST operations via socket.io
+  [✓] CHATING
+    [✓] add chat operations
+      [✓] add cms.socket
+      [✓] extend onBroadcast
+        [✓] to make it emit the data
+        [✓] via socket.io
+  [✓] REST history support
+    [✓] create tables
+    [✓] insert each {event|deleted registry} from lifecycle
   [ ] MIDDLEWARES FOR AUTH:
     [ ] only-{user|group|permission|authenticated} auth middlewares support
-
-
+  [ ] SECURE ENDPOINTS with auth/middleware/only-*
+    [ ] for REST
+    [ ] for AUTH (no!)
+    [ ] for CHAT
+    [ ] for BROADCAST
+  [ ] HTTPS: secure application support (forced)
+  [ ] REST PLURALS
+    [ ] improve tests
+    [ ] of actors:
+      [ ] getMany
+      [ ] postMany
+      [ ] putMany
+      [ ] deleteMany
+  [ ] MAIL TEMPLATES on:
+    [ ] confirmation
+    [ ] password changed
+    [ ] registration
+    [ ] unregistration
+  [ ] REQUIRE/EXCLUDE
+    [ ] 
+    [ ] for every REST operation
+      [ ] schema
+      [ ] get
+      [ ] post
+      [ ] put
+      [ ] delete
+      [ ] get-file
+      [ ] set-file
+  [ ] PROCESS
+  [ ] AXIOS CLIENT
+  [ ] SEQUELIZE MODELS
 
 
 
@@ -105,31 +137,15 @@
     [ ] {Table}.{Column=*}.{Operation=*}:
       [ ] require{User|Group|Privilege|Authenticated}
       [ ] exclude{User|Group|Privilege|Authenticated}
-  [ ] REST history support
-    [ ] create tables
-    [ ] insert each {event|deleted registry} from lifecycle
-  [ ] migrations and seeders support
 
-  [ ] broadcast operations support
-  [ ] secure application support (forced)
   [ ] basic CLI (no commands needed)
   [ ] clusterize runtime
 
     [ ] CLI commands
-    [ ] 
-  [ ] send mails on:
-    [ ] confirmation
-    [ ] password changed
-    [ ] registration
-    [ ] unregistration
   [ ] coverage: >80%
 
 # Sprint-4
 
-  [ ] CLI commands:
-    [ ] 
-  [ ] 
-  [ ] docs: names and descriptions
 
 # DONE:
 

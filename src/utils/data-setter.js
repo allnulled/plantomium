@@ -1,4 +1,7 @@
 module.exports = (data, selectorP, value, force = false) => {
+    if(!Array.isArray(selectorP)) {
+        throw new Error("Required <selector> to be an array of strings [ERR:788]");
+    }
     const selector = Array.isArray(selectorP) ? selectorP : [].concat(selectorP);
     let dataItem = data;
     let index = 0;

@@ -89,7 +89,7 @@ describe("REST Test (controllers)", function() {
 
 	it("can delete one", async function() {
 		try {
-			const responseDeletePermissions = await axios.delete(Utils.url("/api/v1/permissions/1"));
+			const responseDeletePermissions = await axios.delete(Utils.url(`/api/v1/permissions/${permissionInsertedId}`));
 			expect(typeof responseDeletePermissions.data).to.equal("object");
 			expect(typeof responseDeletePermissions.data.data).to.equal("object");
 			expect(typeof responseDeletePermissions.data.data.operation).to.equal("object");

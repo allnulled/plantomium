@@ -1,3 +1,8 @@
+<%
+const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+const encPassword = await cms.utils.encryptPassword("admin123");
+const sqlString = require("sqlstring");
+%>
 INSERT INTO users (
 	name,
 	password,
@@ -7,7 +12,7 @@ INSERT INTO users (
 	profile_picture
 ) VALUES (
 	'administrator',
-	'admin123',
+	<%-sqlString.escape(encPassword)%>,
 	'Administrator',
 	'<%-process.env.EMAIL_USER%>',
 	NULL,
@@ -22,4 +27,18 @@ INSERT INTO permissions (
 	name
 ) VALUES (
 	'to administrate'
+);
+INSERT INTO combo_user_and_group (
+	id_user,
+	id_group
+) VALUES (
+	1,
+	1
+);
+INSERT INTO combo_group_and_permission (
+	id_group,
+	id_permission
+) VALUES (
+	1,
+	1
 );

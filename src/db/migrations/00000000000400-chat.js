@@ -2,8 +2,8 @@
 
 const path = require("path");
 const ejs = require("ejs");
-const up = path.resolve(__dirname + "/../scripts/migrations/chatrooms.ejs.sql");
-const down = path.resolve(__dirname + "/../scripts/migrations/chatrooms.undo.ejs.sql");
+const up = path.resolve(__dirname + "/../scripts/migrations/chat.ejs.sql");
+const down = path.resolve(__dirname + "/../scripts/migrations/chat.undo.ejs.sql");
 const asynchandler = require("@allnulled/asynchandler");
 
 module.exports = {

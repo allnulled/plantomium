@@ -15,7 +15,7 @@
  * @description 
  * 
  */
-module.exports = function(token, defaultToken = null) {
+module.exports = function(token, defaultToken = undefined) {
 	if(typeof token === "string") {
 		return token.replace(/^Bearer\:? */g, "");
 	}

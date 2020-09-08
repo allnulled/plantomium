@@ -20,6 +20,7 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 module.exports = function(options = {}) {
 	return async function(request, response, next) {
 		try {
+			cms.utils.trace("cms.auth.middlewares.authenticate");
 			if(request.fw.data.auth) {
 				return next();
 			}

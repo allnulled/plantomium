@@ -25,7 +25,7 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
  */
 module.exports = async function(parameters = {}) {
 	try {
-		const { session_token } = parameters;
+		const { session_token, request = undefined } = parameters;
 		const authenticationQuery = cms.auth.queries.authenticate({ parameters });
 		const authenticationResult = await cms.auth.query(authenticationQuery);
 		if(authenticationResult.length === 0) {
@@ -36,7 +36,11 @@ module.exports = async function(parameters = {}) {
 		const groups = cms.utils.toObjectSql(authenticationResult, "groups", "id");
 		const permissions = cms.utils.toObjectSql(authenticationResult, "permissions", "id");
 		const sessions = cms.utils.toObjectSql(authenticationResult, "sessions", "id");
-		return { user, groups, permissions, sessions };
+		const authentication = { user, groups, permissions, sessions };
+		if(typeof request === "object") {
+			request.fw.auth = authentication;
+		}
+		return authentication;
 	} catch (error) {
 		throw error;
 	}

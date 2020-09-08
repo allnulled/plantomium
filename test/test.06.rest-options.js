@@ -64,7 +64,7 @@ describe("REST Test (options)", function() {
 				id_permission: 16
 			}, {
 				id_group: 5,
-				id_permission: 2
+				id_permission: 1
 			}, {
 				id_group: 5,
 				id_permission: 3
@@ -82,7 +82,7 @@ describe("REST Test (options)", function() {
 				id_permission: 16
 			}, {
 				id_group: 8,
-				id_permission: 2
+				id_permission: 1
 			}, {
 				id_group: 8,
 				id_permission: 3
@@ -212,11 +212,11 @@ describe("REST Test (options)", function() {
 			expect(typeof responseGaP.data.data.items).to.equal("object");
 			expect(typeof responseGaP.data.data.attachments).to.equal("object");
 			expect(responseGaP.data.data.items.length).to.equal(10);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.not.equal(5);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_permission"]).to.not.equal(2);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.equal(6);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_group"]).to.equal(5);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_permission"]).to.equal(3);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id"]).to.not.equal(5);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id_permission"]).to.not.equal(2);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id"]).to.equal(7);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id_group"]).to.equal(5);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id_permission"]).to.equal(3);
 		} catch (error) {
 			throw error;
 		}
@@ -232,11 +232,11 @@ describe("REST Test (options)", function() {
 			expect(typeof responseGaP.data.data.items).to.equal("object");
 			expect(typeof responseGaP.data.data.attachments).to.equal("object");
 			expect(responseGaP.data.data.items.length).to.equal(10);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.not.equal(1);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.not.equal(2);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id"]).to.equal(6);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_group"]).to.equal(5);
-			expect(responseGaP.data.data.items[0]["combo_group_and_permission.id_permission"]).to.equal(3);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id"]).to.not.equal(1);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id"]).to.not.equal(2);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id"]).to.equal(7);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id_group"]).to.equal(5);
+			expect(responseGaP.data.data.items[1]["combo_group_and_permission.id_permission"]).to.equal(3);
 		} catch (error) {
 			throw error;
 		}
@@ -270,6 +270,9 @@ describe("REST Test (options)", function() {
 
 	it("can understand <schema.{table}.rest.cascadeDelete> option", async function() {
 		try {
+			const selectUserAndGroup = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM combo_user_and_group;", asynchandler(ok, fail)));
+			const selectUserAndPermission = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM combo_user_and_permission;", asynchandler(ok, fail)));
+			const selectGroupAndPermission = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM combo_group_and_permission;", asynchandler(ok, fail)));
 			const insertUser = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username2', 'password2', 'email2@domain2.com', 'Username Surname 2');", asynchandler(ok, fail)));
 			const userId = insertUser.insertId;
 			const insertPermission1 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO permissions (name) VALUES ('permission per user 1');", asynchandler(ok, fail)));

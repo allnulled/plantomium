@@ -50,13 +50,14 @@ module.exports = {
 						// columnOrigin: "id",
 						table: "combo_user_and_permission",
 						column: "id_user",
-					},
+					},//*
 					{
 						type: "delete",
 						// columnOrigin: "id",
 						table: "combo_user_and_group",
 						column: "id_user",
 					}
+					//*/
 				],
 			}
 		},
@@ -76,9 +77,11 @@ module.exports = {
 		general: {
 			slug: "/api/v1",
 			slugForAuth: "/auth/v1",
-			debugSql: true, // process.env.DEBUG_SQL === "true",
-			debugErrors: true, // process.env.DEBUG_ERRORS === "true",
-			debugTraces: true, // process.env.DEBUG_TRACES === "true",
+			debugSql: process.env.DEBUG_SQL === "true" && true,
+			debugSqlHistory: process.env.DEBUG_SQL_HISTORY === "true" && false,
+			debugSqlAuth: process.env.DEBUG_SQL_AUTH === "true" && true,
+			debugErrors: process.env.DEBUG_ERRORS === "true" && true,
+			debugTraces: process.env.DEBUG_TRACES === "true" && true,
 			maxSessionsPerUser: 10,
 			hiddenTables: [
 				// "users",
