@@ -20,6 +20,7 @@ const mysqlSchema = require("mysql-schema");
  * 
  */
 module.exports = function(cms) {
+	cms.utils.trace("cms.deploy.regenerateDb");
 	const outputPath = path.resolve(process.env.PROJECT_ROOT, process.env.SCHEMA_OUTPUT);
 	return mysqlSchema.getSchema({
 		user: process.env.SCHEMA_DB_USER,
@@ -32,6 +33,7 @@ module.exports = function(cms) {
 		asJson: process.env.SCHEMA_AS_JSON === "true",
 		output: outputPath,
 	}).then(function(data) {
+		cms.utils.trace("cms.deploy.regenerateDb: OK.");
 		cms.originalSchema = importFresh(outputPath);
 		return data;
 	});

@@ -18,6 +18,7 @@ const express = require("express");
  * 
  */
 module.exports = function(cms) {
+	cms.utils.trace("cms.deploy.createApp");
 	cms.app = express();
 	cms.app.use(require("method-override")("_method"));
 	cms.app.use(cms.utils.initializeFramework);

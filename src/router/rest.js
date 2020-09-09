@@ -14,6 +14,8 @@ module.exports = function(cms, router) {
 	cms.rest.controllers.compound.create().mountToRouter(router);
 	cms.rest.controllers.configuration.create().mountToRouter(router);
 	cms.rest.controllers.environment.create().mountToRouter(router);
+	cms.rest.controllers.exampleProcess.create().mountToRouter(router);
+	cms.rest.controllers.exampleProcessTransaction.create().mountToRouter(router);
 	cms.rest.controllers.filesystem.create().mountToRouter(router);
 	cms.rest.controllers.groups.create().mountToRouter(router);
 	cms.rest.controllers.historyData.create().mountToRouter(router);

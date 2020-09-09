@@ -18,6 +18,7 @@ const express = require("express");
  * 
  */
 module.exports = function(cms) {
+	cms.utils.trace("cms.deploy.mountRouter");
 	let noRouter = !cms.mountedRouter;
 	cms.mountedRouter = cms.router();
 	if(noRouter) {

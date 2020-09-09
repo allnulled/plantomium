@@ -19,6 +19,7 @@ module.exports = function(request, response, next) {
 	if(typeof request.fw === "undefined") {
 		request.fw = {
 			auth: undefined,
+			process: undefined,
 			data: {},
 		};
 	}

@@ -80,14 +80,14 @@
   [✓] REST history support
     [✓] create tables
     [✓] insert each {event|deleted registry} from lifecycle
-  [ ] MIDDLEWARES FOR AUTH:
-    [ ] only-{user|group|permission|authenticated} auth middlewares support
+  [✓] MIDDLEWARES FOR AUTH:
+    [✓] only-{user|group|permission|authenticated} auth middlewares support
   [ ] SECURE ENDPOINTS with auth/middleware/only-*
     [ ] for REST
     [ ] for AUTH (no!)
     [ ] for CHAT
     [ ] for BROADCAST
-  [ ] HTTPS: secure application support (forced)
+  [ ] PROCESS
   [ ] REST PLURALS
     [ ] improve tests
     [ ] of actors:
@@ -95,11 +95,7 @@
       [ ] postMany
       [ ] putMany
       [ ] deleteMany
-  [ ] MAIL TEMPLATES on:
-    [ ] confirmation
-    [ ] password changed
-    [ ] registration
-    [ ] unregistration
+  [ ] AXIOS CLIENT
   [ ] REQUIRE/EXCLUDE
     [ ] 
     [ ] for every REST operation
@@ -110,8 +106,12 @@
       [ ] delete
       [ ] get-file
       [ ] set-file
-  [ ] PROCESS
-  [ ] AXIOS CLIENT
+  [ ] HTTPS: secure application support (forced)
+  [ ] MAIL TEMPLATES on:
+    [ ] confirmation
+    [ ] password changed
+    [ ] registration
+    [ ] unregistration
   [ ] SEQUELIZE MODELS
 
 

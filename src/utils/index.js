@@ -112,6 +112,14 @@ module.exports = function(cms) {
 		return value;
 	}
 
+	cms.utils.requireDirectoryFileNoStatics = function(...args) {
+		const output = cms.utils.requireDirectoryFile(...args);
+		if(typeof output === "object" && typeof output.staticFile === "string" && Object.keys(output).length === 1) {
+			return undefined;
+		}
+		return output;
+	}
+
 	cms.utils.requireDirectory = function(directory, arg, exceptions = []) {
 		const directoryPath = path.resolve(directory);
 		const directoryFiles = fs.readdirSync(directoryPath);
@@ -141,6 +149,14 @@ module.exports = function(cms) {
 		return data;
 	}
 
+	cms.utils.requireDirectoryOrNothing = function(...args) {
+		try {
+			return cms.utils.requireDirectory(...args);
+		} catch(error) {
+			return undefined;
+		}
+	}
+
 	cms.utils.requireTemplate = function(directory, file, options = {}) {
 		const template = path.resolve(directory, file);
 		const contents = fs.readFileSync(template).toString();
@@ -167,6 +183,14 @@ module.exports = function(cms) {
 			}
 		}
 		return data;
+	}
+
+	cms.utils.requireTemplatesDirectoryOrNothing = function(...args) {
+		try {
+			return cms.utils.requireTemplatesDirectory(...args);
+		} catch(error) {
+			return undefined;
+		}
 	}
 
 	Object.assign(cms.utils, cms.utils.requireDirectory(__dirname))

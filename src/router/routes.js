@@ -22,4 +22,6 @@ module.exports = function(cms, router) {
 	importFresh(__dirname + "/auth.js")(cms, router);
 	importFresh(__dirname + "/history.js")(cms, router);
 	importFresh(__dirname + "/json.js")(cms, router);
+	importFresh(__dirname + "/process.js")(cms, router);
+	cms.utils.printRoutes(router);
 }

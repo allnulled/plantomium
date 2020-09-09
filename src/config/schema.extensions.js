@@ -80,6 +80,7 @@ module.exports = {
 			debugSql: process.env.DEBUG_SQL === "true" && true,
 			debugSqlHistory: process.env.DEBUG_SQL_HISTORY === "true" && false,
 			debugSqlAuth: process.env.DEBUG_SQL_AUTH === "true" && true,
+			debugSqlProcess: process.env.DEBUG_SQL_PROCESS === "true" && true,
 			debugErrors: process.env.DEBUG_ERRORS === "true" && true,
 			debugTraces: process.env.DEBUG_TRACES === "true" && true,
 			maxSessionsPerUser: 10,

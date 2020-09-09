@@ -18,6 +18,7 @@ const http = require("http");
  * 
  */
 module.exports = function(cms) {
+	cms.utils.trace("cms.deploy.createServer");
 	cms.server = http.createServer(cms.app);
 	return cms.server;
 }

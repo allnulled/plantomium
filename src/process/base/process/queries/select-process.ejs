@@ -1,0 +1,13 @@
+<%
+
+const table = sqlString.escapeId(processInstance.table)
+const transactionTable = sqlString.escapeId(processInstance.transactionTable);
+const transactionColumn = sqlString.escapeId(processInstance.transactionColumnRef);
+const escapedId = sqlString.escape(id);
+
+%>
+SELECT *
+  FROM <%-table%>
+  JOIN <%-transactionTable%>
+    ON <%-table%>.`id` = <%-transactionTable%>.<%-transactionColumn%>
+  WHERE <%-table%>.`id` = <%-escapedId%>;

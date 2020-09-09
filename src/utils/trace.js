@@ -18,7 +18,8 @@ const colors = require("colors");
  * 
  */
 module.exports = function(...args) {
-	if(require(process.env.PROJECT_ROOT + "/src/cms.js").schema.general.debugTraces) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	if (cms.schema && cms.schema.general && (cms.schema.general.debugTraces === true)) {
 		console.log(colors.yellow("[TRACE]"), ...args);
 	}
 };
