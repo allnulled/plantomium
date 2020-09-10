@@ -1826,8 +1826,40 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'int(11)'
       },
-      operation: {
+      id_transactor: {
         order: 3,
+        model: 'ExampleProcessTransaction',
+        table: 'example_process_transaction',
+        column: 'id_transactor',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'example_process_transaction_ibfk_2',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      operation: {
+        order: 4,
         model: 'ExampleProcessTransaction',
         table: 'example_process_transaction',
         column: 'operation',
@@ -1851,7 +1883,7 @@ module.exports = {
         archetype: 'varchar(60)'
       },
       description: {
-        order: 4,
+        order: 5,
         model: 'ExampleProcessTransaction',
         table: 'example_process_transaction',
         column: 'description',
@@ -1875,7 +1907,7 @@ module.exports = {
         archetype: 'varchar(200)'
       },
       created_at: {
-        order: 5,
+        order: 6,
         model: 'ExampleProcessTransaction',
         table: 'example_process_transaction',
         column: 'created_at',
@@ -3413,6 +3445,12 @@ module.exports = {
             isPrimaryKey: false
           },
           {
+            model: 'ExampleProcessTransaction',
+            table: 'example_process_transaction',
+            column: 'id_transactor',
+            isPrimaryKey: false
+          },
+          {
             model: 'Image',
             table: 'image',
             column: 'id_user',
@@ -3926,6 +3964,7 @@ module.exports = {
       attributes: [
         'id',
         'id_process',
+        'id_transactor',
         'operation',
         'description',
         'created_at'
@@ -3938,6 +3977,12 @@ module.exports = {
           constraint: 'example_process_transaction_ibfk_1',
           column: 'id_process',
           referencedTable: 'example_process',
+          referencedColumn: 'id'
+        },
+        {
+          constraint: 'example_process_transaction_ibfk_2',
+          column: 'id_transactor',
+          referencedTable: 'users',
           referencedColumn: 'id'
         }
       ]

@@ -1,0 +1,9 @@
+<%
+
+const table = sqlString.escapeId(processInstance.table)
+const escapedId = sqlString.escape(id);
+
+%>
+
+DELETE FROM <%-table%>
+  WHERE <%-table%>.`id` = <%-escapedId%>;

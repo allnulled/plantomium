@@ -4,7 +4,8 @@ const table = sqlString.escapeId(processInstance.table)
 const transactionTable = sqlString.escapeId(processInstance.transactionTable);
 const transactionColumn = sqlString.escapeId(processInstance.transactionColumnRef);
 const escapedId = sqlString.escape(id);
-const transactionFields = "*";
+const transactionFieldsBrute = cms.schema.constraints[processInstance.transactionTable].attributes.map(attr => processInstance.transactionTable + "." + attr);
+const transactionFields = cms.utils.toSelectFieldsSql(transactionFieldsBrute);
 
 %>
 SELECT <%-transactionFields%>

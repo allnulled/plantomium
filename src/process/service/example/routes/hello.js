@@ -8,25 +8,19 @@ module.exports = {
 	dontGetProcess: true,
 	// (or factory)
 	controller: async function(request, response, next) {
-		// insert
-		// + insert transaction
 		try {
 			const idUser = cms.utils.dataGetter(request, ["fw","auth","user","id"], undefined);
-			const insertProcess = await cms.process.service.example.queries.insertProcess({
-				data: {
-					id_creator: sqlString.escape(idUser),
-					data: sqlString.escape(JSON.stringify(request.body.data || {})),
-					meta: "{}",
-					status: "started"
-				}
+			const insertProcess = await cms.process.service.example.insertProcess({
+				id_creator: sqlString.escape(idUser),
+				data: sqlString.escape(JSON.stringify(request.body.data || {})),
+				meta: "{}",
+				status: "started"
 			});
-			const insertProcessTransaction = await cms.process.service.example.queries.insertProcessTransaction({
-				data: {
-					id_process: insertProcess.insertId,
-					id_transactor: idUser,
-					operation: "hello",
-					description: "...",
-				}
+			const insertProcessTransaction = await cms.process.service.example.insertProcessTransaction({
+				id_process: insertProcess.insertId,
+				id_transactor: idUser,
+				operation: "hello",
+				description: "...",
 			});
 			return cms.utils.successfulJsonResponse({
 				process: insertProcess.insertId,

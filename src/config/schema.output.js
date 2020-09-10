@@ -2866,8 +2866,56 @@ module.exports = {
           $referencedColumn: 'id'
         }
       },
-      operation: {
+      id_transactor: {
         order: 3,
+        model: 'ExampleProcessTransaction',
+        table: 'example_process_transaction',
+        column: 'id_transactor',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'example_process_transaction_ibfk_2',
+            model: 'Users',
+            table: 'users',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'example_process_transaction',
+          $column: 'id_transactor',
+          $columnType: 'int(11)',
+          $isColumnNullable: 'YES',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 3,
+          $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: 'example_process_transaction_ibfk_2',
+          $referencedTable: 'users',
+          $referencedColumn: 'id'
+        }
+      },
+      operation: {
+        order: 4,
         model: 'ExampleProcessTransaction',
         table: 'example_process_transaction',
         column: 'operation',
@@ -2897,7 +2945,7 @@ module.exports = {
           $isColumnNullable: 'YES',
           $defaultColumnValue: null,
           $extraColumnInformation: '',
-          $ordinalColumnPosition: 3,
+          $ordinalColumnPosition: 4,
           $maximumCharactersLength: 60,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
@@ -2907,7 +2955,7 @@ module.exports = {
         }
       },
       description: {
-        order: 4,
+        order: 5,
         model: 'ExampleProcessTransaction',
         table: 'example_process_transaction',
         column: 'description',
@@ -2937,7 +2985,7 @@ module.exports = {
           $isColumnNullable: 'YES',
           $defaultColumnValue: null,
           $extraColumnInformation: '',
-          $ordinalColumnPosition: 4,
+          $ordinalColumnPosition: 5,
           $maximumCharactersLength: 200,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
@@ -2947,7 +2995,7 @@ module.exports = {
         }
       },
       created_at: {
-        order: 5,
+        order: 6,
         model: 'ExampleProcessTransaction',
         table: 'example_process_transaction',
         column: 'created_at',
@@ -2977,7 +3025,7 @@ module.exports = {
           $isColumnNullable: 'YES',
           $defaultColumnValue: 'CURRENT_TIMESTAMP',
           $extraColumnInformation: '',
-          $ordinalColumnPosition: 5,
+          $ordinalColumnPosition: 6,
           $maximumCharactersLength: null,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
@@ -5647,6 +5695,12 @@ module.exports = {
             isPrimaryKey: false
           },
           {
+            model: 'ExampleProcessTransaction',
+            table: 'example_process_transaction',
+            column: 'id_transactor',
+            isPrimaryKey: false
+          },
+          {
             model: 'Image',
             table: 'image',
             column: 'id_user',
@@ -6384,6 +6438,7 @@ module.exports = {
       attributes: [
         'id',
         'id_process',
+        'id_transactor',
         'operation',
         'description',
         'created_at'
@@ -6396,6 +6451,12 @@ module.exports = {
           constraint: 'example_process_transaction_ibfk_1',
           column: 'id_process',
           referencedTable: 'example_process',
+          referencedColumn: 'id'
+        },
+        {
+          constraint: 'example_process_transaction_ibfk_2',
+          column: 'id_transactor',
+          referencedTable: 'users',
           referencedColumn: 'id'
         }
       ]

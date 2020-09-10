@@ -2,7 +2,8 @@
 
 const table = sqlString.escapeId(processInstance.table)
 const escapedId = sqlString.escape(id);
-const tableFields = "*"
+const tableFieldsBrute = cms.schema.constraints[processInstance.table].attributes.map(attr => processInstance.table + "." + attr);
+const tableFields = cms.utils.toSelectFieldsSql(tableFieldsBrute);
 
 %>
 SELECT <%-tableFields%>

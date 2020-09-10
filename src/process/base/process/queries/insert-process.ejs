@@ -12,7 +12,7 @@ INSERT INTO <%-table%> (<%
 	for(let index=0; index < fields.length; index++) {
 		const field = fields[index];
 		%><%-index === 0 ? "" : ", "%>
-	<%-sqlString.escapeId(field)%><%
+    <%-sqlString.escapeId(field)%><%
 	}
 %>
 ) VALUES (<%
@@ -22,7 +22,7 @@ INSERT INTO <%-table%> (<%
 	for(let index=0; index < values.length; index++) {
 		const value = values[index];
 		%><%-index === 0 ? "" : ", "%>
-	<%-sqlString.escape(value)%><%
+    <%-sqlString.escape(value)%><%
 	}
 %>
 );

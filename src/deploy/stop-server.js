@@ -21,6 +21,7 @@ module.exports = async function(cms) {
 		await cms.server.close();
 		await cms.rest.connection.end();
 		await cms.auth.connection.end();
+		await cms.process.connection.end();
 		await cms.socket.server.close();
 		cms.utils.trace("cms.deploy.stopServer: OK.");
 	} catch (error) {
