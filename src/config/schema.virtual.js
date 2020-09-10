@@ -1736,13 +1736,13 @@ module.exports = {
         referencesTo: [],
         referencedBy: [],
         optionsList: [
-          'hello',
-          'conversation',
-          'good-bye'
+          'started',
+          'continued',
+          'outdated'
         ],
-        maxTextLength: 12,
+        maxTextLength: 9,
         database: 'plants_bd',
-        archetype: 'enum(\'hello\',\'conversation\',\'good-bye\')'
+        archetype: 'enum(\'started\',\'continued\',\'outdated\')'
       },
       created_at: {
         order: 6,

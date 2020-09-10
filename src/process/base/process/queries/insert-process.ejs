@@ -1,0 +1,28 @@
+<%
+
+const table = sqlString.escapeId(processInstance.table);
+const fields = Object.keys(data);
+const values = Object.values(data);
+
+%>
+INSERT INTO <%-table%> (<%
+	if(fields.length === 0) {
+		throw new Error("Required <fields.length> to be not 0 on <insertProcess> [ERR:525]");
+	}
+	for(let index=0; index < fields.length; index++) {
+		const field = fields[index];
+		%><%-index === 0 ? "" : ", "%>
+	<%-sqlString.escapeId(field)%><%
+	}
+%>
+) VALUES (<%
+	if(values.length === 0) {
+		throw new Error("Required <values.length> to be not 0 on <insertProcess> [ERR:725]");
+	}
+	for(let index=0; index < values.length; index++) {
+		const value = values[index];
+		%><%-index === 0 ? "" : ", "%>
+	<%-sqlString.escape(value)%><%
+	}
+%>
+);

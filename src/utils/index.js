@@ -160,9 +160,9 @@ module.exports = function(cms) {
 	cms.utils.requireTemplate = function(directory, file, options = {}) {
 		const template = path.resolve(directory, file);
 		const contents = fs.readFileSync(template).toString();
-		return (parametersBrute = {}) => {
+		return (parametersBrute = {}, options2 = {}) => {
 			const parameters = cms.utils.createParameters(parametersBrute);
-			return ejs.render(contents, parameters, options);
+			return ejs.render(contents, parameters, {...options, ...options2});
 		}
 	};
 

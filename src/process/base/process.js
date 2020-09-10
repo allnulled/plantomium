@@ -30,6 +30,7 @@ class BaseProcess {
 	}
 
 	constructor(options = {}) {
+		cms.utils.trace("cms.process.*.constructor");
 		Object.assign(this, this.constructor.DEFAULT_INHERITED_OPTIONS, this.constructor.DEFAULT_OPTIONS, options);
 		if (typeof this.directory !== "string") {
 			throw new Error("Required <directory> to be a string on <base/process> [ERR:905]");
@@ -52,7 +53,8 @@ class BaseProcess {
 		this.name = path.basename(this.directory);
 		const queriesTmp = cms.utils.requireTemplatesDirectory(path.resolve(__dirname, "process/queries"), cms);
 		const DEFAULT_QUERIES = this.fromTemplatesToQueries(queriesTmp);
-		const localQueries = cms.utils.requireTemplatesDirectory(path.resolve(this.directory, "queries")) || {};
+		const localQueriesTmp = cms.utils.requireTemplatesDirectory(path.resolve(this.directory, "queries")) || {};
+		const localQueries = this.fromTemplatesToQueries(localQueriesTmp);
 		const localTemplates = cms.utils.requireTemplatesDirectory(path.resolve(this.directory, "templates")) || {};
 		const localActors = cms.utils.requireDirectory(path.resolve(this.directory, "actors")) || {};
 		const localControllers = cms.utils.requireDirectory(path.resolve(this.directory, "controllers")) || {};
@@ -64,20 +66,36 @@ class BaseProcess {
 		this.queries = Object.assign(this.queries, DEFAULT_QUERIES, localQueries, options.queries || {});
 		this.routes = Object.assign(this.routes, localRoutes, options.routes || {});
 		this.templates = Object.assign(this.templates, localTemplates, options.templates || {});
+		this.onConstructed(options);
+	}
+
+	onConstructed(options = {}) {
+		cms.utils.trace("cms.process.*.onConstructed");
+		// @empty...
 	}
 
 	fromTemplatesToQueries(queriesTmp) {
+		cms.utils.trace("cms.process.*.fromTemplatesToQueries");
 		return Object.keys(queriesTmp).reduce((output, queryKey) => {
 			const query = queriesTmp[queryKey];
-			output[queryKey] = async (...args) => {
-				const querySource = await query(...args)
-				return await this.onQuery(querySource);
+			output[queryKey] = async (args = {}, options = {}) => {
+				try {
+					const querySource = await query({
+						...args,
+						processInstance: this
+					}, options);
+					const queryResult = await this.onQuery(querySource);
+					return queryResult;
+				} catch (error) {
+					throw error;
+				}
 			};
 			return output;
 		}, {});
 	}
 
 	onQuery(query) {
+		cms.utils.trace("cms.process.*.onQuery");
 		return new Promise(function(ok, fail) {
 			if (cms.schema.general.debugSqlProcess === true) {
 				console.log("\n\n[SQL:PROCESS]____________________________________________\n", query);
@@ -93,13 +111,20 @@ class BaseProcess {
 	}
 
 	onGetProcessMiddleware(routeData = {}) {
+		cms.utils.trace("cms.process.*.onGetProcessMiddleware");
 		return async (request, response, next) => {
+			cms.utils.trace("cms.process.*.onGetProcessMiddleware.callback");
 			try {
-				const { noProcessQuery = false } = routeData;
-				if(!noProcessQuery) {
+				const {
+					dontGetProcess = false
+				} = routeData;
+				if (!dontGetProcess) {
 					const processId = request.params.id;
 					const processData = await this.selectProcess(processId);
-					request.fw.data.process = processId;
+					request.fw.data.process = processData;
+					request.fw.data.processId = processId;
+					const processTransactionsData = await this.selectProcessTransactions(processId);
+					request.fw.data.processTransactionsData = processTransactionsData;
 				}
 				return next();
 			} catch (error) {
@@ -134,7 +159,7 @@ class BaseProcess {
 				throw new Error("Required <method> to be use, get, post, put or delete on <mountProcessRoute> [ERR:730]");
 			}
 			cms.utils.debug("Mounted:", routeData.methods, routeData.routes);
-			for(let index=0; index < routes.length; index++) {
+			for (let index = 0; index < routes.length; index++) {
 				const route = routes[index];
 				router[method](route, middlewares, this.onGetProcessMiddleware(routeData), controller);
 			}
@@ -164,53 +189,66 @@ class BaseProcess {
 
 	selectProcess(id) {
 		cms.utils.trace("cms.process.*.selectProcess");
-		return this.onQueryFileTemplate(__dirname + "/process/queries/select-process.ejs", cms.utils.createParameters({
+		const params = cms.utils.createParameters({
 			id,
 			processInstance: this,
-		}));
+		});
+		return this.onQueryFileTemplate(__dirname + "/process/queries/select-process.ejs", params);
 	}
-	selectProcessTransactions(ids) {
+
+	selectProcessTransactions(idProcess) {
 		cms.utils.trace("cms.process.*.selectProcessTransactions");
-		return this.onQueryFileTemplate(__dirname + "/process/queries/select-process-transactions.ejs", cms.utils.createParameters({
-			ids,
+		const params = cms.utils.createParameters({
+			id: idProcess,
 			processInstance: this,
-		}));
+		});
+		return this.onQueryFileTemplate(__dirname + "/process/queries/select-process-transactions.ejs", params);
 	}
+
 	insertProcess(data) {
 		cms.utils.trace("cms.process.*.insertProcess");
-		return this.onQueryFileTemplate(__dirname + "/process/queries/insert-process.ejs", cms.utils.createParameters({
+		const params = cms.utils.createParameters({
 			data,
 			processInstance: this,
-		}));
+		});
+		return this.onQueryFileTemplate(__dirname + "/process/queries/insert-process.ejs", params);
 	}
+
 	insertProcessTransaction(data) {
 		cms.utils.trace("cms.process.*.insertProcessTransaction");
-		return this.onQueryFileTemplate(__dirname + "/process/queries/insert-process-transaction.ejs", cms.utils.createParameters({
+		const params = cms.utils.createParameters({
 			data,
 			processInstance: this,
-		}));
+		});
+		return this.onQueryFileTemplate(__dirname + "/process/queries/insert-process-transaction.ejs", params);
 	}
+
 	updateProcess(id, values) {
 		cms.utils.trace("cms.process.*.updateProcess");
-		return this.onQueryFileTemplate(__dirname + "/process/queries/update-process.ejs", cms.utils.createParameters({
+		const params = cms.utils.createParameters({
 			id,
 			values,
 			processInstance: this,
-		}));
+		});
+		return this.onQueryFileTemplate(__dirname + "/process/queries/update-process.ejs", params);
 	}
+
 	deleteProcess(id) {
 		cms.utils.trace("cms.process.*.deleteProcess");
-		return this.onQueryFileTemplate(__dirname + "/process/queries/delete-process.ejs", cms.utils.createParameters({
+		const params = cms.utils.createParameters({
 			id,
 			processInstance: this,
-		}));
+		});
+		return this.onQueryFileTemplate(__dirname + "/process/queries/delete-process.ejs", params);
 	}
+
 	deleteProcessTransactions(ids) {
 		cms.utils.trace("cms.process.*.deleteProcessTransactions");
-		return this.onQueryFileTemplate(__dirname + "/process/queries/delete-process-transactions.ejs", cms.utils.createParameters({
+		const params = cms.utils.createParameters({
 			ids,
 			processInstance: this,
-		}));
+		});
+		return this.onQueryFileTemplate(__dirname + "/process/queries/delete-process-transactions.ejs", params);
 	}
 
 }

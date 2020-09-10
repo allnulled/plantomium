@@ -15,11 +15,27 @@ describe("PROCESS Test", function() {
 	});
 	
 	const baseUrl = process.env.APP_URL + ":" + process.env.APP_PORT;
-	let posted = undefined;
+	let posted = undefined, session_token = undefined;
+
+	it("can login for test", async function() {
+		const loginResp = await axios.post(baseUrl + "/auth/v1/login", {
+			name: "administrator",
+			password: "admin123",
+		});
+		session_token = cms.utils.dataGetter(loginResp, ["data","data","session_token"], undefined);
+		expect(typeof session_token).to.equal("string");
+	});
 
 	it("can create an example", async function() {
 		try {
-			const post1 = await axios.post(baseUrl + "/process/v1/example/hello", {data: {type:"request"}});
+
+			const post1 = await axios.post(baseUrl + "/process/v1/example/hello", {
+				data: {type:"request"},
+			}, {
+				headers: {
+					authorization: "Bearer: " + session_token
+				}
+			});
 			posted = post1.data;
 		} catch(error) {
 			console.error(error);
