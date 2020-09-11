@@ -67,7 +67,10 @@ describe("SOCKETS Test", function() {
 		const client = socketClient(chatUrl, {
 			transports: ["websocket"], // THIS LINE IS IMPORTANT ON HTTP[[[[ S ]]]]
 			secure: true,
-			rejectUnauthorized: false
+			rejectUnauthorized: false,
+			extraHeaders: {
+				authorization: "Bearer: " + session_token
+			}
 		});
 		client.connect();
 		let footprint = 0;
