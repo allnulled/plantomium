@@ -28,8 +28,8 @@ module.exports = function(cms) {
 	// @TODO: 1. generate virtual schema:
 	const virtualSchema = cms.utils.generateVirtualSchema(cms);
 	cms.schema = virtualSchema;
-	const virtuslSchemaJs = mysqlSchema.stringifyFn(virtualSchema);
-	fs.writeFileSync(outputVirtualPath, "module.exports = " + virtuslSchemaJs, "utf8");
+	const virtualSchemaJs = mysqlSchema.stringifyFn(virtualSchema);
+	fs.writeFileSync(outputVirtualPath, "module.exports = " + virtualSchemaJs, "utf8");
 	// @TODO: 2. generate whole project from virtual schema:
 	return mysqlSchemaGenerator.generateProject({
 		schema: {
@@ -42,6 +42,15 @@ module.exports = function(cms) {
 		}
 	}).then(output => {
 		////////////////////////
+		cms.rest = {};
+		cms.rest.originalSchema = output;
+		cms.rest.connection = require(process.env.PROJECT_ROOT + "/src/rest/connection.js");
+		cms.rest.queries = cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/rest/queries", cms);
+		cms.rest.handlers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/handlers", cms, ["handler.js"]);
+		cms.rest.actors = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/actors", cms);
+		cms.rest.middlewares = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/middlewares", cms);
+		cms.rest.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/controllers", cms);
+		////////////////////////
 		cms.email = {};
 		cms.email.agents = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/email/agents");
 		cms.email.templates = cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/email/templates");
@@ -53,15 +62,6 @@ module.exports = function(cms) {
 		cms.json.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/json/controllers");
 		////////////////////////
 		cms.router = require(process.env.PROJECT_ROOT + "/src/router/index.js")(cms);
-		////////////////////////
-		cms.rest = {};
-		cms.rest.originalSchema = output;
-		cms.rest.connection = require(process.env.PROJECT_ROOT + "/src/rest/connection.js");
-		cms.rest.queries = cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/rest/queries", cms);
-		cms.rest.handlers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/handlers", cms, ["handler.js"]);
-		cms.rest.actors = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/actors", cms);
-		cms.rest.middlewares = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/middlewares", cms);
-		cms.rest.controllers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/controllers", cms);
 		////////////////////////
 		cms.auth = {};
 		cms.auth.connection = require(process.env.PROJECT_ROOT + "/src/auth/connection.js");

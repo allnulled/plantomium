@@ -2,8 +2,8 @@
 
 const path = require("path");
 const ejs = require("ejs");
-const up = path.resolve(__dirname + "/../scripts/migrations/history.ejs.sql");
-const down = path.resolve(__dirname + "/../scripts/migrations/history.undo.ejs.sql");
+const up = path.resolve(__dirname + "/scripts/history.ejs.sql");
+const down = path.resolve(__dirname + "/scripts/history.undo.ejs.sql");
 const asynchandler = require("@allnulled/asynchandler");
 
 module.exports = {

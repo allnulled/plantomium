@@ -103,6 +103,15 @@ describe("PROCESS Test", function() {
 				process: 1,
 				transactions: [1, 2, 3, 4]
 			});
+			const processState = await axios.get(baseUrl + "/process/v1/example/view/1", {
+				headers: {
+					authorization: "Bearer: " + session_token
+				}
+			});
+			expect(typeof processState.data.data.process).to.equal("object");
+			expect(typeof processState.data.data.transactions).to.equal("object");
+			expect(processState.data.data.process.transactions).to.equal(4);
+			expect(processState.data.data.transactions.length).to.equal(4);
 		} catch (error) {
 			throw error;
 		}
@@ -129,6 +138,7 @@ describe("PROCESS Test", function() {
 					authorization: "Bearer: " + session_token,
 				}
 			});
+			// dd(post5, post6)
 			expect(typeof post6).to.equal("object")
 			expect(typeof post6.error).to.equal("object")
 			expect(post6.error.message).to.equal("Process was not found [ERR:7880]")

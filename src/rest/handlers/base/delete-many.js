@@ -13,7 +13,7 @@ class DeleteManyBaseHandler extends BaseHandler {
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many.ejs"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-cascade.ejs"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-many.ejs"),
-			{template: path.resolve(process.env.PROJECT_ROOT + "/src/history/queries/insert-data.ejs"), history: true}
+			{template: path.resolve(process.env.PROJECT_ROOT + "/src/history/queries/insert-data-by-rest.ejs"), history: true}
 		];
 	}
 

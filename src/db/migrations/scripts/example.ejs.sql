@@ -3,6 +3,7 @@ create table example_process (
 	id_creator int,
 	data text,
 	meta text,
+	transactions int default 1,
 	status enum('started', 'continued', 'outdated'),
 	created_at datetime default now(),
 	foreign key (id_creator) references users(id)

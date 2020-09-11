@@ -78,7 +78,7 @@ module.exports = {
 			slug: "/api/v1",
 			slugForAuth: "/auth/v1",
 			debugSql: process.env.DEBUG_SQL === "true" && true,
-			debugSqlHistory: process.env.DEBUG_SQL_HISTORY === "true" && false,
+			debugSqlHistory: process.env.DEBUG_SQL_HISTORY === "true" && true,
 			debugSqlAuth: process.env.DEBUG_SQL_AUTH === "true" && true,
 			debugSqlProcess: process.env.DEBUG_SQL_PROCESS === "true" && true,
 			debugErrors: process.env.DEBUG_ERRORS === "true" && true,

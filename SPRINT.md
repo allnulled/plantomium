@@ -82,12 +82,18 @@
     [✓] insert each {event|deleted registry} from lifecycle
   [✓] MIDDLEWARES FOR AUTH:
     [✓] only-{user|group|permission|authenticated} auth middlewares support
-  [ ] SECURE ENDPOINTS with auth/middleware/only-*
-    [ ] for REST
-    [ ] for AUTH (no!)
-    [ ] for CHAT
-    [ ] for BROADCAST
-  [ ] PROCESS
+  [✓] PROCESS
+    [✓] + update process
+    [✓] + update transaction
+  [✓] HTTPS: secure application support (forced)
+  [✓] SECURE ENDPOINTS with auth/middleware/only-*
+    [✓] for REST (OK!)
+    [✓] for AUTH (OK!)
+    [ ] for CHAT and BROADCAST:
+      [ ] add use function
+        [ ] to add authentication to the connection
+        [ ] to filter if it is not authenticated
+        [ ] to apply other middlewares
   [ ] REST PLURALS
     [ ] improve tests
     [ ] of actors:
@@ -106,13 +112,15 @@
       [ ] delete
       [ ] get-file
       [ ] set-file
-  [ ] HTTPS: secure application support (forced)
   [ ] MAIL TEMPLATES on:
     [ ] confirmation
     [ ] password changed
     [ ] registration
     [ ] unregistration
   [ ] SEQUELIZE MODELS
+  [ ] H
+  [ ] PM
+   [ ] c:DIUR
 
 
 

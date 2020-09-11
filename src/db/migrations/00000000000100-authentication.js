@@ -2,8 +2,8 @@
 
 const path = require("path");
 const ejs = require("ejs");
-const up = path.resolve(__dirname + "/../scripts/migrations/authentication.ejs.sql");
-const down = path.resolve(__dirname + "/../scripts/migrations/authentication.undo.ejs.sql");
+const up = path.resolve(__dirname + "/scripts/authentication.ejs.sql");
+const down = path.resolve(__dirname + "/scripts/authentication.undo.ejs.sql");
 const asynchandler = require("@allnulled/asynchandler");
 
 module.exports = {

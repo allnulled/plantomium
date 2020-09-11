@@ -80,7 +80,7 @@ class BaseHandler {
 	onRegisterEvent(parameters) {
 		cms.utils.trace("rest.handler.onRegisterEvent");
 		return this.createQueryFilePromise(
-			{template: process.env.PROJECT_ROOT + "/src/history/queries/insert-event.ejs", history: true},
+			{template: process.env.PROJECT_ROOT + "/src/history/queries/insert-event-by-rest.ejs", history: true},
 			parameters,
 			undefined,
 			undefined,
@@ -196,12 +196,13 @@ class BaseHandler {
 			const queryFileDataFormatted = this.normalizeQueryFile(queryFileData);
 			const templateTmp = queryFileDataFormatted.template;
 			const template = templateTmp.startsWith("@") ? templateTmp.substr(1) : templateTmp;
-			const querySource = await this.onRenderFile(template, {
+			const templateParameters = cms.utils.createParameters({
 				...parameters,
 				indexBlock,
 				indexQuery,
 				queryData: queryFileDataFormatted,
 			});
+			const querySource = await this.onRenderFile(template, templateParameters);
 			parameters.queries.push(querySource);
 			if (querySource === "") {
 				if (typeof indexGeneral !== "undefined") {

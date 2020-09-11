@@ -1716,8 +1716,32 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'text'
       },
-      status: {
+      transactions: {
         order: 5,
+        model: 'ExampleProcess',
+        table: 'example_process',
+        column: 'transactions',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': '1',
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      status: {
+        order: 6,
         model: 'ExampleProcess',
         table: 'example_process',
         column: 'status',
@@ -1745,7 +1769,7 @@ module.exports = {
         archetype: 'enum(\'started\',\'continued\',\'outdated\')'
       },
       created_at: {
-        order: 6,
+        order: 7,
         model: 'ExampleProcess',
         table: 'example_process',
         column: 'created_at',
@@ -3942,6 +3966,7 @@ module.exports = {
         'id_creator',
         'data',
         'meta',
+        'transactions',
         'status',
         'created_at'
       ],
@@ -4265,7 +4290,7 @@ module.exports = {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
     debugSql: true,
-    debugSqlHistory: false,
+    debugSqlHistory: true,
     debugSqlAuth: true,
     debugSqlProcess: true,
     debugErrors: true,

@@ -3,4 +3,6 @@ module.exports = require(process.env.PROJECT_ROOT + "/src/process/base/process.j
 	table: "example_process",
 	transactionTable: "example_process_transaction",
 	transactionColumnRef: "id_process",
+	processJoins: [],
+	transactionJoins: [],
 });

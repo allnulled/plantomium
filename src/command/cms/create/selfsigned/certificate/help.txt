@@ -1,0 +1,3 @@
+[cms create selfsigned certificate]
+
+  · Generates a *.crt and a *.key files for HTTPS layer.

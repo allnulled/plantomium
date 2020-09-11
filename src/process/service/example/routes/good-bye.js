@@ -18,12 +18,35 @@ module.exports = {
 				description: "...",
 			});
 			// @TODO: delete all transactions
-			const transactionIdsRepeated = currentProcess.transactions.map((transaction) => transaction[currentTransactionTable + ".id"]).concat(insertProcessTransaction.insertId);
-			const transactionIds = cms.utils.arrayUnique(transactionIdsRepeated);
+			const transactions = await cms.process.service.example.selectProcessTransactions(currentProcess.id);
+			const transactionIds = transactions.map(t => t["example_process_transaction.id"]);
 			await cms.process.service.example.deleteProcessTransactions(transactionIds);
-			await cms.process.service.example.deleteProcess(currentProcess.id);
-			// @TODO: insert transactions in history
+			// @TODO: improve iteration in parallel
+			const user_agent = cms.utils.getAgentFromRequest(request);
+			const user_ip = cms.utils.getIpFromRequest(request);
+			for(let index=0; index < transactions.length; index++) {
+				const transaction = transactions[index];
+				await cms.history.actors.insertData({
+					user_id: currentUser.id,
+					user_agent,
+					user_ip,
+					original_table: "example_process_transactions",
+					data: JSON.stringify(transaction),
+					metadata: "{}",
+					description: "Example process transaction",
+				});
+			}
 			// @TODO: delete the process
+			await cms.process.service.example.deleteProcess(currentProcess.id);
+			await cms.history.actors.insertData({
+				user_id: currentUser.id,
+				user_agent,
+				user_ip,
+				original_table: "example_process_transactions",
+				data: JSON.stringify(currentProcess),
+				metadata: "{}",
+				description: "Example process",
+			});
 			// @TODO: insert process in history
 			return cms.utils.successfulJsonResponse({
 				process: currentProcess.id,

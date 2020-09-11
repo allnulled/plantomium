@@ -93,10 +93,8 @@ class BaseProcess {
 		return async (request, response, next) => {
 			cms.utils.trace("cms.process.*.onGetProcessMiddleware.callback");
 			try {
-				const {
-					dontGetProcess = false
-				} = routeData;
-				if (!dontGetProcess) {
+				const hasId = routeData.routes.join("").indexOf("/:id") !== -1;
+				if (hasId) {
 					const processId = parseInt(request.params.id);
 					const processData = await this.selectProcess(processId);
 					if ((!Array.isArray(processData)) || (processData.length === 0)) {
@@ -106,10 +104,14 @@ class BaseProcess {
 					if ((!Array.isArray(processTransactionsData)) || (processTransactionsData.length === 0)) {
 						throw new Error("Process transactions were not found [ERR:7881]");
 					}
+					const processDataFormatted = cms.utils.toObjectSql(processData, this.table, "id");
+					// @TODO: format joins of process...
+					const processTransactionsDataFormatted = cms.utils.toObjectSql(processTransactionsData, this.transactionTable, "id");
+					// @TODO: format joins of transaction...
 					request.fw.process = {
 						id: processId,
-						data: processData[0],
-						transactions: processTransactionsData,
+						process: processDataFormatted[0],
+						transactions: processTransactionsDataFormatted,
 					};
 				}
 				return next();

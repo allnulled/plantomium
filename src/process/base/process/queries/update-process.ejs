@@ -1,0 +1,10 @@
+<%
+
+const table = sqlString.escapeId(processInstance.table)
+const escapedId = sqlString.escape(id);
+const escapedValues = sqlString.escape(values);
+
+%>
+UPDATE <%-table%>
+  SET <%-escapedValues%>
+  WHERE <%-table%>.`id` = <%-escapedId%>;
