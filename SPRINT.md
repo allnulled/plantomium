@@ -89,11 +89,42 @@
   [✓] SECURE ENDPOINTS with auth/middleware/only-*
     [✓] for REST (OK!)
     [✓] for AUTH (OK!)
-    [ ] for CHAT and BROADCAST:
-      [ ] add use function
-        [ ] to add authentication to the connection
-        [ ] to filter if it is not authenticated
-        [ ] to apply other middlewares
+    [✓] for CHAT and BROADCAST:
+      [✓] add use function
+        [✓] to add authentication to the connection
+        [✓] to filter if it is not authenticated
+        [✓] to apply other middlewares
+  [ ] MARKETS
+    [✓] src/config/markets.json
+    [✓] src/command/cms/add/market/index.js
+    [✓] src/command/cms/remove/market/index.js
+    [✓] src/command/cms/show/markets/index.js
+    [✓] src/markets/add.js
+    [✓] src/markets/remove.js
+    [✓] src/markets/show.js
+  [ ] PLUGINS
+    [ ] src/command/cms/add/plugin/index.js
+    [ ] src/command/cms/remove/plugin/index.js
+    [ ] src/command/cms/search/plugin/index.js
+    [ ] src/command/cms/show/plugins/index.js
+    [ ] src/plugins/add.js
+    [ ] src/plugins/remove.js
+    [ ] src/plugins/show.js
+    [ ] src/plugins/service/{vendor}/{plugin}/index.js
+    [ ] src/plugins/service/{vendor}/{plugin}/hooks
+    [ ] src/plugins/service/{vendor}/{plugin}/...
+  [ ] HOOKS
+  [ ] AXIOS CLIENT
+    [ ] every table with its own
+      [ ] schema
+      [ ] getMany
+      [ ] getOne
+      [ ] postOne
+      [ ] putOne
+      [ ] deleteOne
+  [ ] SEQUELIZE MODELS
+    [ ] for every column
+      [ ] the best suited type
   [ ] REST PLURALS
     [ ] improve tests
     [ ] of actors:
@@ -101,7 +132,6 @@
       [ ] postMany
       [ ] putMany
       [ ] deleteMany
-  [ ] AXIOS CLIENT
   [ ] REQUIRE/EXCLUDE
     [ ] 
     [ ] for every REST operation
@@ -117,10 +147,6 @@
     [ ] password changed
     [ ] registration
     [ ] unregistration
-  [ ] SEQUELIZE MODELS
-  [ ] H
-  [ ] PM
-   [ ] c:DIUR
 
 
 

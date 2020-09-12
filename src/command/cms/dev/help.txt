@@ -1,5 +1,5 @@
-[cms develop]
- [Usage:] cms develop
+[cms dev]
+ [Usage:] cms dev
  [Info:]
    · Starts development mode
      - Listens to file changes 

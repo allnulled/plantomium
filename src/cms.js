@@ -1,8 +1,4 @@
 const cms = { settings: {} };
-require(__dirname + "/deploy/load-env.js")(cms);
-require("nodelive").PREFERRED_EDITOR = process.env.PREFERRED_EDITOR || "gedit";
-require(__dirname + "/deploy/load-api.js")(cms);
-
 /**
  * 
  * ----
@@ -21,6 +17,10 @@ require(__dirname + "/deploy/load-api.js")(cms);
  * 
  */
 module.exports = cms;
+require(__dirname + "/deploy/load-env.js")(cms);
+require("nodelive").PREFERRED_EDITOR = process.env.PREFERRED_EDITOR || "gedit";
+require(__dirname + "/deploy/load-api.js")(cms);
+
 
 
 

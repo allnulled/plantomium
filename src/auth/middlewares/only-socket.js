@@ -3,7 +3,8 @@ module.exports = function(rules = {}) {
 	const { authenticated = false, users = [], groups = [], permissions = [] } = rules;
 	return async function(packetdata, next) {
 		try {
-			//dd(packetdata.nsp, Object.keys(packetdata))
+			// 1. Init session:
+			///////////////////////////////////////////////////////////
 			const session_token_brute = packetdata.handshake.headers.authorization;
 			const session_token = cms.utils.formatBearerToken(session_token_brute);
 			let sessionData = undefined;
@@ -14,28 +15,45 @@ module.exports = function(rules = {}) {
 				throw new Error("Required authentication [ERR:2204]");
 			}
 			packetdata.fw = { auth: sessionData };
+			// 2. Do checkings:
+			///////////////////////////////////////////////////////////
+			let isOneUser = false, hasOneGroup = false, hasOnePermission = false;
+			CheckingUsers:
 			if(users.length) {
-				if(users.indexOf(sessionData.user.name) === -1) {
-					throw new Error("Resource not authorized [ERR:2201]");
+				if(users.indexOf(sessionData.user.name) !== -1) {
+					isOneUser = true;
 				}
+			} else {
+				isOneUser = true;
 			}
-			GroupsChecking:
+			///////////////////////////////////////////////////////////
+			CheckingGroups:
 			if(groups.length) {
 				for(let index=0; index < groups.length; index++) {
 					if(groupnames.indexOf(groups[index]) !== -1) {
-						break GroupsChecking;
+						hasOneGroup = true;
+						break CheckingGroups;
 					}
 				}
-				throw new Error("Resource not authorized [ERR:2202]")
+			} else {
+				hasOneGroup = true;
 			}
-			PermissionChecking:
+			///////////////////////////////////////////////////////////
+			CheckingPermission:
 			if(permissions.length) {
 				for(let index=0; index < permissions.length; index++) {
 					if(permissionnames.indexOf(permissions[index]) !== -1) {
-						break PermissionChecking;
+						hasOnePermission = true;
+						break CheckingPermission;
 					}
 				}
-				throw new Error("Resource not authorized [ERR:2203]")
+			} else {
+				hasOnePermission = true;
+			}
+			// 3. Filter by authorization:
+			///////////////////////////////////////////////////////////
+			if((!isOneUser) || (!hasOneGroup) || (!hasOnePermission)) {
+				throw new Error("Resource not authorized [ERR:2201]");
 			}
 			return next();
 		} catch(error) {
