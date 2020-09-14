@@ -3,8 +3,10 @@ const { expect } = require("chai");
 describe("MIGRATIONS and SEEDERS Test", function() {
 
 	this.timeout(10 * 1000);
+
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 	
-	it.skip("can run migrations", async function() {
+	skippable("can run migrations", async function() {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		const execSync = cms.utils.execSync;
 		execSync("cms rollback migrations", { cwd: process.env.PROJECT_ROOT });
@@ -15,7 +17,7 @@ describe("MIGRATIONS and SEEDERS Test", function() {
 		expect(tables2.length).to.not.equal(0);
 	});
 
-	it.skip("can run seeders", async function() {
+	skippable("can run seeders", async function() {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		const execSync = cms.utils.execSync;
 		execSync("cms rollback seeders", { cwd: process.env.PROJECT_ROOT });
@@ -25,13 +27,13 @@ describe("MIGRATIONS and SEEDERS Test", function() {
 		expect(users2.length).to.equal(users.length + 1);
 	});
 
-	it.skip("can rollback seeders", async function() {
+	skippable("can rollback seeders", async function() {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		const execSync = cms.utils.execSync;
 		execSync("cms rollback seeders", { cwd: process.env.PROJECT_ROOT });
 	});
 
-	it.skip("can rollback migrations", async function() {
+	skippable("can rollback migrations", async function() {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		const execSync = cms.utils.execSync;
 		execSync("cms rollback migrations", { cwd: process.env.PROJECT_ROOT });

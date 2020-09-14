@@ -8,6 +8,7 @@ describe("MARKETS Test", function() {
 
 	this.timeout(1000 * 5);
 
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 	const marketsPath = process.env.PROJECT_ROOT + "/src/config/markets.json";
 
 	before(function() {
@@ -18,7 +19,7 @@ describe("MARKETS Test", function() {
 		// 
 	});
 
-	it("can add external market by url", async function() {
+	skippable("can add external market by url", async function() {
 		try {
 			this.timeout(30 * 1000);
 			try {
@@ -40,7 +41,7 @@ describe("MARKETS Test", function() {
 		}
 	});
 
-	it("can remove market by name", async function() {
+	skippable("can remove market by name", async function() {
 		try {
 			const data = JSON.parse(fs.readFileSync(marketsPath).toString());
 			expect(typeof data).to.equal("object");
@@ -88,7 +89,7 @@ describe("PLUGINS Test", function() {
 }`, "utf8");
 	});
 
-	it("can add external plugin by name (calling on-add.js)", async function() {
+	it.skip("can add external plugin by name (calling on-add.js)", async function() {
 		try {
 			this.timeout(30 * 1000);
 			try {
@@ -112,7 +113,7 @@ describe("PLUGINS Test", function() {
 		}
 	});
 
-	it("can remove plugin by name (calling on-remove.js)", async function() {
+	it.skip("can remove plugin by name (calling on-remove.js)", async function() {
 		try {
 			const plugins = await cms.plugins.getPlugins(true);
 			expect(typeof plugins).to.equal("object");

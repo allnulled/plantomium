@@ -22,7 +22,7 @@ const {
   id,
   data = {}
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql([[ "permissions.id", "=", id ]], false, actorClass.Table, true);
+const whereFinal = cms.utils.toSelectWhereSql([[actorClass.Table + ".id","=",id]], false, actorClass.Table);
 const dataFinal = cms.utils.toUpdateValuesSql(data);
 if(dataFinal.length === 0) {
 	throw new Error("Required data on update-one");

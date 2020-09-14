@@ -17,9 +17,13 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(selectFields = undefined, tablesParam = [], enableJoins = true, enableTable = true) {
+module.exports = function(selectFieldsParam = undefined, tablesParam = [], enableJoins = true, enableTable = true) {
 	let sql = "";
 	let isStarted = false;
+	let selectFields = selectFieldsParam;
+	if(typeof selectFields === "string") {
+		selectFields = JSON.parse(selectFieldsParam);
+	}
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 	const tables = Array.isArray(tablesParam) ? tablesParam : (typeof tablesParam === "string" ) ? [tablesParam] : null;
 	const hasFields = typeof selectFields !== "undefined";
@@ -104,6 +108,7 @@ module.exports = function(selectFields = undefined, tablesParam = [], enableJoin
 			}
 		}
 	} else {
+		console.log(selectFields);
 		throw new Error("Required <selectFields> to be an array or undefined on toSelectFieldsSql [ERR:020]");
 	}
 	if(sql === "") {

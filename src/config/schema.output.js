@@ -6816,7 +6816,8 @@ module.exports = {
       'users.recovery_token',
       'users.email',
       'users.deactivation',
-      'sessions.session_token'
+      'sessions.session_token',
+      'sessions.refresh_token'
     ]
   }
 };

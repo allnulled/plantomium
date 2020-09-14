@@ -34,11 +34,25 @@ class GetOneBaseHandler extends BaseHandler {
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
 				id: parameters.request.params.id,
+				where: parameters.request.query.where,
+				fields: parameters.request.query.fields,
+				join: parameters.request.query.join,
+				limit: parameters.request.query.limit || 20,
+				offset: parameters.request.query.offset || 0,
+				order: parameters.request.query.order,
+				page: parameters.request.query.page || 1,
 			}
 		} else {
 			parameters.input = {
-				id: parameters.id
-			};
+				id: parameters.id,
+				where: parameters.where,
+				fields: parameters.fields,
+				join: parameters.join,
+				limit: parameters.limit || 20,
+				offset: parameters.offset || 0,
+				order: parameters.order,
+				page: parameters.page || 1,
+			}
 		}
 	}
 

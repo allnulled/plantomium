@@ -11,8 +11,10 @@ const Utils = require(__dirname + "/utils.js");
 describe("REST Test (options)", function() {
 
 	this.timeout(10 * 1000);
+	
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 
-	it("can load", async function() {
+	skippable("can load", async function() {
 		try {
 			await cms.initialized;
 		} catch (error) {
@@ -20,7 +22,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can fill permissions table", async function() {
+	skippable("can fill permissions table", async function() {
 		try {
 			const items = 20;
 			
@@ -97,7 +99,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.where> extension option", async function() {
+	skippable("can understand <schema.{table}.rest.where> extension option", async function() {
 		try {
 			// SELECT MANY:
 			const response = await axios.get(Utils.url("/api/v1/permissions"));
@@ -157,7 +159,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.join> extension option", async function() {
+	skippable("can understand <schema.{table}.rest.join> extension option", async function() {
 		try {
 			// EN "SELECT ONE":
 			const responseGroup5 = await axios.get(Utils.url("/api/v1/groups/5"));
@@ -188,7 +190,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.limit> option", async function() {
+	skippable("can understand <schema.{table}.rest.limit> option", async function() {
 		try {
 			// @TODO:
 			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
@@ -203,7 +205,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.offset> option", async function() {
+	skippable("can understand <schema.{table}.rest.offset> option", async function() {
 		try {
 			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
 			expect(typeof responseGaP.data.data).to.equal("object");
@@ -222,7 +224,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.sort> option", async function() {
+	skippable("can understand <schema.{table}.rest.sort> option", async function() {
 		try {
 			// @TODO:
 			const responseGaP = await axios.get(Utils.url('/api/v1/combo-group-and-permission'));
@@ -242,7 +244,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.hiddenTables> option", async function() {
+	skippable("can understand <schema.hiddenTables> option", async function() {
 		try {
 			let testifier = 0;
 			try {
@@ -256,7 +258,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.hiddenColumns> option", async function() {
+	skippable("can understand <schema.hiddenColumns> option", async function() {
 		try {
 			const insertUser = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO users (name, password, email, full_name) VALUES ('username', 'password', 'email@domain.com', 'Username Surname');", asynchandler(ok, fail)));
 			const getUser = await axios.get(Utils.url('/api/v1/users/' + insertUser.insertId));
@@ -268,7 +270,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.cascadeDelete> option", async function() {
+	skippable("can understand <schema.{table}.rest.cascadeDelete> option", async function() {
 		try {
 			const selectUserAndGroup = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM combo_user_and_group;", asynchandler(ok, fail)));
 			const selectUserAndPermission = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM combo_user_and_permission;", asynchandler(ok, fail)));
@@ -303,7 +305,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can understand <schema.{table}.rest.tree> option", async function() {
+	skippable("can understand <schema.{table}.rest.tree> option", async function() {
 		try {
 			const insertNode1 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/', 'branch', null);", asynchandler(ok, fail)));
 			const insertNode2 = await new Promise((ok, fail) => cms.rest.connection.query("INSERT INTO filesystem (path, nodetype, contents) VALUES ('/folder 1', 'branch', null);", asynchandler(ok, fail)));
@@ -331,7 +333,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can handle <history> for the rest api", async function() {
+	skippable("can handle <history> for the rest api", async function() {
 		try {
 			const selectDeletedNode1 = await new Promise((ok, fail) => cms.rest.connection.query("SELECT * FROM history_data WHERE original_table = 'filesystem' ORDER BY deleted_at desc LIMIT 1;", asynchandler(ok, fail)));
 			expect(selectDeletedNode1.length).to.equal(0);
@@ -344,7 +346,7 @@ describe("REST Test (options)", function() {
 		}
 	});
 
-	it("can handle <json stores>", async function() {
+	skippable("can handle <json stores>", async function() {
 		try {
 			fs.writeFileSync(process.env.PROJECT_ROOT + "/src/json/data/example.json", JSON.stringify({meta: {title: "Whatever 1"}}));
 			//

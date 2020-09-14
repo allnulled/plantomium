@@ -25,7 +25,7 @@ module.exports = function(updateValues = {}) {
 		const key = keys[index];
 		const value = updateValues[key];
 		if(index !== 0) {
-			", "
+			sql += ", ";
 		}
 		sql += `\n  ${sqlString.escapeId(key)} = ${sqlString.escape(value)}`;
 	}

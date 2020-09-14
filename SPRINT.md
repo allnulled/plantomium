@@ -94,7 +94,7 @@
         [✓] to add authentication to the connection
         [✓] to filter if it is not authenticated
         [✓] to apply other middlewares
-  [ ] MARKETS
+  [✓] MARKETS
     [✓] src/config/markets.json
     [✓] src/command/cms/add/market/index.js
     [✓] src/command/cms/remove/market/index.js
@@ -102,18 +102,24 @@
     [✓] src/markets/add.js
     [✓] src/markets/remove.js
     [✓] src/markets/show.js
-  [ ] PLUGINS
-    [ ] src/command/cms/add/plugin/index.js
-    [ ] src/command/cms/remove/plugin/index.js
-    [ ] src/command/cms/search/plugin/index.js
-    [ ] src/command/cms/show/plugins/index.js
-    [ ] src/plugins/add.js
-    [ ] src/plugins/remove.js
-    [ ] src/plugins/show.js
-    [ ] src/plugins/service/{vendor}/{plugin}/index.js
-    [ ] src/plugins/service/{vendor}/{plugin}/hooks
-    [ ] src/plugins/service/{vendor}/{plugin}/...
-  [ ] HOOKS
+  [✓] PLUGINS
+    [✓] src/command/cms/add/plugin/index.js
+    [✓] src/command/cms/remove/plugin/index.js
+    [✓] src/command/cms/search/plugin/index.js
+    [✓] src/command/cms/show/plugins/index.js
+    [✓] src/plugins/add.js
+    [✓] src/plugins/remove.js
+    [✓] src/plugins/show.js
+    [✓] src/plugins/service/{vendor}/{plugin}/index.js
+    [✓] src/plugins/service/{vendor}/{plugin}/hooks
+    [✓] src/plugins/service/{vendor}/{plugin}/...
+  [ ] REST PLURALS
+    [ ] improve tests
+    [ ] of actors:
+      [ ] getMany
+      [ ] postMany
+      [ ] putMany
+      [ ] deleteMany
   [ ] AXIOS CLIENT
     [ ] every table with its own
       [ ] schema
@@ -122,16 +128,12 @@
       [ ] postOne
       [ ] putOne
       [ ] deleteOne
+    [ ] auth included
   [ ] SEQUELIZE MODELS
     [ ] for every column
       [ ] the best suited type
-  [ ] REST PLURALS
-    [ ] improve tests
-    [ ] of actors:
-      [ ] getMany
-      [ ] postMany
-      [ ] putMany
-      [ ] deleteMany
+  [ ] LOAD PLUGINS
+  [ ] HOOKS
   [ ] REQUIRE/EXCLUDE
     [ ] 
     [ ] for every REST operation

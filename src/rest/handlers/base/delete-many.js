@@ -71,7 +71,13 @@ class DeleteManyBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.deleteMany.onResult");
+		let operations = [];
+		const main = cms.utils.dataGetter(parameters, ["results", 2], null);
+		const others = cms.utils.dataGetter(parameters, ["results", 1], []);
+		if(main) operations.push(main)
+		if(others) operations = operations.concat(others)
 		parameters.output = {
+			operations,
 			items: cms.utils.dataGetter(parameters, ["results", 0], []),
 			attachments: cms.utils.dataGetter(parameters, ["results", 1], []),
 		}

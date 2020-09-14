@@ -3105,30 +3105,6 @@ module.exports = {
         maxTextLength: null,
         database: 'plants_bd',
         archetype: 'int(11)'
-      },
-      refresh_token: {
-        order: 4,
-        model: 'Sessions',
-        table: 'sessions',
-        column: 'refresh_token',
-        type: 'text',
-        typeTerm: 'varchar',
-        subtype: 'varchar',
-        'default': null,
-        extra: false,
-        isPrimaryKey: false,
-        isAutoIncrement: null,
-        isNullable: false,
-        isFloat: null,
-        isUnsigned: null,
-        isForeignKey: false,
-        isUnique: true,
-        referencesTo: [],
-        referencedBy: [],
-        optionsList: null,
-        maxTextLength: 200,
-        database: 'plants_bd',
-        archetype: 'varchar(200)'
       }
     },
     specimen: {
@@ -4191,8 +4167,7 @@ module.exports = {
       table: 'sessions',
       attributes: [
         'id',
-        'id_user',
-        'refresh_token'
+        'id_user'
       ],
       primaryKeys: [
         'id'
@@ -4304,7 +4279,8 @@ module.exports = {
       'users.recovery_token',
       'users.email',
       'users.deactivation',
-      'sessions.session_token'
+      'sessions.session_token',
+      'sessions.refresh_token'
     ]
   }
 }

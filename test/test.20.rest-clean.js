@@ -1,7 +1,10 @@
 const { expect } = require("chai");
 
 describe("REST:CLEAN Test", function() {
+	
 	this.timeout(1000 * 5);
+	
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 
 	before(function() {
 		//
@@ -11,7 +14,7 @@ describe("REST:CLEAN Test", function() {
 		// 
 	});
 
-	it("can clean all previous rest test items", async function() {
+	skippable("can clean all previous rest test items", async function() {
 		try {
 			const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 			await cms.rest.connection.query("DELETE FROM combo_user_and_group WHERE id_user != 1;")

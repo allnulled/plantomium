@@ -31,10 +31,10 @@ class GetManyBaseHandler extends BaseHandler {
 
 	onFormatInput(parameters) {
 		cms.utils.trace("rest.handlers.getMany.onFormatInput");
-		// @TODO: format input parameters
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
 				where: parameters.request.query.where,
+				fields: parameters.request.query.fields,
 				join: parameters.request.query.join,
 				limit: parameters.request.query.limit || 20,
 				offset: parameters.request.query.offset || 0,
@@ -44,6 +44,7 @@ class GetManyBaseHandler extends BaseHandler {
 		} else {
 			parameters.input = {
 				where: parameters.where,
+				fields: parameters.fields,
 				join: parameters.join,
 				limit: parameters.limit || 20,
 				offset: parameters.offset || 0,

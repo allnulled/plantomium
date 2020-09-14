@@ -19,7 +19,7 @@ module.exports = () => async function(request, response, next) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 	try {
 		const session_token = cms.utils.formatBearerToken(request.headers.authorization);
-		const refresh_token = request.body.refresh_token;
+		const refresh_token = cms.utils.formatBearerToken(request.body.refresh_token);
 		const data = await cms.auth.actors.refresh({ session_token, refresh_token });
 		cms.utils.successfulJsonResponse(data, request, response, next);
 	} catch(error) {

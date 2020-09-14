@@ -6,6 +6,8 @@ describe("AUTH:ONLY Test", function() {
 
 	this.timeout(1000 * 5);
 
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
+
 	before(function() {
 		//
 	});
@@ -14,12 +16,12 @@ describe("AUTH:ONLY Test", function() {
 		// 
 	});
 
-	it("can use actor only", function(done) {
+	skippable("can use actor only", function(done) {
 		
 		done();
 	});
 
-	it("can use middleware only", async function() {
+	skippable("can use middleware only", async function() {
 		try {
 			const app = cms.app;
 			const answer = (request, response) => response.json({ msg: "ok" });

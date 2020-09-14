@@ -8,6 +8,8 @@ describe("PROCESS Test", function() {
 
 	this.timeout(1000 * 5);
 
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
+
 	before(function() {
 		//
 	});
@@ -20,7 +22,7 @@ describe("PROCESS Test", function() {
 	let processData = undefined,
 		session_token = undefined;
 
-	it("can login for test", async function() {
+	skippable("can login for test", async function() {
 		const loginResp = await axios.post(baseUrl + "/auth/v1/login", {
 			name: "administrator",
 			password: "admin123",
@@ -29,7 +31,7 @@ describe("PROCESS Test", function() {
 		expect(typeof session_token).to.equal("string");
 	});
 
-	it("can create an example", async function() {
+	skippable("can create an example", async function() {
 		try {
 			const {
 				data: post1
@@ -53,7 +55,7 @@ describe("PROCESS Test", function() {
 		expect(typeof processData !== "undefined");
 	});
 
-	it("can make step 1 of an example", async function() {
+	skippable("can make step 1 of an example", async function() {
 		try {
 			const {
 				data: post2
@@ -70,7 +72,7 @@ describe("PROCESS Test", function() {
 		}
 	});
 
-	it("can make step 2 of an example", async function() {
+	skippable("can make step 2 of an example", async function() {
 		try {
 			const {
 				data: post3
@@ -87,7 +89,7 @@ describe("PROCESS Test", function() {
 		}
 	});
 
-	it("can make check previous states", async function() {
+	skippable("can make check previous states", async function() {
 		try {
 			const {
 				data: post4
@@ -117,7 +119,7 @@ describe("PROCESS Test", function() {
 		}
 	});
 
-	it("can delete an example", async function() {
+	skippable("can delete an example", async function() {
 		try {
 			const {
 				data: post5

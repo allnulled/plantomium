@@ -10,6 +10,7 @@ describe("SOCKETS Test", function() {
 
 	this.timeout(1000 * 5);
 
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 	let session_token = undefined;
 
 	before(async function() {
@@ -36,7 +37,7 @@ describe("SOCKETS Test", function() {
 		}
 	});
 
-	it("can connect to broadcast socket", function(ok) {
+	skippable("can connect to broadcast socket", function(ok) {
 		const baseUrl = process.env.APP_URL + ":" + process.env.APP_PORT;
 		const broadcastUrl = baseUrl + "/broadcast";
 		const client = socketClient(broadcastUrl, {
@@ -61,7 +62,7 @@ describe("SOCKETS Test", function() {
 	});
 
 
-	it("can connect to chat socket", function(ok) {
+	skippable("can connect to chat socket", function(ok) {
 		const baseUrl = process.env.APP_URL + ":" + process.env.APP_PORT;
 		const chatUrl = baseUrl + "/chat";
 		const client = socketClient(chatUrl, {
@@ -94,7 +95,7 @@ describe("SOCKETS Test", function() {
 		});
 	});
 
-	it("cannot connect if not authenticated", function(done) {
+	skippable("cannot connect if not authenticated", function(done) {
 		const baseUrl = process.env.APP_URL + ":" + process.env.APP_PORT;
 		const broadcastUrl = baseUrl + "/broadcast";
 		const client = socketClient(broadcastUrl, {

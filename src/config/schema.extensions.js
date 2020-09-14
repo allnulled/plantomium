@@ -71,7 +71,7 @@ module.exports = {
 					branchAlias: "folder", // default is: "folder"
 				}
 			}
-		}
+		},
 	},
 	general: {
 		general: {
@@ -98,7 +98,8 @@ module.exports = {
 				"users.recovery_token",
 				"users.email",
 				"users.deactivation",
-				"sessions.session_token"
+				"sessions.session_token",
+				"sessions.refresh_token"
 			]
 		},
 	}

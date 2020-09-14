@@ -5,13 +5,14 @@ const axios = require("axios");
 
 describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 	const cms = require(__dirname + "/../src/cms.js");
 
 	this.timeout(10 * 1000);
 
 	const processData = {};
 
-	it("can LOAD", async function() {
+	skippable("can LOAD", async function() {
 		try {
 			await cms.initialized;
 			expect(typeof cms).to.equal("object");
@@ -33,7 +34,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		//console.log(...args);
 	}
 
-	it("can REGISTER", async function() {
+	skippable("can REGISTER", async function() {
 		try {
 			const responseRegister = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/register", userdata);
 			debugResponses(responseRegister.data);
@@ -46,7 +47,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can (fail) REGISTER", async function() {
+	skippable("can (fail) REGISTER", async function() {
 		try {
 			const responseRegister = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/register", userdata);
 			debugResponses(responseRegister.data);
@@ -58,7 +59,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can CONFIRM", async function() {
+	skippable("can CONFIRM", async function() {
 		try {
 			const responseConfirm = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/confirm", {
 				confirmation_token
@@ -73,7 +74,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can (fail) CONFIRM", async function() {
+	skippable("can (fail) CONFIRM", async function() {
 		try {
 			const responseConfirm = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/confirm", {
 				confirmation_token: "ok"
@@ -87,7 +88,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can LOGIN", async function() {
+	skippable("can LOGIN", async function() {
 		try {
 			const responseLogin = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/login", userdata);
 			debugResponses(responseLogin.data);
@@ -101,7 +102,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can REFRESH", async function() {
+	skippable("can REFRESH", async function() {
 		try {
 			const responseRefresh = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/refresh", { refresh_token }, {
 				headers: {
@@ -119,7 +120,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can LOGOUT", async function() {
+	skippable("can LOGOUT", async function() {
 		try {
 			const responseLogout = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/logout", { session_token }, {
 				headers: {
@@ -134,7 +135,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can RECOVER PASSWORD", async function() {
+	skippable("can RECOVER PASSWORD", async function() {
 		try {
 			const responseRecover = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/recover", userdata);
 			debugResponses(responseRecover.data);
@@ -152,7 +153,7 @@ describe("AUTHENTICATION & AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can UNREGISTER", async function() {
+	skippable("can UNREGISTER", async function() {
 		try {
 			const loginResponse = await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/login", userdata);
 			debugResponses(loginResponse.data);

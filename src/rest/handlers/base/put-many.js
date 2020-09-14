@@ -77,7 +77,9 @@ class PutManyBaseHandler extends BaseHandler {
 
 	onResult(parameters) {
 		cms.utils.trace("rest.handlers.putMany.onResult");
-		parameters.output = parameters.result;
+		parameters.output = {
+			operation: cms.utils.dataGetter(parameters, ["results", 0], null)
+		};
 	}
 
 }
