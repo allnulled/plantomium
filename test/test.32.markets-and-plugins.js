@@ -62,6 +62,7 @@ describe("MARKETS Test", function() {
 describe("PLUGINS Test", function() {
 
 	this.timeout(1000 * 5);
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 
 	before(function() {
 		fs.writeFileSync(process.env.PROJECT_ROOT + "/src/config/markets.json", `{
@@ -89,7 +90,7 @@ describe("PLUGINS Test", function() {
 }`, "utf8");
 	});
 
-	it.skip("can add external plugin by name (calling on-add.js)", async function() {
+	skippable("can add external plugin by name (calling on-add.js)", async function() {
 		try {
 			this.timeout(30 * 1000);
 			try {
@@ -113,7 +114,7 @@ describe("PLUGINS Test", function() {
 		}
 	});
 
-	it.skip("can remove plugin by name (calling on-remove.js)", async function() {
+	skippable("can remove plugin by name (calling on-remove.js)", async function() {
 		try {
 			const plugins = await cms.plugins.getPlugins(true);
 			expect(typeof plugins).to.equal("object");

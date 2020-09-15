@@ -1,7 +1,10 @@
 const { expect } = require("chai");
 
 describe("AXIOS-CLIENT Test", function() {
+
 	this.timeout(1000 * 5);
+
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 
 	before(function() {
 		//
@@ -14,13 +17,13 @@ describe("AXIOS-CLIENT Test", function() {
 	let client = undefined;
 	const tmp = {};
 
-	it("can do create a client", function() {
+	skippable("can do create a client", function() {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		const Client = require(process.env.PROJECT_ROOT + "/src/client/api.js");
 		client = new Client();
 	});
 
-	it("can login", async function() {
+	skippable("can login", async function() {
 		try {
 			const { auth, api } = client;
 			const loginResponse = await auth.login({
@@ -31,7 +34,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can getMany", async function() {
+	skippable("can getMany", async function() {
 		try {
 			const { auth, api } = client;
 			const responseGetManySessions = await api.sessions.getMany({
@@ -52,7 +55,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can getOne", async function() {
+	skippable("can getOne", async function() {
 		try {
 			const { auth, api } = client;
 			const responseGetOneSession = await api.sessions.getOne(tmp.sessionId, {
@@ -67,7 +70,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can postMany", async function() {
+	skippable("can postMany", async function() {
 		try {
 			const { auth, api } = client;
 			const responsePostManySessions = await api.sessions.postMany([{
@@ -89,7 +92,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can postOne", async function() {
+	skippable("can postOne", async function() {
 		try {
 			const { auth, api } = client;
 			const responsePostOneSession = await api.sessions.postOne({
@@ -105,7 +108,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can putMany", async function() {
+	skippable("can putMany", async function() {
 		try {
 			const { auth, api } = client;
 			const responsePutManySessions = await api.sessions.putMany({
@@ -126,7 +129,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can putOne", async function() {
+	skippable("can putOne", async function() {
 		try {
 			const { auth, api } = client;
 			const responsePutOneSession = await api.sessions.putOne(tmp.sessionId, {
@@ -142,7 +145,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can deleteMany", async function() {
+	skippable("can deleteMany", async function() {
 		try {
 			const { auth, api } = client;
 			const responseDeleteManySessions = await api.sessions.deleteMany({
@@ -162,7 +165,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can deleteOne", async function() {
+	skippable("can deleteOne", async function() {
 		try {
 			const { auth, api } = client;
 			const responseGetManySessions = await api.sessions.getMany({
@@ -185,7 +188,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can getFile", async function() {
+	skippable("can getFile", async function() {
 		try {
 			const { auth, api } = client;
 			// const responseDeleteOneSession = await api.sessions.deleteOne();
@@ -194,7 +197,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can setFile", async function() {
+	skippable("can setFile", async function() {
 		try {
 			const { auth, api } = client;
 			// const responseDeleteOneSession = await api.sessions.deleteOne();
@@ -203,7 +206,7 @@ describe("AXIOS-CLIENT Test", function() {
 			throw error;
 		}
 	});
-	it("can logout", async function() {
+	skippable("can logout", async function() {
 		try {
 			const { auth, api } = client;
 			const responseGetLogoutResponse = await auth.logout();

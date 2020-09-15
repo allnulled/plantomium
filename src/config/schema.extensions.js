@@ -44,13 +44,12 @@ module.exports = {
 		},
 		users: {
 			rest: {
-				cascadeDelete: [
-					{
+				cascadeDelete: [{
 						type: "delete",
 						// columnOrigin: "id",
 						table: "combo_user_and_permission",
 						column: "id_user",
-					},//*
+					}, //*
 					{
 						type: "delete",
 						// columnOrigin: "id",

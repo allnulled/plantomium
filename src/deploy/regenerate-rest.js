@@ -43,7 +43,7 @@ module.exports = function(cms) {
 	}).then(output => {
 		////////////////////////
 		cms.rest = {};
-		cms.rest.originalSchema = output;
+		cms.rest.originalSchema = require(outputPath);
 		cms.rest.connection = require(process.env.PROJECT_ROOT + "/src/rest/connection.js");
 		cms.rest.queries = cms.utils.requireTemplatesDirectory(process.env.PROJECT_ROOT + "/src/rest/queries", cms);
 		cms.rest.handlers = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/rest/handlers", cms, ["handler.js"]);

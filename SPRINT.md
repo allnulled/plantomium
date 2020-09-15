@@ -113,27 +113,31 @@
     [✓] src/plugins/service/{vendor}/{plugin}/index.js
     [✓] src/plugins/service/{vendor}/{plugin}/hooks
     [✓] src/plugins/service/{vendor}/{plugin}/...
-  [ ] REST PLURALS
-    [ ] improve tests
-    [ ] of actors:
-      [ ] getMany
-      [ ] postMany
-      [ ] putMany
-      [ ] deleteMany
-  [ ] AXIOS CLIENT
-    [ ] every table with its own
-      [ ] schema
-      [ ] getMany
-      [ ] getOne
-      [ ] postOne
-      [ ] putOne
-      [ ] deleteOne
-    [ ] auth included
+  [✓] REST PLURALS
+    [✓] improve tests
+    [✓] of actors:
+      [✓] getMany
+      [✓] postMany
+      [✓] putMany
+      [✓] deleteMany
+  [✓] AXIOS CLIENT
+    [✓] every table with its own
+      [✓] schema
+      [✓] getMany
+      [✓] getOne
+      [✓] postOne
+      [✓] putOne
+      [✓] deleteOne
+    [✓] auth included
+    [✓] tests
+  [ ] HOOKS
+    [ ] api object
+    [ ] example of 1 hook
+    [ ] test to prove it
   [ ] SEQUELIZE MODELS
     [ ] for every column
       [ ] the best suited type
   [ ] LOAD PLUGINS
-  [ ] HOOKS
   [ ] REQUIRE/EXCLUDE
     [ ] 
     [ ] for every REST operation
