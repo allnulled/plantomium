@@ -1,0 +1,11 @@
+{
+	"rules": [{
+		"on": ["users.full_name"],
+		"require": {
+			"to": ["get", "post", "put", "delete"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}]
+}

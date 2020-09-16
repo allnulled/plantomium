@@ -10,19 +10,30 @@ describe("HOOKS Test", function() {
 
 	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 
-	before(function() {
+	const cleanFiles = function() {
 		try {
 			fs.unlinkSync(process.env.PROJECT_ROOT + "/added.txt");
-		} catch(error) {}
+		} catch (error) {}
+		try {
+			fs.unlinkSync(process.env.PROJECT_ROOT + "/event-one.txt");
+		} catch (error) {}
+		try {
+			fs.unlinkSync(process.env.PROJECT_ROOT + "/event-two.txt");
+		} catch (error) {}
+		try {
+			fs.unlinkSync(process.env.PROJECT_ROOT + "/event-three.txt");
+		} catch (error) {}
+	}
+
+	before(function() {
+		cleanFiles();
 	});
 
 	after(function() {
-		try {
-			fs.unlinkSync(process.env.PROJECT_ROOT + "/added.txt");
-		} catch(error) {}
+		cleanFiles();
 	});
 
-	it("can add, remove and trigger (sorting) hooks", async function() {
+	skippable("can add, remove and trigger (sorting) hooks", async function() {
 		try {
 
 			let value = undefined;
@@ -92,8 +103,22 @@ describe("HOOKS Test", function() {
 		}
 	});
 
-	it("can require a new hooks directory", async function() {
-		// cms.utils.requireHooksDirectory(__dirname + "/support/hooks-directory")
+	skippable("can require a new hooks directory", async function() {
+		try {
+			cms.utils.requireHooksDirectory(__dirname + "/support/hooks-directory");
+			expect(fs.existsSync(process.env.PROJECT_ROOT + "/event-one.txt")).to.equal(false);
+			expect(fs.existsSync(process.env.PROJECT_ROOT + "/event-two.txt")).to.equal(false);
+			expect(fs.existsSync(process.env.PROJECT_ROOT + "/event-three.txt")).to.equal(false);
+			cms.hooks.remove("on-event-three", "On event three hook");
+			await cms.hooks.trigger("on-event-one");
+			await cms.hooks.trigger("on-event-two");
+			await cms.hooks.trigger("on-event-three");
+			expect(fs.existsSync(process.env.PROJECT_ROOT + "/event-one.txt")).to.equal(true);
+			expect(fs.existsSync(process.env.PROJECT_ROOT + "/event-two.txt")).to.equal(true);
+			expect(fs.existsSync(process.env.PROJECT_ROOT + "/event-three.txt")).to.equal(false);
+		} catch (error) {
+			throw error;
+		}
 	});
 
 });

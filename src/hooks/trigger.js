@@ -20,7 +20,7 @@ module.exports = async function(name, parameters) {
 				lastResult = await lastResult;
 			}
 		}
-		return lastResult || parameters.__output__;
+		return lastResult || ((typeof parameters === "object" && "__output__" in parameters) ? parameters.__output__ : undefined);
 	} catch (error) {
 		throw error;
 	}

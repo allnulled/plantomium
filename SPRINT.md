@@ -130,16 +130,14 @@
       [✓] deleteOne
     [✓] auth included
     [✓] tests
-  [ ] HOOKS
-    [ ] api object
-    [ ] example of 1 hook
-    [ ] test to prove it
-  [ ] SEQUELIZE MODELS
-    [ ] for every column
-      [ ] the best suited type
-  [ ] LOAD PLUGINS
+  [✓] HOOKS
+    [✓] api object
+    [✓] example of 1 hook
+    [✓] test to prove it
+  [✓] LOAD PLUGINS
   [ ] REQUIRE/EXCLUDE
-    [ ] 
+    [ ] for every table
+    [ ] for every column
     [ ] for every REST operation
       [ ] schema
       [ ] get
@@ -148,6 +146,7 @@
       [ ] delete
       [ ] get-file
       [ ] set-file
+  [ ] HOOKS & TRACE through all the application
   [ ] MAIL TEMPLATES on:
     [ ] confirmation
     [ ] password changed

@@ -109,8 +109,9 @@ module.exports = function(cms) {
 	}
 
 	cms.utils.requireDirectoryFile = function(directoryPath, filename, arg) {
-		cms.utils.trace("cms.utils.requireDirectoryFile");
+		// cms.utils.trace("cms.utils.requireDirectoryFile");
 		const file = path.resolve(directoryPath, filename);
+		cms.utils.trace("  · " + file.replace(process.env.PROJECT_ROOT, "") + " (as DirectoryFile)");
 		if (!file.endsWith(".js")) {
 			return {
 				staticFile: file
@@ -127,8 +128,9 @@ module.exports = function(cms) {
 	}
 
 	cms.utils.requireDirectory = function(directory, arg, exceptions = []) {
-		cms.utils.trace("cms.utils.requireDirectory");
+		// cms.utils.trace("cms.utils.requireDirectory");
 		const directoryPath = path.resolve(directory);
+		cms.utils.trace("  · " + directoryPath.replace(process.env.PROJECT_ROOT, "") + " (as Directory)");
 		const directoryFiles = fs.readdirSync(directoryPath);
 		let data = {};
 		const indexPosition = directoryFiles.indexOf("index.js");
@@ -157,8 +159,9 @@ module.exports = function(cms) {
 	}
 
 	cms.utils.requireTemplate = function(directory, file, options = {}) {
-		cms.utils.trace("cms.utils.requireTemplate");
+		// cms.utils.trace("cms.utils.requireTemplate");
 		const template = path.resolve(directory, file);
+		cms.utils.trace("  · " + template.replace(process.env.PROJECT_ROOT, "") + " (as Template)");
 		const contents = fs.readFileSync(template).toString();
 		return (parametersBrute = {}, options2 = {}) => {
 			const parameters = cms.utils.createParameters(parametersBrute);
@@ -169,8 +172,9 @@ module.exports = function(cms) {
 	};
 
 	cms.utils.requireTemplatesDirectory = function(directory, options = {}) {
-		cms.utils.trace("cms.utils.requireTemplatesDirectory");
+		// cms.utils.trace("cms.utils.requireTemplatesDirectory");
 		const directoryPath = path.resolve(directory);
+		cms.utils.trace("  · " + directoryPath.replace(process.env.PROJECT_ROOT, "") + " (as TemplatesDirectory)");
 		const directoryFiles = fs.readdirSync(directoryPath);
 		const data = {};
 		for (let index = 0; index < directoryFiles.length; index++) {
@@ -189,10 +193,12 @@ module.exports = function(cms) {
 	}
 
 	cms.utils.requireProcessDirectory = function(directory) {
-		cms.utils.trace("cms.utils.requireHooksDirectory");
-		return service = fs.readdirSync(directory).reduce(function(output, file) {
-			const dirpath = path.resolve(directory, file);
-			const filepath = path.resolve(directory, file, "index.js");
+		// cms.utils.trace("cms.utils.requireHooksDirectory");
+		const directoryPath = path.resolve(directory);
+		cms.utils.trace("  · " + directoryPath.replace(process.env.PROJECT_ROOT, "") + " (as ProcessDirectory)");
+		return service = fs.readdirSync(directoryPath).reduce(function(output, file) {
+			const dirpath = path.resolve(directoryPath, file);
+			const filepath = path.resolve(directoryPath, file, "index.js");
 			const filestat = fs.lstatSync(filepath);
 			if (filestat.isFile()) {
 				output[file] = cms.utils.requireDirectoryFile(dirpath, "index.js", cms);
@@ -201,9 +207,11 @@ module.exports = function(cms) {
 		}, {});
 	};
 
-	cms.utils.requireHooksDirectory = function(directory, hooks = {}) {
-		cms.utils.trace("cms.utils.requireHooksDirectory");
+	cms.utils.requireHooksDirectory = function(directory, appendAsHooksServices = true) {
+		// cms.utils.trace("cms.utils.requireHooksDirectory");
+		const hooks = {};
 		const directoryPath = path.resolve(directory);
+		cms.utils.trace("  · " + directoryPath.replace(process.env.PROJECT_ROOT, "") + " (as HooksDirectory)")
 		const directoryFiles = fs.readdirSync(directoryPath);
 		for (let indexDirectories = 0; indexDirectories < directoryFiles.length; indexDirectories++) {
 			const hookName = directoryFiles[indexDirectories];
@@ -219,10 +227,42 @@ module.exports = function(cms) {
 				hooks[hookName].push(hook);
 			}
 		}
+		if(appendAsHooksServices) {
+			Object.assign(cms.hooks.service, hooks);
+		}
 		return hooks;
 	};
 
+	cms.utils.requirePluginsDirectory = function(directory) {
+		const plugins = {};
+		const pluginsPath = path.resolve(directory);
+		const vendors = fs.readdirSync(pluginsPath);
+		for (let index = 0; index < vendors.length; index++) {
+			const vendor = vendors[index];
+			const vendorPath = path.resolve(pluginsPath, vendor);
+			const pluginNames = fs.readdirSync(vendorPath);
+			for (let index = 0; index < pluginNames.length; index++) {
+				const pluginName = pluginNames[index];
+				const pluginPath = path.resolve(pluginsPath, vendor, pluginName, "plugin.json");
+				const pluginIndexPath = path.resolve(pluginsPath, vendor, pluginName, "index.js");
+				const data = importFresh(pluginPath);
+				const execution = require(pluginIndexPath);
+				const pluginId = vendor + "/" + pluginName;
+				if(pluginId in plugins) {
+					throw new Error("One plugin was already loaded with the same name [ERR:759]");
+				}
+				plugins[pluginId] = {
+					vendor,
+					name: pluginName,
+					plugin: data,
+					execution,
+				};
+			}
+		}
+		return plugins;
+	}
+
 	Object.assign(cms.utils, cms.utils.requireDirectory(__dirname))
-	
+
 	return cms.utils;
 };

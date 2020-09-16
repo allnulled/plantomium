@@ -42,7 +42,6 @@ class BaseProcess {
 			throw new Error("Required <transactionTable> to be a string on <base/process> [ERR:907]");
 		}
 		if (!(this.table in cms.schema.constraints)) {
-			dd(this.table, Object.keys(cms.schema.constraints));
 			throw new Error("Required <table> to be an existing table in schema on <base/process>.\nNote: this error indicates an unsynchronization between code and database structure. To reset the migrations, try the command:\n    ~$ cms reset database && cms run migrations'\n [ERR:908]");
 		}
 		if (!(this.transactionTable in cms.schema.constraints)) {
@@ -76,9 +75,7 @@ class BaseProcess {
 	onQuery(query) {
 		cms.utils.trace("cms.process.*.onQuery");
 		return new Promise(function(ok, fail) {
-			if (cms.schema.general.debugSqlProcess === true) {
-				console.log("\n\n[SQL:PROCESS]____________________________________________\n", query);
-			}
+			cms.utils.debugProcessQuery(query);
 			cms.process.connection.query(query, function(error, data) {
 				if (error) {
 					return fail(error);

@@ -262,11 +262,9 @@ class BaseHandler {
 		cms.utils.trace("rest.handler.onExecuteQuery");
 		return new Promise((ok, fail) => {
 			if(options.history === true) {
-				if(cms.schema.general.debugSqlHistory === true) {
-					console.log("\n\n[SQL:HISTORY]____________________________________________\n", query);
-				}
+				cms.utils.debugHistoryQuery(query);
 			} else if (cms.schema.general.debugSql) {
-				console.log("\n\n[SQL:REST]_______________________________________________\n", query);
+				cms.utils.debugRestQuery(query);
 			}
 			this.actor.connection.query(query, (error, data) => {
 				if (error) {

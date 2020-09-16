@@ -18,9 +18,7 @@
 module.exports = function(query, args, callback = undefined) {
 	return new Promise(function(ok, fail) {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js")
-		if(cms.schema.general.debugSqlAuth) {
-			console.log("\n\n[SQL:AUTH]_______________________________________________\n", query);
-		}
+		cms.utils.debugAuthQuery(query);
 		cms.auth.connection.query(query, args, function(error, result) {
 			if(error) {
 				fail(error);

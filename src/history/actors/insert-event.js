@@ -8,9 +8,7 @@ module.exports = function(data, options = {}) {
 			if(error) {
 				return fail(error);
 			}
-			if(cms.schema.general.debugSqlHistory === true) {
-				console.log("\n\n[SQL:HISTORY]____________________________________________\n", query);
-			}
+			cms.utils.debugHistoryQuery(query);
 			cms.history.connection.query(query, function(error, output) {
 				if(error) {
 					return fail(error);

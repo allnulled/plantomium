@@ -3520,7 +3520,61 @@ module.exports = {
         optionsList: null,
         maxTextLength: 400,
         database: 'plants_bd',
-        archetype: 'varchar(400)'
+        archetype: 'varchar(400)',
+        auth: {
+          onGet: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPost: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPut: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onDelete: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          }
+        }
       },
       profile_picture: {
         order: 8,
@@ -4265,9 +4319,13 @@ module.exports = {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
     debugSql: true,
+    debugSqlRestSplitter: '\n[SQL:REST]',
     debugSqlHistory: true,
+    debugSqlHistorySplitter: '\n[SQL:HISTORY]',
     debugSqlAuth: true,
+    debugSqlAuthSplitter: '\n[SQL:AUTH]',
     debugSqlProcess: true,
+    debugSqlProcessSplitter: '\n[SQL:PROCESS]',
     debugErrors: true,
     debugTraces: true,
     maxSessionsPerUser: 10,

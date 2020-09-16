@@ -1,10 +1,10 @@
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 
-cms.utils.trace("loading cms.markets...");
+cms.utils.trace("[MARKETS...]");
 cms.markets = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/markets");
-cms.utils.trace("loading cms.plugins...");
+cms.utils.trace("[PLUGINS...]");
 cms.plugins = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/plugins");
-cms.utils.trace("loading cms.hooks...");
+cms.utils.trace("[HOOKS...]");
 cms.hooks = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/hooks");
-cms.utils.trace("loading cms.deploy...");
+cms.utils.trace("[DEPLOY...]");
 cms.deploy = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/deploy");

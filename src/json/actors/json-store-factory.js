@@ -65,14 +65,15 @@ const deleter = (data, selectorP, value) => {
 const JSONStoreFactory = function(store = __dirname + "/store.json", settings = {}, extensions = {}) {
     const fs = require("fs");
     const path = require("path");
-    this.store = path.resolve(store);
-    this.settings = Object.assign(DEFAULT_SETTINGS, settings);
-    this.loadSync = () => {
-        return JSON.parse(fs.readFileSync(this.store).toString());
+    const _ = {};
+    _.store = path.resolve(store);
+    _.settings = Object.assign(DEFAULT_SETTINGS, settings);
+    _.loadSync = () => {
+        return JSON.parse(fs.readFileSync(_.store).toString());
     };
-    this.load = () => {
+    _.load = () => {
         return new Promise((ok, fail) => {
-            return fs.readFile(this.store, "utf8", (error, contents) => {
+            return fs.readFile(_.store, "utf8", (error, contents) => {
                 if (error) {
                     return fail(error);
                 }
@@ -84,65 +85,65 @@ const JSONStoreFactory = function(store = __dirname + "/store.json", settings = 
             });
         });
     };
-    this.saveSync = (data = undefined) => {
-        if (this.settings.beautify) {
-            fs.writeFileSync(this.store, JSON.stringify(data, null, 2), "utf8");
+    _.saveSync = (data = undefined) => {
+        if (_.settings.beautify) {
+            fs.writeFileSync(_.store, JSON.stringify(data, null, 2), "utf8");
         } else {
-            fs.writeFileSync(this.store, JSON.stringify(data), "utf8");
+            fs.writeFileSync(_.store, JSON.stringify(data), "utf8");
         }
-        return this;
+        return _;
     };
-    this.save = (data) => {
+    _.save = (data) => {
         return new Promise((ok, fail) => {
             try {
                 let contents = undefined;
-                if (this.settings.beautify) {
+                if (_.settings.beautify) {
                     contents = JSON.stringify(data, null, 2);
                 } else {
                     contents = JSON.stringify(data);
                 }
-                return fs.writeFile(this.store, contents, "utf8", (error, contents) => {
+                return fs.writeFile(_.store, contents, "utf8", (error, contents) => {
                     if (error) {
                         return fail(error);
                     }
-                    return ok(this);
+                    return ok(_);
                 });
             } catch (error) {
                 return fail(error);
             }
         });
     };
-    this.deleteSync = (selector = undefined) => {
+    _.deleteSync = (selector = undefined) => {
         if (typeof selector === "undefined") {
-            fs.unlinkSync(this.store);
-            return this;
+            fs.unlinkSync(_.store);
+            return _;
         } else {
-            const contents = fs.readFileSync(this.store).toString();
+            const contents = fs.readFileSync(_.store).toString();
             const data = JSON.parse(contents);
             const dataTransformed = deleter(data, selector);
-            if (this.settings.beautify) {
+            if (_.settings.beautify) {
                 const contentsTransformed = JSON.stringify(dataTransformed, null, 4);
-                fs.writeFileSync(this.store, contentsTransformed, "utf8");
+                fs.writeFileSync(_.store, contentsTransformed, "utf8");
             } else {
                 const contentsTransformed = JSON.stringify(dataTransformed);
-                fs.writeFileSync(this.store, contentsTransformed, "utf8");
+                fs.writeFileSync(_.store, contentsTransformed, "utf8");
             }
             return dataTransformed;
         }
     };
-    this.delete = (selector = undefined) => {
+    _.delete = (selector = undefined) => {
         if (typeof selector === "undefined") {
             return new Promise((ok, fail) => {
-                return fs.unlink(this.store, error => {
+                return fs.unlink(_.store, error => {
                     if (error) {
                         return fail(error);
                     }
-                    return ok(this);
+                    return ok(_);
                 });
             });
         } else {
             return new Promise((ok, fail) => {
-                const contents = fs.readFile(this.store, "utf8", (error, contents) => {
+                const contents = fs.readFile(_.store, "utf8", (error, contents) => {
                     if (error) {
                         return fail(error);
                     }
@@ -150,12 +151,12 @@ const JSONStoreFactory = function(store = __dirname + "/store.json", settings = 
                         const data = JSON.parse(contents);
                         const dataTransformed = deleter(data, selector);
                         let contentsTransformed = undefined;
-                        if (this.settings.beautify) {
+                        if (_.settings.beautify) {
                             contentsTransformed = JSON.stringify(dataTransformed, null, 4);
                         } else {
                             contentsTransformed = JSON.stringify(dataTransformed);
                         }
-                        fs.writeFile(this.store, contentsTransformed, "utf8", (error) => {
+                        fs.writeFile(_.store, contentsTransformed, "utf8", (error) => {
                             if (error) {
                                 return fail(error);
                             }
@@ -168,13 +169,13 @@ const JSONStoreFactory = function(store = __dirname + "/store.json", settings = 
             });
         }
     };
-    this.getSync = (selector, defaultValue = undefined) => {
-        const data = JSON.parse(fs.readFileSync(this.store).toString());
+    _.getSync = (selector, defaultValue = undefined) => {
+        const data = JSON.parse(fs.readFileSync(_.store).toString());
         return getter(data, selector, defaultValue);
     };
-    this.get = (selector, defaultValue = undefined) => {
+    _.get = (selector, defaultValue = undefined) => {
         return new Promise((ok, fail) => {
-            return fs.readFile(this.store, "utf8", (error, contents) => {
+            return fs.readFile(_.store, "utf8", (error, contents) => {
                 if (error) {
                     return fail(error);
                 }
@@ -188,22 +189,22 @@ const JSONStoreFactory = function(store = __dirname + "/store.json", settings = 
             });
         });
     };
-    this.setSync = (selector, value, force = false) => {
-        const contents = fs.readFileSync(this.store).toString();
+    _.setSync = (selector, value, force = false) => {
+        const contents = fs.readFileSync(_.store).toString();
         const data = JSON.parse(contents);
         const dataTransformed = setter(data, selector, value, force);
-        if (this.settings.beautify) {
+        if (_.settings.beautify) {
             const contentsTransformed = JSON.stringify(dataTransformed, null, 4);
-            fs.writeFileSync(this.store, contentsTransformed, "utf8");
+            fs.writeFileSync(_.store, contentsTransformed, "utf8");
         } else {
             const contentsTransformed = JSON.stringify(dataTransformed);
-            fs.writeFileSync(this.store, contentsTransformed, "utf8");
+            fs.writeFileSync(_.store, contentsTransformed, "utf8");
         }
         return dataTransformed;
     };
-    this.set = (selector, value, force = false) => {
+    _.set = (selector, value, force = false) => {
         return new Promise((ok, fail) => {
-            const contents = fs.readFile(this.store, "utf8", (error, contents) => {
+            const contents = fs.readFile(_.store, "utf8", (error, contents) => {
                 if (error) {
                     return fail(error);
                 }
@@ -211,12 +212,12 @@ const JSONStoreFactory = function(store = __dirname + "/store.json", settings = 
                     const data = JSON.parse(contents);
                     const dataTransformed = setter(data, selector, value, force);
                     let contentsTransformed = undefined;
-                    if (this.settings.beautify) {
+                    if (_.settings.beautify) {
                         contentsTransformed = JSON.stringify(dataTransformed, null, 4);
                     } else {
                         contentsTransformed = JSON.stringify(dataTransformed);
                     }
-                    fs.writeFile(this.store, contentsTransformed, "utf8", (error) => {
+                    fs.writeFile(_.store, contentsTransformed, "utf8", (error) => {
                         if (error) {
                             return fail(error);
                         }
@@ -228,8 +229,8 @@ const JSONStoreFactory = function(store = __dirname + "/store.json", settings = 
             });
         });
     };
-    Object.assign(this, extensions);
-    return this;
+    Object.assign(_, extensions);
+    return _;
 };
 Object.assign(JSONStoreFactory, {
     getter,
