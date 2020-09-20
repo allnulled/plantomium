@@ -21,13 +21,13 @@ module.exports = function(options = {}) {
 	return async function(request, response, next) {
 		try {
 			cms.utils.trace("cms.auth.middlewares.authenticate");
-			if(request.fw.data.auth) {
+			if(request.fw.auth) {
 				return next();
 			}
 			let session_token = cms.utils.formatBearerToken(request.headers.authorization, null);
 			const data = await cms.auth.actors.authenticate({ session_token });
-			request.fw.data.auth = data;
-			request.fw.data.authToken = session_token;
+			request.fw.auth = data;
+			request.fw.authToken = session_token;
 			return next();
 		} catch (error) {
 			if(options.redirectTo) {

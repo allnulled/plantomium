@@ -39,7 +39,7 @@ class GetManyBaseHandler extends BaseHandler {
 				limit: parameters.request.query.limit || 20,
 				offset: parameters.request.query.offset || 0,
 				order: parameters.request.query.order,
-				page: parameters.request.query.page || 1,
+				page: parameters.request.query.page || 1
 			}
 		} else {
 			parameters.input = {

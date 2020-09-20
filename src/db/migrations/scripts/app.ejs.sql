@@ -3,7 +3,12 @@ create table plant (
   name varchar(200) not null,
   name_scientific varchar(200) unique,
   name_popular text,
-  description text
+  description text,
+  field_1 int,
+  field_2 int,
+  field_3 int,
+  field_4 int,
+  field_5 int
 );
 create table specimen (
   id integer primary key auto_increment,

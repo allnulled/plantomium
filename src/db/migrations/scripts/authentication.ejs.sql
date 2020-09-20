@@ -20,12 +20,14 @@ create table users (
 
 create table groups (
   id integer primary key auto_increment,
-  name varchar(200) unique
+  name varchar(200) unique,
+  description varchar(500) default null
 );
 
 create table permissions (
   id integer primary key auto_increment,
-  name varchar(200) unique
+  name varchar(200) unique,
+  description varchar(500) default null
 );
 
 create table sessions (

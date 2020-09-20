@@ -26,7 +26,7 @@ const {
   sort = undefined,
   page = 1,
 } = parameters.input;
-const fieldsFinal = cms.utils.toSelectFieldsSql(fields, actorClass.Table);
+const fieldsFinal = cms.utils.toSelectFieldsSql(0, fields, actorClass.Table);
 const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
 const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
 const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);

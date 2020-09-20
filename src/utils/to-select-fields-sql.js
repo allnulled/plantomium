@@ -1,5 +1,4 @@
 const sqlString = require("sqlstring");
-
 /**
  * 
  * ----
@@ -11,18 +10,103 @@ const sqlString = require("sqlstring");
  * @has 
  * @uses 
  * @modifies 
- * @receives 
+ * @parameters 
+ * @parameters  - `fieldsParam?:Array|String` - campos concretos a seleccionar.
+ * @parameters Cuando es `undefined`, los campos serán automáticamente recogidos del `cms.schema`.
+ * @parameters Es
+ * @parameters  - `tablesParam:Array<String>` - tablas concretas a seleccionar.
  * @returns 
  * @throws 
  * @description 
  * 
  */
-module.exports = function(selectFieldsParam = undefined, tablesParam = [], enableJoins = true, enableTable = true) {
+module.exports = function(authenticationParam, fieldsParam = undefined, tablesParam = [], enableJoins = true, enableTable = true, operation = undefined) {
+	let sql = "";
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	let fields = cms.utils.formatFieldsParameters(fieldsParam);
+	const tables = cms.utils.formatTablesParameters(tablesParam);
+	const authentication = cms.utils.formatAuthenticationParameter(authenticationParam);
+	let hasFields = fields.length !== 0;
+	const hasTables = tables.length !== 0;
+	// CheckFieldsAndTables:
+	if((!hasFields) && (!hasTables)) {
+		throw new Error("Required <fields> or <tables> to have some item(s) on <toSelectFieldsSql> [ERR:829]");
+	}
+	// PassTablesToFields:
+	if((!hasFields) && hasTables) {
+		IteratingTables:
+		for(let index=0; index < tables.length; index++) {
+			const tableName = tables[index];
+			if(!(tableName in cms.schema.columns)) {
+				throw new Error("Required <tableName> to exist as table in schema on <toSelectFieldsSql> [ERR:209]");
+			}
+			if(enableTable) {
+				const tableData = cms.schema.columns[tableName];
+				const columns = Object.keys(tableData);
+				// IteratingColumns:
+				for(let index=0; index < columns.length; index++) {
+					const columnName = columns[index];
+					const column = tableData[columnName];
+					fields.push(`${tableName}.${columnName}`);
+				}
+			}
+			// AttachJoinsFields:
+			if(enableJoins !== true) {
+				continue IteratingTables;
+			}
+			const joins = cms.utils.getSchemaJoinedTables(tableName);
+			const joinTables = Object.keys(joins);
+			// IteratingJoinTables:
+			for(let indexJoins=0; indexJoins < joinTables.length; indexJoins++) {
+				const joinTable = joinTables[indexJoins];
+				const joinColumns = Object.keys(cms.schema.columns[joinTable]);
+				// IteratingJoinColumns:
+				for(let indexJoinColumns=0; indexJoinColumns < joinColumns.length; indexJoinColumns++) {
+					const joinColumn = joinColumns[indexJoinColumns];
+					const joinField = joinTable + "." + joinColumn;
+					if(fields.indexOf(joinField) === -1) {
+						fields.push(joinField);
+					}
+				}
+			}
+		}
+		hasFields = fields.length;
+	}
+	CheckFields:
+	if(!hasFields) {
+		throw new Error("Required <fields> to have some item on <toSelectFieldsSql> [ERR:647]");
+	}
+	IncludeFields:
+	for(let index=0; index < fields.length; index++) {
+		const field = fields[index];
+		if(typeof field !== "string") {
+			throw new Error("Required <fields.*> to be strings on <toSelectFieldsSql> [ERR:481]");
+		}
+		const parts = field.split(".");
+		const tableName = parts.length === 1 ? (tables.length !== 0 ? tables[0] : undefined) : parts[0];
+		const columnName = parts.length === 1 ? parts[0] : parts[1];
+		const commaSeparation = index !== 0 ? ",\n  " : "  ";
+		const fieldSql = `${tableName}.${columnName}`;
+		const asSql = tableName ? ` AS ${sqlString.escape(fieldSql)}` : "";
+		const hasPermission = cms.utils.checkRestPermissionsTo(authentication, operation, tableName, columnName);
+		if(hasPermission) {
+			sql += commaSeparation + sqlString.escapeId(fieldSql) + asSql;
+		}
+	}
+	if(sql === "") {
+		throw new Error("Required query to have at least 1 field on <toSelectFieldsSql> [ERR:336]");
+	}
+	return sql;
+}
+	//////////////////////////////////////////////////////////
+
+
+	/*
 	let sql = "";
 	let isStarted = false;
-	let selectFields = selectFieldsParam;
+	let selectFields = fieldsParam;
 	if(typeof selectFields === "string") {
-		selectFields = JSON.parse(selectFieldsParam);
+		selectFields = JSON.parse(fieldsParam);
 	}
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 	const tables = Array.isArray(tablesParam) ? tablesParam : (typeof tablesParam === "string" ) ? [tablesParam] : null;
@@ -115,4 +199,4 @@ module.exports = function(selectFieldsParam = undefined, tablesParam = [], enabl
 		sql = "*";
 	}
 	return sql;
-}
+	//*/

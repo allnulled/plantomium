@@ -266,7 +266,7 @@ module.exports = function(cms) {
 		removeColumn(table, column, vschema);
 	});
 
-	const authorizationRules = require(process.env.PROJECT_ROOT + "/src/json/data/authorization.json");
+	const authorizationRules = require(process.env.PROJECT_ROOT + "/src/config/authorization.json");
 	addAuthorizationRules(vschema, authorizationRules);
 
 	cms.virtualSchema = vschema;

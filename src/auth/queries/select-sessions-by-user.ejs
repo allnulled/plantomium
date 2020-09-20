@@ -19,7 +19,7 @@
 
 const { id_user, sessionFields } = {
   id_user: sqlString.escape(parameters.id_user),
-  sessionFields: cms.utils.toSelectFieldsSql(cms.originalSchema.constraints.sessions.attributes, "sessions"),
+  sessionFields: cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.sessions.attributes, "sessions"),
 };
   
 %>

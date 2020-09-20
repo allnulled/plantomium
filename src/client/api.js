@@ -1726,6 +1726,21 @@
         "unique": true,
         "optionsList": null,
         "maxTextLength": 200
+      },
+      "description": {
+        "type": "text",
+        "typeTerm": "varchar",
+        "subtype": "varchar",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": null,
+        "unsigned": null,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": 500
       }
     },
     "relations": []
@@ -2213,6 +2228,21 @@
         "unique": true,
         "optionsList": null,
         "maxTextLength": 200
+      },
+      "description": {
+        "type": "text",
+        "typeTerm": "varchar",
+        "subtype": "varchar",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": null,
+        "unsigned": null,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": 500
       }
     },
     "relations": []
@@ -2297,6 +2327,81 @@
         "unique": false,
         "optionsList": null,
         "maxTextLength": 65535
+      },
+      "field_1": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "field_2": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "field_3": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "field_4": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "field_5": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
       }
     },
     "relations": []

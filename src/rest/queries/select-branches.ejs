@@ -38,7 +38,7 @@ const {
   sort = undefined,
   page = 1,
 } = parameters.input;
-const fieldsFinal = cms.utils.toSelectFieldsSql(undefined, table, false);
+const fieldsFinal = cms.utils.toSelectFieldsSql(0, undefined, table, false);
 const pathColumn2 = actorClass.Table + "." + pathColumn;
 const item = cms.utils.dataGetter(parameters, ["results", "0", "0"], null);
 const itemPath = item[pathColumn2];

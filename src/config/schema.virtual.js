@@ -2141,6 +2141,84 @@ module.exports = {
         maxTextLength: 200,
         database: 'plants_bd',
         archetype: 'varchar(200)'
+      },
+      description: {
+        order: 3,
+        model: 'Groups',
+        table: 'groups',
+        column: 'description',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 500,
+        database: 'plants_bd',
+        archetype: 'varchar(500)',
+        auth: {
+          onGet: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPost: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPut: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onDelete: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          }
+        }
       }
     },
     history_data: {
@@ -2888,6 +2966,30 @@ module.exports = {
         maxTextLength: 200,
         database: 'plants_bd',
         archetype: 'varchar(200)'
+      },
+      description: {
+        order: 3,
+        model: 'Permissions',
+        table: 'permissions',
+        column: 'description',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 500,
+        database: 'plants_bd',
+        archetype: 'varchar(500)'
       }
     },
     plant: {
@@ -3047,6 +3149,126 @@ module.exports = {
         maxTextLength: 65535,
         database: 'plants_bd',
         archetype: 'text'
+      },
+      field_1: {
+        order: 6,
+        model: 'Plant',
+        table: 'plant',
+        column: 'field_1',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      field_2: {
+        order: 7,
+        model: 'Plant',
+        table: 'plant',
+        column: 'field_2',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      field_3: {
+        order: 8,
+        model: 'Plant',
+        table: 'plant',
+        column: 'field_3',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      field_4: {
+        order: 9,
+        model: 'Plant',
+        table: 'plant',
+        column: 'field_4',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      field_5: {
+        order: 10,
+        model: 'Plant',
+        table: 'plant',
+        column: 'field_5',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
       }
     },
     sessions: {
@@ -3520,61 +3742,7 @@ module.exports = {
         optionsList: null,
         maxTextLength: 400,
         database: 'plants_bd',
-        archetype: 'varchar(400)',
-        auth: {
-          onGet: {
-            require: {
-              permissions: [
-                'to administrate'
-              ],
-              groups: [
-                'administration'
-              ],
-              users: [
-                'administrator'
-              ]
-            }
-          },
-          onPost: {
-            require: {
-              permissions: [
-                'to administrate'
-              ],
-              groups: [
-                'administration'
-              ],
-              users: [
-                'administrator'
-              ]
-            }
-          },
-          onPut: {
-            require: {
-              permissions: [
-                'to administrate'
-              ],
-              groups: [
-                'administration'
-              ],
-              users: [
-                'administrator'
-              ]
-            }
-          },
-          onDelete: {
-            require: {
-              permissions: [
-                'to administrate'
-              ],
-              groups: [
-                'administration'
-              ],
-              users: [
-                'administrator'
-              ]
-            }
-          }
-        }
+        archetype: 'varchar(400)'
       },
       profile_picture: {
         order: 8,
@@ -4073,7 +4241,8 @@ module.exports = {
       table: 'groups',
       attributes: [
         'id',
-        'name'
+        'name',
+        'description'
       ],
       primaryKeys: [
         'id'
@@ -4180,7 +4349,8 @@ module.exports = {
       table: 'permissions',
       attributes: [
         'id',
-        'name'
+        'name',
+        'description'
       ],
       primaryKeys: [
         'id'
@@ -4208,7 +4378,12 @@ module.exports = {
         'name',
         'name_scientific',
         'name_popular',
-        'description'
+        'description',
+        'field_1',
+        'field_2',
+        'field_3',
+        'field_4',
+        'field_5'
       ],
       primaryKeys: [
         'id'

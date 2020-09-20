@@ -93,6 +93,7 @@ class BaseProcess {
 			try {
 				const hasId = routeData.routes.join("").indexOf("/:id") !== -1;
 				if (hasId) {
+					const authorization = cms.utils.getAuthentication(request, 0);
 					const processId = parseInt(request.params.id);
 					const processData = await this.selectProcess(processId);
 					if ((!Array.isArray(processData)) || (processData.length === 0)) {

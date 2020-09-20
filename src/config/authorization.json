@@ -1,6 +1,6 @@
 {
 	"rules": [{
-		"on": ["users.full_name"],
+		"on": ["groups.description"],
 		"require": {
 			"to": ["get", "post", "put", "delete"],
 			"permissions": ["to administrate"],

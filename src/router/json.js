@@ -12,20 +12,20 @@ module.exports = function(cms, router) {
 	// SERVER:
 	cms.json.controllers.jsonStore.create({
 		path: "/json/v1/server",
-		store: process.env.PROJECT_ROOT + "/src/json/data/server.json"
+		store: process.env.PROJECT_ROOT + "/src/config/server.json"
 	}).mountToRouter(router);
 
 	////////////////////////////////////////
 	// UI:
 	cms.json.controllers.jsonStore.create({
 		path: "/json/v1/ui",
-		store: process.env.PROJECT_ROOT + "/src/json/data/ui.json"
+		store: process.env.PROJECT_ROOT + "/src/config/ui.json"
 	}).mountToRouter(router);
 
 	////////////////////////////////////////
 	// AUTHORIZATION:
 	cms.json.controllers.jsonStore.create({
 		path: "/json/v1/authorization",
-		store: process.env.PROJECT_ROOT + "/src/json/data/authorization.json"
+		store: process.env.PROJECT_ROOT + "/src/config/authorization.json"
 	}).mountToRouter(router);
 }
