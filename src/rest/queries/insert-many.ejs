@@ -25,7 +25,8 @@ if(data.length === 0) {
 if(typeof data[0] !== "object") {
   throw new Error("Required <data.*> to be objects on <insert-many.ejs> [ERR:883]");
 }
-const fieldsList = Object.keys(data[0]);
+const authentication = cms.utils.getAuthentication(parameters.request);
+const fieldsList = Object.keys(data[0]).filter(column => cms.utils.checkRestPermissionsTo(authentication, "post", actorClass.Table, column));
 const fields = cms.utils.toInsertFieldsSql(fieldsList);
 const values = data.map(item => {
   if(typeof item !== "object") {

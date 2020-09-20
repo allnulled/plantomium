@@ -17,7 +17,8 @@
  * 
  */
 const table = sqlString.escapeId(actorClass.Table);
-const columnKeys = Object.keys(actorClass.Schema.columns);
+const authentication = cms.utils.getAuthentication(parameters.request);
+const columnKeys = Object.keys(parameters.input.data).filter(column => cms.utils.checkRestPermissionsTo(authentication, "post", actorClass.Table, column));
 const fields = columnKeys.map(ck => sqlString.escapeId(ck));
 const values = [];
 

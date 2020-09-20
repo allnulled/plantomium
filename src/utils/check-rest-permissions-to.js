@@ -67,6 +67,7 @@ module.exports = function(authentication = undefined, operationP, table, column)
 		throw new Error("Required <table> to be something on <checkRestPermissionsTo> [ERR:877]");
 	} else if(column && table) {
 		if(!(table in cms.schema.columns)) {
+			throw table;
 			throw new Error("Required <table> to exist in schema on <checkRestPermissionsTo> [ERR:1781]");
 		}
 		if(!(column in cms.schema.columns[table])) {

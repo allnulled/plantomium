@@ -3244,7 +3244,35 @@ module.exports = {
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
-        archetype: 'int(11)'
+        archetype: 'int(11)',
+        auth: {
+          onPost: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPut: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          }
+        }
       },
       field_5: {
         order: 10,
@@ -3268,7 +3296,35 @@ module.exports = {
         optionsList: null,
         maxTextLength: null,
         database: 'plants_bd',
-        archetype: 'int(11)'
+        archetype: 'int(11)',
+        auth: {
+          onPost: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPut: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          }
+        }
       }
     },
     sessions: {

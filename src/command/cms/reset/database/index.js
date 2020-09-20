@@ -20,7 +20,8 @@ module.exports = new Promise(function(ok, fail) {
 		console.log(" [✓] Database deleted successfuly.")
 		connection.query("CREATE DATABASE " + process.env.REST_DB_NAME + ";", function(error) {
 			if(error) return fail(error);
-			console.log(" [✓] Database restarted freshly successfuly.")
+			console.log(" [✓] Database created successfuly.");
+			require(process.env.PROJECT_ROOT + "/src/command/cms/run/migrations/index.js");
 			connection.end(ok);
 		});
 	});
