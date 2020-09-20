@@ -16,8 +16,9 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(selectWhereParam, prependAnd = false, tablename = false, applyConstraints = true) {
+module.exports = function(authenticationParam, selectWhereParam, prependAnd = false, tablename = false, applyConstraints = true) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	const authentication = cms.utils.formatAuthenticationParameter(authenticationParam);
 	let sql = prependAnd === true ? " AND " : "";
 	// 0. Do validations
 	if(typeof selectWhereParam === "undefined") {
@@ -32,7 +33,7 @@ module.exports = function(selectWhereParam, prependAnd = false, tablename = fals
 	if(!Array.isArray(selectWhereParam)) {
 		throw new Error("Every <selectWhere> expression must be an array [ERR:001]");
 	}
-	// 1. Check the "rest.where" property and add corresponding data:
+	// 1. Check the "rest.where" property of vschema and add corresponding data:
 	let selectWhere = [];
 	let hasWhereExtensions = false;
 	if((typeof tablename === "string") && (applyConstraints === true)) {
@@ -76,11 +77,20 @@ module.exports = function(selectWhereParam, prependAnd = false, tablename = fals
 		// @TODO: ALLOW IN+!IN OPERATIONS WITH ARRAYS AS 3RD ARGUMENT
 		// @TODO: ALLOW PROP2PROP OPERATION WITH ARRAYS OF 2 ITEMS AS 3RD ARGUMENT
 		const op = cms.utils.operationTranslations[opSymbol];
-		if(index !== 0) {
-			sql += "\n  AND";
-		}
 		const op2Escaped = (["IN", "NOTIN"].indexOf(op) !== -1) ? ("(" + sqlString.escape(op2) + ")") : sqlString.escape(op2);
-		sql += ` ${sqlString.escapeId(op1)} ${op} ${op2Escaped}`;
+		let isEnabled = false;
+		if(authentication) {
+			const { table, column } = cms.utils.formatTableColumn(op1, [tablename]);
+			isEnabled = cms.utils.checkRestPermissionsTo(authentication, "get", table, column);
+		} else {
+			isEnabled = true;
+		}
+		if(isEnabled) {
+			if(index !== 0) {
+				sql += "\n  AND";
+			}
+			sql += ` ${sqlString.escapeId(op1)} ${op} ${op2Escaped}`;
+		}
 	}
 	// 4. Return sql code
 	return sql;

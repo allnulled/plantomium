@@ -34,7 +34,7 @@ if(results.length === 0) {
 }
 const ids = [].concat(results || []).map(item => item[actorClass.Table + ".id"]);
 const fieldsFinal = cms.utils.toSelectFieldsSql(0, [], actorClass.Table, true, false);
-const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
+const whereFinal = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
 const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 %>
 # select attachments:

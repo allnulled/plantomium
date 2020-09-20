@@ -159,14 +159,11 @@ module.exports = function(cms) {
 				vschema.columns[table][column].auth[operationProperty].require[aspect].push(id);
 			}
 		} else {
-			if(!(table in vschema.columns)) {
+			if(!(table in vschema.constraints)) {
 				throw new Error("Bad authorization rule: missing table <" + table + "> [ERR:C890]");
 			}
-			if(!(column in vschema.columns[table])) {
-				throw new Error("Bad authorization rule: missing column <" + column + "> in table <" + table + "> [ERR:C891]");
-			}
-			if(typeof vschema.columns[table][column].auth !== "object") {
-				vschema.constraints[table].auth = {};
+			if(typeof vschema.constraints[table].auth !== "object") {
+				vschema.constraints[table].auth = {}
 			}
 			if(typeof vschema.constraints[table].auth[operationProperty] !== "object") {
 				vschema.constraints[table].auth[operationProperty] = {}

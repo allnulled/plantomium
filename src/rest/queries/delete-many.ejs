@@ -21,7 +21,7 @@ const table = sqlString.escapeId(actorClass.Table);
 const {
   where = [],
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
+const whereFinal = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
 if(whereFinal === "") {
 	throw new Error("Required <where> to have at least 1 filter on <deleteMany> [ERR:690]")
 }

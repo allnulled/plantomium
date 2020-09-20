@@ -17,7 +17,7 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(updateValues = {}) {
+module.exports = function(authorization, updateValues = {}) {
 	let sql = "";
 	// @TODO:
 	const keys = Object.keys(updateValues);

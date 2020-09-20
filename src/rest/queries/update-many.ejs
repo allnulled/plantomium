@@ -22,8 +22,8 @@ const {
   where,
   data
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
-const dataFinal = cms.utils.toUpdateValuesSql(data);
+const whereFinal = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
+const dataFinal = cms.utils.toUpdateValuesSql(0, data);
 if(dataFinal.length === 0) {
 	throw new Error("Required at least 1 item in <data> on <cms.rest.queries.updateMany> [ERR:640]");
 }

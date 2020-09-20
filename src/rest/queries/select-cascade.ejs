@@ -15,7 +15,7 @@ for(let index=0; index < cascadeDeletes.length; index++) {
 	}
 	const tableEscaped = sqlString.escapeId(table);
 	const fields = cms.utils.toSelectFieldsSql(0, undefined, actorClass.Table, false);
-	const where = cms.utils.toSelectWhereSql(where, false, actorClass.Table, true);
+	const where = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
 %>
 # select many:
 SELECT

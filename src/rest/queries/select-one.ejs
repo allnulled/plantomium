@@ -28,7 +28,7 @@ const {
 } = parameters.input;
 const auth = cms.utils.getAuthentication(parameters.request);
 const fieldsFinal = cms.utils.toSelectFieldsSql(auth, fields, actorClass.Table, false, true, "get");
-const whereFinal = cms.utils.toSelectWhereSql([[actorClass.Table + ".id","=",id]], false, actorClass.Table);
+const whereFinal = cms.utils.toSelectWhereSql(0, [[actorClass.Table + ".id","=",id]], false, actorClass.Table);
 //const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
 const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 const limitFinal = cms.utils.toSelectLimitSql(limit);

@@ -2204,19 +2204,6 @@ module.exports = {
                 'administrator'
               ]
             }
-          },
-          onDelete: {
-            require: {
-              permissions: [
-                'to administrate'
-              ],
-              groups: [
-                'administration'
-              ],
-              users: [
-                'administrator'
-              ]
-            }
           }
         }
       }
@@ -3246,6 +3233,19 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'int(11)',
         auth: {
+          onGet: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
           onPost: {
             require: {
               permissions: [
@@ -3298,6 +3298,19 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'int(11)',
         auth: {
+          onGet: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
           onPost: {
             require: {
               permissions: [
@@ -4319,6 +4332,21 @@ module.exports = {
             'combo_group_and_permission.id_permission'
           ]
         ]
+      },
+      auth: {
+        onDelete: {
+          require: {
+            permissions: [
+              'to administrate'
+            ],
+            groups: [
+              'administration'
+            ],
+            users: [
+              'administrator'
+            ]
+          }
+        }
       }
     },
     history_data: {
