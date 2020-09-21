@@ -17,8 +17,8 @@
  * 
  */
 
-const fields = cms.utils.toInsertFieldsSql(Object.keys(parameters));
-const values = cms.utils.toInsertValuesSql(Object.values(parameters));
+const fields = cms.utils.toInsertFieldsSql(0, Object.keys(parameters));
+const values = cms.utils.toInsertValuesSql(0, Object.values(parameters));
 %>
 INSERT INTO sessions (<%-fields%>
 ) VALUES (<%-values%>

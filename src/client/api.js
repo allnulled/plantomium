@@ -2406,6 +2406,67 @@
     },
     "relations": []
   },
+  "PlantDetails": {
+    "table": "plant_details",
+    "endpoint": "/plant-details",
+    "camel": "plantDetails",
+    "capital": "PlantDetails",
+    "attributes": {
+      "id": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": "auto_increment",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": true,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "id_plant": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": true,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "description": {
+        "type": "text",
+        "typeTerm": "text",
+        "subtype": "text",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": null,
+        "unsigned": null,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": 65535
+      }
+    },
+    "relations": [
+      {
+        "constraint": "plant_details_ibfk_1",
+        "column": "id_plant",
+        "referencedTable": "plant",
+        "referencedColumn": "id"
+      }
+    ]
+  },
   "Sessions": {
     "table": "sessions",
     "endpoint": "/sessions",
@@ -2441,6 +2502,36 @@
         "unique": false,
         "optionsList": null,
         "maxTextLength": null
+      },
+      "session_token": {
+        "type": "text",
+        "typeTerm": "varchar",
+        "subtype": "varchar",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": null,
+        "unsigned": null,
+        "foreignKey": false,
+        "unique": true,
+        "optionsList": null,
+        "maxTextLength": 200
+      },
+      "refresh_token": {
+        "type": "text",
+        "typeTerm": "varchar",
+        "subtype": "varchar",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": null,
+        "unsigned": null,
+        "foreignKey": false,
+        "unique": true,
+        "optionsList": null,
+        "maxTextLength": 200
       }
     },
     "relations": [
@@ -2565,6 +2656,114 @@
         "maxTextLength": 1000
       },
       "description": {
+        "type": "text",
+        "typeTerm": "text",
+        "subtype": "text",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": null,
+        "unsigned": null,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": 65535
+      }
+    },
+    "relations": []
+  },
+  "TraitDetails": {
+    "table": "trait_details",
+    "endpoint": "/trait-details",
+    "camel": "traitDetails",
+    "capital": "TraitDetails",
+    "attributes": {
+      "id": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": "auto_increment",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": true,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "id_trait": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "details": {
+        "type": "text",
+        "typeTerm": "text",
+        "subtype": "text",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": null,
+        "unsigned": null,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": 65535
+      }
+    },
+    "relations": []
+  },
+  "TraitSecretDetails": {
+    "table": "trait_secret_details",
+    "endpoint": "/trait-secret-details",
+    "camel": "traitSecretDetails",
+    "capital": "TraitSecretDetails",
+    "attributes": {
+      "id": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": "auto_increment",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": true,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "id_trait": {
+        "type": "number",
+        "typeTerm": "int",
+        "subtype": "int",
+        "extra": false,
+        "primaryKey": false,
+        "autoIncrement": null,
+        "nullable": false,
+        "float": true,
+        "unsigned": false,
+        "foreignKey": false,
+        "unique": false,
+        "optionsList": null,
+        "maxTextLength": null
+      },
+      "details": {
         "type": "text",
         "typeTerm": "text",
         "subtype": "text",

@@ -3034,6 +3034,12 @@ module.exports = {
             table: 'combo_usage_and_plant',
             column: 'id_plant',
             isPrimaryKey: false
+          },
+          {
+            model: 'PlantDetails',
+            table: 'plant_details',
+            column: 'id_plant',
+            isPrimaryKey: false
           }
         ],
         optionsList: null,
@@ -3340,6 +3346,129 @@ module.exports = {
         }
       }
     },
+    plant_details: {
+      id: {
+        order: 1,
+        model: 'PlantDetails',
+        table: 'plant_details',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_plant: {
+        order: 2,
+        model: 'PlantDetails',
+        table: 'plant_details',
+        column: 'id_plant',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'plant_details_ibfk_1',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      description: {
+        order: 3,
+        model: 'PlantDetails',
+        table: 'plant_details',
+        column: 'description',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text',
+        auth: {
+          onGet: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPost: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onPut: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          }
+        }
+      }
+    },
     sessions: {
       id: {
         order: 1,
@@ -3396,6 +3525,54 @@ module.exports = {
         maxTextLength: null,
         database: 'plants_bd',
         archetype: 'int(11)'
+      },
+      session_token: {
+        order: 3,
+        model: 'Sessions',
+        table: 'sessions',
+        column: 'session_token',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 200,
+        database: 'plants_bd',
+        archetype: 'varchar(200)'
+      },
+      refresh_token: {
+        order: 4,
+        model: 'Sessions',
+        table: 'sessions',
+        column: 'refresh_token',
+        type: 'text',
+        typeTerm: 'varchar',
+        subtype: 'varchar',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 200,
+        database: 'plants_bd',
+        archetype: 'varchar(200)'
       }
     },
     specimen: {
@@ -3584,6 +3761,154 @@ module.exports = {
         model: 'Trait',
         table: 'trait',
         column: 'description',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text'
+      }
+    },
+    trait_details: {
+      id: {
+        order: 1,
+        model: 'TraitDetails',
+        table: 'trait_details',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_trait: {
+        order: 2,
+        model: 'TraitDetails',
+        table: 'trait_details',
+        column: 'id_trait',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      details: {
+        order: 3,
+        model: 'TraitDetails',
+        table: 'trait_details',
+        column: 'details',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text'
+      }
+    },
+    trait_secret_details: {
+      id: {
+        order: 1,
+        model: 'TraitSecretDetails',
+        table: 'trait_secret_details',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      id_trait: {
+        order: 2,
+        model: 'TraitSecretDetails',
+        table: 'trait_secret_details',
+        column: 'id_trait',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)'
+      },
+      details: {
+        order: 3,
+        model: 'TraitSecretDetails',
+        table: 'trait_secret_details',
+        column: 'details',
         type: 'text',
         typeTerm: 'text',
         subtype: 'text',
@@ -4472,7 +4797,38 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [],
+      rest: {
+        join: [
+          [
+            'plant_details',
+            'plant_details.id_plant',
+            '=',
+            'plant.id'
+          ]
+        ]
+      }
+    },
+    plant_details: {
+      database: 'plants_bd',
+      model: 'PlantDetails',
+      table: 'plant_details',
+      attributes: [
+        'id',
+        'id_plant',
+        'description'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [
+        {
+          constraint: 'plant_details_ibfk_1',
+          column: 'id_plant',
+          referencedTable: 'plant',
+          referencedColumn: 'id'
+        }
+      ]
     },
     sessions: {
       database: 'plants_bd',
@@ -4480,7 +4836,9 @@ module.exports = {
       table: 'sessions',
       attributes: [
         'id',
-        'id_user'
+        'id_user',
+        'session_token',
+        'refresh_token'
       ],
       primaryKeys: [
         'id'
@@ -4528,7 +4886,92 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
+      foreignKeys: [],
+      rest: {
+        join: [
+          [
+            'trait_details',
+            'trait_details.id_trait',
+            '=',
+            'trait.id'
+          ],
+          [
+            'trait_secret_details',
+            'trait_secret_details.id_trait',
+            '=',
+            'trait.id'
+          ]
+        ]
+      }
+    },
+    trait_details: {
+      database: 'plants_bd',
+      model: 'TraitDetails',
+      table: 'trait_details',
+      attributes: [
+        'id',
+        'id_trait',
+        'details'
+      ],
+      primaryKeys: [
+        'id'
+      ],
       foreignKeys: []
+    },
+    trait_secret_details: {
+      database: 'plants_bd',
+      model: 'TraitSecretDetails',
+      table: 'trait_secret_details',
+      attributes: [
+        'id',
+        'id_trait',
+        'details'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [],
+      auth: {
+        onGet: {
+          require: {
+            permissions: [
+              'to administrate'
+            ],
+            groups: [
+              'administration'
+            ],
+            users: [
+              'administrator'
+            ]
+          }
+        },
+        onPost: {
+          require: {
+            permissions: [
+              'to administrate'
+            ],
+            groups: [
+              'administration'
+            ],
+            users: [
+              'administrator'
+            ]
+          }
+        },
+        onPut: {
+          require: {
+            permissions: [
+              'to administrate'
+            ],
+            groups: [
+              'administration'
+            ],
+            users: [
+              'administrator'
+            ]
+          }
+        }
+      }
     },
     usages: {
       database: 'plants_bd',
@@ -4595,9 +5038,7 @@ module.exports = {
       'users.password',
       'users.recovery_token',
       'users.email',
-      'users.deactivation',
-      'sessions.session_token',
-      'sessions.refresh_token'
+      'users.deactivation'
     ]
   }
 }

@@ -136,24 +136,39 @@
     [✓] test to prove it
   [✓] LOAD PLUGINS
   [ ] REQUIRE/EXCLUDE
-    [ ] for every table
-    [ ] for every column
-    [ ] for every REST operation
-      [ ] schema
-      [ ] get
-      [ ] post
-      [ ] put
-      [ ] delete
-      [ ] get-file
-      [ ] set-file
+    [ ] Apply authorization rules on:
+      [ ] {table}.{column}:
+        [✓] select.fields
+        [✓] select.wheres
+        [ ] select.joins
+        [ ] select.order
+        [ ] insert.fields
+        [ ] update.fields
+        [✓] update.wheres
+      [✓] {table}:
+        [✓] select
+        [✓] insert
+        [✓] update
+        [✓] delete
+
+
+
   [ ] HOOKS & TRACE through all the application
   [ ] MAIL TEMPLATES on:
     [ ] confirmation
     [ ] password changed
     [ ] registration
     [ ] unregistration
-
-
+  [ ] FIX BROADCAST & CHAT
+  [ ] COMMANDS
+    [ ] cms import file --from x --to y
+    [ ] cms show live
+    [ ] cms create project [-c|--config c.json] [-y|--yes] [-n|--name n]
+    [ ] cms git up
+    [ ] cms git down
+  [ ] SERVICE BUILDER
+    [ ] using json store
+    [ ] at src/config
 
 
 

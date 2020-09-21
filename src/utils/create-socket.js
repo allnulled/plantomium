@@ -11,18 +11,27 @@ module.exports = function(directory, socketPath = "/", middlewares = []) {
 	if(middlewares.length !== 0) {
 		for(let index=0; index < middlewares.length; index++) {
 			const middleware = middlewares[index];
+			subsocket.use((data, next) => {
+				console.log("GOING!!!");
+				next();
+			});
 			subsocket.use(middleware);
+			subsocket.use((data, next) => {
+				console.log("OK!!!");
+				next();
+			});
 		}
 	}
+	const eventsPath = path.resolve(directory, "on");
+	const events = fs.readdirSync(eventsPath);
 	subsocket.on("connection", socket => {
-		const eventsPath = path.resolve(directory, "on");
-		const events = fs.readdirSync(eventsPath);
 		for(let index=0; index < events.length; index++) {
 			const eventFile = events[index];
 			const eventPath = path.resolve(eventsPath, eventFile);
 			const event = require(eventPath);
 			const eventName = path.basename(eventFile).replace(/\-/g, "_").replace(/\.js$/g, "");
 			const context = { socket, subsocket, server, cms, directory, socketPath };
+			LL(" ✓ Registering socket event <" + eventName + ">")
 			socket.on(eventName, event.bind(context));
 		}
 	});

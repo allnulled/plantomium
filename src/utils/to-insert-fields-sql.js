@@ -17,7 +17,7 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(insertFields = []) {
+module.exports = function(authenticationParam, insertFields = [], tablename = undefined) {
 	let sql = "";
 	for(let index=0; index < insertFields.length; index++) {
 		const field = insertFields[index];

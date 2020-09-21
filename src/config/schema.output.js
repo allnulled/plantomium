@@ -4721,6 +4721,12 @@ module.exports = {
             table: 'combo_usage_and_plant',
             column: 'id_plant',
             isPrimaryKey: false
+          },
+          {
+            model: 'PlantDetails',
+            table: 'plant_details',
+            column: 'id_plant',
+            isPrimaryKey: false
           }
         ],
         optionsList: null,
@@ -5097,6 +5103,136 @@ module.exports = {
           $extraColumnInformation: '',
           $ordinalColumnPosition: 10,
           $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: null,
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      }
+    },
+    plant_details: {
+      id: {
+        order: 1,
+        model: 'PlantDetails',
+        table: 'plant_details',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'plant_details',
+          $column: 'id',
+          $columnType: 'int(11)',
+          $isColumnNullable: 'NO',
+          $defaultColumnValue: null,
+          $extraColumnInformation: 'auto_increment',
+          $ordinalColumnPosition: 1,
+          $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 1,
+          $boundConstraint: 'PRIMARY',
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      },
+      id_plant: {
+        order: 2,
+        model: 'PlantDetails',
+        table: 'plant_details',
+        column: 'id_plant',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: true,
+        isUnique: false,
+        referencesTo: [
+          {
+            id: 'plant_details_ibfk_1',
+            model: 'Plant',
+            table: 'plant',
+            column: 'id',
+            isPrimaryKey: false
+          }
+        ],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'plant_details',
+          $column: 'id_plant',
+          $columnType: 'int(11)',
+          $isColumnNullable: 'YES',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 2,
+          $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: 'plant_details_ibfk_1',
+          $referencedTable: 'plant',
+          $referencedColumn: 'id'
+        }
+      },
+      description: {
+        order: 3,
+        model: 'PlantDetails',
+        table: 'plant_details',
+        column: 'description',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'plant_details',
+          $column: 'description',
+          $columnType: 'text',
+          $isColumnNullable: 'YES',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 3,
+          $maximumCharactersLength: 65535,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
           $boundConstraint: null,
@@ -5581,6 +5717,250 @@ module.exports = {
           $column: 'description',
           $columnType: 'text',
           $isColumnNullable: 'NO',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 3,
+          $maximumCharactersLength: 65535,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: null,
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      }
+    },
+    trait_details: {
+      id: {
+        order: 1,
+        model: 'TraitDetails',
+        table: 'trait_details',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'trait_details',
+          $column: 'id',
+          $columnType: 'int(11)',
+          $isColumnNullable: 'NO',
+          $defaultColumnValue: null,
+          $extraColumnInformation: 'auto_increment',
+          $ordinalColumnPosition: 1,
+          $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 1,
+          $boundConstraint: 'PRIMARY',
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      },
+      id_trait: {
+        order: 2,
+        model: 'TraitDetails',
+        table: 'trait_details',
+        column: 'id_trait',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'trait_details',
+          $column: 'id_trait',
+          $columnType: 'int(11)',
+          $isColumnNullable: 'YES',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 2,
+          $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: null,
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      },
+      details: {
+        order: 3,
+        model: 'TraitDetails',
+        table: 'trait_details',
+        column: 'details',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'trait_details',
+          $column: 'details',
+          $columnType: 'text',
+          $isColumnNullable: 'YES',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 3,
+          $maximumCharactersLength: 65535,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: null,
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      }
+    },
+    trait_secret_details: {
+      id: {
+        order: 1,
+        model: 'TraitSecretDetails',
+        table: 'trait_secret_details',
+        column: 'id',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: 'auto_increment',
+        isPrimaryKey: true,
+        isAutoIncrement: true,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: true,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'trait_secret_details',
+          $column: 'id',
+          $columnType: 'int(11)',
+          $isColumnNullable: 'NO',
+          $defaultColumnValue: null,
+          $extraColumnInformation: 'auto_increment',
+          $ordinalColumnPosition: 1,
+          $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 1,
+          $boundConstraint: 'PRIMARY',
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      },
+      id_trait: {
+        order: 2,
+        model: 'TraitSecretDetails',
+        table: 'trait_secret_details',
+        column: 'id_trait',
+        type: 'number',
+        typeTerm: 'int',
+        subtype: 'int',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: true,
+        isUnsigned: false,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: null,
+        database: 'plants_bd',
+        archetype: 'int(11)',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'trait_secret_details',
+          $column: 'id_trait',
+          $columnType: 'int(11)',
+          $isColumnNullable: 'YES',
+          $defaultColumnValue: null,
+          $extraColumnInformation: '',
+          $ordinalColumnPosition: 2,
+          $maximumCharactersLength: null,
+          $isUnsigned: 0,
+          $isAutoIncrement: 0,
+          $boundConstraint: null,
+          $referencedTable: null,
+          $referencedColumn: null
+        }
+      },
+      details: {
+        order: 3,
+        model: 'TraitSecretDetails',
+        table: 'trait_secret_details',
+        column: 'details',
+        type: 'text',
+        typeTerm: 'text',
+        subtype: 'text',
+        'default': null,
+        extra: false,
+        isPrimaryKey: false,
+        isAutoIncrement: null,
+        isNullable: false,
+        isFloat: null,
+        isUnsigned: null,
+        isForeignKey: false,
+        isUnique: false,
+        referencesTo: [],
+        referencedBy: [],
+        optionsList: null,
+        maxTextLength: 65535,
+        database: 'plants_bd',
+        archetype: 'text',
+        schema: {
+          $database: 'plants_bd',
+          $table: 'trait_secret_details',
+          $column: 'details',
+          $columnType: 'text',
+          $isColumnNullable: 'YES',
           $defaultColumnValue: null,
           $extraColumnInformation: '',
           $ordinalColumnPosition: 3,
@@ -6960,7 +7340,38 @@ module.exports = {
       primaryKeys: [
         'id'
       ],
-      foreignKeys: []
+      foreignKeys: [],
+      rest: {
+        join: [
+          [
+            'plant_details',
+            'plant_details.id_plant',
+            '=',
+            'plant.id'
+          ]
+        ]
+      }
+    },
+    plant_details: {
+      database: 'plants_bd',
+      model: 'PlantDetails',
+      table: 'plant_details',
+      attributes: [
+        'id',
+        'id_plant',
+        'description'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [
+        {
+          constraint: 'plant_details_ibfk_1',
+          column: 'id_plant',
+          referencedTable: 'plant',
+          referencedColumn: 'id'
+        }
+      ]
     },
     sessions: {
       database: 'plants_bd',
@@ -7014,6 +7425,50 @@ module.exports = {
         'id',
         'name',
         'description'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: [],
+      rest: {
+        join: [
+          [
+            'trait_details',
+            'trait_details.id_trait',
+            '=',
+            'trait.id'
+          ],
+          [
+            'trait_secret_details',
+            'trait_secret_details.id_trait',
+            '=',
+            'trait.id'
+          ]
+        ]
+      }
+    },
+    trait_details: {
+      database: 'plants_bd',
+      model: 'TraitDetails',
+      table: 'trait_details',
+      attributes: [
+        'id',
+        'id_trait',
+        'details'
+      ],
+      primaryKeys: [
+        'id'
+      ],
+      foreignKeys: []
+    },
+    trait_secret_details: {
+      database: 'plants_bd',
+      model: 'TraitSecretDetails',
+      table: 'trait_secret_details',
+      attributes: [
+        'id',
+        'id_trait',
+        'details'
       ],
       primaryKeys: [
         'id'
@@ -7106,9 +7561,7 @@ module.exports = {
       'users.password',
       'users.recovery_token',
       'users.email',
-      'users.deactivation',
-      'sessions.session_token',
-      'sessions.refresh_token'
+      'users.deactivation'
     ]
   }
 };

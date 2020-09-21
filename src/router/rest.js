@@ -24,9 +24,12 @@ module.exports = function(cms, router) {
 	cms.rest.controllers.localization.create().mountToRouter(router);
 	cms.rest.controllers.permissions.create().mountToRouter(router);
 	cms.rest.controllers.plant.create().mountToRouter(router);
+	cms.rest.controllers.plantDetails.create().mountToRouter(router);
 	cms.rest.controllers.sessions.create().mountToRouter(router);
 	cms.rest.controllers.specimen.create().mountToRouter(router);
 	cms.rest.controllers.trait.create().mountToRouter(router);
+	cms.rest.controllers.traitDetails.create().mountToRouter(router);
+	cms.rest.controllers.traitSecretDetails.create().mountToRouter(router);
 	cms.rest.controllers.usages.create().mountToRouter(router);
 	cms.rest.controllers.users.create().mountToRouter(router);
 }

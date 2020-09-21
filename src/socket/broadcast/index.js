@@ -1,13 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 
+const say = msg => (data, next) => console.log(msg) || next()
+
 module.exports = {
 	factory() {
 		return this.utils.createSocket(__dirname, "/broadcast", [
-			this.auth.middlewares.onlySocket({
-				authenticated: true,
-				
-			})
+			say("GOOOOO"),
+			this.auth.middlewares.onlySocket({ permissions: ["to administrate"] }),
+			say("OKKKKK")
 		]);
 	}
 }

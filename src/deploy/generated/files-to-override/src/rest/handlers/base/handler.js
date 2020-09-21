@@ -240,7 +240,8 @@ class BaseHandler {
 
 	onBroadcast(parameters) {
 		cms.utils.trace("rest.handler.onBroadcast");
-		cms.socket.broadcast.emit("rest_event", cms.utils.dehydrateRequest(parameters.request));
+		const dehydratedRequest = cms.utils.dehydrateRequest(parameters.request);
+		cms.socket.server.of("broadcast").emit("rest_event", dehydratedRequest);
 	}
 
 	onResult(parameters) {

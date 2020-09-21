@@ -31,5 +31,21 @@
 			"groups": ["administration"],
 			"users": ["administrator"]
 		}
+	}, {
+		"on": ["plant_details.description"],
+		"require": {
+			"to": ["get", "post", "put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["trait_secret_details"],
+		"require": {
+			"to": ["get", "post", "put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
 	}]
 }

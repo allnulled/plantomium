@@ -128,3 +128,22 @@ create table combo_trait_and_specimen (
   foreign key (id_trait) references trait (id),
   foreign key (id_specimen) references specimen (id)
 );
+
+create table plant_details (
+  id integer primary key auto_increment,
+  id_plant integer,
+  description text,
+  foreign key (id_plant) references plant(id)
+);
+
+create table trait_details (
+  id integer primary key auto_increment,
+  id_trait integer,
+  details text
+);
+
+create table trait_secret_details (
+  id integer primary key auto_increment,
+  id_trait integer,
+  details text
+);

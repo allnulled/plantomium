@@ -32,9 +32,10 @@ const results = cms.utils.dataGetter(parameters, ["results", 0, 0], []);
 if(results.length === 0) {
 	return "";
 }
+const auth = cms.utils.getAuthentication(parameters.request);
 const ids = [].concat(results || []).map(item => item[actorClass.Table + ".id"]);
-const fieldsFinal = cms.utils.toSelectFieldsSql(0, [], actorClass.Table, true, false);
-const whereFinal = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
+const fieldsFinal = cms.utils.toSelectFieldsSql(auth, undefined, actorClass.Table, true, false, "get");
+const whereFinal = cms.utils.toSelectWhereSql(auth, where, false, actorClass.Table, true);
 const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 %>
 # select attachments:

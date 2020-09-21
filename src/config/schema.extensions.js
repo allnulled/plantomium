@@ -71,6 +71,21 @@ module.exports = {
 				}
 			}
 		},
+		plant: {
+			rest: {
+				join: [
+					["plant_details", "plant_details.id_plant", "=", "plant.id"]
+				]
+			}
+		},
+		trait: {
+			rest: {
+				join: [
+					["trait_details", "trait_details.id_trait", "=", "trait.id"],
+					["trait_secret_details", "trait_secret_details.id_trait", "=", "trait.id"],
+				]
+			}
+		}
 	},
 	general: {
 		general: {
@@ -101,8 +116,8 @@ module.exports = {
 				"users.recovery_token",
 				"users.email",
 				"users.deactivation",
-				"sessions.session_token",
-				"sessions.refresh_token"
+				// "sessions.session_token",
+				// "sessions.refresh_token"
 			]
 		},
 	}

@@ -26,10 +26,13 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 module.exports = async function(parameters = {}) {
 	try {
 		const { session_token, request = undefined } = parameters;
+		if(typeof session_token !== "string") {
+			throw new Error("Required <session_token> to be a string on <authenticate> [ERR:666]");
+		}
 		const authenticationQuery = cms.auth.queries.authenticate({ parameters });
 		const authenticationResult = await cms.auth.query(authenticationQuery);
 		if(authenticationResult.length === 0) {
-			throw new Error("No user found on authenticate");
+			throw new Error("Required <user> to exist on <authenticate> [ERR:999]");
 		}
 		const users = cms.utils.toObjectSql(authenticationResult, "users", "id");
 		const user = users[0];

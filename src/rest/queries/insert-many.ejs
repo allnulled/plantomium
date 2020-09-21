@@ -27,7 +27,10 @@ if(typeof data[0] !== "object") {
 }
 const authentication = cms.utils.getAuthentication(parameters.request);
 const fieldsList = Object.keys(data[0]).filter(column => cms.utils.checkRestPermissionsTo(authentication, "post", actorClass.Table, column));
-const fields = cms.utils.toInsertFieldsSql(fieldsList);
+if(fieldsList.length===0){
+  return "";
+}
+const fields = cms.utils.toInsertFieldsSql(0, fieldsList);
 const values = data.map(item => {
   if(typeof item !== "object") {
     throw new Error("Required <data.*> to be (all) object on <insert-many.ejs> [ERR:308]");
@@ -41,9 +44,8 @@ const values = data.map(item => {
       output.push(undefined);
     }
   }
-  return cms.utils.toInsertValuesSql(output);
+  return cms.utils.toInsertValuesSql(0, output);
 });
-
 %>
 # insert many:
 INSERT INTO <%-table%> (

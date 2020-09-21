@@ -27,7 +27,7 @@ describe("SOCKETS Test", function() {
 
 	after(async function() {
 		try {
-			axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/logout", {
+			await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/logout", {
 				headers: {
 					authorization: "Bearer: " + session_token
 				}
@@ -37,7 +37,8 @@ describe("SOCKETS Test", function() {
 		}
 	});
 
-	skippable("can connect to broadcast socket", function(ok) {
+	it.skip("can connect to broadcast socket", function(ok) {
+		this.timeout(6*1000);
 		const baseUrl = process.env.APP_URL + ":" + process.env.APP_PORT;
 		const broadcastUrl = baseUrl + "/broadcast";
 		const client = socketClient(broadcastUrl, {
@@ -46,7 +47,8 @@ describe("SOCKETS Test", function() {
 			rejectUnauthorized: false,
 			extraHeaders: {
 				authorization: "Bearer: " + session_token
-			}
+			},
+			timeout: 2000
 		});
 		client.connect()
 		client.on("rest_event", function(data) {
@@ -57,12 +59,43 @@ describe("SOCKETS Test", function() {
 			client.disconnect();
 			ok();
 		});
-		// trigger the broadcast:
-		axios.get(baseUrl + "/api/v1/permissions?limit=2").then(noop).catch(console.error);
+		client.on("connect", function(data) {
+			//ok(new Error("Connected"))
+			// trigger the broadcast:
+			axios.get(baseUrl + "/api/v1/trait?limit=2", {
+				headers: {
+					authorization: "Bearer: " + session_token
+				}
+			}).then(noop).catch(console.error);
+		});
+		client.on("connect_error", function(data) {
+			client.disconnect();
+			ok(new Error("Failed to load broadcast socket connection (1)"));
+		});
+		client.on("connect_timeout", function(data) {
+			client.disconnect();
+			ok(new Error("Failed to load broadcast socket connection (2)"));
+		});
+		client.on("reconnect", function(data) {
+			client.disconnect();
+			ok(new Error("Failed to load broadcast socket connection (3)"));
+		});
+		client.on("reconnect_attempt", function(data) {
+			client.disconnect();
+			ok(new Error("Failed to load broadcast socket connection (4)"));
+		});
+		client.on("reconnect_error", function(data) {
+			client.disconnect();
+			ok(new Error("Failed to load broadcast socket connection (5)"));
+		});
+		client.on("reconnect_failed", function(data) {
+			client.disconnect();
+			ok(new Error("Failed to load broadcast socket connection (6)"));
+		});
 	});
 
 
-	skippable("can connect to chat socket", function(ok) {
+	it.skip("can connect to chat socket", function(ok) {
 		const baseUrl = process.env.APP_URL + ":" + process.env.APP_PORT;
 		const chatUrl = baseUrl + "/chat";
 		const client = socketClient(chatUrl, {
@@ -95,7 +128,8 @@ describe("SOCKETS Test", function() {
 		});
 	});
 
-	skippable("cannot connect if not authenticated", function(done) {
+	it.skip("cannot connect if not authenticated", function(done) {
+		this.timeout(8*1000)
 		const baseUrl = process.env.APP_URL + ":" + process.env.APP_PORT;
 		const broadcastUrl = baseUrl + "/broadcast";
 		const client = socketClient(broadcastUrl, {
@@ -107,8 +141,9 @@ describe("SOCKETS Test", function() {
 				// authorization: "Bearer: " + session_token
 			}
 		});
-		client.on("reconnect", function() {
-			client.disconnect();
+		client.on("disconnect", function() {
+			console.log("Disconnected!!!")
+			client.close();
 			done();
 		});
 		client.connect();
