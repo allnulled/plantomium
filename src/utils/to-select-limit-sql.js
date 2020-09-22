@@ -18,8 +18,9 @@ const sqlString = require("sqlstring");
  * 
  */
 module.exports = function(selectLimit = 20, table = undefined) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.toSelectLimitSql");
 	if(typeof table === "string") {
-		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		if(!(table in cms.schema.constraints)) {
 			throw new Error("Required <table> to exist in cms.schema.constraints on toSelectLimitSql [ERR:026]");
 		}

@@ -1,8 +1,9 @@
 module.exports = function(rules = [], options = {}) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.auth.middlewares.onlyUsers");
 	return async function(request, response, next) {
 		try {
-			cms.utils.trace("cms.auth.middlewares.onlyUsers");
+			cms.utils.trace("cms.auth.middlewares.onlyUsers (1)");
 			const { auth, session_token } = cms.utils.getAuthenticationFromRequest(request);
 			const isUser = await cms.auth.actors.onlyUsers(rules, auth, session_token, {request, ...options});
 			if(isUser) {

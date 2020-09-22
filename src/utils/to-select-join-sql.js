@@ -18,11 +18,12 @@ const sqlString = require("sqlstring");
  * 
  */
 module.exports = function(selectJoinParams = [], tablename = undefined) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.toSelectJoinSql");
 	let sql = "";
 	if(!Array.isArray(selectJoinParams)) {
 		throw new Error("Required <selectJoinParams> to be an array on toSelectJoinSql. [ERR:011]");
 	}
-	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 	const joins = cms.utils.getSchemaJoinedTables(tablename, selectJoinParams);
 	const joinKeys = Object.keys(joins);
 	for(let indexJoins=0; indexJoins < joinKeys.length; indexJoins++) {

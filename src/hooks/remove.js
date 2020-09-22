@@ -1,6 +1,7 @@
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 
 module.exports = function(eventname, identifier) {
+	cms.utils.trace("cms.hooks.remove");
 	
 	if(typeof eventname !== "string") {
 		throw new Error("Required <eventname> to be a string on <cms.hooks.remove> [ERR:6085]");

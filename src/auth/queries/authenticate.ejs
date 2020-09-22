@@ -18,12 +18,17 @@
  */
 
 
+cms.utils.trace("cms.auth.queries.authenticate");
 const fieldsUser = cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.users.attributes, "users");
 const fieldsGroup = cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.groups.attributes, "groups");
 const fieldsPermission = cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.permissions.attributes, "permissions");
 const fieldsSession = cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.sessions.attributes, "sessions");
 
 const session_token = sqlString.escape(parameters.session_token);
+
+if(typeof session_token !== "string") {
+  throw new Error("Required <session_token> to be a string on <authenticate> [ERR:6036]");
+}
 
 %>
 SELECT 

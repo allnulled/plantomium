@@ -74,19 +74,19 @@ class BaseController {
 		// Schema:
 		app.get(this.slugTableSchema, this.schema(parameters));
 		// Crud:
-		app.get(this.slugTable, cms.auth.middlewares.authenticate(), this.getMany(parameters));
-		app.get(this.slugTableId, cms.auth.middlewares.authenticate(), this.getOne(parameters));
+		app.get(this.slugTable, cms.auth.middlewares.authenticateAttempt(), this.getMany(parameters));
+		app.get(this.slugTableId, cms.auth.middlewares.authenticateAttempt(), this.getOne(parameters));
 
-		app.put(this.slugTable, cms.auth.middlewares.authenticate(), this.constructor.enablePost(), this.putMany(parameters));
-		app.put(this.slugTableId, cms.auth.middlewares.authenticate(), this.constructor.enablePost(), this.putOne(parameters));
+		app.put(this.slugTable, cms.auth.middlewares.authenticateAttempt(), this.constructor.enablePost(), this.putMany(parameters));
+		app.put(this.slugTableId, cms.auth.middlewares.authenticateAttempt(), this.constructor.enablePost(), this.putOne(parameters));
 
-		app.post(this.slugTable, cms.auth.middlewares.authenticate(), this.constructor.enablePost(), this.postMany(parameters));
-		app.post(this.slugTableId, cms.auth.middlewares.authenticate(), this.constructor.enablePost(), this.postOne(parameters));
-		app.delete(this.slugTable, cms.auth.middlewares.authenticate(), this.constructor.enablePost(), this.deleteMany(parameters));
-		app.delete(this.slugTableId, cms.auth.middlewares.authenticate(), this.constructor.enablePost(), this.deleteOne(parameters));
+		app.post(this.slugTable, cms.auth.middlewares.authenticateAttempt(), this.constructor.enablePost(), this.postMany(parameters));
+		app.post(this.slugTableId, cms.auth.middlewares.authenticateAttempt(), this.constructor.enablePost(), this.postOne(parameters));
+		app.delete(this.slugTable, cms.auth.middlewares.authenticateAttempt(), this.constructor.enablePost(), this.deleteMany(parameters));
+		app.delete(this.slugTableId, cms.auth.middlewares.authenticateAttempt(), this.constructor.enablePost(), this.deleteOne(parameters));
 		// Files:
-		app.get(this.slugTableIdAndColumnWithExtension, cms.auth.middlewares.authenticate(), this.getFile(parameters));
-		app.post(this.slugTableIdAndColumn, cms.auth.middlewares.authenticate(), this.constructor.enablePostFile(), this.setFile(parameters));
+		app.get(this.slugTableIdAndColumnWithExtension, cms.auth.middlewares.authenticateAttempt(), this.getFile(parameters));
+		app.post(this.slugTableIdAndColumn, cms.auth.middlewares.authenticateAttempt(), this.constructor.enablePostFile(), this.setFile(parameters));
 	}
 
 	schema(parameters = {}) {

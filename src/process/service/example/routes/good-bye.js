@@ -7,6 +7,7 @@ module.exports = {
 	middlewares: [cms.auth.middlewares.onlyAuthenticated(), cms.rest.middlewares.postify],
 	controller: async function(request, response, next) {
 		try {
+			cms.utils.trace("cms.process.service.example.routes.goodbye");
 			const currentUser = cms.utils.dataGetter(request, ["fw","auth","user"], undefined);
 			const currentProcess = cms.utils.dataGetter(request, ["fw","process"], undefined);
 			const currentTable = cms.process.service.example.table;

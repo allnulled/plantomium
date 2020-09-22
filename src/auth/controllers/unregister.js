@@ -17,6 +17,7 @@
  */
 module.exports = () => async function(request, response, next) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.auth.controllers.unregister");
 	try {
 		const session_token = cms.utils.formatBearerToken(request.headers.Authorization);
 		const password = request.body.password;

@@ -17,6 +17,7 @@
  */
 module.exports = function(tablename, otherJoins = []) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.getSchemaJoinedTables");
 	const hasTablename = typeof tablename === "string";
 	const joinsData = hasTablename ? cms.utils.dataGetter(cms, ["schema", "constraints", tablename, "rest", "join"], false) : [];
 	const extendedJoins = joinsData ? joinsData : [];

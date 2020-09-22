@@ -25,9 +25,10 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
  */
 module.exports = async function(parameters = {}) {
 	try {
+		cms.utils.trace("cms.auth.actors.authenticate");
 		const { session_token, request = undefined } = parameters;
 		if(typeof session_token !== "string") {
-			throw new Error("Required <session_token> to be a string on <authenticate> [ERR:666]");
+			throw new Error("Required <session_token> to be a string on <authenticate> [ERR:8803]");
 		}
 		const authenticationQuery = cms.auth.queries.authenticate({ parameters });
 		const authenticationResult = await cms.auth.query(authenticationQuery);
@@ -42,7 +43,9 @@ module.exports = async function(parameters = {}) {
 		const authentication = { user, groups, permissions, sessions };
 		if(typeof request === "object") {
 			request.fw.auth = authentication;
+			request.fw.authToken = session_token;
 		}
+		cms.utils.debug("successfully authenticated:", authentication);
 		return authentication;
 	} catch (error) {
 		throw error;

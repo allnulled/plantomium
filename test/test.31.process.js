@@ -140,7 +140,6 @@ describe("PROCESS Test", function() {
 					authorization: "Bearer: " + session_token,
 				}
 			});
-			// dd(post5, post6)
 			expect(typeof post6).to.equal("object")
 			expect(typeof post6.error).to.equal("object")
 			expect(post6.error.message).to.equal("Process was not found [ERR:7880]")

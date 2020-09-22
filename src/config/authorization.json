@@ -18,7 +18,15 @@
 	}, {
 		"on": ["plant.field_4", "plant.field_5"],
 		"require": {
-			"to": ["get", "post", "put"],
+			"to": ["post", "put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["plant.description"],
+		"require": {
+			"to": ["put"],
 			"permissions": ["to administrate"],
 			"groups": ["administration"],
 			"users": ["administrator"]

@@ -6,6 +6,7 @@ const ejs = require("ejs");
 class BaseProcess {
 
 	static create(...args) {
+		cms.utils.trace("cms.process.base.process.create");
 		return new this(...args);
 	}
 

@@ -1,4 +1,6 @@
 module.exports = function(fieldsParam) { 
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.formatFieldsParameters");
 	let fieldsTmp = fieldsParam;
 	if(typeof fieldsTmp === "string") {
 		fieldsTmp = JSON.parse(fieldsTmp);

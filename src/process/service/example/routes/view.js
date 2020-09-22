@@ -7,6 +7,7 @@ module.exports = {
 	// (or factory)
 	controller: async function(request, response, next) {
 		try {
+			cms.utils.trace("cms.process.service.example.routes.view");
 			return cms.utils.successfulJsonResponse(request.fw.process, request, response, next);
 		} catch(error) {
 			return cms.utils.erroneousJsonResponse(error, request, response, next);

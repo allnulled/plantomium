@@ -3141,7 +3141,22 @@ module.exports = {
         optionsList: null,
         maxTextLength: 65535,
         database: 'plants_bd',
-        archetype: 'text'
+        archetype: 'text',
+        auth: {
+          onPut: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          }
+        }
       },
       field_1: {
         order: 6,
@@ -3239,19 +3254,6 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'int(11)',
         auth: {
-          onGet: {
-            require: {
-              permissions: [
-                'to administrate'
-              ],
-              groups: [
-                'administration'
-              ],
-              users: [
-                'administrator'
-              ]
-            }
-          },
           onPost: {
             require: {
               permissions: [
@@ -3304,19 +3306,6 @@ module.exports = {
         database: 'plants_bd',
         archetype: 'int(11)',
         auth: {
-          onGet: {
-            require: {
-              permissions: [
-                'to administrate'
-              ],
-              groups: [
-                'administration'
-              ],
-              users: [
-                'administrator'
-              ]
-            }
-          },
           onPost: {
             require: {
               permissions: [
@@ -3331,6 +3320,19 @@ module.exports = {
             }
           },
           onPut: {
+            require: {
+              permissions: [
+                'to administrate'
+              ],
+              groups: [
+                'administration'
+              ],
+              users: [
+                'administrator'
+              ]
+            }
+          },
+          onGet: {
             require: {
               permissions: [
                 'to administrate'

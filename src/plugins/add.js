@@ -4,6 +4,7 @@ const path = require("path");
 const marketPath = process.env.PROJECT_ROOT + "/src/config/markets.json";
 
 module.exports = function(args = undefined) {
+	cms.utils.trace("cms.plugins.add");
 	if(typeof args === "undefined") {
 		args = require("yargs-parser")(process.argv.join(" "));
 	}

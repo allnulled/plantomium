@@ -19,6 +19,8 @@ const mysqlSchema = require("mysql-schema");
  */
 module.exports = function(cms) {
 
+	cms.utils.trace("cms.utils.generateVirtualSchema");
+
 	const getHiddenTables = function(vschema) {
 		const hiddenTables = [].concat(vschema.general.hiddenTables);
 		const allTablenames = Object.keys(vschema.constraints);

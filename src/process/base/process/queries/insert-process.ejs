@@ -1,5 +1,6 @@
 <%
 
+cms.utils.trace("cms.process.base.process.queries.insertProcess");
 const table = sqlString.escapeId(processInstance.table);
 const fields = Object.keys(data);
 const values = Object.values(data);

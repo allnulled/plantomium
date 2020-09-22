@@ -17,16 +17,13 @@
  * 
  */
 const table = sqlString.escapeId(actorClass.Table);
-const authentication = cms.utils.getAuthentication(parameters.request);
+const authentication = cms.utils.getAuthentication(parameters.request, {});
+//dd(parameters.input);
 const columnKeys = Object.keys(parameters.input.data).filter(column => cms.utils.checkRestPermissionsTo(authentication, "post", actorClass.Table, column));
 const fields = columnKeys.map(ck => sqlString.escapeId(ck));
-const values = [];
-
-for(let index=0; index < columnKeys.length; index++) {
-  const field = columnKeys[index];
-  const fieldValue = parameters.input.data[field];
-  const value = sqlString.escape(fieldValue || null);
-  values.push(value);
+const values = columnKeys.map(ck => sqlString.escape(parameters.input.data[ck]))
+if(fields.length === 0) {
+	throw new Error("Required <fields> to not be empty on <rest.queries.insertOne> [ERR:4410]");
 }
 %>
 # insert one:

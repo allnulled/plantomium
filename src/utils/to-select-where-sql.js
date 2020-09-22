@@ -18,6 +18,7 @@ const sqlString = require("sqlstring");
  */
 module.exports = function(authenticationParam, selectWhereParam, prependAnd = false, tablename = false, applyConstraints = true) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.toSelectWhereSql");
 	const authentication = cms.utils.formatAuthenticationParameter(authenticationParam);
 	let sql = prependAnd === true ? " AND " : "";
 	// 0. Do validations

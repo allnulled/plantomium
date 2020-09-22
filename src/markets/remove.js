@@ -2,6 +2,9 @@ const fs = require("fs");
 const importFresh = require("import-fresh");
 
 module.exports = function(args) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+
+	cms.utils.trace("cms.markets.remove");
 
 	if(typeof args === "undefined") {
 		args = require("yargs-parser")(argv.join(" "));

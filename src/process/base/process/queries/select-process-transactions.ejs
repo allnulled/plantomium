@@ -1,5 +1,6 @@
 <%
 
+cms.utils.trace("cms.process.base.process.queries.selectProcessTransactions");
 const table = sqlString.escapeId(processInstance.table)
 const transactionTable = sqlString.escapeId(processInstance.transactionTable);
 const transactionColumn = sqlString.escapeId(processInstance.transactionColumnRef);

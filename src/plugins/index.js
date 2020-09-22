@@ -3,6 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const importFresh = require("import-fresh");
 
+cms.utils.trace("cms.plugins");
+
 module.exports = {
 	getPlugins: (refresh = false) => {
 		cms.utils.trace("cms.plugins.getPlugins");

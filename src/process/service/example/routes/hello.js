@@ -7,6 +7,7 @@ module.exports = {
 	// (or factory)
 	controller: async function(request, response, next) {
 		try {
+			cms.utils.trace("cms.process.service.example.routes.hello");
 			const idUser = cms.utils.dataGetter(request, ["fw","auth","user","id"], undefined);
 			const insertProcess = await cms.process.service.example.insertProcess({
 				id_creator: idUser,

@@ -16,6 +16,7 @@ class JSONStoreController {
 	}
 
 	constructor(options = {}) {
+		cms.utils.trace("cms.json.controllers.jsonStore.constructor");
 		Object.assign(this, this.constructor.DEFAULT_OPTIONS, options);
 		if(typeof this.path !== "string") {
 			throw new Error("Required <path> to be a string on JSONStoreController.constructor [ERR:042]");
@@ -23,11 +24,12 @@ class JSONStoreController {
 		if(typeof this.store !== "string") {
 			throw new Error("Required <store> to be a string on JSONStoreController.constructor [ERR:043]");
 		}
-		console.log(this.store);
+		LL(this.store);
 		this.jsonStore = JSONStoreFactory(this.store, this.settings, this.extensions);
 	}
 	
 	mountToRouter(app) {
+		cms.utils.trace("cms.json.controllers.jsonStore.mountToRouter");
 		app.get(this.path, this.middlewaresToGet, this.onGet.bind(this));
 		app.post(this.path, cms.rest.middlewares.postify, this.middlewaresToSet, this.onSet.bind(this));
 		app.delete(this.path, cms.rest.middlewares.postify, this.middlewaresToDelete, this.onDelete.bind(this));
@@ -35,6 +37,7 @@ class JSONStoreController {
 
 	async onGet(request, response, next) {
 		try {
+			cms.utils.trace("cms.json.controllers.jsonStore.onGet");
 			const selectString = request.query.select || "[]";
 			const select = JSON.parse(selectString);
 			const selection = await this.jsonStore.get(select);
@@ -46,6 +49,7 @@ class JSONStoreController {
 
 	async onSet(request, response, next) {
 		try {
+			cms.utils.trace("cms.json.controllers.jsonStore.onSet");
 			const selectString = request.body.select || null;
 			const valueString = request.body.value || null;
 			const select = JSON.parse(selectString);
@@ -62,6 +66,7 @@ class JSONStoreController {
 
 	async onDelete(request, response, next) {
 		try {
+			cms.utils.trace("cms.json.controllers.jsonStore.onDelete");
 			const selectString = request.query.select || request.query.select || null;
 			const select = JSON.parse(selectString);
 			if(!Array.isArray(select)) {

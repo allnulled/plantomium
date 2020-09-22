@@ -18,9 +18,10 @@
  */
 
 	
+cms.utils.trace("cms.auth.queries.selectUserById");
 const path = require("path");
 const id = sqlString.escape(parameters.id);
-const fields = cms.utils.toSelectFieldsSql(0, Object.keys(cms.originalSchema.columns.users), "users");
+const fields = cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.users.attributes, "users");
 
 %>
 SELECT <%-fields%>

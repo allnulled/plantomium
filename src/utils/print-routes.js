@@ -1,4 +1,6 @@
 module.exports = function(router) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.printRoutes");
 	const fs = require("fs");
 	const Table = require("cli-table3");
 	const clitable = new Table({

@@ -17,6 +17,7 @@
  * 
  */
 
+cms.utils.trace("cms.auth.queries.insertUser");
 const fieldsList = Object.keys(parameters);
 const fields = cms.utils.toInsertFieldsSql(0, fieldsList);
 const values = cms.utils.toInsertValuesSql(0, Object.values(parameters), fieldsList);

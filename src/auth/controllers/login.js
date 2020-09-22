@@ -17,6 +17,7 @@
  */
 module.exports = () => async function(request, response, next) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.auth.controllers.login");
 	try {
 		const { name, email, password } = request.body;
 		const data = await cms.auth.actors.login({ name, email, password });

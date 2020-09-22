@@ -1,8 +1,9 @@
 module.exports = function(options = {}) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.auth.middlewares.onlyAuthenticated");
 	return async function(request, response, next) {
 		try {
-			cms.utils.trace("cms.auth.middlewares.onlyAuthenticated");
+			cms.utils.trace("cms.auth.middlewares.onlyAuthenticated (1)");
 			const { auth, session_token } = cms.utils.getAuthenticationFromRequest(request);
 			const isAuthenticated = await cms.auth.actors.onlyAuthenticated(auth, session_token, {request, ...options});
 			if(isAuthenticated) {

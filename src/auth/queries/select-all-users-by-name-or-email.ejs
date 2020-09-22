@@ -17,6 +17,7 @@
  * 
  */
 
+cms.utils.trace("cms.auth.queries.selectAllUsersByNameOrEmail");
 const { name: nameBrute, email: emailBrute } = parameters;
 const { name, email } = {
   name: sqlString.escape(nameBrute),

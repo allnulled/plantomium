@@ -93,7 +93,7 @@ module.exports = function(cms) {
 	};
 
 	cms.utils.pad = function(txt, min = 2, digit = "0") {
-		cms.utils.trace("cms.utils.pad");
+		// cms.utils.trace("cms.utils.pad");
 		let out = "";
 		const str = txt + "";
 		if (min > str.length) {
@@ -237,6 +237,7 @@ module.exports = function(cms) {
 		const plugins = {};
 		const pluginsPath = path.resolve(directory);
 		const vendors = fs.readdirSync(pluginsPath);
+		cms.utils.trace("  · " + pluginsPath.replace(process.env.PROJECT_ROOT, "") + " (as PluginsDirectory)")
 		for (let index = 0; index < vendors.length; index++) {
 			const vendor = vendors[index];
 			const vendorPath = path.resolve(pluginsPath, vendor);
@@ -260,6 +261,34 @@ module.exports = function(cms) {
 			}
 		}
 		return plugins;
+	};
+
+	cms.utils.requireTranslationsDirectory = function(directory, output = {}) {
+		cms.utils.trace("  · " + directory.replace(process.env.PROJECT_ROOT, "") + " (as TranslationsDirectory)")
+		const languages = fs.readdirSync(directory);
+		for(let indexLang=0; indexLang < languages.length; indexLang++) {
+			const langKey = languages[indexLang];
+			const lang = path.resolve(directory, langKey);
+			const nspaces = fs.readdirSync(lang);
+			for(let indexNspace=0; indexNspace < nspaces.length; indexNspace++) {
+				const nsKey = nspaces[indexNspace];
+				const nspace = path.resolve(lang, nsKey);
+				const strings = fs.readdirSync(nspace);
+				for(let indexStr=0; indexStr < strings.length; indexStr++) {
+					const key = strings[indexStr];
+					const str = path.resolve(nspace, key);
+					if(!(langKey in output)) {
+						output[langKey] = {};
+					}
+					if(!(nsKey in output[langKey])) {
+						output[langKey][nsKey] = {};
+					}
+					const contents = fs.readFileSync(str).toString();
+					output[langKey][nsKey][key] = contents;
+				}
+			}
+		}
+		return output;
 	}
 
 	Object.assign(cms.utils, cms.utils.requireDirectory(__dirname))

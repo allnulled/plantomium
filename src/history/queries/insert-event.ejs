@@ -1,5 +1,6 @@
 <%
 
+cms.utils.trace("cms.history.queries.insertEvent");
 if(typeof data !== "object") {
   throw new Error("Required <data> to be an object on <insertEvent> [ERR:1125]");
 }

@@ -1,5 +1,6 @@
 <%
 
+cms.utils.trace("cms.process.base.process.queries.deleteProcessTransactions");
 if(!Array.isArray(ids)) {
 	throw new Error("Required <ids> to be an array on <deleteProcessTransactions> [ERR:5674]");
 }

@@ -18,7 +18,7 @@ class DeleteOneBaseHandler extends BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -26,12 +26,12 @@ class DeleteOneBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onValidate");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onFormatInput");
 		// @TODO: format input parameters
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
@@ -45,32 +45,32 @@ class DeleteOneBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onPreJobs");
 		// @TODO: previous jobs
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onQuery");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onQuery");
 		return super.onQuery(parameters);
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onSynchronize");
 		// @TODO: synchronize data
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.deleteOne.onResult");
+		cms.utils.trace("cms.rest.handlers.deleteOne.onResult");
 		parameters.output = {
 			item: cms.utils.dataGetter(parameters, ["results", 0, 0], null),
 			operation: cms.utils.dataGetter(parameters, ["results", 2], null),

@@ -16,7 +16,7 @@ class GetFileBaseHandler extends BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.getFile.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -24,12 +24,12 @@ class GetFileBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onValidate");
+		cms.utils.trace("cms.rest.handlers.getFile.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.getFile.onFormatInput");
 		// @TODO: format input parameters
 		if(parameters.request) {
 			parameters.table = this.actor.constructor.Table;
@@ -41,12 +41,12 @@ class GetFileBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.getFile.onPreJobs");
 		// @TODO: previous jobs
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onQuery");
+		cms.utils.trace("cms.rest.handlers.getFile.onQuery");
 		const filename = `${parameters.table}.${parameters.column}.${parameters.id}.${parameters.extension}`;
 		const filepath = path.resolve(process.env.PROJECT_ROOT, process.env.STORAGE_FOLDER, filename);
 		return new Promise(function(ok, fail) {
@@ -61,22 +61,22 @@ class GetFileBaseHandler extends BaseHandler {
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.getFile.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.getFile.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.getFile.onSynchronize");
 		// @TODO: synchronize data
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.getFile.onResult");
+		cms.utils.trace("cms.rest.handlers.getFile.onResult");
 		parameters.output = parameters.filepath;
 		return parameters.output;
 	}

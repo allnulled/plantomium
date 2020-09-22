@@ -28,6 +28,8 @@ const splitToOrder = function(orderStatement) {
  * 
  */
 module.exports = function(sort = undefined, tablename = undefined) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.toSelectOrderSql");
 	if(typeof sort !== "undefined") {
 		return splitToOrder(sort);
 	}

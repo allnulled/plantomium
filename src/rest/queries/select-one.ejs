@@ -26,7 +26,7 @@ const {
   sort = undefined,
   page = 1,
 } = parameters.input;
-const auth = cms.utils.getAuthentication(parameters.request);
+const auth = cms.utils.getAuthentication(parameters.request, {});
 const fieldsFinal = cms.utils.toSelectFieldsSql(auth, fields, actorClass.Table, false, true, "get");
 const whereFinal = cms.utils.toSelectWhereSql(auth, [[actorClass.Table + ".id","=",id]], false, actorClass.Table);
 //const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);

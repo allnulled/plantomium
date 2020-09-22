@@ -15,6 +15,10 @@
  * @description 
  * 
  */
+const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+
+cms.utils.trace("cms.process.connection");
+
 module.exports = require("mysql").createConnection({
 	user: process.env.REST_DB_USER,
 	password: process.env.REST_DB_PASSWORD,

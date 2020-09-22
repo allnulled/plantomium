@@ -15,7 +15,7 @@ class SetFileBaseHandler extends BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.setFile.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -23,12 +23,12 @@ class SetFileBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onValidate");
+		cms.utils.trace("cms.rest.handlers.setFile.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.setFile.onFormatInput");
 		// @TODO: format input parameters
 		if(parameters.request) {
 			parameters.table = this.actor.constructor.Table;
@@ -39,32 +39,32 @@ class SetFileBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.setFile.onPreJobs");
 		// @TODO: previous jobs
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onQuery");
+		cms.utils.trace("cms.rest.handlers.setFile.onQuery");
 		
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.setFile.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.setFile.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.setFile.onSynchronize");
 		// @TODO: synchronize data
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.setFile.onResult");
+		cms.utils.trace("cms.rest.handlers.setFile.onResult");
 		parameters.output = parameters.id + ":" + parameters.column;
 	}
 

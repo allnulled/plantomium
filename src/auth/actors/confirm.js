@@ -24,6 +24,7 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
  */
 module.exports = async function(parameters = {}) {
 	try {
+		cms.utils.trace("cms.auth.actors.confirm");
 		// select all unconfirmed_users that: has same confirmation_token
 		const selectUnconfirmedUsersQuery = cms.auth.queries.selectUnconfirmedUsersByConfirmationToken({ parameters });
 		const [unconfirmedUser] = await cms.auth.query(selectUnconfirmedUsersQuery);

@@ -19,6 +19,7 @@ module.exports = async function(parameters = {}) {
 	try {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		// @TODO: 1. select all users and unconfirmed_users that has same name or email (q. select-all-users-by-name-or-email)
+		cms.utils.trace("cms.auth.actors.register");
 		const selectUsersQuery = cms.auth.queries.selectAllUsersByNameOrEmail({ parameters });
 		const [user] = await cms.auth.query(selectUsersQuery);
 		// @TODO: 2. if someone found:

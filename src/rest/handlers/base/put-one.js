@@ -15,7 +15,7 @@ class PutOneBaseHandler extends BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.putOne.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -23,12 +23,12 @@ class PutOneBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onValidate");
+		cms.utils.trace("cms.rest.handlers.putOne.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.putOne.onFormatInput");
 		// @TODO: format input parameters
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
@@ -44,32 +44,32 @@ class PutOneBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.putOne.onPreJobs");
 		// @TODO: previous jobs
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onQuery");
+		cms.utils.trace("cms.rest.handlers.putOne.onQuery");
 		return super.onQuery(parameters);
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.putOne.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.putOne.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.putOne.onSynchronize");
 		// @TODO: synchronize data
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onResult");
+		cms.utils.trace("cms.rest.handlers.putOne.onResult");
 		parameters.output = {
 			operation: cms.utils.dataGetter(parameters, ["results", 0], null)
 		};

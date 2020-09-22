@@ -17,6 +17,7 @@
  */
 module.exports = function(error, request, response, next) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.erroneousJsonResponse");
 	const date = new Date();
 	const pad = cms.utils.pad;
 	const code = typeof error.code === "number" ? error.code : 500;

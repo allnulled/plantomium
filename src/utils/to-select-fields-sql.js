@@ -20,9 +20,10 @@ const sqlString = require("sqlstring");
  * @description 
  * 
  */
-module.exports = function(authenticationParam, fieldsParam = undefined, tablesParam = [], enableJoins = true, enableTable = true, operation = undefined) {
-	let sql = "";
+module.exports = function(authenticationParam, fieldsParam = undefined, tablesParam = [], enableJoins = true, enableTable = true, operation = "get") {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.toSelectFieldsSql");
+	let sql = "";
 	let fields = cms.utils.formatFieldsParameters(fieldsParam);
 	const tables = cms.utils.formatTablesParameters(tablesParam);
 	const authentication = cms.utils.formatAuthenticationParameter(authenticationParam);
@@ -88,7 +89,7 @@ module.exports = function(authenticationParam, fieldsParam = undefined, tablesPa
 		const commaSeparation = index !== 0 ? ",\n  " : "  ";
 		const fieldSql = `${tableName}.${columnName}`;
 		const asSql = tableName ? ` AS ${sqlString.escape(fieldSql)}` : "";
-		const hasPermission = cms.utils.checkRestPermissionsTo(authentication, operation, tableName, columnName);
+		const hasPermission = (authenticationParam === 0) ? true : cms.utils.checkRestPermissionsTo(authentication, operation, tableName, columnName);
 		if(hasPermission) {
 			sql += commaSeparation + sqlString.escapeId(fieldSql) + asSql;
 		}

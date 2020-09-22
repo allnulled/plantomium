@@ -17,7 +17,7 @@ class GetOneBaseHandler extends BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.getOne.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -25,12 +25,12 @@ class GetOneBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onValidate");
+		cms.utils.trace("cms.rest.handlers.getOne.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.getOne.onFormatInput");
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
 				id: parameters.request.params.id,
@@ -57,32 +57,32 @@ class GetOneBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.getOne.onPreJobs");
 		// @TODO: previous jobs
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onQuery");
+		cms.utils.trace("cms.rest.handlers.getOne.onQuery");
 		return super.onQuery(parameters);
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.getOne.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.getOne.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.getOne.onSynchronize");
 		// @TODO: synchronize data
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.getOne.onResult");
+		cms.utils.trace("cms.rest.handlers.getOne.onResult");
 		parameters.output = {};
 		const table = this.actor.constructor.Table;
 		const treeData = cms.utils.dataGetter(cms, ["schema", "constraints", table, "rest", "tree"], null);

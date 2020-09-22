@@ -1,5 +1,6 @@
 <%
 
+cms.utils.trace("cms.process.base.process.queries.updateProcess");
 const table = sqlString.escapeId(processInstance.table)
 const escapedId = sqlString.escape(id);
 const escapedValues = sqlString.escape(values);

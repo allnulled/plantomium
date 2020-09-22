@@ -1,4 +1,6 @@
 module.exports = (data, selectorP, value, force = false) => {
+    const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+    cms.utils.trace("cms.utils.dataSetter");
     if(!Array.isArray(selectorP)) {
         throw new Error("Required <selector> to be an array of strings [ERR:788]");
     }

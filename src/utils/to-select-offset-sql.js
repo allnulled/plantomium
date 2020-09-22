@@ -18,11 +18,12 @@ const sqlString = require("sqlstring");
  * 
  */
 module.exports = function(limit = 20, page = 1, offset = undefined, tablename = undefined) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.toSelectOffsetSql");
 	if(typeof offset !== "undefined") {
 		return sqlString.escape(offset);
 	}
 	if(tablename) {
-		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 		const schemaOffset = cms.utils.dataGetter(cms, ["schema", "constraints", tablename, "rest", "offset"], undefined);
 		if(typeof schemaOffset !== "undefined") {
 			return sqlString.escape(schemaOffset);

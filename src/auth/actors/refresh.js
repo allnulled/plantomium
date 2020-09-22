@@ -18,6 +18,7 @@
 module.exports = async function(parameters = {}) {
 	try {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+		cms.utils.trace("cms.auth.actors.refresh");
 		// @TODO: 
 		const new_session_token = cms.utils.generateToken(200);
 		const new_refresh_token = cms.utils.generateToken(200);

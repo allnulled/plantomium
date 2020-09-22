@@ -23,14 +23,14 @@ const {
   data
 } = parameters.input;
 
-const auth = cms.utils.getAuthentication(parameters.request);
+const auth = cms.utils.getAuthentication(parameters.request, {});
 const whereFinal = cms.utils.toSelectWhereSql(auth, where, false, actorClass.Table, true);
-const dataFinal = cms.utils.toUpdateValuesSql(auth, data);
+const dataFinal = cms.utils.toUpdateValuesSql(auth, data, actorClass.Table);
 if(dataFinal.length === 0) {
 	throw new Error("Required at least 1 item in <data> on <cms.rest.queries.updateMany> [ERR:640]");
 }
 if(whereFinal.length === 0) {
-	throw new Error("Required at least 1 item in <where> on <cms.rest.queries.updateMany> [ERR:640]")
+	throw new Error("Required at least 1 item in <where> on <cms.rest.queries.updateMany> [ERR:650]")
 }
 %>
 # update many:

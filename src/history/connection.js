@@ -15,6 +15,9 @@
  * @description 
  * 
  */
+const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+cms.utils.trace("cms.history.queries.insertData");
+
 module.exports = require("mysql").createConnection({
 	user: process.env.HISTORY_DB_USER,
 	password: process.env.HISTORY_DB_PASSWORD,

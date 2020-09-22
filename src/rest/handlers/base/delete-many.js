@@ -18,7 +18,7 @@ class DeleteManyBaseHandler extends BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -26,12 +26,12 @@ class DeleteManyBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onValidate");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onFormatInput");
 		// @TODO: format input parameters
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
@@ -45,32 +45,32 @@ class DeleteManyBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onPreJobs");
 		// @TODO: previous jobs
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onQuery");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onQuery");
 		return super.onQuery(parameters);
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onSynchronize");
 		// @TODO: synchronize data
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onResult");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onResult");
 		let operations = [];
 		const main = cms.utils.dataGetter(parameters, ["results", 2], null);
 		const others = cms.utils.dataGetter(parameters, ["results", 1], []);

@@ -1,5 +1,6 @@
 <%
 
+cms.utils.trace("cms.process.base.process.queries.insertProcessTransaction");
 const transactionTable = sqlString.escapeId(processInstance.transactionTable);
 const fields = Object.keys(data);
 const values = Object.values(data);

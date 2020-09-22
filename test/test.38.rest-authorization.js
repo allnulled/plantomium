@@ -97,18 +97,21 @@ describe("REST-AUTHORIZATION Test", function() {
 			});
 			idN = postOnePlantN.data.data.operation.insertId;
 			idAdmin = postOnePlantAdmin.data.data.operation.insertId;
+			console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 			const getOnePlantN = await normalClient.get(Utils.url(`/api/v1/plant/${idN}`));
+			console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+			console.log("Admin request.")
 			const getOnePlantAdmin = await adminClient.get(Utils.url(`/api/v1/plant/${idAdmin}`));
 			expect(typeof getOnePlantN.data.data.item).to.equal("object");
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_1")).to.not.equal(-1);
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_2")).to.not.equal(-1);
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_3")).to.not.equal(-1);
-			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_4")).to.equal(-1);
+			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_4")).to.not.equal(-1);
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_5")).to.equal(-1);
 			expect(getOnePlantN.data.data.item["plant.field_1"]).to.equal(5);
 			expect(getOnePlantN.data.data.item["plant.field_2"]).to.equal(5);
 			expect(getOnePlantN.data.data.item["plant.field_3"]).to.equal(5);
-			expect(getOnePlantN.data.data.item["plant.field_4"]).to.equal(undefined);
+			expect(getOnePlantN.data.data.item["plant.field_4"]).to.equal(null);
 			expect(getOnePlantN.data.data.item["plant.field_5"]).to.equal(undefined);
 			expect(typeof getOnePlantAdmin.data.data.item).to.equal("object");
 			expect(Object.keys(getOnePlantAdmin.data.data.item).indexOf("plant.field_1")).to.not.equal(-1);
@@ -245,12 +248,12 @@ describe("REST-AUTHORIZATION Test", function() {
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_1")).to.not.equal(-1);
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_2")).to.not.equal(-1);
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_3")).to.not.equal(-1);
-			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_4")).to.equal(-1);
+			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_4")).to.not.equal(-1);
 			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_5")).to.equal(-1);
 			expect(getOnePlantN.data.data.item["plant.field_1"]).to.equal(1);
 			expect(getOnePlantN.data.data.item["plant.field_2"]).to.equal(1);
 			expect(getOnePlantN.data.data.item["plant.field_3"]).to.equal(1);
-			expect(getOnePlantN.data.data.item["plant.field_4"]).to.equal(undefined);
+			expect(getOnePlantN.data.data.item["plant.field_4"]).to.equal(null);
 			expect(getOnePlantN.data.data.item["plant.field_5"]).to.equal(undefined);
 			expect(typeof getOnePlantAdmin.data.data.item).to.equal("object");
 			expect(Object.keys(getOnePlantAdmin.data.data.item).indexOf("plant.field_1")).to.not.equal(-1);
@@ -286,6 +289,18 @@ describe("REST-AUTHORIZATION Test", function() {
 					field_5: 10,
 				}
 			});
+			const getOnePlantN = await normalClient.get(Utils.url(`/api/v1/plant/${idN}`));
+			expect(typeof getOnePlantN.data.data.item).to.equal("object");
+			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_1")).to.not.equal(-1);
+			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_2")).to.not.equal(-1);
+			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_3")).to.not.equal(-1);
+			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_4")).to.not.equal(-1);
+			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_5")).to.equal(-1);
+			expect(getOnePlantN.data.data.item["plant.field_1"]).to.equal(10);
+			expect(getOnePlantN.data.data.item["plant.field_2"]).to.equal(10);
+			expect(getOnePlantN.data.data.item["plant.field_3"]).to.equal(10);
+			expect(getOnePlantN.data.data.item["plant.field_4"]).to.equal(null);
+			expect(getOnePlantN.data.data.item["plant.field_5"]).to.equal(undefined);
 			const putManyPlantsAdmin = await adminClient.put(Utils.url("/api/v1/plant"), {
 				where: [
 					["id", "=", idAdmin]
@@ -309,19 +324,7 @@ describe("REST-AUTHORIZATION Test", function() {
 					])
 				}
 			});
-			const getOnePlantN = await normalClient.get(Utils.url(`/api/v1/plant/${idN}`));
 			const getOnePlantAdmin = await adminClient.get(Utils.url(`/api/v1/plant/${idAdmin}`));
-			expect(typeof getOnePlantN.data.data.item).to.equal("object");
-			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_1")).to.not.equal(-1);
-			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_2")).to.not.equal(-1);
-			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_3")).to.not.equal(-1);
-			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_4")).to.equal(-1);
-			expect(Object.keys(getOnePlantN.data.data.item).indexOf("plant.field_5")).to.equal(-1);
-			expect(getOnePlantN.data.data.item["plant.field_1"]).to.equal(10);
-			expect(getOnePlantN.data.data.item["plant.field_2"]).to.equal(10);
-			expect(getOnePlantN.data.data.item["plant.field_3"]).to.equal(10);
-			expect(getOnePlantN.data.data.item["plant.field_4"]).to.equal(undefined);
-			expect(getOnePlantN.data.data.item["plant.field_5"]).to.equal(undefined);
 			expect(typeof getOnePlantAdmin.data.data.item).to.equal("object");
 			expect(Object.keys(getOnePlantAdmin.data.data.item).indexOf("plant.field_1")).to.not.equal(-1);
 			expect(Object.keys(getOnePlantAdmin.data.data.item).indexOf("plant.field_2")).to.not.equal(-1);
@@ -449,7 +452,7 @@ describe("REST-AUTHORIZATION Test", function() {
 
 	it("can authorize putMany data", async function() {
 		try {
-			const putManyN = await normalClient.put(Utils.url(`/api/v1/plant-details`), {
+			const putManyN = await normalClient.put(Utils.url(`/api/v1/plant`), {
 				where: [
 					["id", ">", 0]
 				],
@@ -457,7 +460,18 @@ describe("REST-AUTHORIZATION Test", function() {
 					description: 'all updated',
 				}
 			});
-			expect(putManyN.data.data.operation.affectedRows).to.not.equal(1);
+			expect(typeof putManyN.data.error).to.equal("object");
+			const putManyN2 = await normalClient.put(Utils.url(`/api/v1/plant`), {
+				where: [
+					["id", ">", 0],
+					["id", "<", 2]
+				],
+				data: {
+					field_1: 47,
+				}
+			});
+			expect(typeof putManyN2.data.data).to.equal("object");
+			expect(putManyN2.data.data.operation.affectedRows).to.not.equal(0);
 		} catch (error) {
 			throw error;
 		}

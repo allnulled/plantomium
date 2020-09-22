@@ -27,6 +27,7 @@ const bcrypt = require("bcrypt");
  */
 module.exports = async function(parameters = {}) {
 	try {
+		cms.utils.trace("cms.auth.actors.change");
 		const selectUserQuery = cms.auth.queries.selectUserByRecoveryToken({ parameters });
 		const users = await cms.auth.query(selectUserQuery);
 		if(users.length === 0) {

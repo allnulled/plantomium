@@ -29,7 +29,7 @@ describe("SOCKETS Test", function() {
 		try {
 			await axios.post(process.env.APP_URL + ":" + process.env.APP_PORT + "/auth/v1/logout", {
 				headers: {
-					authorization: "Bearer: " + session_token
+					Authorization: "Bearer: " + session_token
 				}
 			});
 		} catch (error) {
@@ -46,12 +46,13 @@ describe("SOCKETS Test", function() {
 			secure: true,
 			rejectUnauthorized: false,
 			extraHeaders: {
-				authorization: "Bearer: " + session_token
+				Authorization: "Bearer: " + session_token
 			},
 			timeout: 2000
 		});
 		client.connect()
 		client.on("rest_event", function(data) {
+			console.log("rest event fired!");
 			expect(typeof data).to.equal("object");
 			expect(typeof data.headers).to.equal("object");
 			expect(typeof data.query).to.equal("object");
@@ -61,10 +62,11 @@ describe("SOCKETS Test", function() {
 		});
 		client.on("connect", function(data) {
 			//ok(new Error("Connected"))
+			console.log("connected!");
 			// trigger the broadcast:
 			axios.get(baseUrl + "/api/v1/trait?limit=2", {
 				headers: {
-					authorization: "Bearer: " + session_token
+					Authorization: "Bearer: " + session_token
 				}
 			}).then(noop).catch(console.error);
 		});
@@ -101,9 +103,9 @@ describe("SOCKETS Test", function() {
 		const client = socketClient(chatUrl, {
 			transports: ["websocket"], // THIS LINE IS IMPORTANT ON HTTP[[[[ S ]]]]
 			secure: true,
-			rejectUnauthorized: false,
+			rejectUnauthorized: true,
 			extraHeaders: {
-				authorization: "Bearer: " + session_token
+				Authorization: "Bearer: " + session_token
 			}
 		});
 		client.connect();
@@ -135,7 +137,7 @@ describe("SOCKETS Test", function() {
 		const client = socketClient(broadcastUrl, {
 			transports: ["websocket"],
 			secure: true,
-			rejectUnauthorized: false,
+			rejectUnauthorized: true,
 			extraHeaders: {
 				// NO AUTHORIZATION:
 				// authorization: "Bearer: " + session_token

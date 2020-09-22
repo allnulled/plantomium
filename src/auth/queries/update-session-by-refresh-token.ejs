@@ -18,6 +18,7 @@
  */
 
 
+cms.utils.trace("cms.auth.queries.updateSessionByRefreshToken");
 const new_session_token = sqlString.escape(parameters.new_session_token);
 const new_refresh_token = sqlString.escape(parameters.new_refresh_token);
 const refresh_token = sqlString.escape(parameters.refresh_token);

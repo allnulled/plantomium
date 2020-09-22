@@ -18,35 +18,37 @@
 module.exports = async function(parameters = {}) {
 	try {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+		cms.utils.trace("cms.auth.actors.login");
 		// select all sessions opened with same user and password
 		const selectUsersQuery = cms.auth.queries.selectUserByNameOrEmail({ parameters });
 		const users = await cms.auth.query(selectUsersQuery);
 		// report errors:
 		if(users.length === 0) {
-			throw new Error("No user found");
+			throw new Error("Required <user> to exist in database on <login> [ERR:5580]");
 		}
 		if(users.length !== 1) {
-			throw new Error("Duplicated user (anomaly)");
+			throw new Error("Required <user> to exist once on <login> (anomaly) [ERR:5587] ");
 		}
 		// format user:
 		const user = cms.utils.toObjectSql(users, "users")[0];
 		if(typeof parameters.password !== "string") {
-			throw new Error("Required password to be a string on login");
+			throw new Error("Required <password> to be a string on <login> [ERR:5583]");
 		}
 		if(typeof user.password !== "string") {
-			throw new Error("Required user password to be a string on login");
+			LL(users);
+			throw new Error("Required <password> to be a string on <login> [ERR:5589]");
 		}
 		const isPassword = await cms.utils.comparePassword(parameters.password, user.password);
 		if(isPassword === false) {
-			console.log(parameters.password, user.password);
-			throw new Error("Incorrect password");
+			LL(parameters.password, user.password);
+			throw new Error("Required <password> to correspond to the user on <login> [ERR:5588]");
 		}
 		// select sessions for this user:
 		const selectSessionsQuery = cms.auth.queries.selectSessionsByUser({ parameters: { id_user: user.id } });
 		const sessions = await cms.auth.query(selectSessionsQuery);
 		// check maximum number of opened sessions per user:
 		if(sessions.length >= (cms.schema.general.maxSessionsPerUser || 5)) {
-			throw new Error("Maximum sessions per user reached on <login>");
+			throw new Error("Required <maxSessionsPerUser> not to be reached on <login> [ERR:5581]");
 		}
 		// generate tokens for session:
 		const refresh_token = cms.utils.generateToken(200);

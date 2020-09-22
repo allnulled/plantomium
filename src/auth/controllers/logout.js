@@ -18,6 +18,7 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
  * 
  */
 module.exports = () => async function(request, response, next) {
+	cms.utils.trace("cms.auth.controllers.logout");
 	try {
 		const data = await cms.auth.actors.logout({
 			session_token: cms.utils.formatBearerToken(request.headers.authorization)

@@ -17,6 +17,7 @@
  * 
  */
 
+cms.utils.trace("cms.auth.queries.insertSessionByUser");
 const fields = cms.utils.toInsertFieldsSql(0, Object.keys(parameters));
 const values = cms.utils.toInsertValuesSql(0, Object.values(parameters));
 %>

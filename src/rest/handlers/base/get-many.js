@@ -17,7 +17,7 @@ class GetManyBaseHandler extends BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.getMany.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -25,12 +25,12 @@ class GetManyBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onValidate");
+		cms.utils.trace("cms.rest.handlers.getMany.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.getMany.onFormatInput");
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
 				where: parameters.request.query.where,
@@ -55,32 +55,32 @@ class GetManyBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.getMany.onPreJobs");
 		// @TODO: previous jobs
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onQuery");
+		cms.utils.trace("cms.rest.handlers.getMany.onQuery");
 		return super.onQuery(parameters);
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.getMany.onFormatOutput");
 		
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.getMany.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.getMany.onSynchronize");
 		// @TODO: synchronize data
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.getMany.onResult");
+		cms.utils.trace("cms.rest.handlers.getMany.onResult");
 		parameters.output = {
 			input: parameters.input,
 			total: cms.utils.dataGetter(parameters, ["results", 1, 0, "Total"], null),

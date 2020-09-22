@@ -1,6 +1,7 @@
 <%
 // @TODO...
 
+cms.utils.trace("cms.history.queries.insertDataByRest");
 const operation = handler.constructor.Operation;
 const { request = {} } = parameters;
 const selectedItem = cms.utils.dataGetter(parameters, ["results", 0]);

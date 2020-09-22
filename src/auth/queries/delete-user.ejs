@@ -18,6 +18,7 @@
  */
 
 
+cms.utils.trace("cms.auth.queries.deleteUser");
 const user_id = sqlString.escape(parameters.user_id)
 const previousDeletions = [
 	["sessions", "id_user"],

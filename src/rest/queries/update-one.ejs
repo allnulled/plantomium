@@ -22,8 +22,9 @@ const {
   id,
   data = {}
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql(0, [[actorClass.Table + ".id","=",id]], false, actorClass.Table);
-const dataFinal = cms.utils.toUpdateValuesSql(0, data);
+const auth = cms.utils.getAuthentication(parameters.request, {});
+const whereFinal = cms.utils.toSelectWhereSql(auth, [[actorClass.Table + ".id","=",id]], false, actorClass.Table);
+const dataFinal = cms.utils.toUpdateValuesSql(auth, data, actorClass.Table);
 if(dataFinal.length === 0) {
 	throw new Error("Required data on update-one");
 }

@@ -18,6 +18,7 @@
  */
 
 
+cms.utils.trace("cms.auth.queries.selectUserByRecoveryToken");
 const recovery_token = sqlString.escape(parameters.recovery_token);
 const fields = cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.users.attributes, "users");
 

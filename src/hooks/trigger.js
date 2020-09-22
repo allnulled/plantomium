@@ -2,6 +2,7 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 
 module.exports = async function(name, parameters) {
 	try {
+		cms.utils.trace("cms.hooks.trigger");
 		if (typeof name !== "string") {
 			throw new Error("Required <name> to be a string on <cms.hooks.trigger> [ERR:849]");
 		}

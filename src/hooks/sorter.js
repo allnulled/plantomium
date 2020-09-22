@@ -1,4 +1,6 @@
 module.exports = function(a, b) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.hooks.sorter");
 	let aPriority, bPriority;
 	if((typeof a !== "object") || (typeof b !== "object")) {
 		throw new Error("Required hooks to be objects on <cms.hooks.sorter> [ERR:283]");

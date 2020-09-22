@@ -17,6 +17,7 @@
  */
 module.exports = () => async function(request, response, next) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.auth.controllers.confirm");
 	try {
 		const { confirmation_token } = request.body;
 		const data = await cms.auth.actors.confirm({ confirmation_token });

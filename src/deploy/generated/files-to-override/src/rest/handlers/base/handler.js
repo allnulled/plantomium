@@ -28,12 +28,12 @@ class BaseHandler {
 	}
 
 	getHandler() {
-		cms.utils.trace("rest.handler.getHandler");
+		cms.utils.trace("cms.rest.handler.getHandler");
 		return this.start.bind(this);
 	}
 
 	getLifecycle() {
-		cms.utils.trace("rest.handler.getLifecycle");
+		cms.utils.trace("cms.rest.handler.getLifecycle");
 		return [
 			"onStart",
 			"onRegisterEvent",
@@ -51,7 +51,7 @@ class BaseHandler {
 	}
 
 	async start(parameters = {}) {
-		cms.utils.trace("rest.handler.start");
+		cms.utils.trace("cms.rest.handler.start");
 		try {
 			const cycles = this.getLifecycle();
 			let out = undefined;
@@ -72,13 +72,13 @@ class BaseHandler {
 	}
 
 	onStart(parameters) {
-		cms.utils.trace("rest.handler.onStart");
+		cms.utils.trace("cms.rest.handler.onStart");
 		parameters.queries = [];
 		parameters.results = [];
 	}
 
 	onRegisterEvent(parameters) {
-		cms.utils.trace("rest.handler.onRegisterEvent");
+		cms.utils.trace("cms.rest.handler.onRegisterEvent");
 		return this.createQueryFilePromise(
 			{template: process.env.PROJECT_ROOT + "/src/history/queries/insert-event-by-rest.ejs", history: true},
 			parameters,
@@ -89,27 +89,27 @@ class BaseHandler {
 	}
 
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handler.onAuthorize");
+		cms.utils.trace("cms.rest.handler.onAuthorize");
 		throw new Error("Method <onAuthorize> must be overriden");
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handler.onValidate");
+		cms.utils.trace("cms.rest.handler.onValidate");
 		throw new Error("Method <onValidate> must be overriden");
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handler.onFormatInput");
+		cms.utils.trace("cms.rest.handler.onFormatInput");
 		throw new Error("Method <onFormatInput> must be overriden");
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handler.onPreJobs");
+		cms.utils.trace("cms.rest.handler.onPreJobs");
 		throw new Error("Method <onPreJobs> must be overriden");
 	}
 
 	onQuery(parameters) {
-		cms.utils.trace("rest.handler.onQuery");
+		cms.utils.trace("cms.rest.handler.onQuery");
 		try {
 			if (this.constructor.QueryFiles.length === 0) {
 				return;
@@ -222,35 +222,35 @@ class BaseHandler {
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handler.onFormatOutput");
+		cms.utils.trace("cms.rest.handler.onFormatOutput");
 		parameters.result = cms.utils.dataGetter(parameters, ["results"], []);
 		parameters.result = parameters.result[0] || null;
 		throw new Error("Method <onFormatOutput> must be overriden");
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handler.onPostJobs");
+		cms.utils.trace("cms.rest.handler.onPostJobs");
 		throw new Error("Method <onPostJobs> must be overriden");
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handler.onSynchronize");
+		cms.utils.trace("cms.rest.handler.onSynchronize");
 		throw new Error("Method <onSynchronize> must be overriden");
 	}
 
 	onBroadcast(parameters) {
-		cms.utils.trace("rest.handler.onBroadcast");
+		cms.utils.trace("cms.rest.handler.onBroadcast");
 		const dehydratedRequest = cms.utils.dehydrateRequest(parameters.request);
 		cms.socket.server.of("broadcast").emit("rest_event", dehydratedRequest);
 	}
 
 	onResult(parameters) {
-		cms.utils.trace("rest.handler.onResult");
+		cms.utils.trace("cms.rest.handler.onResult");
 		throw new Error("Method <onResult> must be overriden");
 	}
 
 	onRenderFile(file, parameters) {
-		cms.utils.trace("rest.handler.onRenderFile");
+		cms.utils.trace("cms.rest.handler.onRenderFile");
 		return cms.utils.renderFile(file, {
 			cms,
 			parameters,
@@ -260,7 +260,7 @@ class BaseHandler {
 	}
 
 	onExecuteQuery(query, options = {}) {
-		cms.utils.trace("rest.handler.onExecuteQuery");
+		cms.utils.trace("cms.rest.handler.onExecuteQuery");
 		return new Promise((ok, fail) => {
 			if(options.history === true) {
 				cms.utils.debugHistoryQuery(query);

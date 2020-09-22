@@ -4,6 +4,7 @@ const marketPath = process.env.PROJECT_ROOT + "/src/config/markets.json";
 const axios = require("axios");
 
 module.exports = function(args = undefined) {
+	cms.utils.trace("cms.markets.add");
 	if(typeof args === "undefined") {
 		throw new Error("Required <args> to be an object on <cms add market> [ERR:679]");
 	}

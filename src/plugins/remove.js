@@ -5,6 +5,8 @@ const marketPath = process.env.PROJECT_ROOT + "/src/config/markets.json";
 
 module.exports = async function(args = undefined) {
 	try {
+		cms.utils.trace("cms.plugins.remove");
+
 		if(typeof args === "undefined") {
 			args = require("yargs-parser")(process.argv.join(" "));
 		}

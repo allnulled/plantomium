@@ -16,6 +16,8 @@
  * 
  */
 module.exports = function(request, response, next) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.initializeFramework");
 	if(typeof request.fw === "undefined") {
 		request.fw = {
 			auth: undefined,
