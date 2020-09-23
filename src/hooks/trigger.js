@@ -1,4 +1,5 @@
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+const fs = require("fs");
 
 module.exports = async function(name, parameters) {
 	try {
@@ -21,7 +22,7 @@ module.exports = async function(name, parameters) {
 				lastResult = await lastResult;
 			}
 		}
-		return lastResult || ((typeof parameters === "object" && "__output__" in parameters) ? parameters.__output__ : undefined);
+		return lastResult || (((typeof parameters === "object") && ("__output__" in parameters)) ? parameters.__output__ : undefined);
 	} catch (error) {
 		throw error;
 	}

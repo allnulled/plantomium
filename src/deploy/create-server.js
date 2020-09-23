@@ -26,5 +26,6 @@ module.exports = function(cms) {
 	const keyPath = path.resolve(process.env.PROJECT_ROOT, process.env.SECURE_SITE_KEY);
 	const key  = fs.readFileSync(keyPath).toString();
 	cms.server = https.createServer({key, cert}, cms.app);
+	cms.hooks.trigger("project.on-create-server");
 	return cms.server;
 }

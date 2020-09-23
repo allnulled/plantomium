@@ -1,4 +1,6 @@
 module.exports = function(cms, router) {
+	cms.utils.trace("cms.router.rest");
+	cms.hooks.trigger("project.on-mount-rest-to-router", { router });
 	cms.rest.controllers.chatMessages.create().mountToRouter(router);
 	cms.rest.controllers.comboCompoundAndPlant.create().mountToRouter(router);
 	cms.rest.controllers.comboEnvironmentAndPlant.create().mountToRouter(router);
@@ -32,4 +34,5 @@ module.exports = function(cms, router) {
 	cms.rest.controllers.traitSecretDetails.create().mountToRouter(router);
 	cms.rest.controllers.usages.create().mountToRouter(router);
 	cms.rest.controllers.users.create().mountToRouter(router);
+	cms.hooks.trigger("project.on-mount-rest-to-router", { router });
 }

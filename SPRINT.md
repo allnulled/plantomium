@@ -11,12 +11,12 @@
     [ ] WHERE
       [✓] picar test
       [✓] pasar test
-      [ ] asegurar su uso en:
+      [✓] asegurar su uso en:
         [✓] SELECT MANY
         [✓] SELECT ONE
-        [ ] UPDATE MANY
+        [✓] UPDATE MANY
         [✓] UPDATE ONE
-        [ ] DELETE MANY
+        [✓] DELETE MANY
         [✓] DELETE ONE
     [✓] JOIN
       [✓] picar test
@@ -151,8 +151,8 @@
         [✓] update
         [✓] delete
   [✓] TRACE through all the application
-  [ ] I18N api
-    [ ] including tests
+  [✓] I18N api
+    [✓] including tests
   [ ] HOOKS through all the application
 
 

@@ -22,6 +22,7 @@ const mysqlSchema = require("mysql-schema");
 module.exports = function(cms) {
 	cms.utils.trace("cms.deploy.regenerateDb");
 	const outputPath = path.resolve(process.env.PROJECT_ROOT, process.env.SCHEMA_OUTPUT);
+	cms.hooks.trigger("project.on-regenerate-db", { outputPath });
 	return mysqlSchema.getSchema({
 		user: process.env.SCHEMA_DB_USER,
 		password: process.env.SCHEMA_DB_PASSWORD,
@@ -35,6 +36,7 @@ module.exports = function(cms) {
 	}).then(function(data) {
 		cms.utils.trace("cms.deploy.regenerateDb: OK.");
 		cms.originalSchema = importFresh(outputPath);
+		cms.hooks.trigger("project.on-regenerated-db", { outputPath, data });
 		return data;
 	});
 }

@@ -10,3 +10,4 @@ cms.utils.trace("[HOOKS...]");
 cms.hooks = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/hooks");
 cms.utils.trace("[DEPLOY...]");
 cms.deploy = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/deploy");
+cms.hooks.trigger("project.on-load-api");

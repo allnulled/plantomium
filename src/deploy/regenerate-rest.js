@@ -23,6 +23,7 @@ const mysqlSchemaGenerator = require("mysql-schema-generator");
  */
 module.exports = function(cms) {
 	cms.utils.trace("cms.deploy.regenerateRest");
+	cms.hooks.trigger("project.on-regenerate-rest", { });
 	const outputPath = path.resolve(process.env.PROJECT_ROOT, process.env.SCHEMA_OUTPUT);
 	const outputVirtualPath = path.resolve(process.env.PROJECT_ROOT, process.env.SCHEMA_VIRTUAL_OUTPUT);
 	// @TODO: 1. generate virtual schema:
@@ -80,6 +81,7 @@ module.exports = function(cms) {
 		////////////////////////
 		cms.process = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/process");
 		////////////////////////
+		cms.hooks.trigger("project.on-regenerated-rest", { output });
 		cms.utils.trace("cms.deploy.regenerateRest: OK.");
 		return output;
 	});
