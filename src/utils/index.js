@@ -283,8 +283,9 @@ module.exports = function(cms) {
 					if(!(nsKey in output[langKey])) {
 						output[langKey][nsKey] = {};
 					}
+					const strKey = key.replace(/\.ejs$/g, "")
 					const contents = fs.readFileSync(str).toString();
-					output[langKey][nsKey][key] = contents;
+					output[langKey][nsKey][strKey] = contents;
 				}
 			}
 		}

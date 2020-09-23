@@ -142,18 +142,21 @@
         [✓] select.wheres
         [ ] select.joins
         [ ] select.order
-        [ ] insert.fields
-        [ ] update.fields
+        [✓] insert.fields
+        [✓] update.fields
         [✓] update.wheres
       [✓] {table}:
         [✓] select
         [✓] insert
         [✓] update
         [✓] delete
+  [✓] TRACE through all the application
+  [ ] I18N api
+    [ ] including tests
+  [ ] HOOKS through all the application
 
 
-
-  [ ] HOOKS & TRACE through all the application
+  [ ] 
   [ ] MAIL TEMPLATES on:
     [ ] confirmation
     [ ] password changed

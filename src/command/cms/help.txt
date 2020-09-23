@@ -1,2 +1,2 @@
 [cms]
- Welcome to <cms> command line interface.
+  · Welcome to <cms> command line interface.

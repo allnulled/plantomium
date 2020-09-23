@@ -1,6 +1,7 @@
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 const fs = require("fs");
 const path = require("path");
+const ejs = require("ejs");
 
 class I18nGetter {
 
@@ -8,12 +9,12 @@ class I18nGetter {
 		return new this(...args);
 	}
 
-	constructor(configurations = {}, i18n = undefined, language = undefined, namespace = undefined, options = {}) {
+	constructor(configurations = {}, i18n = undefined, language = undefined, nsp = undefined, options = {}) {
 		Object.assign(this, options);
+		this.configurations = configurations;
 		this.i18n = i18n;
-		this.configuration = configurations;
 		this.selectedLanguage = language;
-		this.selectedNamespace = namespace;
+		this.selectedNamespace = nsp;
 	}
 
 	setLanguage(langKey) {
@@ -28,23 +29,23 @@ class I18nGetter {
 		return this.getKey.bind(this);
 	}
 
-	setGlobally() {
-		window._ = this.createFunction();
+	setGlobally(np = "") {
+		global["_" + np] = this.createFunction();
 	}
 
 	getKey(key, parameters = {}, contextOverrider = {}) {
 		const lang = contextOverrider.lang || this.selectedLanguage;
-		const nspc = contextOverrider.ns || this.selectedNamespace;
+		const nsp = contextOverrider.ns || this.selectedNamespace;
 		if (!(lang in this.i18n.translationTemplates)) {
-			return this.onGetKeyFallback(key, parameters, contextOverrider, lang, nscp, this, "Language failed");
+			return this.onGetKeyFallback(key, parameters, contextOverrider, lang, nsp, this, "Language failed");
 		}
-		if (!(nspc in this.i18n.translationTemplates[lang])) {
-			return this.onGetKeyFallback(key, parameters, contextOverrider, lang, nscp, this, "Namespace failed");
+		if (!(nsp in this.i18n.translationTemplates[lang])) {
+			return this.onGetKeyFallback(key, parameters, contextOverrider, lang, nsp, this, "Namespace failed");
 		}
-		if (!(key in this.i18n.translationTemplates[lang][nscp])) {
-			return this.onGetKeyFallback(key, parameters, contextOverrider, lang, nscp, this, "Key failed");
+		if (!(key in this.i18n.translationTemplates[lang][nsp])) {
+			return this.onGetKeyFallback(key, parameters, contextOverrider, lang, nsp, this, "Key failed");
 		}
-		const contents = this.i18n.translationTemplates[lang][nspc][key];
+		const contents = this.i18n.translationTemplates[lang][nsp][key];
 		const args = Object.assign({
 			i18nGetter: this,
 			i18n: this.i18n,
@@ -53,7 +54,7 @@ class I18nGetter {
 		return ejs.render(contents, args, this.configurations.renderOptions);
 	}
 
-	onGetKeyFallback(key, parameters, contextOverrider, lang, nscp, i18nGetter, errorMessage) {
+	onGetKeyFallback(key, parameters, contextOverrider, lang, nsp, i18nGetter, errorMessage) {
 		return key;
 	}
 
@@ -68,7 +69,7 @@ class I18n {
 	static get DEFAULT_GETTER_CONFIGURATIONS() {
 		return {
 			renderOptions: {
-				delimiter: "#"
+				delimiter: "@"
 			}
 		}
 	}
@@ -82,6 +83,7 @@ class I18n {
 		if ((!Array.isArray(this.directories)) || (this.directories.length === 0)) {
 			throw new Error("Required <directories> to be an array of at least 1 item on <i18n.constructor> [ERR:2773]");
 		}
+		this.translationTemplates = {};
 		this.loadTranslationTemplates();
 		this.getter = this.createGetter();
 	}
@@ -95,9 +97,9 @@ class I18n {
 		return output;
 	}
 
-	createGetter(configurations = {}) {
+	createGetter(configurations = {}, language = "en", nsp = "default") {
 		const getterConfig = Object.assign({}, this.constructor.DEFAULT_GETTER_CONFIGURATIONS, configurations);
-		return I18nGetter.create(getterConfig, this);
+		return I18nGetter.create(getterConfig, this, language, nsp);
 	}
 
 }
