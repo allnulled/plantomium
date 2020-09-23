@@ -1,0 +1,7 @@
+[cms sql query]
+ [Usage:]
+  cms sql query -- "select * from any"
+  cms sql query -- "insert into any (prop1) values ('whatever')"
+  cms sql query -- "delete from any where id = 1"
+ [Description:]
+  Executes an SQL command.

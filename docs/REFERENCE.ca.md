@@ -1,14 +1,14 @@
 
 ----
 
-### `/src/auth/actors/change.js`
+### `/src/auth/actors/authenticate.js`
 
 
 
-**Location**:  `cms.auth.actors.change`
+**Location**:  `cms.auth.actors.authenticate`
 
 
-**Name**:  change
+**Name**:  authenticate
 
 
 **Type**:  `async function`
@@ -17,13 +17,7 @@
 **Receives**: 
 
 
- - `parameters:Object` - parameters to change a user password.
-
-
- - `parameters.recovery_token:String` - previous recovery_token of the user.
-
-
- - `parameters.password:String` - new password.
+ - `parameters:Object` - user password and name or email
 
 
 **Returns**: 
@@ -32,22 +26,25 @@
  - `Promise<data:Object>`
 
 
- - `Promise<data.message:String>` - a message confirming the operation.
+ - `Promise<data.user:Object>` - data of the user itself
+
+
+ - `Promise<data.groups:Object>` - data of the user groups
+
+
+ - `Promise<data.permssions:Object>` - data of the user permissions
+
+
+ - `Promise<data.sessions:Object>` - data of the user sessions
 
 
 **Throws**: 
 
 
- - `No user found on change` - select returned 0 items
+ - `No user found on authenticate`
 
 
- - `No user found on change (anomaly)` - select returned more than 1 item
-
-
- - `No user found to update on change` - affectedRows of update is 0
-
-
-**Description**:  method that changes the password of a user
+**Description**:  method that gets the session data and inserts a new session.
 
 
 
@@ -120,14 +117,14 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/actors/authenticate.js`
+### `/src/auth/actors/change.js`
 
 
 
-**Location**:  `cms.auth.actors.authenticate`
+**Location**:  `cms.auth.actors.change`
 
 
-**Name**:  authenticate
+**Name**:  change
 
 
 **Type**:  `async function`
@@ -136,7 +133,13 @@ Este es un ejemplo de elemento documentativo prototipo:
 **Receives**: 
 
 
- - `parameters:Object` - user password and name or email
+ - `parameters:Object` - parameters to change a user password.
+
+
+ - `parameters.recovery_token:String` - previous recovery_token of the user.
+
+
+ - `parameters.password:String` - new password.
 
 
 **Returns**: 
@@ -145,25 +148,22 @@ Este es un ejemplo de elemento documentativo prototipo:
  - `Promise<data:Object>`
 
 
- - `Promise<data.user:Object>` - data of the user itself
-
-
- - `Promise<data.groups:Object>` - data of the user groups
-
-
- - `Promise<data.permssions:Object>` - data of the user permissions
-
-
- - `Promise<data.sessions:Object>` - data of the user sessions
+ - `Promise<data.message:String>` - a message confirming the operation.
 
 
 **Throws**: 
 
 
- - `No user found on authenticate`
+ - `No user found on change` - select returned 0 items
 
 
-**Description**:  method that gets the session data and inserts a new session.
+ - `No user found on change (anomaly)` - select returned more than 1 item
+
+
+ - `No user found to update on change` - affectedRows of update is 0
+
+
+**Description**:  method that changes the password of a user
 
 
 
@@ -219,41 +219,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/actors/logout.js`
-
-
-
-**Name**:  `logout`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/auth/actors/login.js`
 
 
@@ -289,11 +254,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/actors/refresh.js`
+### `/src/auth/actors/logout.js`
 
 
 
-**Name**:  `refresh`
+**Name**:  `logout`
 
 
 **Type**:  
@@ -359,116 +324,46 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/auth/actors/refresh.js`
+
+
+
+**Name**:  `refresh`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/auth/actors/register.js`
 
 
 
 **Name**:  `register`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/auth/connection.js`
-
-
-
-**Name**:  `connection`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/auth/controllers/change.js`
-
-
-
-**Name**:  `change`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/auth/controllers/confirm.js`
-
-
-
-**Name**:  `confirm`
 
 
 **Type**:  
@@ -534,6 +429,111 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/auth/connection.js`
+
+
+
+**Name**:  `connection`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/auth/controllers/confirm.js`
+
+
+
+**Name**:  `confirm`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/auth/controllers/change.js`
+
+
+
+**Name**:  `change`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/auth/controllers/login.js`
 
 
@@ -569,11 +569,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/logout.js`
+### `/src/auth/controllers/recover.js`
 
 
 
-**Name**:  `logout`
+**Name**:  `recover`
 
 
 **Type**:  
@@ -604,11 +604,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/recover.js`
+### `/src/auth/controllers/logout.js`
 
 
 
-**Name**:  `recover`
+**Name**:  `logout`
 
 
 **Type**:  
@@ -1339,11 +1339,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/regenerate-rest.js`
+### `/src/deploy/start-server.js`
 
 
 
-**Name**:  `regenerateRest`
+**Name**:  `startServer`
 
 
 **Type**:  
@@ -1374,11 +1374,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/start-server.js`
+### `/src/deploy/regenerate-rest.js`
 
 
 
-**Name**:  `startServer`
+**Name**:  `regenerateRest`
 
 
 **Type**:  
@@ -1444,11 +1444,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/email/agents/agent.js`
+### `/src/email/agents/administrator.js`
 
 
 
-**Name**:  `agent`
+**Name**:  `administrator`
 
 
 **Type**:  
@@ -1479,11 +1479,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/email/agents/administrator.js`
+### `/src/email/agents/agent.js`
 
 
 
-**Name**:  `administrator`
+**Name**:  `agent`
 
 
 **Type**:  
@@ -2984,116 +2984,46 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/deploy/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/deploy/generated/templates/table.actor.base.js`
 
 
 
 **Name**:  `table.actor.base`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
 
 
 **Type**:  
@@ -4454,6 +4384,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/deploy/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/deploy/generated/templates/table.controller.js`
 
 
@@ -4494,6 +4459,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `table.controller`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/generated/templates/table.actor.js`
+
+
+
+**Name**:  `table.actor`
 
 
 **Type**:  
@@ -6064,41 +6064,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/post-one.js`
-
-
-
-**Name**:  `postOne`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/rest/handlers/post-many.js`
 
 
@@ -6169,6 +6134,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/rest/handlers/post-one.js`
+
+
+
+**Name**:  `postOne`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/rest/handlers/put-one.js`
 
 
@@ -6209,41 +6209,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `schema`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.middleware.js`
-
-
-
-**Name**:  `table.middleware`
 
 
 **Type**:  
@@ -7289,6 +7254,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/deploy/generated/templates/table.middleware.js`
+
+
+
+**Name**:  `table.middleware`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/rest/middlewares/middleware.js`
 
 
@@ -7744,11 +7744,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/router/history.js`
+### `/src/router/index.js`
 
 
 
-**Name**:  `history`
+**Name**:  `index`
 
 
 **Type**:  
@@ -7779,11 +7779,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/router/index.js`
+### `/src/router/history.js`
 
 
 
-**Name**:  `index`
+**Name**:  `history`
 
 
 **Type**:  
@@ -8059,11 +8059,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/erroneous-json-response.js`
+### `/src/utils/encrypt-password.js`
 
 
 
-**Name**:  `erroneousJsonResponse`
+**Name**:  `encryptPassword`
 
 
 **Type**:  
@@ -8094,11 +8094,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/encrypt-password.js`
+### `/src/utils/erroneous-json-response.js`
 
 
 
-**Name**:  `encryptPassword`
+**Name**:  `erroneousJsonResponse`
 
 
 **Type**:  
@@ -8239,41 +8239,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `getSchemaForeignKeys`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/utils/get-joined-tables.js`
-
-
-
-**Name**:  `getSchemaJoinedTables`
 
 
 **Type**:  
@@ -8631,41 +8596,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-select-limit-sql.js`
-
-
-
-**Name**:  `toSelectLimitSql`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/utils/to-select-offset-sql.js`
 
 
@@ -8736,6 +8666,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/utils/to-select-limit-sql.js`
+
+
+
+**Name**:  `toSelectLimitSql`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/utils/to-select-where-sql.js`
 
 
@@ -8776,6 +8741,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `toUpdateValuesSql`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/utils/get-joined-tables.js`
+
+
+
+**Name**:  `getSchemaJoinedTables`
 
 
 **Type**:  

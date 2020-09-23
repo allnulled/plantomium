@@ -153,22 +153,38 @@
   [✓] TRACE through all the application
   [✓] I18N api
     [✓] including tests
-  [ ] HOOKS through all the application
+  [✓] HOOKS through all the application
 
+  [ ] COMMANDS
+    [✓] cms download --from x --to y
+    [ ] cms sql query -- "SELECT 5"
+    [ ] cms sql export --file x.sql
+    [ ] cms sql import --file x.sql
+    [ ] cms auth login --name n --email m --password p
+    [ ] cms auth show session --name n --email m --password p
+    [ ] cms auth refresh session --name n --email m --password p
+    [ ] cms auth logout --name n --email m --password p
+    [ ] cms rest get many --...
+    [ ] cms rest get one --...
+    [ ] cms rest post many --...
+    [ ] cms rest post one --...
+    [ ] cms rest put many --...
+    [ ] cms rest put one --...
+    [ ] cms rest delete many --...
+    [ ] cms rest delete one --...
+    [ ] cms rest get --...
+    [ ] cms rest post --...
+    [ ] cms rest put --...
+    [ ] cms rest delete --...
+    [ ] cms create project [-c|--config c.json] [-y|--yes] [-n|--name n]
 
-  [ ] 
   [ ] MAIL TEMPLATES on:
     [ ] confirmation
     [ ] password changed
     [ ] registration
     [ ] unregistration
   [ ] FIX BROADCAST & CHAT
-  [ ] COMMANDS
-    [ ] cms import file --from x --to y
-    [ ] cms show live
-    [ ] cms create project [-c|--config c.json] [-y|--yes] [-n|--name n]
-    [ ] cms git up
-    [ ] cms git down
+    [ ] & add cms show live
   [ ] SERVICE BUILDER
     [ ] using json store
     [ ] at src/config

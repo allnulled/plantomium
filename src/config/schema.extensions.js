@@ -91,16 +91,18 @@ module.exports = {
 		general: {
 			slug: "/api/v1",
 			slugForAuth: "/auth/v1",
-			debugSql: process.env.DEBUG_SQL === "true" && true,
+			/////////////////////////////////////////////////////////////////////////////
+			debugSql: process.env.DEBUG_SQL === "true" && true && false,
+			debugSqlHistory: process.env.DEBUG_SQL_HISTORY === "true" && true && false,
+			debugSqlAuth: process.env.DEBUG_SQL_AUTH === "true" && true && false,
+			debugSqlProcess: process.env.DEBUG_SQL_PROCESS === "true" && true && false,
+			debugErrors: process.env.DEBUG_ERRORS === "true" && true && false,
+			debugTraces: process.env.DEBUG_TRACES === "true" && true && false,
 			debugSqlRestSplitter: "\n[SQL:REST]",
-			debugSqlHistory: process.env.DEBUG_SQL_HISTORY === "true" && true,
 			debugSqlHistorySplitter: "\n[SQL:HISTORY]",
-			debugSqlAuth: process.env.DEBUG_SQL_AUTH === "true" && true,
 			debugSqlAuthSplitter: "\n[SQL:AUTH]",
-			debugSqlProcess: process.env.DEBUG_SQL_PROCESS === "true" && true,
 			debugSqlProcessSplitter: "\n[SQL:PROCESS]",
-			debugErrors: process.env.DEBUG_ERRORS === "true" && true,
-			debugTraces: process.env.DEBUG_TRACES === "true" && true,
+			/////////////////////////////////////////////////////////////////////////////
 			maxSessionsPerUser: 10,
 			hiddenTables: [
 				// "users",

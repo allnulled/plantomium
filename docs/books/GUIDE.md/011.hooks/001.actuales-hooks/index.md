@@ -15,30 +15,36 @@ Por esta última razón, la documentación de los `hooks` es bastante simple. Si
 
 El proceso de <@-_("plantomium-cms")@> comprende los siguientes hooks, llamados en este mismo orden en la ejecución natural de <@-_("plantomium-cms");@>:
 
-  - `project.on-load-api`
-  - `project.on-create-app`
-  - `project.on-create-server`
-  - `project.on-regenerate-db`
-  - `project.on-regenerated-db`
-  - `project.on-regenerate-rest`
-  - `project.on-regenerated-rest`
-  - `project.on-mount-router`
-  - `project.on-mount-rest-to-router`
-  - `project.on-mount-auth-to-router`
-  - `project.on-mounted-auth-to-router`
-  - `project.on-mount-json`
-  - `project.on-mounted-json`
-  - `project.on-mount-process-to-router`
-  - `project.on-mounted-process-to-router`
-  - `project.on-mounted-router`
-  - `project.on-mount-sockets`
-  - `project.on-mounted-sockets`
-  - `project.on-start-server`
-  - `project.on-started-server`
-  - `project.on-stop-server`
-  - `project.on-stopped-server`
+- `project.on-create-app`: crea la `cms.app`, una aplicación de <@-_("express");@>.
+- `project.on-create-server`: crea el `cms.server`, un servidor HTTPS de <@-_("node");@>.
+- `project.on-mount-rest-to-router`: antes de montar las rutas del servicio <@-_("rest");@> en `src/cms/router/rest.js`.
+  - `router:Object`: un enrutador de <@-_("express");@>.
+- `project.on-mounted-rest-to-router`: después de montarlas.
+- `project.on-load-api`
+- `project.on-mount-router`
+- `project.on-mount-auth-to-router`
+- `project.on-mounted-auth-to-router`
+- `project.on-mount-json`
+- `project.on-mounted-json`
+- `project.on-mount-process-to-router`
+- `project.on-mounted-process-to-router`
+- `project.on-mounted-router`
+- `project.on-mount-sockets`
+- `project.on-mounted-sockets`
+- `project.on-regenerate-db`
+  - `outputPath:String`: ruta de salida del `schema` de la base de datos original.
+- `project.on-regenerated-db`
+  - `outputPath:String`: ruta de salida del `schema` de la base de datos original.
+  - `data:Object`: datos generados en el análisis de la base de datos.
+- `project.on-regenerate-rest`
+- `project.on-regenerated-rest`
+  - `output:Object`:
+- `project.on-start-server`
+- `project.on-started-server`
+  - `result:Object`
+- `project.on-stop-server`
+- `project.on-stopped-server`
 
 Más o menos, se intuye lo que está haciendo la API en cada caso, pero pueden buscar en los códigos fuente para más información.
 
 Nótese que algunos de estos `hooks` reciben parámetros.
-

@@ -1,0 +1,6 @@
+[cms sql import]
+ [Usage:]
+  cms sql import
+   --file src/dowloads/whatever.sql
+ [Description:]
+  Executes an SQL script file.

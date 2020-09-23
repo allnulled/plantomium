@@ -12,5 +12,5 @@ for(let index = 0; index < tableNames.length; index++) {
 	const camelName = modelName.substr(0,1).toLowerCase() + modelName.substr(1);
 %>
 	cms.rest.controllers.<%-camelName%>.create().mountToRouter(router);<% } %>
-	cms.hooks.trigger("project.on-mount-rest-to-router", { router });
+	cms.hooks.trigger("project.on-mounted-rest-to-router", { router });
 }
