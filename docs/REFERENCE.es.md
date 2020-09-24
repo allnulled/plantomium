@@ -2,286 +2,286 @@
 
 ## Índice
 
-  - [src/auth/actors/authenticate-attempt.js](#srcauthactorsauthenticate-attemptjs)
-  - [src/auth/actors/authenticate.js](#srcauthactorsauthenticatejs)
-  - [src/auth/actors/change.js](#srcauthactorschangejs)
-  - [src/auth/actors/confirm.js](#srcauthactorsconfirmjs)
-  - [src/auth/actors/login.js](#srcauthactorsloginjs)
-  - [src/auth/actors/logout.js](#srcauthactorslogoutjs)
-  - [src/auth/actors/only-authenticated.js](#srcauthactorsonly-authenticatedjs)
-  - [src/auth/actors/only-groups.js](#srcauthactorsonly-groupsjs)
-  - [src/auth/actors/only-permissions.js](#srcauthactorsonly-permissionsjs)
-  - [src/auth/actors/only-users.js](#srcauthactorsonly-usersjs)
-  - [src/auth/actors/only.js](#srcauthactorsonlyjs)
-  - [src/auth/actors/recover.js](#srcauthactorsrecoverjs)
-  - [src/auth/actors/refresh.js](#srcauthactorsrefreshjs)
-  - [src/auth/actors/register.js](#srcauthactorsregisterjs)
-  - [src/auth/actors/unregister.js](#srcauthactorsunregisterjs)
-  - [src/auth/connection.js](#srcauthconnectionjs)
-  - [src/auth/controllers/change.js](#srcauthcontrollerschangejs)
-  - [src/auth/controllers/confirm.js](#srcauthcontrollersconfirmjs)
-  - [src/auth/controllers/login.js](#srcauthcontrollersloginjs)
-  - [src/auth/controllers/logout.js](#srcauthcontrollerslogoutjs)
-  - [src/auth/controllers/recover.js](#srcauthcontrollersrecoverjs)
-  - [src/auth/controllers/refresh.js](#srcauthcontrollersrefreshjs)
-  - [src/auth/controllers/register.js](#srcauthcontrollersregisterjs)
-  - [src/auth/controllers/unregister.js](#srcauthcontrollersunregisterjs)
-  - [src/auth/middlewares/authenticate.js](#srcauthmiddlewaresauthenticatejs)
-  - [src/auth/middlewares/authenticate.js](#srcauthmiddlewaresauthenticatejs)
-  - [src/auth/query.js](#srcauthqueryjs)
-  - [src/cms.js](#srccmsjs)
-  - [src/config/schema.extensions.js](#srcconfigschemaextensionsjs)
-  - [src/deploy/create-app.js](#srcdeploycreate-appjs)
-  - [src/deploy/create-server.js](#srcdeploycreate-serverjs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/initialize.js](#srcdeployinitializejs)
-  - [src/deploy/load-api.js](#srcdeployload-apijs)
-  - [src/deploy/mount-router.js](#srcdeploymount-routerjs)
-  - [src/deploy/load-env.js](#srcdeployload-envjs)
-  - [src/deploy/regenerate-db.js](#srcdeployregenerate-dbjs)
-  - [src/deploy/mount-sockets.js](#srcdeploymount-socketsjs)
-  - [src/deploy/regenerate-rest.js](#srcdeployregenerate-restjs)
-  - [src/deploy/start-server.js](#srcdeploystart-serverjs)
-  - [src/deploy/stop-server.js](#srcdeploystop-serverjs)
-  - [src/email/agents/administrator.js](#srcemailagentsadministratorjs)
-  - [src/email/agents/agent.js](#srcemailagentsagentjs)
-  - [src/history/connection.js](#srchistoryconnectionjs)
-  - [src/auth/connection.js](#srcauthconnectionjs)
-  - [src/rest/actors/actor.js](#srcrestactorsactorjs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.base.js](#srcdeploygeneratedtemplatestableactorbasejs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/rest/connection.js](#srcrestconnectionjs)
-  - [src/deploy/generated/templates/table.actor.js](#srcdeploygeneratedtemplatestableactorjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/rest/controllers/controller.js](#srcrestcontrollerscontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/deploy/generated/templates/table.controller.js](#srcdeploygeneratedtemplatestablecontrollerjs)
-  - [src/rest/handlers/delete-one.js](#srcresthandlersdelete-onejs)
-  - [src/rest/handlers/delete-many.js](#srcresthandlersdelete-manyjs)
-  - [src/rest/handlers/get-many.js](#srcresthandlersget-manyjs)
-  - [src/rest/handlers/get-one.js](#srcresthandlersget-onejs)
-  - [src/rest/handlers/handler.js](#srcresthandlershandlerjs)
-  - [src/rest/handlers/post-many.js](#srcresthandlerspost-manyjs)
-  - [src/rest/handlers/post-one.js](#srcresthandlerspost-onejs)
-  - [src/rest/handlers/put-many.js](#srcresthandlersput-manyjs)
-  - [src/rest/handlers/put-one.js](#srcresthandlersput-onejs)
-  - [src/rest/handlers/schema.js](#srcresthandlersschemajs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/rest/middlewares/enable-post-middleware.js](#srcrestmiddlewaresenable-post-middlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/rest/middlewares/middleware.js](#srcrestmiddlewaresmiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/deploy/generated/templates/table.middleware.js](#srcdeploygeneratedtemplatestablemiddlewarejs)
-  - [src/router/auth.js](#srcrouterauthjs)
-  - [src/router/history.js](#srcrouterhistoryjs)
-  - [src/router/index.js](#srcrouterindexjs)
-  - [src/router/routes.js](#srcrouterroutesjs)
-  - [src/store/index.js](#srcstoreindexjs)
-  - [src/ui/babel.config.js](#srcuibabelconfigjs)
-  - [src/store/local.js](#srcstorelocaljs)
-  - [src/utils/compare-password.js](#srcutilscompare-passwordjs)
-  - [src/utils/debug-error.js](#srcutilsdebug-errorjs)
-  - [src/utils/debug.js](#srcutilsdebugjs)
-  - [src/utils/erroneous-json-response.js](#srcutilserroneous-json-responsejs)
-  - [src/utils/encrypt-password.js](#srcutilsencrypt-passwordjs)
-  - [src/utils/format-bearer-token.js](#srcutilsformat-bearer-tokenjs)
-  - [src/utils/generate-token.js](#srcutilsgenerate-tokenjs)
-  - [src/utils/get-schema-foreign-keys.js](#srcutilsget-schema-foreign-keysjs)
-  - [src/utils/generate-virtual-schema.js](#srcutilsgenerate-virtual-schemajs)
-  - [src/utils/get-joined-tables.js](#srcutilsget-joined-tablesjs)
-  - [src/utils/initialize-framework.js](#srcutilsinitialize-frameworkjs)
-  - [src/utils/index.js](#srcutilsindexjs)
-  - [src/utils/render-file.js](#srcutilsrender-filejs)
-  - [src/utils/successful-json-response.js](#srcutilssuccessful-json-responsejs)
-  - [src/utils/to-insert-fields-sql.js](#srcutilsto-insert-fields-sqljs)
-  - [src/utils/to-insert-values-sql.js](#srcutilsto-insert-values-sqljs)
-  - [src/utils/to-object-sql.js](#srcutilsto-object-sqljs)
-  - [src/utils/to-select-fields-sql.js](#srcutilsto-select-fields-sqljs)
-  - [src/utils/to-select-limit-sql.js](#srcutilsto-select-limit-sqljs)
-  - [src/utils/to-select-offset-sql.js](#srcutilsto-select-offset-sqljs)
-  - [src/utils/to-select-order-sql.js](#srcutilsto-select-order-sqljs)
-  - [src/utils/to-select-join-sql.js](#srcutilsto-select-join-sqljs)
-  - [src/utils/to-select-where-sql.js](#srcutilsto-select-where-sqljs)
-  - [src/utils/to-update-values-sql.js](#srcutilsto-update-values-sqljs)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
-  - [src/...](#src)
+  - [`src/auth/actors/authenticate.js`](#srcauthactorsauthenticatejs)
+  - [`src/auth/actors/authenticate-attempt.js`](#srcauthactorsauthenticate-attemptjs)
+  - [`src/auth/actors/change.js`](#srcauthactorschangejs)
+  - [`src/auth/actors/confirm.js`](#srcauthactorsconfirmjs)
+  - [`src/auth/actors/login.js`](#srcauthactorsloginjs)
+  - [`src/auth/actors/logout.js`](#srcauthactorslogoutjs)
+  - [`src/auth/actors/only-authenticated.js`](#srcauthactorsonly-authenticatedjs)
+  - [`src/auth/actors/only-groups.js`](#srcauthactorsonly-groupsjs)
+  - [`src/auth/actors/only-permissions.js`](#srcauthactorsonly-permissionsjs)
+  - [`src/auth/actors/only-users.js`](#srcauthactorsonly-usersjs)
+  - [`src/auth/actors/only.js`](#srcauthactorsonlyjs)
+  - [`src/auth/actors/recover.js`](#srcauthactorsrecoverjs)
+  - [`src/auth/actors/register.js`](#srcauthactorsregisterjs)
+  - [`src/auth/actors/refresh.js`](#srcauthactorsrefreshjs)
+  - [`src/auth/actors/unregister.js`](#srcauthactorsunregisterjs)
+  - [`src/auth/connection.js`](#srcauthconnectionjs)
+  - [`src/auth/controllers/change.js`](#srcauthcontrollerschangejs)
+  - [`src/auth/controllers/confirm.js`](#srcauthcontrollersconfirmjs)
+  - [`src/auth/controllers/login.js`](#srcauthcontrollersloginjs)
+  - [`src/auth/controllers/logout.js`](#srcauthcontrollerslogoutjs)
+  - [`src/auth/controllers/recover.js`](#srcauthcontrollersrecoverjs)
+  - [`src/auth/controllers/refresh.js`](#srcauthcontrollersrefreshjs)
+  - [`src/auth/controllers/unregister.js`](#srcauthcontrollersunregisterjs)
+  - [`src/auth/controllers/register.js`](#srcauthcontrollersregisterjs)
+  - [`src/auth/middlewares/authenticate.js`](#srcauthmiddlewaresauthenticatejs)
+  - [`src/auth/middlewares/authenticate.js`](#srcauthmiddlewaresauthenticatejs)
+  - [`src/auth/query.js`](#srcauthqueryjs)
+  - [`src/cms.js`](#srccmsjs)
+  - [`src/config/schema.extensions.js`](#srcconfigschemaextensionsjs)
+  - [`src/deploy/create-app.js`](#srcdeploycreate-appjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/initialize.js`](#srcdeployinitializejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/load-api.js`](#srcdeployload-apijs)
+  - [`src/deploy/load-env.js`](#srcdeployload-envjs)
+  - [`src/deploy/mount-router.js`](#srcdeploymount-routerjs)
+  - [`src/deploy/mount-sockets.js`](#srcdeploymount-socketsjs)
+  - [`src/deploy/regenerate-db.js`](#srcdeployregenerate-dbjs)
+  - [`src/deploy/regenerate-rest.js`](#srcdeployregenerate-restjs)
+  - [`src/deploy/start-server.js`](#srcdeploystart-serverjs)
+  - [`src/deploy/stop-server.js`](#srcdeploystop-serverjs)
+  - [`src/email/agents/administrator.js`](#srcemailagentsadministratorjs)
+  - [`src/email/agents/agent.js`](#srcemailagentsagentjs)
+  - [`src/history/connection.js`](#srchistoryconnectionjs)
+  - [`src/auth/connection.js`](#srcauthconnectionjs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/rest/actors/actor.js`](#srcrestactorsactorjs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/create-server.js`](#srcdeploycreate-serverjs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.base.js`](#srcdeploygeneratedtemplatestableactorbasejs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/rest/connection.js`](#srcrestconnectionjs)
+  - [`src/deploy/generated/templates/table.actor.js`](#srcdeploygeneratedtemplatestableactorjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/rest/controllers/controller.js`](#srcrestcontrollerscontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/deploy/generated/templates/table.controller.js`](#srcdeploygeneratedtemplatestablecontrollerjs)
+  - [`src/rest/handlers/delete-many.js`](#srcresthandlersdelete-manyjs)
+  - [`src/rest/handlers/delete-one.js`](#srcresthandlersdelete-onejs)
+  - [`src/rest/handlers/get-many.js`](#srcresthandlersget-manyjs)
+  - [`src/rest/handlers/get-one.js`](#srcresthandlersget-onejs)
+  - [`src/rest/handlers/handler.js`](#srcresthandlershandlerjs)
+  - [`src/rest/handlers/post-many.js`](#srcresthandlerspost-manyjs)
+  - [`src/rest/handlers/post-one.js`](#srcresthandlerspost-onejs)
+  - [`src/rest/handlers/put-many.js`](#srcresthandlersput-manyjs)
+  - [`src/rest/handlers/schema.js`](#srcresthandlersschemajs)
+  - [`src/rest/handlers/put-one.js`](#srcresthandlersput-onejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/rest/middlewares/enable-post-middleware.js`](#srcrestmiddlewaresenable-post-middlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/rest/middlewares/middleware.js`](#srcrestmiddlewaresmiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/deploy/generated/templates/table.middleware.js`](#srcdeploygeneratedtemplatestablemiddlewarejs)
+  - [`src/router/auth.js`](#srcrouterauthjs)
+  - [`src/router/history.js`](#srcrouterhistoryjs)
+  - [`src/router/index.js`](#srcrouterindexjs)
+  - [`src/router/routes.js`](#srcrouterroutesjs)
+  - [`src/store/index.js`](#srcstoreindexjs)
+  - [`src/store/local.js`](#srcstorelocaljs)
+  - [`src/ui/babel.config.js`](#srcuibabelconfigjs)
+  - [`src/utils/compare-password.js`](#srcutilscompare-passwordjs)
+  - [`src/utils/debug-error.js`](#srcutilsdebug-errorjs)
+  - [`src/utils/debug.js`](#srcutilsdebugjs)
+  - [`src/utils/encrypt-password.js`](#srcutilsencrypt-passwordjs)
+  - [`src/utils/erroneous-json-response.js`](#srcutilserroneous-json-responsejs)
+  - [`src/utils/format-bearer-token.js`](#srcutilsformat-bearer-tokenjs)
+  - [`src/utils/generate-token.js`](#srcutilsgenerate-tokenjs)
+  - [`src/utils/generate-virtual-schema.js`](#srcutilsgenerate-virtual-schemajs)
+  - [`src/utils/get-schema-foreign-keys.js`](#srcutilsget-schema-foreign-keysjs)
+  - [`src/utils/get-joined-tables.js`](#srcutilsget-joined-tablesjs)
+  - [`src/utils/index.js`](#srcutilsindexjs)
+  - [`src/utils/initialize-framework.js`](#srcutilsinitialize-frameworkjs)
+  - [`src/utils/render-file.js`](#srcutilsrender-filejs)
+  - [`src/utils/successful-json-response.js`](#srcutilssuccessful-json-responsejs)
+  - [`src/utils/to-insert-fields-sql.js`](#srcutilsto-insert-fields-sqljs)
+  - [`src/utils/to-object-sql.js`](#srcutilsto-object-sqljs)
+  - [`src/utils/to-insert-values-sql.js`](#srcutilsto-insert-values-sqljs)
+  - [`src/utils/to-select-fields-sql.js`](#srcutilsto-select-fields-sqljs)
+  - [`src/utils/to-select-join-sql.js`](#srcutilsto-select-join-sqljs)
+  - [`src/utils/to-select-offset-sql.js`](#srcutilsto-select-offset-sqljs)
+  - [`src/utils/to-select-limit-sql.js`](#srcutilsto-select-limit-sqljs)
+  - [`src/utils/to-select-order-sql.js`](#srcutilsto-select-order-sqljs)
+  - [`src/utils/to-select-where-sql.js`](#srcutilsto-select-where-sqljs)
+  - [`src/utils/to-update-values-sql.js`](#srcutilsto-update-values-sqljs)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
+  - [`src/...`](#src)
 
 
 
@@ -351,69 +351,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/actors/authenticate-attempt.js`
-
-
-
-**Location**:  `cms.auth.actors.authenticateAttempt`
-
-
-**Name**:  authenticate
-
-
-**Type**:  `AsyncFunction`
-
-
-**Receives**: 
-
-
- - `parameters:Object` - user password and name or email
-
-
-    - `parameters.name:String` - user name
-
-
-    - `parameters.email:String` - user email
-
-
-    - `parameters.password:String` - user password
-
-
-**Returns**: 
-
-
- - `Promise<data:Object>` - data of the authentication:
-
-
-    - `data.user:Object` - data of the user itself
-
-
-    - `data.groups:Array<Object>` - all the groups of the user
-
-
-    - `data.permssions:Array<Object>` - all the permissions of the user
-
-
-    - `data.sessions:Array<Object>` - all the sessions of the user
-
-
-**Throws**: 
-
-
- - `[ERR:8803]`: `session_token` must be a string
-
-
- - `[ERR:999]`: `user` must be exist
-
-
-**Description**:  It does the same as the `cms.auth.actors.authenticate`, but it silences the error thrown.
-
-
-
-
-
-----
-
 ### `/src/auth/actors/authenticate.js`
 
 
@@ -470,6 +407,69 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Description**:  method that gets the session data and inserts a new session.
+
+
+
+
+
+----
+
+### `/src/auth/actors/authenticate-attempt.js`
+
+
+
+**Location**:  `cms.auth.actors.authenticateAttempt`
+
+
+**Name**:  authenticate
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `parameters:Object` - user password and name or email
+
+
+    - `parameters.name:String` - user name
+
+
+    - `parameters.email:String` - user email
+
+
+    - `parameters.password:String` - user password
+
+
+**Returns**: 
+
+
+ - `Promise<data:Object>` - data of the authentication:
+
+
+    - `data.user:Object` - data of the user itself
+
+
+    - `data.groups:Array<Object>` - all the groups of the user
+
+
+    - `data.permssions:Array<Object>` - all the permissions of the user
+
+
+    - `data.sessions:Array<Object>` - all the sessions of the user
+
+
+**Throws**: 
+
+
+ - `[ERR:8803]`: `session_token` must be a string
+
+
+ - `[ERR:999]`: `user` must be exist
+
+
+**Description**:  It does the same as the `cms.auth.actors.authenticate`, but it silences the error thrown.
 
 
 
@@ -1068,63 +1068,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/actors/refresh.js`
-
-
-
-**Location**:  `cms.auth.actors.refresh`
-
-
-**Name**:  refresh
-
-
-**Type**:  `AsyncFunction`
-
-
-**Receives**: 
-
-
- - `parameters:Object` - parameters of the action.
-
-
- - `parameters.new_session_token:String` - new `session_token` of the `session`.
-
-
- - `parameters.new_refresh_token:String` - new `refresh_token` of the `session`.
-
-
- - `parameters.refresh_token:String` - previous `refresh_token` of the `session`.
-
-
-**Returns**: 
-
-
- - `Promise<output:Object>` - data generated.
-
-
-    - `output.session_token:String`: new `session_token` of the `session`.
-
-
-    - `output.refresh_token`: new `refresh_token` of the `session`.
-
-
-**Throws**: 
-
-
- - `[ERR:3891]`: `session` must exist.
-
-
- - `[ERR:9155]`: `session` must exist only once.
-
-
-**Description**:  method that deletes an existing session of the user.
-
-
-
-
-
-----
-
 ### `/src/auth/actors/register.js`
 
 
@@ -1166,6 +1109,63 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
     - `output.confirmation_token:String`: new `confirmation_token` of the `unconfirmed_user`. This is only in `development` and `test` environments, it must not be passed in `production`, and it is not.
+
+
+**Throws**: 
+
+
+ - `[ERR:3891]`: `session` must exist.
+
+
+ - `[ERR:9155]`: `session` must exist only once.
+
+
+**Description**:  method that deletes an existing session of the user.
+
+
+
+
+
+----
+
+### `/src/auth/actors/refresh.js`
+
+
+
+**Location**:  `cms.auth.actors.refresh`
+
+
+**Name**:  refresh
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `parameters:Object` - parameters of the action.
+
+
+ - `parameters.new_session_token:String` - new `session_token` of the `session`.
+
+
+ - `parameters.new_refresh_token:String` - new `refresh_token` of the `session`.
+
+
+ - `parameters.refresh_token:String` - previous `refresh_token` of the `session`.
+
+
+**Returns**: 
+
+
+ - `Promise<output:Object>` - data generated.
+
+
+    - `output.session_token:String`: new `session_token` of the `session`.
+
+
+    - `output.refresh_token`: new `refresh_token` of the `session`.
 
 
 **Throws**: 
@@ -1465,11 +1465,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/register.js`
+### `/src/auth/controllers/unregister.js`
 
 
 
-**Name**:  `register`
+**Name**:  `unregister`
 
 
 **Type**:  
@@ -1500,11 +1500,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/unregister.js`
+### `/src/auth/controllers/register.js`
 
 
 
-**Name**:  `unregister`
+**Name**:  `register`
 
 
 **Type**:  
@@ -1745,11 +1745,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/create-server.js`
+### `/src/deploy/generated/templates/table.actor.js`
 
 
 
-**Name**:  `createServer`
+**Name**:  `table.actor`
 
 
 **Type**:  
@@ -1815,81 +1815,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.actor.js`
-
-
-
-**Name**:  `table.actor`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/deploy/generated/templates/table.controller.js`
 
 
 
 **Name**:  `table.controller`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.middleware.js`
-
-
-
-**Name**:  `table.middleware`
 
 
 **Type**:  
@@ -1955,11 +1885,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/load-api.js`
+### `/src/deploy/generated/templates/table.middleware.js`
 
 
 
-**Name**:  `loadApi`
+**Name**:  `table.middleware`
 
 
 **Type**:  
@@ -1990,11 +1920,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/mount-router.js`
+### `/src/deploy/load-api.js`
 
 
 
-**Name**:  `mountRouter`
+**Name**:  `loadApi`
 
 
 **Type**:  
@@ -2060,11 +1990,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/regenerate-db.js`
+### `/src/deploy/mount-router.js`
 
 
 
-**Name**:  `regenerateDb`
+**Name**:  `mountRouter`
 
 
 **Type**:  
@@ -2100,6 +2030,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `mountSockets`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/regenerate-db.js`
+
+
+
+**Name**:  `regenerateDb`
 
 
 **Type**:  
@@ -2375,6 +2340,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/deploy/generated/templates/table.actor.base.js`
+
+
+
+**Name**:  `table.actor.base`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/rest/actors/actor.js`
 
 
@@ -2445,46 +2445,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.actor.base.js`
+### `/src/deploy/create-server.js`
 
 
 
-**Name**:  `table.actor.base`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.actor.base.js`
-
-
-
-**Name**:  `table.actor.base`
+**Name**:  `createServer`
 
 
 **Type**:  
@@ -4095,6 +4060,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/generated/templates/table.actor.base.js`
+
+
+
+**Name**:  `table.actor.base`
 
 
 **Type**:  
@@ -6680,11 +6680,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/delete-one.js`
+### `/src/rest/handlers/delete-many.js`
 
 
 
-**Name**:  `deleteOne`
+**Name**:  `deleteMany`
 
 
 **Type**:  
@@ -6715,11 +6715,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/delete-many.js`
+### `/src/rest/handlers/delete-one.js`
 
 
 
-**Name**:  `deleteMany`
+**Name**:  `deleteOne`
 
 
 **Type**:  
@@ -6960,11 +6960,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/put-one.js`
+### `/src/rest/handlers/schema.js`
 
 
 
-**Name**:  `putOne`
+**Name**:  `schema`
 
 
 **Type**:  
@@ -6995,11 +6995,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/schema.js`
+### `/src/rest/handlers/put-one.js`
 
 
 
-**Name**:  `schema`
+**Name**:  `putOne`
 
 
 **Type**:  
@@ -8675,11 +8675,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/ui/babel.config.js`
+### `/src/store/local.js`
 
 
 
-**Name**:  `babel.config`
+**Name**:  `local`
 
 
 **Type**:  
@@ -8710,11 +8710,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/store/local.js`
+### `/src/ui/babel.config.js`
 
 
 
-**Name**:  `local`
+**Name**:  `babel.config`
 
 
 **Type**:  
@@ -8850,11 +8850,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/erroneous-json-response.js`
+### `/src/utils/encrypt-password.js`
 
 
 
-**Name**:  `erroneousJsonResponse`
+**Name**:  `encryptPassword`
 
 
 **Type**:  
@@ -8885,11 +8885,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/encrypt-password.js`
+### `/src/utils/erroneous-json-response.js`
 
 
 
-**Name**:  `encryptPassword`
+**Name**:  `erroneousJsonResponse`
 
 
 **Type**:  
@@ -8990,11 +8990,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/get-schema-foreign-keys.js`
+### `/src/utils/generate-virtual-schema.js`
 
 
 
-**Name**:  `getSchemaForeignKeys`
+**Name**:  `generateVirtualSchema`
 
 
 **Type**:  
@@ -9025,11 +9025,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/generate-virtual-schema.js`
+### `/src/utils/get-schema-foreign-keys.js`
 
 
 
-**Name**:  `generateVirtualSchema`
+**Name**:  `getSchemaForeignKeys`
 
 
 **Type**:  
@@ -9095,11 +9095,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/initialize-framework.js`
+### `/src/utils/index.js`
 
 
 
-**Name**:  `initializeFramework`
+**Name**:  `index`
 
 
 **Type**:  
@@ -9130,11 +9130,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/index.js`
+### `/src/utils/initialize-framework.js`
 
 
 
-**Name**:  `index`
+**Name**:  `initializeFramework`
 
 
 **Type**:  
@@ -9270,11 +9270,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-insert-values-sql.js`
+### `/src/utils/to-object-sql.js`
 
 
 
-**Name**:  `toInsertValuesSql`
+**Name**:  `toObjectSql`
 
 
 **Type**:  
@@ -9305,11 +9305,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-object-sql.js`
+### `/src/utils/to-insert-values-sql.js`
 
 
 
-**Name**:  `toObjectSql`
+**Name**:  `toInsertValuesSql`
 
 
 **Type**:  
@@ -9387,11 +9387,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-select-limit-sql.js`
+### `/src/utils/to-select-join-sql.js`
 
 
 
-**Name**:  `toSelectLimitSql`
+**Name**:  `toSelectJoinSql`
 
 
 **Type**:  
@@ -9457,11 +9457,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-select-order-sql.js`
+### `/src/utils/to-select-limit-sql.js`
 
 
 
-**Name**:  `toSelectOrderSql`
+**Name**:  `toSelectLimitSql`
 
 
 **Type**:  
@@ -9492,11 +9492,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/to-select-join-sql.js`
+### `/src/utils/to-select-order-sql.js`
 
 
 
-**Name**:  `toSelectJoinSql`
+**Name**:  `toSelectOrderSql`
 
 
 **Type**:  

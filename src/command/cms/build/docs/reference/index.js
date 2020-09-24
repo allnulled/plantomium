@@ -11,7 +11,7 @@ const getIndexation = function(titles) {
 	}
 	for(let index=0; index < titles.length; index++) {
 		const {title, link} = titles[index];
-		indexation += `  - [<@-_(${JSON.stringify(title)})@>](#<@-cms.utils.toAnchor(_(${JSON.stringify(title)}))@>)\n`;
+		indexation += `  - [\`<@-_(${JSON.stringify(title)})@>\`](#<@-cms.utils.toAnchor(_(${JSON.stringify(title)}))@>)\n`;
 		
 	}
 	return indexation + "\n";
