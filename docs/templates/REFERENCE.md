@@ -1,55 +1,4 @@
 
-----
-
-### `/src/auth/actors/authenticate.js`
-
-
-
-**Location**:  `cms.auth.actors.authenticate`
-
-
-**Name**:  authenticate
-
-
-**Type**:  `async function`
-
-
-**Receives**: 
-
-
- - `parameters:Object` - user password and name or email
-
-
-**Returns**: 
-
-
- - `Promise<data:Object>`
-
-
- - `Promise<data.user:Object>` - data of the user itself
-
-
- - `Promise<data.groups:Object>` - data of the user groups
-
-
- - `Promise<data.permssions:Object>` - data of the user permissions
-
-
- - `Promise<data.sessions:Object>` - data of the user sessions
-
-
-**Throws**: 
-
-
- - `No user found on authenticate`
-
-
-**Description**:  method that gets the session data and inserts a new session.
-
-
-
-
-
 
 # Referencia
 
@@ -127,43 +76,169 @@ Este es un ejemplo de elemento documentativo prototipo:
 **Name**:  change
 
 
-**Type**:  `async function`
+**Type**:  `AsyncFunction`
 
 
 **Receives**: 
 
 
- - `parameters:Object` - parameters to change a user password.
+ - `parameters:Object` - parameters to change the `password` of a `user`.
 
 
- - `parameters.recovery_token:String` - previous recovery_token of the user.
+    - `parameters.recovery_token:String` - previous `recovery_token` of the `user`.
 
 
- - `parameters.password:String` - new password.
+    - `parameters.password:String` - new `password`.
 
 
 **Returns**: 
 
 
- - `Promise<data:Object>`
+ - `Promise<data:Object>` - the output data
 
 
- - `Promise<data.message:String>` - a message confirming the operation.
+ - `Promise<data.message:String>` - a message confirming the operation. `"Your password was successfully changed."`
 
 
 **Throws**: 
 
 
- - `No user found on change` - select returned 0 items
+ - `[ERR:5064]`: `user` not found
 
 
- - `No user found on change (anomaly)` - select returned more than 1 item
+ - `[ERR:5094]`: `user` found multiple times.
 
 
- - `No user found to update on change` - affectedRows of update is 0
+ - `[ERR:5774]`: no `user` was affected by the change.
 
 
-**Description**:  method that changes the password of a user
+**Description**:  method that changes the password of a `user`.
+
+
+
+
+
+----
+
+### `/src/auth/actors/authenticate.js`
+
+
+
+**Location**:  `cms.auth.actors.authenticate`
+
+
+**Name**:  authenticate
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `parameters:Object` - user password and name or email
+
+
+    - `parameters.name:String` - user name
+
+
+    - `parameters.email:String` - user email
+
+
+    - `parameters.password:String` - user password
+
+
+**Returns**: 
+
+
+ - `Promise<data:Object>` - data of the authentication:
+
+
+    - `data.user:Object` - data of the user itself
+
+
+    - `data.groups:Array<Object>` - all the groups of the user
+
+
+    - `data.permssions:Array<Object>` - all the permissions of the user
+
+
+    - `data.sessions:Array<Object>` - all the sessions of the user
+
+
+**Throws**: 
+
+
+ - `[ERR:8803]`: `session_token` must be a string
+
+
+ - `[ERR:999]`: `user` must be exist
+
+
+**Description**:  method that gets the session data and inserts a new session.
+
+
+
+
+
+----
+
+### `/src/auth/actors/authenticate-attempt.js`
+
+
+
+**Location**:  `cms.auth.actors.authenticateAttempt`
+
+
+**Name**:  authenticate
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `parameters:Object` - user password and name or email
+
+
+    - `parameters.name:String` - user name
+
+
+    - `parameters.email:String` - user email
+
+
+    - `parameters.password:String` - user password
+
+
+**Returns**: 
+
+
+ - `Promise<data:Object>` - data of the authentication:
+
+
+    - `data.user:Object` - data of the user itself
+
+
+    - `data.groups:Array<Object>` - all the groups of the user
+
+
+    - `data.permssions:Array<Object>` - all the permissions of the user
+
+
+    - `data.sessions:Array<Object>` - all the sessions of the user
+
+
+**Throws**: 
+
+
+ - `[ERR:8803]`: `session_token` must be a string
+
+
+ - `[ERR:999]`: `user` must be exist
+
+
+**Description**:  It does the same as the `cms.auth.actors.authenticate`, but it silences the error thrown.
 
 
 
@@ -181,37 +256,37 @@ Este es un ejemplo de elemento documentativo prototipo:
 **Name**:  confirm
 
 
-**Type**:  `async function`
+**Type**:  `AsyncFunction`
 
 
 **Receives**: 
 
 
- - `parameters:Object` - parameters to confirm an unconfirmed_user.
+ - `parameters:Object` - parameters to confirm an `unconfirmed_user`.
 
 
- - `parameters.confirmation_token:String` - confirmation_token of the unconfirmed_user.
+ - `parameters.confirmation_token:String` - confirmation_token of the `unconfirmed_user`.
 
 
 **Returns**: 
 
 
- - `Promise<data:Object>`
+ - `Promise<data:Object>` - data returned by confirmation
 
 
- - `Promise<data.id:Integer>`
+ - `Promise<data.id:Integer>` - `id` of the `user`.
 
 
- - `Promise<data.recovery_token:String>`
+ - `Promise<data.recovery_token:String>` - `recovery_token` produced by the confirmation operation.
 
 
 **Throws**: 
 
 
- - `No unconfirmed_user found by confirmation_token on confirm` - select returned 0 items
+ - `[ERR:5233]`: `confirmation_token` does not correspond to any `unconfirmed_user`.
 
 
-**Description**:  method that confirms an unconfirmed_user as user
+**Description**:  method that confirms an `unconfirmed_user` as `user`.
 
 
 
@@ -223,31 +298,68 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 
-**Name**:  `login`
+**Location**:  `cms.auth.actors.login`
 
 
-**Type**:  
+**Name**:  login
 
 
-**Has**:  
+**Type**:  `AsyncFunction`
 
 
-**Uses**:  
+**Receives**: 
 
 
-**Modifies**:  
+ - `parameters:Object` - parameters to login.
 
 
-**Receives**:  
+ - `parameters.name:String` - `name` of the `user`.
 
 
-**Returns**:  
+ - `parameters.email:String` - `email` of the `user`.
 
 
-**Throws**:  
+ - `parameters.password:String` - `password` of the `user`.
 
 
-**Description**:  
+**Returns**: 
+
+
+ - `Promise<data:Object>` - returned data.
+
+
+ - `Promise<data.id:Integer>` - `id` of the user.
+
+
+ - `Promise<data.refresh_token:String>` - `refresh_token` produced for the session.
+
+
+ - `Promise<data.session_token:String>` - `session_token` produced for the session.
+
+
+**Throws**: 
+
+
+ - `[ERR:5583]`: `parameters.password` must be a string.
+
+
+ - `[ERR:5580]`: `user` does not exist in database.
+
+
+ - `[ERR:5587]`: `user` exists but multiple times in database (anomaly).
+
+
+ - `[ERR:5589]`: `user.password` must be a string (anomaly).
+
+
+ - `[ERR:5588]`: `user.password` must be correct (smelly)`.
+
+
+ - `[ERR:5581]`: `maxSessionsPerUser` was reached.
+
+
+**Description**:  method that creates a new session for the user.
+
 
 
 
@@ -258,31 +370,356 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 
-**Name**:  `logout`
+**Location**:  `cms.auth.actors.logout`
 
 
-**Type**:  
+**Name**:  logout
 
 
-**Has**:  
+**Type**:  `AsyncFunction`
 
 
-**Uses**:  
+**Receives**: 
 
 
-**Modifies**:  
+ - `parameters:Object` - parameters to logout.
 
 
-**Receives**:  
+ - `parameters.session_token:String` - `session_token` of the `session` to delete.
 
 
-**Returns**:  
+**Returns**: 
 
 
-**Throws**:  
+ - `Promise<data:Object>` - returned data.
 
 
-**Description**:  
+ - `Promise<data.message:String>` - message confirming the operation. `"You are logged out now. We will miss you."`
+
+
+**Throws**: 
+
+
+ - `[ERR:4816]`: affected to 0 `session`s.
+
+
+ - `[ERR:9816]`: affected to multiple `session`s.
+
+
+**Description**:  method that deletes an existing session of the user.
+
+
+
+
+
+----
+
+### `/src/auth/actors/only-authenticated.js`
+
+
+
+**Location**:  `cms.auth.actors.onlyAuthenticated`
+
+
+**Name**:  onlyAuthenticated
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `authParam:Object` - authentication of the `user`. Used as method of authentication.
+
+
+ - `session_token:String` - `session_token` of the `session` of the `user`.Used as method of authentication.
+
+
+ - `options:Object` - extra options.
+
+
+ - `options.request:Object` - `Request` object of the <@-_("express");@>. Used to decorate it at `request.fw.auth`, and as method of authentication.
+
+
+**Returns**: 
+
+
+ - `Promise<isValid:Boolean>` - returns `true` if there is at least 1 way of authentication. Otherwise, it returns `false`.
+
+
+**Throws**:  Nothing.
+
+
+**Description**:  method that tries to authenticate
+
+
+
+
+
+----
+
+### `/src/auth/actors/only-permissions.js`
+
+
+
+**Location**:  `cms.auth.actors.onlyPermissions`
+
+
+**Name**:  onlyPermissions
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `permissions:Array<String>` - list of valid `permission.name`s.
+
+
+ - `authParam:Object` - authentication of the `user`. Used as method of authentication.
+
+
+ - `session_token:String` - `session_token` of the `session` of the `user`. Used as method of authentication.
+
+
+ - `options:Object` - extra options.
+
+
+ - `options.request:Object` - `Request` object of the <@-_("express");@>. Used to decorate it at `request.fw.auth`, and as method of authentication.
+
+
+**Returns**: 
+
+
+ - `Promise<isValid:Boolean>` - returns `true` if:
+
+
+    - there are `permissions`, and it has at least one.
+
+
+    - there are no `permissions`.
+
+
+
+
+
+ Otherwise, it returns `false`.
+
+
+**Throws**: 
+
+
+ - `[ERR:1342]`: `permissions` must be an array.
+
+
+**Description**:  method that checks that the agent of authentication (`authParam`, `session_token` or `options.request`) owns any of the specified `permissions`, or if there are no `permissions` at all (in both cases, it return `true`, otherwise, `false`).
+
+
+
+
+
+----
+
+### `/src/auth/actors/only-groups.js`
+
+
+
+**Location**:  `cms.auth.actors.onlyGroups`
+
+
+**Name**:  onlyGroups
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `groups:Array<String>` - list of valid `group.name`s.
+
+
+ - `authParam:Object` - authentication of the `user`. Used as method of authentication.
+
+
+ - `session_token:String` - `session_token` of the `session` of the `user`. Used as method of authentication.
+
+
+ - `options:Object` - extra options.
+
+
+ - `options.request:Object` - `Request` object of the <@-_("express");@>. Used to decorate it at `request.fw.auth`, and as method of authentication.
+
+
+**Returns**: 
+
+
+ - `Promise<isValid:Boolean>` - returns `true` if:
+
+
+    - there are `groups`, and it has at least one.
+
+
+    - there are no `groups`.
+
+
+
+
+
+ Otherwise, it returns `false`.
+
+
+**Throws**: 
+
+
+ - `[ERR:7718]`: `groups` must be an array.
+
+
+**Description**:  method that checks that the agent of authentication (`authParam`, `session_token` or `options.request`) belongs to any of the specified `groups`, or if there are no `groups` at all (in both cases, it return `true`, otherwise, `false`).
+
+
+
+
+
+----
+
+### `/src/auth/actors/only-users.js`
+
+
+
+**Location**:  `cms.auth.actors.onlyUsers`
+
+
+**Name**:  onlyUsers
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `users:Array<String>` - list of valid `user.name`s.
+
+
+ - `authParam:Object` - authentication of the `user`. Used as method of authentication.
+
+
+ - `session_token:String` - `session_token` of the `session` of the `user`. Used as method of authentication.
+
+
+ - `options:Object` - extra options.
+
+
+ - `options.request:Object` - `Request` object of the <@-_("express");@>. Used to decorate it at `request.fw.auth`, and as method of authentication.
+
+
+**Returns**: 
+
+
+ - `Promise<isValid:Boolean>` - returns `true` if:
+
+
+    - there are `users`, and it has at least one.
+
+
+    - there are no `users`.
+
+
+
+
+
+ Otherwise, it returns `false`.
+
+
+**Throws**: 
+
+
+ - `[ERR:1342]`: `users` must be an array.
+
+
+**Description**:  method that checks that the agent of authentication (`authParam`, `session_token` or `options.request`) is any of the specified `users`, or if there are no `users` at all (in both cases, it return `true`, otherwise, `false`).
+
+
+
+
+
+----
+
+### `/src/auth/actors/only.js`
+
+
+
+**Location**:  `cms.auth.actors.only`
+
+
+**Name**:  only
+
+
+**Type**:  `AsyncFunction`
+
+
+**Receives**: 
+
+
+ - `rules:Object` - rules to accomplish.
+
+
+ - `rules.users:Array<String>` - list of valid `user.name`s.
+
+
+ - `rules.groups:Array<String>` - list of valid `group.name`s.
+
+
+ - `rules.permissions:Array<String>` - list of valid `permission.name`s.
+
+
+ - `authParam:Object` - authentication of the `user`. Used as method of authentication.
+
+
+ - `session_token:String` - `session_token` of the `session` of the `user`. Used as method of authentication.
+
+
+ - `options:Object` - extra options.
+
+
+ - `options.request:Object` - `Request` object of the <@-_("express");@>. Used to decorate it at `request.fw.auth`, and as method of authentication.
+
+
+**Returns**: 
+
+
+ - `Promise<isValid:Boolean>` - returns `true` if:
+
+
+    · when there are `users`, it has at least one, and:
+
+
+    · when there are `groups`, it has at least one, and:
+
+
+    · when there are `permissions`, it has at least one.
+
+
+
+
+
+ Otherwise, it returns `false`.
+
+
+**Throws**: 
+
+
+ - `[ERR:4816]`: affected to 0 `session`s.
+
+
+ - `[ERR:9816]`: affected to multiple `session`s.
+
+
+**Description**:  method that deletes an existing session of the user.
+
 
 
 
@@ -293,31 +730,53 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 
-**Name**:  `recover`
+**Location**:  `cms.auth.actors.recover`
 
 
-**Type**:  
+**Name**:  recover
 
 
-**Has**:  
+**Type**:  `AsyncFunction`
 
 
-**Uses**:  
+**Receives**: 
 
 
-**Modifies**:  
+ - `parameters:Object` - parameters of the action.
 
 
-**Receives**:  
+ - `parameters.name:String` - 
 
 
-**Returns**:  
+ - `parameters.email:String` - 
 
 
-**Throws**:  
+ - `parameters.password:String` - 
 
 
-**Description**:  
+**Returns**: 
+
+
+ - `Promise<output:Object>` - data generated.
+
+
+    - `output.message:String`: message confirming the operation. `"Email sent to your account's email successfully."`
+
+
+    - `output.recovery_token`: this is only passed in `development` or `test` environments. Nevermind about this, in `production` it **must** not, and it does not.
+
+
+**Throws**: 
+
+
+ - `[ERR:3667]`: `user` must exist.
+
+
+ - `[ERR:5079]`: `user` must exist only once.
+
+
+**Description**:  method that deletes an existing session of the user.
+
 
 
 
@@ -328,31 +787,53 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 
-**Name**:  `refresh`
+**Location**:  `cms.auth.actors.refresh`
 
 
-**Type**:  
+**Name**:  refresh
 
 
-**Has**:  
+**Type**:  `AsyncFunction`
 
 
-**Uses**:  
+**Receives**: 
 
 
-**Modifies**:  
+ - `parameters:Object` - parameters of the action.
 
 
-**Receives**:  
+ - `parameters.new_session_token:String` - new `session_token` of the `session`.
 
 
-**Returns**:  
+ - `parameters.new_refresh_token:String` - new `refresh_token` of the `session`.
 
 
-**Throws**:  
+ - `parameters.refresh_token:String` - previous `refresh_token` of the `session`.
 
 
-**Description**:  
+**Returns**: 
+
+
+ - `Promise<output:Object>` - data generated.
+
+
+    - `output.session_token:String`: new `session_token` of the `session`.
+
+
+    - `output.refresh_token`: new `refresh_token` of the `session`.
+
+
+**Throws**: 
+
+
+ - `[ERR:3891]`: `session` must exist.
+
+
+ - `[ERR:9155]`: `session` must exist only once.
+
+
+**Description**:  method that deletes an existing session of the user.
+
 
 
 
@@ -363,66 +844,56 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 
-**Name**:  `register`
+**Location**:  `cms.auth.actors.register`
 
 
-**Type**:  
+**Name**:  register
 
 
-**Has**:  
+**Type**:  `AsyncFunction`
 
 
-**Uses**:  
+**Receives**: 
 
 
-**Modifies**:  
+ - `parameters:Object` - parameters of the action.
 
 
-**Receives**:  
+ - `parameters.name:String` - new `name` of the `unconfirmed_user`.
 
 
-**Returns**:  
+ - `parameters.email:String` - new `email` of the `unconfirmed_user`.
 
 
-**Throws**:  
+ - `parameters.password:String` - new `password` of the `unconfirmed_user`.
 
 
-**Description**:  
+ - `parameters.full_name:String` - new `full_name` of the `unconfirmed_user`.
 
 
+**Returns**: 
 
 
-----
-
-### `/src/auth/actors/unregister.js`
+ - `Promise<output:Object>` - data generated.
 
 
-
-**Name**:  `unregister`
-
-
-**Type**:  
+    - `output.id:Integer`: `id` of the `unconfirmed_user`.
 
 
-**Has**:  
+    - `output.confirmation_token:String`: new `confirmation_token` of the `unconfirmed_user`. This is only in `development` and `test` environments, it must not be passed in `production`, and it is not.
 
 
-**Uses**:  
+**Throws**: 
 
 
-**Modifies**:  
+ - `[ERR:3891]`: `session` must exist.
 
 
-**Receives**:  
+ - `[ERR:9155]`: `session` must exist only once.
 
 
-**Returns**:  
+**Description**:  method that deletes an existing session of the user.
 
-
-**Throws**:  
-
-
-**Description**:  
 
 
 
@@ -434,41 +905,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `connection`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/auth/controllers/confirm.js`
-
-
-
-**Name**:  `confirm`
 
 
 **Type**:  
@@ -534,11 +970,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/login.js`
+### `/src/auth/controllers/confirm.js`
 
 
 
-**Name**:  `login`
+**Name**:  `confirm`
 
 
 **Type**:  
@@ -569,11 +1005,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/auth/controllers/recover.js`
+### `/src/auth/controllers/login.js`
 
 
 
-**Name**:  `recover`
+**Name**:  `login`
 
 
 **Type**:  
@@ -644,6 +1080,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `refresh`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/auth/controllers/recover.js`
+
+
+
+**Name**:  `recover`
 
 
 **Type**:  
@@ -989,11 +1460,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.actor.js`
+### `/src/deploy/generated/templates/table.actor.base.js`
 
 
 
-**Name**:  `table.actor`
+**Name**:  `table.actor.base`
 
 
 **Type**:  
@@ -1024,11 +1495,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.actor.base.js`
+### `/src/deploy/generated/templates/table.actor.js`
 
 
 
-**Name**:  `table.actor.base`
+**Name**:  `table.actor`
 
 
 **Type**:  
@@ -1274,41 +1745,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `mountSockets`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/regenerate-db.js`
-
-
-
-**Name**:  `regenerateDb`
 
 
 **Type**:  
@@ -1619,46 +2055,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.actor.base.js`
+### `/src/deploy/regenerate-db.js`
 
 
 
-**Name**:  `table.actor.base`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.actor.base.js`
-
-
-
-**Name**:  `table.actor.base`
+**Name**:  `regenerateDb`
 
 
 **Type**:  
@@ -2984,11 +3385,46 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.actor.js`
+### `/src/deploy/generated/templates/table.actor.base.js`
 
 
 
-**Name**:  `table.actor`
+**Name**:  `table.actor.base`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/generated/templates/table.actor.base.js`
+
+
+
+**Name**:  `table.actor.base`
 
 
 **Type**:  
@@ -4419,46 +4855,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.controller.js`
+### `/src/deploy/generated/templates/table.actor.js`
 
 
 
-**Name**:  `table.controller`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/deploy/generated/templates/table.controller.js`
-
-
-
-**Name**:  `table.controller`
+**Name**:  `table.actor`
 
 
 **Type**:  
@@ -4494,6 +4895,76 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `table.actor`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/generated/templates/table.controller.js`
+
+
+
+**Name**:  `table.controller`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/deploy/generated/templates/table.controller.js`
+
+
+
+**Name**:  `table.controller`
 
 
 **Type**:  
@@ -6099,11 +6570,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/put-many.js`
+### `/src/rest/handlers/post-one.js`
 
 
 
-**Name**:  `putMany`
+**Name**:  `postOne`
 
 
 **Type**:  
@@ -6134,11 +6605,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/rest/handlers/post-one.js`
+### `/src/rest/handlers/put-many.js`
 
 
 
-**Name**:  `postOne`
+**Name**:  `putMany`
 
 
 **Type**:  
@@ -7674,41 +8145,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/deploy/generated/templates/table.middleware.js`
-
-
-
-**Name**:  `table.middleware`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
 ### `/src/router/auth.js`
 
 
@@ -7744,11 +8180,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/router/index.js`
+### `/src/router/history.js`
 
 
 
-**Name**:  `index`
+**Name**:  `history`
 
 
 **Type**:  
@@ -7779,11 +8215,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/router/history.js`
+### `/src/router/index.js`
 
 
 
-**Name**:  `history`
+**Name**:  `index`
 
 
 **Type**:  
@@ -7919,6 +8355,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/deploy/generated/templates/table.middleware.js`
+
+
+
+**Name**:  `table.middleware`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/ui/babel.config.js`
 
 
@@ -7959,41 +8430,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `comparePassword`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/utils/debug-error.js`
-
-
-
-**Name**:  `debugError`
 
 
 **Type**:  
@@ -8269,11 +8705,11 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/initialize-framework.js`
+### `/src/utils/get-joined-tables.js`
 
 
 
-**Name**:  `initializeFramework`
+**Name**:  `getSchemaJoinedTables`
 
 
 **Type**:  
@@ -8309,6 +8745,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `index`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/utils/initialize-framework.js`
+
+
+
+**Name**:  `initializeFramework`
 
 
 **Type**:  
@@ -8596,6 +9067,41 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
+### `/src/utils/to-select-limit-sql.js`
+
+
+
+**Name**:  `toSelectLimitSql`
+
+
+**Type**:  
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
 ### `/src/utils/to-select-offset-sql.js`
 
 
@@ -8636,41 +9142,6 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 
 **Name**:  `toSelectOrderSql`
-
-
-**Type**:  
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/utils/to-select-limit-sql.js`
-
-
-
-**Name**:  `toSelectLimitSql`
 
 
 **Type**:  
@@ -8771,11 +9242,921 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/utils/get-joined-tables.js`
+### `/src/...`
 
 
 
-**Name**:  `getSchemaJoinedTables`
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/...`
+
+
+
+**Name**:  `unnamed template`
+
+
+**Type**:  [EJS template]
+
+
+**Has**:  
+
+
+**Uses**:  
+
+
+**Modifies**:  
+
+
+**Receives**:  
+
+
+**Returns**:  
+
+
+**Throws**:  
+
+
+**Description**:  
+
+
+
+
+----
+
+### `/src/utils/debug-error.js`
+
+
+
+**Name**:  `debugError`
 
 
 **Type**:  
@@ -8806,889 +10187,14 @@ Este es un ejemplo de elemento documentativo prototipo:
 
 ----
 
-### `/src/...`
+### `/src/auth/actors/unregister.js`
 
 
 
-**Name**:  `unnamed template`
+**Name**:  `unregister`
 
 
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
-
-
-**Has**:  
-
-
-**Uses**:  
-
-
-**Modifies**:  
-
-
-**Receives**:  
-
-
-**Returns**:  
-
-
-**Throws**:  
-
-
-**Description**:  
-
-
-
-
-----
-
-### `/src/...`
-
-
-
-**Name**:  `unnamed template`
-
-
-**Type**:  [EJS template]
+**Type**:  
 
 
 **Has**:  

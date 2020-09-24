@@ -7543,16 +7543,16 @@ module.exports = {
   general: {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
-    debugSql: true,
+    debugSql: false,
+    debugSqlHistory: false,
+    debugSqlAuth: false,
+    debugSqlProcess: false,
+    debugErrors: false,
+    debugTraces: false,
     debugSqlRestSplitter: '\n[SQL:REST]',
-    debugSqlHistory: true,
     debugSqlHistorySplitter: '\n[SQL:HISTORY]',
-    debugSqlAuth: true,
     debugSqlAuthSplitter: '\n[SQL:AUTH]',
-    debugSqlProcess: true,
     debugSqlProcessSplitter: '\n[SQL:PROCESS]',
-    debugErrors: true,
-    debugTraces: true,
     maxSessionsPerUser: 10,
     hiddenTables: [
       'unconfirmed_users'

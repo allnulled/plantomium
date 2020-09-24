@@ -16,7 +16,7 @@ for(let indexBooks=0; indexBooks < books.length; indexBooks++) {
 	const anchorKeys = {};
 	const toAnchor = function(str) {
 		let key = str.toLowerCase()
-			.replace(/[^A-Za-z0-9\- ]/g, "")
+			.replace(/[^A-Za-z0-9\- áéíóúÁÉÍÓÚ]/g, "")
 			.replace(/ /g, "_");
 		if(key in anchorKeys) {
 			let notFound = true;

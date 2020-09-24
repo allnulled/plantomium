@@ -1,5 +1,6 @@
 const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 cms.utils.trace("cms.command.cms.build.docs.reference");
+const output = process.env.PROJECT_ROOT + "/docs/templates/REFERENCE.md";
 module.exports = require("javadoc").generate({
 	include: [
 		process.env.PROJECT_ROOT + "/**/*.js", 
@@ -13,7 +14,7 @@ module.exports = require("javadoc").generate({
 		"**/node_modules/**"
 	],
 	format: "markdown",
-	output: process.env.PROJECT_ROOT + "/docs/templates/REFERENCE.md"
+	output
 }).then(data => {
-	cms.utils.debug(" ✓ Successfully compiled docs/REFERENCE.md");
+	cms.utils.debug(" ✓ Successfully compiled " + output.replace(process.env.PROJECT_ROOT, ""));
 }).catch(cms.utils.debugError)

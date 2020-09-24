@@ -4,15 +4,28 @@
  * 
  * ### `/src/auth/actors/login.js`
  * 
- * @name `login`
- * @type 
- * @has 
- * @uses 
- * @modifies 
- * @receives 
- * @returns 
- * @throws 
- * @description 
+ * @location `cms.auth.actors.login`
+ * @name login
+ * @type `AsyncFunction`
+ * @receives
+ * @receives - `parameters:Object` - parameters to login.
+ * @receives - `parameters.name:String` - `name` of the `user`.
+ * @receives - `parameters.email:String` - `email` of the `user`.
+ * @receives - `parameters.password:String` - `password` of the `user`.
+ * @returns
+ * @returns - `Promise<data:Object>` - returned data.
+ * @returns - `Promise<data.id:Integer>` - `id` of the user.
+ * @returns - `Promise<data.refresh_token:String>` - `refresh_token` produced for the session.
+ * @returns - `Promise<data.session_token:String>` - `session_token` produced for the session.
+ * @throws
+ * @throws - `[ERR:5583]`: `parameters.password` must be a string.
+ * @throws - `[ERR:5580]`: `user` does not exist in database.
+ * @throws - `[ERR:5587]`: `user` exists but multiple times in database (anomaly).
+ * @throws - `[ERR:5589]`: `user.password` must be a string (anomaly).
+ * @throws - `[ERR:5588]`: `user.password` must be correct (smelly)`.
+ * @throws - `[ERR:5581]`: `maxSessionsPerUser` was reached.
+ * @description method that creates a new session for the user.
+ * 
  * 
  */
 module.exports = async function(parameters = {}) {
@@ -35,12 +48,10 @@ module.exports = async function(parameters = {}) {
 			throw new Error("Required <password> to be a string on <login> [ERR:5583]");
 		}
 		if(typeof user.password !== "string") {
-			LL(users);
 			throw new Error("Required <password> to be a string on <login> [ERR:5589]");
 		}
 		const isPassword = await cms.utils.comparePassword(parameters.password, user.password);
 		if(isPassword === false) {
-			LL(parameters.password, user.password);
 			throw new Error("Required <password> to correspond to the user on <login> [ERR:5588]");
 		}
 		// select sessions for this user:

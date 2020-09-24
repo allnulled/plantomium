@@ -34,5 +34,5 @@ module.exports = function(cms, router) {
 	cms.rest.controllers.traitSecretDetails.create().mountToRouter(router);
 	cms.rest.controllers.usages.create().mountToRouter(router);
 	cms.rest.controllers.users.create().mountToRouter(router);
-	cms.hooks.trigger("project.on-mount-rest-to-router", { router });
+	cms.hooks.trigger("project.on-mounted-rest-to-router", { router });
 }
