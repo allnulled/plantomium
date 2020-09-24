@@ -1,1 +1,5 @@
 [cms show markets]
+ [Usage:]
+  · cms show markets
+ [Info:]
+  · Lists all the known markets and their plugins.

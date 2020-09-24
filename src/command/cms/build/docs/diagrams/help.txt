@@ -1,1 +1,5 @@
 [cms build docs diagrams]
+ [Usage:]
+  · cms build docs diagrams
+ [Info:]
+  · Compiles documents at /docs/diagrams/* with extension *.skm, (skemator) *.mmd (mermaid) or *.plantuml (plantuml) to *.png (image).

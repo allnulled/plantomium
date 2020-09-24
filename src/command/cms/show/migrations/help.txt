@@ -1,1 +1,5 @@
 [cms show migrations]
+ [Usage:]
+  · cms show migrations
+ [Info:]
+  · Shows the current status of the database migrations.

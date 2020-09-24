@@ -1,1 +1,5 @@
 [cms run seeders]
+ [Usage:]
+  · cms run seeders
+ [Info:]
+  · Runs all the pending seeders.

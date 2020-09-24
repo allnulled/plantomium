@@ -1,1 +1,6 @@
 [cms create migration]
+ [Usage:]
+  · cms create migration
+ [Info:]
+  · Creates a dated file at /src/db/migrations/{date}-{id}.js.
+  · Runs "sequelize-cli migration:generate" under the hood.

@@ -1,0 +1,10 @@
+[cms auth add]
+ [Usage:]
+  · cms auth add --user u
+  · cms auth add --group g
+  · cms auth add --privilege p
+  · cms auth add --user u --to-group g
+  · cms auth add --privilege p --to-group g
+  · cms auth add --privilege p --to-user u
+ [Description:]
+  · Lets you add users, groups, privileges, and relations between them.

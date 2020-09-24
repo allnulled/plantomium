@@ -17,13 +17,19 @@ const readFolder = function(absolutePath) {
 	return new Promise((ok, fail) => fs.readdir(absolutePath, asynchandler(ok, fail)));
 }
 
+let index = 0;
+
 const printHelp = async function(absolutePath) {
 	try {
 		const fileExists = await isFile(absolutePath + "/help.txt");
 		if(fileExists) {
 			const helpContents = await new Promise((ok, fail) => fs.readFile(absolutePath + "/help.txt", "utf8", asynchandler(ok, fail)));
 			message += "\n - " + helpContents.replace(/(\[[^\]]+\])[^$]*/gm, "$1");
-			console.log(helpContents);
+			const indexFile = cms.utils.padEnd("[command: " + (++index) + "]", 50, "─");
+			console.log("");
+			console.log("┌─" + indexFile + "─────────────────◯");
+			console.log("│ " + helpContents.split("\n").join("\n│ "));
+			console.log("└──────────────────────────────────────────────────────────────────────⬤");
 		}
 		return false;
 	} catch(error) {
@@ -49,6 +55,8 @@ const showHelp = async function(absolutePath) {
 }
 
 module.exports = showHelp(__dirname).then(ok => {
-	console.log("[all commands]\n" + message + "\n");
+	console.log("╔════════════════════════════════════════════════════════════════════◯");
+	console.log("║ [all commands]" + message.split("\n").join("\n║ "));
+	console.log("╚══════════════════════════════════════════════════════════════════════⬤");
 })
 

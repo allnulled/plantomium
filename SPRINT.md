@@ -157,13 +157,18 @@
 
   [ ] COMMANDS
     [✓] cms download --from x --to y
-    [ ] cms sql query -- "SELECT 5"
-    [ ] cms sql export --file x.sql
-    [ ] cms sql import --file x.sql
+    [✓] cms sql query -- "SELECT 5"
+    [✓] cms sql export --file x.sql
+    [✓] cms sql import --file x.sql
+    [✓] improved documentation
     [ ] cms auth login --name n --email m --password p
-    [ ] cms auth show session --name n --email m --password p
-    [ ] cms auth refresh session --name n --email m --password p
     [ ] cms auth logout --name n --email m --password p
+    [ ] cms auth session --name n --email m --password p
+    [ ] cms auth refresh session --name n --email m --password p
+    [ ] cms auth add
+    [ ] cms auth remove
+    [ ] cms auth rename
+    [ ] cms auth list
     [ ] cms rest get many --...
     [ ] cms rest get one --...
     [ ] cms rest post many --...

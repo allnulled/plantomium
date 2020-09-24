@@ -1,1 +1,5 @@
 [cms build docs books]
+ [Usage:]
+  · cms build docs books
+ [Info:]
+  · Compiles documents at /docs/books/* recursively into docs/templates/*, ready to be translated.

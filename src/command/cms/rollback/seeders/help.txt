@@ -1,1 +1,5 @@
 [cms rollback seeders]
+ [Usage:]
+  · cms rollback seeders
+ [Info:]
+  · Undoes all the seeders run.

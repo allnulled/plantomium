@@ -2,5 +2,5 @@
  [Usage:]
   cms sql import
    --file src/dowloads/whatever.sql
- [Description:]
+ [Info:]
   Executes an SQL script file.

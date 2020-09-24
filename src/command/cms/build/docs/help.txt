@@ -1,1 +1,9 @@
 [cms build docs]
+ [Usage:]
+  · cms build docs
+ [Info:]
+  · Compiles documentation step by step:
+   · reference
+   · diagrams
+   · books
+   · i18n

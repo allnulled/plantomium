@@ -108,6 +108,22 @@ module.exports = function(cms) {
 		return out;
 	}
 
+	cms.utils.padEnd = function(txt, min = 2, digit = "0") {
+		// cms.utils.trace("cms.utils.pad");
+		let out = "";
+		const str = txt + "";
+		out += str;
+		if (min > str.length) {
+			const zeroes = min - str.length;
+			let i = 0;
+			while (i < zeroes) {
+				i++;
+				out += digit;
+			}
+		}
+		return out;
+	}
+
 	cms.utils.requireDirectoryFile = function(directoryPath, filename, arg) {
 		// cms.utils.trace("cms.utils.requireDirectoryFile");
 		const file = path.resolve(directoryPath, filename);

@@ -14,7 +14,8 @@ const getIndexation = function(titles) {
 		indexation += `  ${index+1}. [\`<@-_(${JSON.stringify(title)})@>\`](#<@-cms.utils.toAnchor(_(${JSON.stringify(title)}))@>)\n`;
 		
 	}
-	return indexation + "\n";
+	indexation += '\n## <@-_("contents")@>\n\n';
+	return indexation;
 }
 
 module.exports = require("javadoc").generate({

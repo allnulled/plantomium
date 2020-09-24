@@ -1,1 +1,5 @@
 [cms run migrations]
+ [Usage:]
+  · cms run migrations
+ [Info:]
+  · Runs all the pending migrations.

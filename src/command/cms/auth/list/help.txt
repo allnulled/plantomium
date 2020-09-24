@@ -1,0 +1,10 @@
+[cms auth list]
+ [Usage:]
+  · cms auth list --users --where w
+  · cms auth list --groups --where w
+  · cms auth list --permissions --where w
+  · cms auth list --users --groups --privileges --of-user u
+  · cms auth list --users --groups --privileges --of-group g
+  · cms auth list --users --groups --privileges --of-permission p
+ [Description:]
+  · Lets you list users, groups, privileges, and relations between them.

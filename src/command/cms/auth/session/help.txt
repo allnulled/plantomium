@@ -1,0 +1,5 @@
+[cms auth session]
+ [Usage:]
+  · cms auth session
+ [Description:]
+  · Shows you the session currently used by the CLI.
