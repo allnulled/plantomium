@@ -32,9 +32,4 @@
 
 #### v0.0.2
 
-  
-
-
-
-
-*Note: for more information, go to [SPRINT.md](./SPRINT.md).*
+*Note: for more information about the current project, go to [Plantomium CMS Documentation on Github](#).*
