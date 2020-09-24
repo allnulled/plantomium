@@ -1,5 +1,5 @@
-[cms auth session refresh]
+[cms refresh session]
  [Usage:]
-  · cms auth session refresh
+  · cms refresh session
  [Description:]
   · Refreshes the current session used by the CLI.

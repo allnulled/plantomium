@@ -3,7 +3,6 @@ const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
 const importFresh = require("import-fresh");
-const colors = require("colors");
 
 /**
  * 
@@ -36,18 +35,9 @@ module.exports = function(cms) {
 		console.log(...args);
 	}
 
-	cms.utils = {};
-
-	cms.utils.state = {
-		debug: false,
-		trace: true,
-	};
-
-	cms.utils.trace = function(...args) {
-		if (process.env.DEBUG_TRACES === "true") {
-			console.log(colors.yellow("[TRACE]"), ...args);
-		}
-	};
+	if(typeof cms.utils !== "object") {
+		cms.utils = {};
+	}
 
 	cms.utils.createParameters = function(parameters = {}) {
 		cms.utils.trace("cms.utils.createParameters");

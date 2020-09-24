@@ -1,0 +1,8 @@
+[cms show users]
+ [Usage:]
+  · cms show users
+ [Info:]
+  · Displays the users that:
+   · with --where: users that match certain conditions.
+   · with --of-permission: users that own some permission.
+   · with --of-group: users that belong to some group.

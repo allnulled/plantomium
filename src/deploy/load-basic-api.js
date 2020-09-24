@@ -16,6 +16,7 @@
  * 
  */
 module.exports = function(cms) {
+	cms.utils.trace("[UTILS...]");
 	cms.utils = require(process.env.PROJECT_ROOT + "/src/utils/index.js")(cms);
 	return cms;
 }

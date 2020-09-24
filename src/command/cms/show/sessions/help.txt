@@ -1,0 +1,8 @@
+[cms show sessions]
+ [Usage:]
+  · cms show sessions --where '[["session_token", "like", "%007%"]]'
+  · cms show sessions --of-user u
+ [Info:]
+  · Displays the currently active sessions that:
+   · with --where: sessions that match certain conditions.
+   · with --of-user: sessions that belong to some user.

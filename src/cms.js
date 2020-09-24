@@ -1,3 +1,4 @@
+const colors = require("colors");
 const cms = { settings: {} };
 /**
  * 
@@ -16,8 +17,17 @@ const cms = { settings: {} };
  * @description 
  * 
  */
+Object.assign(cms, {
+	utils: {
+		trace(...args) {
+			if (process.env.DEBUG_TRACES === "true") {
+				console.log(colors.yellow("[TRACE]"), ...args);
+			}
+		}
+	}
+});
 require(__dirname + "/deploy/load-env.js")(cms);
-require("nodelive").PREFERRED_EDITOR = process.env.PREFERRED_EDITOR || "gedit";
+require("nodelive").PREFERRED_EDITOR = "subl" || "gedit";
 require(__dirname + "/deploy/load-basic-api.js")(cms);
 module.exports = cms;
-require(__dirname + "/deploy/load-api.js");
+require(__dirname + "/deploy/load-api.js")(cms);
