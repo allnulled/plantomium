@@ -17,6 +17,7 @@
  */
 module.exports = function(data, request, response, next) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.successfulJsonResponse");
 	const date = new Date();
 	const pad = cms.utils.pad;
 	response.status(200).json({

@@ -11,17 +11,14 @@ class DeleteManyBaseHandler extends BaseHandler {
 	static get QueryFiles() {
 		return [
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-many.ejs"),
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-many.ejs")
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-cascade.ejs"),
+			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/delete-many.ejs"),
+			{template: path.resolve(process.env.PROJECT_ROOT + "/src/history/queries/insert-data-by-rest.ejs"), history: true}
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onStart");
-		
-	}
-
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -29,12 +26,12 @@ class DeleteManyBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onValidate");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onFormatInput");
 		// @TODO: format input parameters
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
@@ -48,43 +45,42 @@ class DeleteManyBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onPreJobs");
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
-	}
-
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onQuery");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onQuery");
 		return super.onQuery(parameters);
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.deleteMany.onSynchronize");
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onBroadcast");
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.deleteMany.onResult");
-		parameters.output = parameters.results[0] ? parameters.results[0] : null;
+		cms.utils.trace("cms.rest.handlers.deleteMany.onResult");
+		let operations = [];
+		const main = cms.utils.dataGetter(parameters, ["results", 2], null);
+		const others = cms.utils.dataGetter(parameters, ["results", 1], []);
+		if(main) operations.push(main)
+		if(others) operations = operations.concat(others)
+		parameters.output = {
+			operations,
+			items: cms.utils.dataGetter(parameters, ["results", 0], []),
+			attachments: cms.utils.dataGetter(parameters, ["results", 1], []),
+		}
 	}
 
 }

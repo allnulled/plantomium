@@ -1,0 +1,8 @@
+[cms auth login]
+ [Usage:]
+  · cms auth login
+  	 --name n
+  	 --password p
+  	 --email e
+ [Description:]
+  · Lets you login for any request made by the CLI.

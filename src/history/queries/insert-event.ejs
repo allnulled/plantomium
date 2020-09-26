@@ -1,0 +1,29 @@
+<%
+
+cms.utils.trace("cms.history.queries.insertEvent");
+if(typeof data !== "object") {
+  throw new Error("Required <data> to be an object on <insertEvent> [ERR:1125]");
+}
+
+%>
+INSERT INTO history_event (
+  user_ip,
+  user_agent,
+  user_id,
+  original_table,
+  event,
+  data,
+  metadata,
+  description,
+  deleted_at
+) VALUES (
+  <%-sqlString.escape(data.user_ip)%>,
+  <%-sqlString.escape(data.user_agent)%>,
+  <%-sqlString.escape(data.user_id)%>,
+  <%-sqlString.escape(data.original_table)%>,
+  <%-sqlString.escape(data.event)%>,
+  <%-sqlString.escape(data.data)%>,
+  <%-sqlString.escape(data.metadata)%>,
+  <%-sqlString.escape(data.description)%>,
+  now()
+);

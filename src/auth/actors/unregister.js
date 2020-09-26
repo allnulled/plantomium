@@ -18,6 +18,7 @@
 module.exports = async function(parameters = {}) {
 	try {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+		cms.utils.trace("cms.auth.actors.unregister");
 		// @TODO: 
 		parameters.id = parameters.auth.user.id;
 		const selectUserQuery = cms.auth.queries.selectUserById({ parameters });

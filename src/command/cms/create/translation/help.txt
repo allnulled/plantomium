@@ -1,0 +1,11 @@
+[cms create docs translation]
+ [Usage:]
+  · cms create docs translation
+  	 --id "en-idioma"
+  	 --es "En castellano"
+  	 --en "In English"
+  	 --ca "En català"
+ [Info:]
+   · Creates a file at "/docs/texts/{language}/project.docs/{key}.ejs"
+     · For the specified key
+     · For every language

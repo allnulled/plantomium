@@ -1,0 +1,2 @@
+[cms]
+  · Welcome to <cms> command line interface.

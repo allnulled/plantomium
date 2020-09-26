@@ -1,0 +1,6 @@
+[cms add user]
+ [Usage:]
+  · cms add user
+     --name u
+ [Info:]
+  · Adds a new user to the auth system.

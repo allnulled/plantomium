@@ -1,0 +1,38 @@
+<%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
+const mainTable = Array.isArray(table) ? table[0] : table;
+const tableFinal = sqlString.escapeId(mainTable);
+const fieldsFinal = cms.utils.toSelectFieldsSql(auth, fields, table, false, true, "get");
+const whereFinal = cms.utils.toSelectWhereSql(auth, where, false, mainTable, true);
+const joinFinal = cms.utils.toSelectJoinSql(join, mainTable, true);
+const orderFinal = cms.utils.toSelectOrderSql(sort, mainTable);
+const limitFinal = cms.utils.toSelectLimitSql(limit, mainTable);
+const offsetFinal = cms.utils.toSelectOffsetSql(limit, page, undefined, mainTable);
+%>
+# select many:
+SELECT
+<%-fieldsFinal%>
+  FROM <%-tableFinal%>
+  <%-joinFinal ? (joinFinal) : "# no JOIN..." %>
+  <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
+  <%-orderFinal ? ("ORDER BY " + orderFinal) : "# no ORDER BY..." %>
+  <%-limitFinal ? ("LIMIT " + limitFinal) : "LIMIT 20" %>
+  <%-offsetFinal ? ("OFFSET " + offsetFinal) : "# no OFFSET..." %>
+;

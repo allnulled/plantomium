@@ -1,0 +1,15 @@
+[cms add permission]
+ [Usage:]
+  · cms add permission
+     --name p
+  · cms add permission
+     --name p
+     --to-user u
+  · cms add permission
+     --name p
+     --to-group g
+ [Info:]
+  · Adds a new permission to the auth system.
+  · When used with:
+   · --to-group: adds a new permission to a group of the auth system.
+   · --to-user: adds a new permission to a user of the auth system.

@@ -1,0 +1,56 @@
+<%
+// @TODO...
+
+cms.utils.trace("cms.history.queries.insertDataByRest");
+const operation = handler.constructor.Operation;
+const { request = {} } = parameters;
+const selectedItem = cms.utils.dataGetter(parameters, ["results", 0]);
+const deletedItem = cms.utils.dataGetter(parameters, ["results", 2]);
+const options = {
+  user_id: JSON.stringify(cms.utils.dataGetter(request, ["fw", "auth"], null)),
+  data: JSON.stringify(selectedItem),
+  request_data: JSON.stringify({ headers: request.headers }),
+  metadata: JSON.stringify(deletedItem),
+  description: ""
+}
+const input = [].concat(parameters.input);
+%>
+INSERT INTO history_data (
+  user_ip,
+  user_agent,
+  user_id,
+  original_table,
+  request_data,
+  data,
+  metadata,
+  description,
+  deleted_at
+) VALUES (
+<%
+const {
+  user_ip = cms.utils.getIpFromRequest(request, true),
+  user_agent = cms.utils.getAgentFromRequest(request, true),
+  user_id = "",
+  original_table = handler.actor.constructor.Table,
+  request_data = "",
+  data = options.data,
+  metadata = options.metadata,
+  description = options.description,
+  deleted_at = new Date(),
+} = input;
+for(let index=0; index < input.length; index++) {
+  const item = input[index];
+  %><%- index !== 0 ? "), (" : ""%>
+  <%-sqlString.escape(user_ip)%>,
+  <%-sqlString.escape(user_agent)%>,
+  <%-sqlString.escape(user_id)%>,
+  <%-sqlString.escape(original_table)%>,
+  <%-sqlString.escape(request_data)%>,
+  <%-sqlString.escape(data)%>,
+  <%-sqlString.escape(metadata)%>,
+  <%-sqlString.escape(description)%>,
+  now()
+  <%
+}
+%>
+);

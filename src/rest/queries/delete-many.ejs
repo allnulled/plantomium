@@ -1,9 +1,31 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 const table = sqlString.escapeId(actorClass.Table);
 const {
   where = [],
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql(where, actorClass.Schema);
+const whereFinal = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
+if(whereFinal === "") {
+	throw new Error("Required <where> to have at least 1 filter on <deleteMany> [ERR:690]")
+}
 %>
+# delete many:
 DELETE FROM <%-table%>
 WHERE <%-whereFinal%>;

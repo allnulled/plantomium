@@ -1,0 +1,5 @@
+[cms rollback migrations]
+ [Usage:]
+  · cms rollback migrations
+ [Info:]
+  · Undoes all the migrations done.

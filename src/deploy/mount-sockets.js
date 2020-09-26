@@ -16,5 +16,11 @@
  * 
  */
 module.exports = function(cms) {
-	// @TODO:
+	cms.utils.trace("cms.deploy.mountSockets");
+	cms.hooks.trigger("project.on-mount-sockets");
+	////////////////////////
+	cms.socket = require(process.env.PROJECT_ROOT + "/src/socket/index.js").factory(cms);
+	cms.socket.broadcast = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/socket/broadcast", cms);
+	cms.socket.chat = cms.utils.requireDirectory(process.env.PROJECT_ROOT + "/src/socket/chat", cms);
+	cms.hooks.trigger("project.on-mounted-sockets");
 }

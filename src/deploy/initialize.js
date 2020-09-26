@@ -16,5 +16,6 @@
  * 
  */
 module.exports = function(cms) {
+	cms.utils.trace("cms.deploy.initialize");
 	return cms.initialized;
 }

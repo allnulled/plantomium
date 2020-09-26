@@ -1,0 +1,10 @@
+[cms add plugin]
+ [Usage:]
+  · cms add plugin
+      --git https://www.example.com/plugin.git
+      --branch branch-name
+      --name vendor/plugin-name
+ [Info:]
+  · Downloads a git project by URL.
+  · Adds it as a known plugin.
+  · Installs the plugin.

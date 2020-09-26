@@ -12,7 +12,7 @@ class TraitBaseActor extends Actor {
  * 
  * ----
  * 
- * ### `/src/deploy/regenerate-rest/generated/templates/table.actor.base.js`
+ * ### `/src/deploy/generated/templates/table.actor.base.js`
  * 
  * @name `table.actor.base`
  * @type 

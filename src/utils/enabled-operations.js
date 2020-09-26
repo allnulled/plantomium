@@ -1,0 +1,1 @@
+module.exports = [ "=", ">", ">=", "<", "<=", "!=", "in", "notin", "like", "notlike"];

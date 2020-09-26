@@ -8,28 +8,29 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
  * 
  * @location `cms.auth.actors.confirm`
  * @name confirm
- * @type `async function`
+ * @type `AsyncFunction`
  * @receives
- * @receives - `parameters:Object` - parameters to confirm an unconfirmed_user.
- * @receives - `parameters.confirmation_token:String` - confirmation_token of the unconfirmed_user.
+ * @receives - `parameters:Object` - parameters to confirm an `unconfirmed_user`.
+ * @receives - `parameters.confirmation_token:String` - confirmation_token of the `unconfirmed_user`.
  * @returns
- * @returns - `Promise<data:Object>`
- * @returns - `Promise<data.id:Integer>`
- * @returns - `Promise<data.recovery_token:String>`
+ * @returns - `Promise<data:Object>` - data returned by confirmation
+ * @returns - `Promise<data.id:Integer>` - `id` of the `user`.
+ * @returns - `Promise<data.recovery_token:String>` - `recovery_token` produced by the confirmation operation.
  * @throws
- * @throws - `No unconfirmed_user found by confirmation_token on confirm` - select returned 0 items
- * @description method that confirms an unconfirmed_user as user
+ * @throws - `[ERR:5233]`: `confirmation_token` does not correspond to any `unconfirmed_user`.
+ * @description method that confirms an `unconfirmed_user` as `user`.
  * 
  * 
  */
 module.exports = async function(parameters = {}) {
 	try {
+		cms.utils.trace("cms.auth.actors.confirm");
 		// select all unconfirmed_users that: has same confirmation_token
 		const selectUnconfirmedUsersQuery = cms.auth.queries.selectUnconfirmedUsersByConfirmationToken({ parameters });
 		const [unconfirmedUser] = await cms.auth.query(selectUnconfirmedUsersQuery);
 		// if none then return error "this url does not exist"
 		if(typeof unconfirmedUser !== "object") {
-			throw new Error("No unconfirmed_user found by confirmation_token on confirm");
+			throw new Error("Required <confirmation_token> to exist on <confirm> [ERR:5233]");
 		}
 		// otherwise:
 		// pick data of unconfirmed_user

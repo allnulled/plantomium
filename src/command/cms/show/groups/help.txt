@@ -1,0 +1,8 @@
+[cms show groups]
+ [Usage:]
+  · cms show groups
+ [Info:]
+  · Displays the groups that:
+   · with --where: groups that match certain conditions.
+   · with --of-user: groups that some user belongs to.
+   · with --with-permission: groups that own permission.

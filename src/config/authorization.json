@@ -1,0 +1,59 @@
+{
+	"rules": [{
+		"on": ["groups.description"],
+		"require": {
+			"to": ["get", "post", "put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["groups"],
+		"require": {
+			"to": ["delete"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["plant.field_4", "plant.field_5"],
+		"require": {
+			"to": ["post", "put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["plant.description"],
+		"require": {
+			"to": ["put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["plant.field_5"],
+		"require": {
+			"to": ["get"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["plant_details.description"],
+		"require": {
+			"to": ["get", "post", "put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}, {
+		"on": ["trait_secret_details"],
+		"require": {
+			"to": ["get", "post", "put"],
+			"permissions": ["to administrate"],
+			"groups": ["administration"],
+			"users": ["administrator"]
+		}
+	}]
+}

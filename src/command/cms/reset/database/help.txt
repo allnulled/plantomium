@@ -1,0 +1,7 @@
+[cms reset database]
+ [Usage:]
+  · cms reset database
+ [Info:]
+  · Resets the migrations and seeders status files.
+  · Drops the database.
+  · Runs all the migrations and seeders again.

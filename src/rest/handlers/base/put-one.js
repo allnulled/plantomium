@@ -10,18 +10,12 @@ class PutOneBaseHandler extends BaseHandler {
 
 	static get QueryFiles() {
 		return [
-			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/select-one.ejs"),
 			path.resolve(process.env.PROJECT_ROOT + "/src/rest/queries/update-one.ejs"),
 		];
 	}
 
-	onStart(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onStart");
-
-	}
-
 	onAuthorize(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onAuthorize");
+		cms.utils.trace("cms.rest.handlers.putOne.onAuthorize");
 		if(!parameters.request) {
 			return true;
 		}
@@ -29,12 +23,12 @@ class PutOneBaseHandler extends BaseHandler {
 	}
 
 	onValidate(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onValidate");
+		cms.utils.trace("cms.rest.handlers.putOne.onValidate");
 		// @TODO: validate request
 	}
 
 	onFormatInput(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onFormatInput");
+		cms.utils.trace("cms.rest.handlers.putOne.onFormatInput");
 		// @TODO: format input parameters
 		if(parameters.request && parameters.response && parameters.next) {
 			parameters.input = {
@@ -50,43 +44,35 @@ class PutOneBaseHandler extends BaseHandler {
 	}
 
 	onPreJobs(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onPreJobs");
+		cms.utils.trace("cms.rest.handlers.putOne.onPreJobs");
 		// @TODO: previous jobs
 	}
 
-	onPrepareQuery(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onPrepareQuery");
-		return super.onPrepareQuery(parameters);
-	}
-
 	onQuery(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onQuery");
+		cms.utils.trace("cms.rest.handlers.putOne.onQuery");
 		return super.onQuery(parameters);
 	}
 
 	onFormatOutput(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onFormatOutput");
+		cms.utils.trace("cms.rest.handlers.putOne.onFormatOutput");
 		// @TODO: format output
 	}
 
 	onPostJobs(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onPostJobs");
+		cms.utils.trace("cms.rest.handlers.putOne.onPostJobs");
 		// @TODO: post jobs
 	}
 
 	onSynchronize(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onSynchronize");
+		cms.utils.trace("cms.rest.handlers.putOne.onSynchronize");
 		// @TODO: synchronize data
 	}
 
-	onBroadcast(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onBroadcast");
-		// @TODO: broadcast changes
-	}
-
 	onResult(parameters) {
-		cms.utils.trace("rest.handlers.putOne.onResult");
-		parameters.output = parameters.result;
+		cms.utils.trace("cms.rest.handlers.putOne.onResult");
+		parameters.output = {
+			operation: cms.utils.dataGetter(parameters, ["results", 0], null)
+		};
 	}
 
 }

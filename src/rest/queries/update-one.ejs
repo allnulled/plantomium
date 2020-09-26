@@ -1,21 +1,38 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 const table = sqlString.escapeId(actorClass.Table);
 const {
   id,
-  where = [],
   data = {}
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql([[ "id", "=", id ]].concat(where));
-const dataFinal = cms.utils.toUpdateValuesSql(data);
+const auth = cms.utils.getAuthentication(parameters.request, {});
+const whereFinal = cms.utils.toSelectWhereSql(auth, [[actorClass.Table + ".id","=",id]], false, actorClass.Table);
+const dataFinal = cms.utils.toUpdateValuesSql(auth, data, actorClass.Table);
 if(dataFinal.length === 0) {
-	
-	
-	throw new Error("Required data on update-one")
+	throw new Error("Required data on update-one");
 }
 if(whereFinal.length === 0) {
 	throw new Error("Required at least 1 <where> condition on update-one")
 }
 %>
+# update one:
 UPDATE <%-table%>
 SET <%-dataFinal%>
 WHERE <%-whereFinal%>;

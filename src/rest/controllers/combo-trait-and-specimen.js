@@ -8,7 +8,7 @@ class ComboTraitAndSpecimenController extends ComboTraitAndSpecimenBaseControlle
  * 
  * ----
  * 
- * ### `/src/deploy/regenerate-rest/generated/templates/table.controller.js`
+ * ### `/src/deploy/generated/templates/table.controller.js`
  * 
  * @name `table.controller`
  * @type 

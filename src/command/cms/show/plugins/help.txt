@@ -1,0 +1,5 @@
+[cms show plugins]
+ [Usage:]
+  · cms show plugins
+ [Info:]
+  · Lists all the added plugins.

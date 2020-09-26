@@ -1,0 +1,8 @@
+[cms create selfsigned certificate]
+ [Usage:]
+  · cms create selfsigned certificate
+ [Info:]
+  · Generates a *.crt and a *.key files for HTTPS layer.
+  · Locates the files depending on:
+   · process.env.SECURE_SITE_CRT
+   · process.env.SECURE_SITE_KEY

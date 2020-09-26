@@ -21,7 +21,6 @@ const buildRoutes = require(__dirname + "/routes.js");
 module.exports = function(cms) {
 	return function() {
 		const router = express.Router();
-		router.use(cms.utils.initializeFramework);
 		buildRoutes(cms, router);
 		return router;
 	}

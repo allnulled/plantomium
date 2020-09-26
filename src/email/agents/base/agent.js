@@ -11,6 +11,7 @@ class BaseAgent {
 	}
 
 	constructor(options = {}) {
+		cms.utils.trace("cms.email.agents.base.agent.constructor");
 		Object.assign(this, options);
 		this.settings = Object.assign({}, this.constructor.SETTINGS, options.settings || {});
 	}
@@ -32,6 +33,7 @@ class BaseAgent {
 	}
 
 	async send(parameters = {}) {
+		cms.utils.trace("cms.email.agents.base.agent.send");
 		try {
 			await this.onPrepare(parameters);
 			await this.onSend(parameters);

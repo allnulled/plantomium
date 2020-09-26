@@ -1,0 +1,58 @@
+<%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
+const table = actorClass.Table;
+const tableEscaped = sqlString.escapeId(actorClass.Table);
+const treeData = cms.utils.dataGetter(cms, ["schema", "constraints", table, "rest", "tree"], false);
+if(!treeData) {
+  return "";
+}
+const { 
+  pathColumn = "path",
+  pathSeparator = "/",
+  typeColumn = "node_type",
+  leafAlias = "leaf",
+  branchAlias = "branch",
+} = treeData;
+const {
+  fields = undefined,
+  // where = undefined,
+  // join = undefined,
+  limit = 20,
+  sort = undefined,
+  page = 1,
+} = parameters.input;
+const fieldsFinal = cms.utils.toSelectFieldsSql(0, undefined, table, false);
+const pathColumn2 = actorClass.Table + "." + pathColumn;
+const item = cms.utils.dataGetter(parameters, ["results", "0", "0"], null);
+const itemPath = item[pathColumn2];
+const childrenPattern = itemPath.replace(/\/$/g, "") + "/%";
+const whereFinal = cms.utils.toSelectWhereSql(0, [[pathColumn2 , "like", childrenPattern]], false, table, true);
+// const joinFinal = cms.utils.toSelectJoinSql(join, table);
+const orderFinal = cms.utils.toSelectOrderSql(sort, table);
+const limitFinal = cms.utils.toSelectLimitSql(limit, table);
+const offsetFinal = cms.utils.toSelectOffsetSql(limit, page, undefined, table);
+%>
+# select branches:
+  SELECT <%-fieldsFinal%>
+FROM <%-tableEscaped%>
+<%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
+<%-orderFinal ? ("ORDER BY " + orderFinal) : "# no ORDER BY..." %>
+<%-limitFinal ? ("LIMIT " + limitFinal) : "LIMIT 20" %>
+<%-offsetFinal ? ("OFFSET " + offsetFinal) : "# no OFFSET..." %>;

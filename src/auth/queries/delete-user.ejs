@@ -1,5 +1,24 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
 
+
+cms.utils.trace("cms.auth.queries.deleteUser");
 const user_id = sqlString.escape(parameters.user_id)
 const previousDeletions = [
 	["sessions", "id_user"],
@@ -12,8 +31,26 @@ for(let index=0; index < previousDeletions.length; index++) {
 	const column = sqlString.escapeId(columnBrute);
 %>
 DELETE FROM <%-table%>
-  WHERE <%-table%>.<%-column%>;
+  WHERE <%-table%>.<%-column%> = <%-sqlString.escape(user_id)%>;
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 }
 %>
-DELETE FROM users WHERE users.id = <%-user_id%>;
+DELETE FROM users WHERE users.id = <%-sqlString.escape(user_id)%>;

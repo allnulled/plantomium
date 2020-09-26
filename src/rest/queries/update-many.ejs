@@ -1,18 +1,39 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 const table = sqlString.escapeId(actorClass.Table);
 const {
   where,
   data
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql(where);
-const dataFinal = cms.utils.toUpdateValuesSql(data);
+
+const auth = cms.utils.getAuthentication(parameters.request, {});
+const whereFinal = cms.utils.toSelectWhereSql(auth, where, false, actorClass.Table, true);
+const dataFinal = cms.utils.toUpdateValuesSql(auth, data, actorClass.Table);
 if(dataFinal.length === 0) {
-	throw new Error("Required data on update-many")
+	throw new Error("Required at least 1 item in <data> on <cms.rest.queries.updateMany> [ERR:640]");
 }
 if(whereFinal.length === 0) {
-	throw new Error("Required at least 1 <where> condition on update-many")
+	throw new Error("Required at least 1 item in <where> on <cms.rest.queries.updateMany> [ERR:650]")
 }
 %>
+# update many:
 UPDATE <%-table%>
 SET <%-dataFinal%>
 WHERE <%-whereFinal%>;

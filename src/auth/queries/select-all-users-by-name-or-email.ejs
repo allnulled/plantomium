@@ -1,4 +1,23 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
+cms.utils.trace("cms.auth.queries.selectAllUsersByNameOrEmail");
 const { name: nameBrute, email: emailBrute } = parameters;
 const { name, email } = {
   name: sqlString.escape(nameBrute),

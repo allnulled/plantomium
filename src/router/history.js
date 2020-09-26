@@ -16,5 +16,5 @@
  * 
  */
 module.exports = function(cms, router) {
-	
+	// @NOTHING
 }

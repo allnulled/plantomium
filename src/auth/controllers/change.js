@@ -19,6 +19,7 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
  */
 module.exports = () => async function(request, response, next) {
 	try {
+		cms.utils.trace("cms.auth.controllers.change");
 		const data = await cms.auth.actors.change({
 			password: request.body.password,
 			recovery_token: cms.utils.formatBearerToken(request.body.recovery_token)

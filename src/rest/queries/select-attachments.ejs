@@ -1,0 +1,46 @@
+<%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+const table = sqlString.escapeId(actorClass.Table);
+const {
+  fields = undefined,
+  where = undefined,
+  join = undefined,
+  sort = undefined,
+  page = 1,
+} = parameters.input;
+const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
+if(joinFinal.length === 0) {
+	return "";
+}
+const results = cms.utils.dataGetter(parameters, ["results", 0, 0], []);
+if(results.length === 0) {
+	return "";
+}
+const auth = cms.utils.getAuthentication(parameters.request, {});
+const ids = [].concat(results || []).map(item => item[actorClass.Table + ".id"]);
+const fieldsFinal = cms.utils.toSelectFieldsSql(auth, undefined, actorClass.Table, true, false, "get");
+const whereFinal = cms.utils.toSelectWhereSql(auth, where, false, actorClass.Table, true);
+const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
+%>
+# select attachments:
+SELECT
+  <%-fieldsFinal%>
+  FROM <%-table%>
+<%-joinFinal%> WHERE <%-table%>.<%-sqlString.escapeId("id")%> IN (<%-sqlString.escape(ids)%>)
+;

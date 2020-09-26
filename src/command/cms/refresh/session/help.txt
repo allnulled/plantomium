@@ -1,0 +1,5 @@
+[cms refresh session]
+ [Usage:]
+  · cms refresh session
+ [Description:]
+  · Refreshes the current session used by the CLI.

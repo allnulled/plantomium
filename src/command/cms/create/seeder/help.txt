@@ -1,0 +1,6 @@
+[cms create seeder]
+ [Usage:]
+  · cms create seeder
+ [Info:]
+  · Creates a dated file at /src/db/seeders/{date}-{id}.js.
+  · Runs "sequelize-cli seeder:generate" under the hood.

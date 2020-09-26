@@ -1,0 +1,5 @@
+[cms build docs i18n]
+ [Usage:]
+  · cms build docs i18n
+ [Info:]
+  · Compiles documents at /docs/*.md to each language using /docs/texts/{language}/project.docs/*.ejs.

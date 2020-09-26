@@ -1,0 +1,5 @@
+[cms watch]
+ [Usage:]
+  · cms watch
+ [Info:]
+   · Responds running the tests to changes on the server test files.

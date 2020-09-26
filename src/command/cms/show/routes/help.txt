@@ -1,0 +1,5 @@
+[cms show routes]
+ [Usage:]
+  · cms show routes
+ [Info:]
+  · Lists all the routes added to the application at the moment.

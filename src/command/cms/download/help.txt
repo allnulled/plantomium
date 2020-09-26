@@ -1,0 +1,7 @@
+[cms download]
+ [Usage:]
+  · cms download
+     --from "https://code.jquery.com/jquery-latest.min.js"
+     --to "src/downloads/jquery.js"
+ [Description:]
+  · It downloads a stream from a URL to a local file.

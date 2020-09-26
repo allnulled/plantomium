@@ -19,6 +19,8 @@ const asynchandler = require("@allnulled/asynchandler");
  * 
  */
 module.exports = function(passwordTry, passwordHash) {
+	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+	cms.utils.trace("cms.utils.comparePassword");
 	return new Promise(function(ok, fail) {
 		bcrypt.compare(passwordTry, passwordHash, asynchandler(ok, fail));
 	});

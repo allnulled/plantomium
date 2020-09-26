@@ -1,0 +1,6 @@
+[cms add market]
+ [Usage:]
+  · cms add market --url https://www.example.com/market.json
+ [Info:]
+  · Downloads a json file by URL.
+  · Adds it as a known market.

@@ -1,0 +1,27 @@
+<%
+
+const cascadeDeletes = cms.utils
+	.dataGetter(cms, ["schema", "constraints", actorClass.Table, "rest", "cascadeDelete"], [])
+	.filter(cascadeDelete => cascadeDelete.type === "delete");
+if(cascadeDeletes.length === 0) {
+	return "";
+}
+for(let index=0; index < cascadeDeletes.length; index++) {
+	const cascadeDelete = cascadeDeletes[index];
+	const { table, column } = cascadeDelete;
+	const columnDestination = cms.utils.dataGetter(cms, ["schema", "columns", table, column], false);
+	if(!columnDestination) {
+		throw new Error("Required <cascadeDelete.{n}.(table & column)> to exist in <schema.columns.*> [ERR:032]");
+	}
+	const tableEscaped = sqlString.escapeId(table);
+	const fields = cms.utils.toSelectFieldsSql(0, undefined, actorClass.Table, false);
+	const where = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
+%>
+# select many:
+SELECT
+  <%-fields%>
+  FROM <%-tableEscaped%>
+  <%-where ? ("WHERE " + where) : "# no WHERE..." %>;
+<%
+}
+%>

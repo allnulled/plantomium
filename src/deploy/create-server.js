@@ -1,4 +1,6 @@
-const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const https = require("https");
 
 /**
  * 
@@ -18,6 +20,12 @@ const http = require("http");
  * 
  */
 module.exports = function(cms) {
-	cms.server = http.createServer(cms.app);
+	cms.utils.trace("cms.deploy.createServer");
+	const certPath = path.resolve(process.env.PROJECT_ROOT, process.env.SECURE_SITE_CRT);
+	const cert = fs.readFileSync(certPath).toString();
+	const keyPath = path.resolve(process.env.PROJECT_ROOT, process.env.SECURE_SITE_KEY);
+	const key  = fs.readFileSync(keyPath).toString();
+	cms.server = https.createServer({key, cert}, cms.app);
+	cms.hooks.trigger("project.on-create-server");
 	return cms.server;
 }

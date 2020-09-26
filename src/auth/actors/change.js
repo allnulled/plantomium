@@ -9,30 +9,31 @@ const bcrypt = require("bcrypt");
  * 
  * @location `cms.auth.actors.change`
  * @name change
- * @type `async function`
+ * @type `AsyncFunction`
  * @receives
- * @receives - `parameters:Object` - parameters to change a user password.
- * @receives - `parameters.recovery_token:String` - previous recovery_token of the user.
- * @receives - `parameters.password:String` - new password.
+ * @receives - `parameters:Object` - parameters to change the `password` of a `user`.
+ * @receives    - `parameters.recovery_token:String` - previous `recovery_token` of the `user`.
+ * @receives    - `parameters.password:String` - new `password`.
  * @returns
- * @returns - `Promise<data:Object>`
- * @returns - `Promise<data.message:String>` - a message confirming the operation.
+ * @returns - `Promise<data:Object>` - the output data
+ * @returns - `Promise<data.message:String>` - a message confirming the operation. `"Your password was successfully changed."`
  * @throws
- * @throws - `No user found on change` - select returned 0 items
- * @throws - `No user found on change (anomaly)` - select returned more than 1 item
- * @throws - `No user found to update on change` - affectedRows of update is 0
- * @description method that changes the password of a user
+ * @throws - `[ERR:5064]`: `user` not found
+ * @throws - `[ERR:5094]`: `user` found multiple times.
+ * @throws - `[ERR:5774]`: no `user` was affected by the change.
+ * @description method that changes the password of a `user`.
  * 
  * 
  */
 module.exports = async function(parameters = {}) {
 	try {
+		cms.utils.trace("cms.auth.actors.change");
 		const selectUserQuery = cms.auth.queries.selectUserByRecoveryToken({ parameters });
 		const users = await cms.auth.query(selectUserQuery);
 		if(users.length === 0) {
-			throw new Error("No user found on change");
+			throw new Error("Required <user> to exist on <change> [ERR:5064]");
 		} else if(users.length !== 1) {
-			throw new Error("No user found on change (anomaly)");
+			throw new Error("Required <user> to exist only once on <change> (anomaly) [ERR:5094]");
 		}
 		const user = cms.utils.toObjectSql(users, "users")[0];
 		parameters.originalPassword = parameters.password;
@@ -41,7 +42,7 @@ module.exports = async function(parameters = {}) {
 		const updateUserQuery = cms.auth.queries.updateUserPasswordAndToken({ parameters });
 		const updateUserResult = await cms.auth.query(updateUserQuery);
 		if(updateUserResult.affectedRows === 0) {
-			throw new Error("No user found to update on change");
+			throw new Error("Required <affectedRows> to be more than 1 on <change> (anomaly) [ERR:5774]");
 		}
 		return {
 			message: "Your password was successfully changed.",

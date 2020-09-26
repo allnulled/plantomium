@@ -20,6 +20,7 @@ const ejs = require("ejs");
 module.exports = function(file, parameters = {}) {
 	if (file) {
 		const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
+		cms.utils.trace("cms.utils.renderFile");
 		return new Promise((ok, fail) => {
 			const templateParameters = cms.utils.createParameters(parameters);
 			ejs.renderFile(file, templateParameters, {}, (error, data) => {

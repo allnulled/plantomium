@@ -1,15 +1,32 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
+cms.utils.trace("cms.auth.queries.selectUserByNameOrEmail");
 const path = require("path");
-const originalSchemaPath = path.resolve(process.env.PROJECT_ROOT, process.env.SCHEMA_OUTPUT);
-const originalSchema = require(originalSchemaPath);
-const userFields = cms.utils.toSelectFieldsSql(Object.keys(originalSchema.columns.users), "users");
+const userFields = cms.utils.toSelectFieldsSql(0, cms.originalSchema.constraints.users.attributes, "users");
 const { name, email } = {
   name: sqlString.escape(parameters.name),
   email: sqlString.escape(parameters.email),
 };
   
 %>
-SELECT <%-userFields%> 
+SELECT <%-userFields%>
   FROM users
   WHERE (
     users.name = <%-name%>

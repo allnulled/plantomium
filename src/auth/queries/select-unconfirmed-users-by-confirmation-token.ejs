@@ -1,4 +1,23 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
+cms.utils.trace("cms.auth.queries.selectUnconfirmedUsersByConfirmation");
 const { confirmation_token: confirmation_tokenBrute } = parameters;
 const { confirmation_token } = {
   confirmation_token: sqlString.escape(confirmation_tokenBrute)

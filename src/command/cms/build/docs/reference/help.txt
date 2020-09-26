@@ -1,0 +1,5 @@
+[cms build docs reference]
+ [Usage:]
+  · cms build docs reference
+ [Info:]
+  · Compiles reference documentation, which is the javadoc comments along the sources.

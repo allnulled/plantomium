@@ -1,0 +1,40 @@
+<%
+
+cms.utils.trace("cms.history.queries.insertData");
+if(typeof data !== "object") {
+  throw new Error("Required <data> to be an object on <insertData> [ERR:1127]");
+}
+
+const {
+  user_ip = "",
+  user_agent = "",
+  user_id = "",
+  original_table = "",
+  request_data = "",
+  data: data2 = "",
+  metadata = "",
+  description = "",
+} = data;
+
+%>
+INSERT INTO history_data (
+  user_ip,
+  user_agent,
+  user_id,
+  original_table,
+  request_data,
+  data,
+  metadata,
+  description,
+  deleted_at
+) VALUES (
+  <%-sqlString.escape(user_ip)%>,
+  <%-sqlString.escape(user_agent)%>,
+  <%-sqlString.escape(user_id)%>,
+  <%-sqlString.escape(original_table)%>,
+  <%-sqlString.escape(request_data)%>,
+  <%-sqlString.escape(data2)%>,
+  <%-sqlString.escape(metadata)%>,
+  <%-sqlString.escape(description)%>,
+  now()
+);

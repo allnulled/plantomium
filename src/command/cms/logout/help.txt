@@ -1,0 +1,5 @@
+[cms auth logout]
+ [Usage:]
+  · cms auth logout
+ [Description:]
+  · Lets you logout for any request made by the CLI.

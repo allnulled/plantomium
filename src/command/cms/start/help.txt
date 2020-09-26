@@ -1,0 +1,4 @@
+[cms start]
+ [Usage:] cms start
+ [Info:]
+   · Starts the CMS execution.

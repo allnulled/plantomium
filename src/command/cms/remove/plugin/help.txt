@@ -1,0 +1,8 @@
+[cms remove plugin]
+ [Usage:]
+  · cms remove plugin
+  	 --name plantomium/example-plugin
+  · cms remove plugin
+  	 --git plantomium-official-market
+ [Info:]
+  · Removes a market from the known markets list.

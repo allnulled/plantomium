@@ -1,0 +1,17 @@
+<%
+
+cms.utils.trace("cms.process.base.process.queries.deleteProcessTransactions");
+if(!Array.isArray(ids)) {
+	throw new Error("Required <ids> to be an array on <deleteProcessTransactions> [ERR:5674]");
+}
+if(ids.length === 0) {
+	throw new Error("Required <ids> to be an array with items on <deleteProcessTransactions> [ERR:965]");
+}
+
+const transactionTable = sqlString.escapeId(processInstance.transactionTable);
+const escapedIds = sqlString.escape(ids);
+
+%>
+
+DELETE FROM <%-transactionTable%>
+  WHERE <%-transactionTable%>.`id` IN (<%-escapedIds%>);

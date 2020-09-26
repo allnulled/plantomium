@@ -1,17 +1,40 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 const table = sqlString.escapeId(actorClass.Table);
 const {
+  fields = undefined,
   where = undefined,
   join = undefined,
+  limit = 20,
+  sort = undefined,
+  page = 1,
 } = parameters.input;
-const whereFinal = cms.utils.toSelectWhereSql(where);
-const joinFinal = cms.utils.toSelectJoinSql(join);
+const fieldsFinal = cms.utils.toSelectFieldsSql(0, fields, actorClass.Table);
+const whereFinal = cms.utils.toSelectWhereSql(0, where, false, actorClass.Table, true);
+const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
+const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 %>
+# select many count:
 SELECT COUNT(*) AS Total
   FROM <%-table%>
   <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
-  <%-joinFinal ? ("JOIN " + joinFinal) : "# no JOIN..." %>
-  # no ORDER BY
-  # no LIMIT
-  # no OFFSET
+/*<%-joinFinal ? (joinFinal) : "# no JOIN..." %>*/
+  <%-orderFinal ? ("ORDER BY " + orderFinal) : "# no ORDER BY..." %>
 ;

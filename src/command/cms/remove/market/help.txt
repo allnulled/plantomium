@@ -1,0 +1,6 @@
+[cms remove market]
+ [Usage:]
+  · cms remove market
+  	 --name plantomium-official-market
+ [Info:]
+  · Removes a market from the known markets list.

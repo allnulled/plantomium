@@ -1,22 +1,55 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 const table = sqlString.escapeId(actorClass.Table);
-const columnKeys = Object.keys(actorClass.Schema.columns);
-const fields = columnKeys.map(ck => sqlString.escapeId(ck));
-const values = [];
 const data = [].concat(parameters.input.data);
-for(let indexData=0; indexData < data.length; indexData++) {
-  const item = data[indexData];
-  values[indexData] = [];
-  for(let index=0; index < columnKeys.length; index++) {
-    const field = columnKeys[index];
-    const fieldValue = item[field] || null;
-    const value = sqlString.escape(fieldValue);
-    values[indexData].push(value);
-  }
+if(data.length === 0) {
+  throw new Error("Required <data> to have some key on <insert-many.ejs> [ERR:388]");
 }
+if(typeof data[0] !== "object") {
+  throw new Error("Required <data.*> to be objects on <insert-many.ejs> [ERR:883]");
+}
+const authentication = cms.utils.getAuthentication(parameters.request, {});
+const fieldsList = Object.keys(data[0]).filter(column => cms.utils.checkRestPermissionsTo(authentication, "post", actorClass.Table, column));
+if(fieldsList.length===0){
+  return "";
+}
+const fields = cms.utils.toInsertFieldsSql(0, fieldsList);
+const values = data.map(item => {
+  if(typeof item !== "object") {
+    throw new Error("Required <data.*> to be (all) object on <insert-many.ejs> [ERR:308]");
+  }
+  const output = [];
+  for(let index=0; index < fieldsList.length; index++) {
+    const field = fieldsList[index];
+    if(field in item) {
+      output.push(item[field]);
+    } else {
+      output.push(undefined);
+    }
+  }
+  return cms.utils.toInsertValuesSql(0, output);
+});
 %>
+# insert many:
 INSERT INTO <%-table%> (
-    <%-fields.join(",\n    ")%>
+    <%-fields%>
 ) VALUES (
-    <%-values.map(value => value.join(", ")).join("\n), (\n    ")%>
+    <%-values.join("\n), (\n    ")%>
 );

@@ -21,4 +21,5 @@ module.exports = require("mysql").createConnection({
 	database: process.env.REST_DB_NAME,
 	host: process.env.REST_DB_HOST,
 	port: process.env.REST_DB_PORT,
+	multipleStatements: true,
 });

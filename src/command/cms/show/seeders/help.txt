@@ -1,0 +1,5 @@
+[cms show seeders]
+ [Usage:]
+  · cms show seeders
+ [Info:]
+  · Shows the current status of the database seeders.

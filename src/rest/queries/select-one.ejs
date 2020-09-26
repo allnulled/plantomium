@@ -1,25 +1,45 @@
 <%
+/**
+ * 
+ * ----
+ * 
+ * ### `/src/...`
+ * 
+ * @name `unnamed template`
+ * @type [EJS template]
+ * @has 
+ * @uses 
+ * @modifies 
+ * @receives 
+ * @returns 
+ * @throws 
+ * @description 
+ * 
+ */
+
 const table = sqlString.escapeId(actorClass.Table);
 const {
   fields = undefined,
   id = undefined,
-  join = undefined,
-  limit = 20,
+  join = [],
+  limit = 1,
   sort = undefined,
   page = 1,
 } = parameters.input;
-const fieldsFinal = cms.utils.toSelectFieldsSql(fields);
-const whereFinal = cms.utils.toSelectWhereSql([["id","=",id]]);
-const joinFinal = cms.utils.toSelectJoinSql(join);
-const orderFinal = cms.utils.toSelectOrderSql(sort);
+const auth = cms.utils.getAuthentication(parameters.request, {});
+const fieldsFinal = cms.utils.toSelectFieldsSql(auth, fields, actorClass.Table, false, true, "get");
+const whereFinal = cms.utils.toSelectWhereSql(auth, [[actorClass.Table + ".id","=",id]], false, actorClass.Table);
+//const joinFinal = cms.utils.toSelectJoinSql(join, actorClass.Table);
+const orderFinal = cms.utils.toSelectOrderSql(sort, actorClass.Table);
 const limitFinal = cms.utils.toSelectLimitSql(limit);
-const offsetFinal = cms.utils.toSelectOffsetSql(limit, page);
+const offsetFinal = cms.utils.toSelectOffsetSql(limit, page, undefined, actorClass.Table);
 %>
-SELECT <%-fieldsFinal%>
+# select one:
+SELECT 
+  <%-fieldsFinal%>
   FROM <%-table%>
-  <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
-  <%-joinFinal ? ("JOIN " + joinFinal) : "# no JOIN..." %>
+  <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %><%/* joinFinal ? joinFinal : "  # no JOIN..." */%>
   <%-orderFinal ? ("ORDER BY " + orderFinal) : "# no ORDER BY..." %>
-  <%-limitFinal ? ("LIMIT " + limitFinal) : "# no LIMIT..." %>
+  <%-limitFinal ? ("LIMIT " + limitFinal) : "LIMIT 1" %>
   <%-offsetFinal ? ("OFFSET " + offsetFinal) : "# no OFFSET..." %>
 ;
