@@ -15,12 +15,12 @@
  * @description 
  * 
  */
-module.exports = function(tablename, otherJoins = []) {
+module.exports = function(tablename, otherJoins = [], ignoreSchema = false) {
 	const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 	cms.utils.trace("cms.utils.getSchemaJoinedTables");
 	const hasTablename = typeof tablename === "string";
 	const joinsData = hasTablename ? cms.utils.dataGetter(cms, ["schema", "constraints", tablename, "rest", "join"], false) : [];
-	const extendedJoins = joinsData ? joinsData : [];
+	const extendedJoins = ((!ignoreSchema) && joinsData) ? joinsData : [];
 	const selectJoin = [].concat(extendedJoins).concat(otherJoins);
 	const joins = {};
 	for(let indexJoins=0; indexJoins < selectJoin.length; indexJoins++) {

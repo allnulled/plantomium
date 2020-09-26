@@ -161,14 +161,41 @@
     [✓] cms sql export --file x.sql
     [✓] cms sql import --file x.sql
     [✓] improved documentation
-    [ ] cms auth login --name n --email m --password p
-    [ ] cms auth logout --name n --email m --password p
-    [ ] cms auth session --name n --email m --password p
-    [ ] cms auth refresh session --name n --email m --password p
-    [ ] cms auth add
-    [ ] cms auth remove
-    [ ] cms auth rename
-    [ ] cms auth list
+    [✓] cms login --name n --email m --password p
+    [✓] cms logout
+    [✓] cms show session
+
+    [✓] cms add user
+      [✓] --name:array [required]
+      [✓] --to-group:array [optional]
+    [✓] cms add group
+      [✓] --name:array [required]
+    [ ] cms add permission
+      [ ] --name:array [required]
+      [ ] --to-user:array [optional]
+      [ ] --to-group:array [optional]
+    [ ] cms remove user
+      [ ] --name:array [required]
+      [ ] --from-group:array [optional]
+    [ ] cms remove group
+      [ ] --name:array [required]
+    [ ] cms remove permission
+      [ ] --name:array [required]
+      [ ] --from-user:array [optional]
+      [ ] --from-group:array [optional]
+    [ ] cms rename 
+      [ ] --user:string [optional with group and permission]
+      [ ] --group:string [optional with user and permission]
+      [ ] --permission:string [optional with user and group]
+      [ ] --to:string [required]
+    [ ] cms show (user|group|permission)
+      [ ] --field:csv [optional]
+      [ ] --where:json [optional]
+      [ ] --join:json [optional]
+      [ ] --group:json [optional]
+      [ ] --order:json [optional]
+      [ ] --limit:json [optional]
+      [ ] --offset:json [optional]
     [ ] cms rest get many --...
     [ ] cms rest get one --...
     [ ] cms rest post many --...

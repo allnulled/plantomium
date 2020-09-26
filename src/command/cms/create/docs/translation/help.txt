@@ -6,4 +6,4 @@
   	--es español
   	--ca català
  [Description:]
-  Creates (or overrides) a file at /docs/texts/{language}/project.docs/{id}.ejs with the contents passed for each language.
+  · Creates (or overrides) a file at /docs/texts/{language}/project.docs/{id}.ejs with the contents passed for each language.

@@ -11,6 +11,8 @@ describe("REST-AUTHORIZATION Test", function() {
 
 	this.timeout(1000 * 5);
 
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
+
 	before(function() {
 		//
 	});
@@ -22,7 +24,7 @@ describe("REST-AUTHORIZATION Test", function() {
 	let normalClient, adminClient;
 	const tmp = {};
 
-	it("can include authorization rules in vschema", function(done) {
+	skippable("can include authorization rules in vschema", function(done) {
 		const permissionOnGet = cms.utils.dataGetter(cms.schema, ["columns", "groups", "description", "auth", "onGet", "require", "permissions", "0"], undefined);
 		const permissionOnPost = cms.utils.dataGetter(cms.schema, ["columns", "groups", "description", "auth", "onPost", "require", "permissions", "0"], undefined);
 		const permissionOnPut = cms.utils.dataGetter(cms.schema, ["columns", "groups", "description", "auth", "onPut", "require", "permissions", "0"], undefined);
@@ -34,7 +36,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		done();
 	});
 
-	it("can login", async function() {
+	skippable("can login", async function() {
 		try {
 			const {
 				confirmation_token
@@ -71,7 +73,7 @@ describe("REST-AUTHORIZATION Test", function() {
 	let idN = undefined;
 	let idAdmin = undefined;
 
-	it("can authorize postOne fields", async function() {
+	skippable("can authorize postOne fields", async function() {
 		try {
 			const postOnePlantN = await normalClient.post(Utils.url("/api/v1/plant/0"), {
 				name: 'five',
@@ -129,7 +131,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize getMany wheres", async function() {
+	skippable("can authorize getMany wheres", async function() {
 		try {
 			const getManyPlantsN = await normalClient.get(Utils.url("/api/v1/plant"), {
 				params: {
@@ -153,7 +155,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize getMany fields", async function() {
+	skippable("can authorize getMany fields", async function() {
 		try {
 			const manyGroupsN = await normalClient.get(Utils.url("/api/v1/groups"));
 			const manyGroupsAdmin = await adminClient.get(Utils.url("/api/v1/groups"));
@@ -174,7 +176,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize getOne fields", async function() {
+	skippable("can authorize getOne fields", async function() {
 		try {
 			const oneGroupN = await normalClient.get(Utils.url("/api/v1/groups/" + tmp.groupId));
 			const oneGroupAdmin = await adminClient.get(Utils.url("/api/v1/groups/" + tmp.groupId));
@@ -192,7 +194,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize postMany fields", async function() {
+	skippable("can authorize postMany fields", async function() {
 		try {
 			const postManyPlantsN = await normalClient.post(Utils.url("/api/v1/plant"), {
 				data: [{
@@ -271,7 +273,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize putMany fields", async function() {
+	skippable("can authorize putMany fields", async function() {
 		try {
 			const putManyPlantsN = await normalClient.put(Utils.url("/api/v1/plant"), {
 				where: [
@@ -348,7 +350,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize putOne fields", async function() {
+	skippable("can authorize putOne fields", async function() {
 		try {
 			await normalClient.put(Utils.url(`/api/v1/plant/${idN}`), {
 				name: 'twelve',
@@ -383,7 +385,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize attachment fields and wheres", async function() {
+	skippable("can authorize attachment fields and wheres", async function() {
 		try {
 			// @TODO:
 			await adminClient.post(Utils.url(`/api/v1/plant-details`), {
@@ -419,7 +421,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize putMany wheres", async function() {
+	skippable("can authorize putMany wheres", async function() {
 		try {
 			const putManyAdmin = await adminClient.put(Utils.url(`/api/v1/plant-details`), {
 				where: [
@@ -450,7 +452,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize putMany data", async function() {
+	skippable("can authorize putMany data", async function() {
 		try {
 			const putManyN = await normalClient.put(Utils.url(`/api/v1/plant`), {
 				where: [
@@ -477,7 +479,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize get table", async function() {
+	skippable("can authorize get table", async function() {
 		try {
 			adminClient.post(Utils.url(`/api/v1/trait`), {
 				data: [
@@ -530,7 +532,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize get table by attachments", async function() {
+	skippable("can authorize get table by attachments", async function() {
 		try {
 			const getTraitN = await normalClient.get(Utils.url(`/api/v1/trait`));
 			const getTraitAdmin = await adminClient.get(Utils.url(`/api/v1/trait`));
@@ -544,7 +546,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize post table", async function() {
+	skippable("can authorize post table", async function() {
 		try {
 			const postTraitSecretDetailsN = await normalClient.post(Utils.url(`/api/v1/trait-secret-details`), {
 				data: [
@@ -557,7 +559,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize put table", async function() {
+	skippable("can authorize put table", async function() {
 		try {
 			const postTraitSecretDetailsAdmin = await adminClient.post(Utils.url(`/api/v1/trait-secret-details`), {
 				data: [
@@ -580,7 +582,7 @@ describe("REST-AUTHORIZATION Test", function() {
 		}
 	});
 
-	it("can authorize delete table", async function() {
+	skippable("can authorize delete table", async function() {
 		try {
 			const postTraitSecretDetailsAdmin = await adminClient.post(Utils.url(`/api/v1/trait-secret-details`), {
 				data: [

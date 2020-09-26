@@ -78,7 +78,12 @@ module.exports = function(authenticationParam, selectWhereParam, prependAnd = fa
 		// @TODO: ALLOW IN+!IN OPERATIONS WITH ARRAYS AS 3RD ARGUMENT
 		// @TODO: ALLOW PROP2PROP OPERATION WITH ARRAYS OF 2 ITEMS AS 3RD ARGUMENT
 		const op = cms.utils.operationTranslations[opSymbol];
-		const op2Escaped = (["IN", "NOTIN"].indexOf(op) !== -1) ? ("(" + sqlString.escape(op2) + ")") : sqlString.escape(op2);
+		let op2Escaped = undefined;
+		if(((op === "IN") || (op === "NOT IN")) && Array.isArray(op2)) {
+			op2Escaped = "(" + op2.map(item => sqlString.escape(item)).join(", ") + ")";
+		} else {
+			op2Escaped = sqlString.escape(op2);
+		}
 		let isEnabled = false;
 		if(authentication) {
 			const { table, column } = cms.utils.formatTableColumn(op1, [tablename]);

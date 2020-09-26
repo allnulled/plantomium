@@ -399,7 +399,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_group_and_permission_ibfk_1',
@@ -431,7 +431,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_group_and_permission_ibfk_2',
@@ -1173,7 +1173,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_group_ibfk_1',
@@ -1205,7 +1205,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_group_ibfk_2',
@@ -1263,7 +1263,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_permission_ibfk_1',
@@ -1295,7 +1295,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_permission_ibfk_2',
@@ -5022,12 +5022,8 @@ module.exports = {
   general: {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
-    debugSql: true,
-    debugSqlHistory: true,
-    debugSqlAuth: true,
-    debugSqlProcess: true,
+    debugSql: false,
     debugErrors: true,
-    debugTraces: false,
     debugSqlRestSplitter: '\n[SQL:REST]',
     debugSqlHistorySplitter: '\n[SQL:HISTORY]',
     debugSqlAuthSplitter: '\n[SQL:AUTH]',

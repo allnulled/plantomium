@@ -52,7 +52,8 @@ create table combo_user_and_group (
   id_user integer,
   id_group integer,
   foreign key (id_user) references users(id),
-  foreign key (id_group) references groups(id)
+  foreign key (id_group) references groups(id),
+  unique key `unique_user_and_group` (`id_user`,`id_group`)
 );
 
 create table combo_user_and_permission (
@@ -60,7 +61,8 @@ create table combo_user_and_permission (
   id_user integer,
   id_permission integer,
   foreign key (id_user) references users(id),
-  foreign key (id_permission) references permissions(id)
+  foreign key (id_permission) references permissions(id),
+  unique key `unique_user_and_permission` (`id_user`,`id_permission`)
 );
 
 create table combo_group_and_permission (
@@ -68,5 +70,6 @@ create table combo_group_and_permission (
   id_group integer,
   id_permission integer,
   foreign key (id_group) references groups(id),
-  foreign key (id_permission) references permissions(id)
+  foreign key (id_permission) references permissions(id),
+  unique key `unique_group_and_permission` (`id_group`,`id_permission`)
 );

@@ -241,7 +241,7 @@ class BaseHandler {
 	onBroadcast(parameters) {
 		cms.utils.trace("cms.rest.handler.onBroadcast");
 		const dehydratedRequest = cms.utils.dehydrateRequest(parameters.request);
-		cms.socket.server.of("broadcast").emit("rest_event", dehydratedRequest);
+		// cms.socket.server.of("broadcast").emit("rest_event", dehydratedRequest);
 	}
 
 	onResult(parameters) {
@@ -264,7 +264,7 @@ class BaseHandler {
 		return new Promise((ok, fail) => {
 			if(options.history === true) {
 				cms.utils.debugHistoryQuery(query);
-			} else if (cms.schema.general.debugSql) {
+			} else if (process.env.DEBUG_SQL === "true") {
 				cms.utils.debugRestQuery(query);
 			}
 			this.actor.connection.query(query, (error, data) => {

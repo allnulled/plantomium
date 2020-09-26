@@ -1,3 +1,4 @@
+const colors = require("colors");
 /**
  * 
  * ----
@@ -16,7 +17,7 @@
  * 
  */
 module.exports = function(...args) {
-	if(process.env.DEBUG_TRACES) {
-		console.log("[DEBUG]", ...args);
+	if(process.env.DEBUG_TRACES === "true") {
+		console.log(colors.blue("[DEBUG]"), ...args);
 	}
 }

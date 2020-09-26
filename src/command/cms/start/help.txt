@@ -1,4 +1,4 @@
 [cms start]
  [Usage:] cms start
  [Info:]
-   · Starts the CMS execution
+   · Starts the CMS execution.

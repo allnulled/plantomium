@@ -1,0 +1,6 @@
+[cms add group]
+ [Usage:]
+  · cms add group
+     --name g
+ [Info:]
+  · Adds a new group to the auth system.

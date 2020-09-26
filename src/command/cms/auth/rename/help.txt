@@ -1,7 +1,0 @@
-[cms auth add]
- [Usage:]
-  · cms auth add --user u --to u2
-  · cms auth add --group g --to g2
-  · cms auth add --privilege p --to p2
- [Description:]
-  · Lets you rename users, groups and privileges.

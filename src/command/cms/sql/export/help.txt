@@ -1,7 +1,7 @@
 [cms sql export]
  [Usage:]
-  cms sql export
-   --file src/backups/whatever.sql
+  · cms sql export
+  	 --file src/backups/whatever.sql
  [Info:]
-  Exports the current state of the database to an SQL script file.
-  Optionally, the data in the database is also exported.
+  · Exports the current state of the database to an SQL script file.
+  · Optionally, the data in the database is also exported.

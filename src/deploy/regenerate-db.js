@@ -35,7 +35,6 @@ module.exports = function(cms) {
 		output: outputPath,
 	}).then(function(data) {
 		cms.utils.trace("cms.deploy.regenerateDb: OK.");
-		cms.originalSchema = importFresh(outputPath);
 		cms.hooks.trigger("project.on-regenerated-db", { outputPath, data });
 		return data;
 	});

@@ -1,6 +1,11 @@
 [cms show users]
  [Usage:]
   · cms show users
+  	 --where '[["id","<",5]]'
+  · cms show users
+  	 --of-permission p
+  · cms show users
+  	 --of-group g
  [Info:]
   · Displays the users that:
    · with --where: users that match certain conditions.

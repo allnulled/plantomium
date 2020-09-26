@@ -623,7 +623,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_group_and_permission_ibfk_1',
@@ -650,9 +650,9 @@ module.exports = {
           $maximumCharactersLength: null,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
-          $boundConstraint: 'combo_group_and_permission_ibfk_1',
-          $referencedTable: 'groups',
-          $referencedColumn: 'id'
+          $boundConstraint: 'unique_group_and_permission',
+          $referencedTable: null,
+          $referencedColumn: null
         }
       },
       id_permission: {
@@ -671,7 +671,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_group_and_permission_ibfk_2',
@@ -698,9 +698,9 @@ module.exports = {
           $maximumCharactersLength: null,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
-          $boundConstraint: 'combo_group_and_permission_ibfk_2',
-          $referencedTable: 'permissions',
-          $referencedColumn: 'id'
+          $boundConstraint: 'unique_group_and_permission',
+          $referencedTable: null,
+          $referencedColumn: null
         }
       }
     },
@@ -1829,7 +1829,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_group_ibfk_1',
@@ -1856,9 +1856,9 @@ module.exports = {
           $maximumCharactersLength: null,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
-          $boundConstraint: 'combo_user_and_group_ibfk_1',
-          $referencedTable: 'users',
-          $referencedColumn: 'id'
+          $boundConstraint: 'unique_user_and_group',
+          $referencedTable: null,
+          $referencedColumn: null
         }
       },
       id_group: {
@@ -1877,7 +1877,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_group_ibfk_2',
@@ -1904,9 +1904,9 @@ module.exports = {
           $maximumCharactersLength: null,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
-          $boundConstraint: 'combo_user_and_group_ibfk_2',
-          $referencedTable: 'groups',
-          $referencedColumn: 'id'
+          $boundConstraint: 'unique_user_and_group',
+          $referencedTable: null,
+          $referencedColumn: null
         }
       }
     },
@@ -1967,7 +1967,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_permission_ibfk_1',
@@ -1994,9 +1994,9 @@ module.exports = {
           $maximumCharactersLength: null,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
-          $boundConstraint: 'combo_user_and_permission_ibfk_1',
-          $referencedTable: 'users',
-          $referencedColumn: 'id'
+          $boundConstraint: 'unique_user_and_permission',
+          $referencedTable: null,
+          $referencedColumn: null
         }
       },
       id_permission: {
@@ -2015,7 +2015,7 @@ module.exports = {
         isFloat: true,
         isUnsigned: false,
         isForeignKey: true,
-        isUnique: false,
+        isUnique: true,
         referencesTo: [
           {
             id: 'combo_user_and_permission_ibfk_2',
@@ -2042,9 +2042,9 @@ module.exports = {
           $maximumCharactersLength: null,
           $isUnsigned: 0,
           $isAutoIncrement: 0,
-          $boundConstraint: 'combo_user_and_permission_ibfk_2',
-          $referencedTable: 'permissions',
-          $referencedColumn: 'id'
+          $boundConstraint: 'unique_user_and_permission',
+          $referencedTable: null,
+          $referencedColumn: null
         }
       }
     },
@@ -7543,12 +7543,8 @@ module.exports = {
   general: {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
-    debugSql: true,
-    debugSqlHistory: true,
-    debugSqlAuth: true,
-    debugSqlProcess: true,
+    debugSql: false,
     debugErrors: true,
-    debugTraces: false,
     debugSqlRestSplitter: '\n[SQL:REST]',
     debugSqlHistorySplitter: '\n[SQL:HISTORY]',
     debugSqlAuthSplitter: '\n[SQL:AUTH]',

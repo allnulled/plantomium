@@ -41,7 +41,7 @@
 		}
 		return str;
 	}
-	const runLogin = async (client, credentials = {}) => {
+	const runLogin = async (client, credentials = {}, ...others) => {
 		try {
 			if (typeof credentials.name !== "string") {
 				throw new Error("Required <name> to be a string on <login> [ERR:A-845]");
@@ -53,7 +53,7 @@
 			const loginResponse = await client.axios.post(loginURL, {
 				name: credentials.name,
 				password: credentials.password
-			});
+			}, ...others);
 			if (loginResponse.data && loginResponse.data.data) {
 				client.setSessionToken(loginResponse.data.data.session_token);
 				client.setRefreshToken(loginResponse.data.data.refresh_token);
@@ -69,11 +69,11 @@
 	}
 	const runLogout = (client, ...others) => {
 		const logoutURL = client.formatAuthEndpoint("/logout");
-		return client.axios.post(logoutURL);
+		return client.axios.post(logoutURL, ...others);
 	}
 	const runRefresh = (client, ...others) => {
 		const refreshURL = client.formatAuthEndpoint("/refresh");
-		return client.axios.get(refreshURL);
+		return client.axios.get(refreshURL, ...others);
 	}
 	const runSchema = (client, entity, ...others) => {
 		const endpoint = client.formatEndpoint(entity.endpoint);
@@ -507,7 +507,7 @@
         "float": true,
         "unsigned": false,
         "foreignKey": true,
-        "unique": false,
+        "unique": true,
         "optionsList": null,
         "maxTextLength": null
       },
@@ -522,7 +522,7 @@
         "float": true,
         "unsigned": false,
         "foreignKey": true,
-        "unique": false,
+        "unique": true,
         "optionsList": null,
         "maxTextLength": null
       }
@@ -1066,7 +1066,7 @@
         "float": true,
         "unsigned": false,
         "foreignKey": true,
-        "unique": false,
+        "unique": true,
         "optionsList": null,
         "maxTextLength": null
       },
@@ -1081,7 +1081,7 @@
         "float": true,
         "unsigned": false,
         "foreignKey": true,
-        "unique": false,
+        "unique": true,
         "optionsList": null,
         "maxTextLength": null
       }
@@ -1133,7 +1133,7 @@
         "float": true,
         "unsigned": false,
         "foreignKey": true,
-        "unique": false,
+        "unique": true,
         "optionsList": null,
         "maxTextLength": null
       },
@@ -1148,7 +1148,7 @@
         "float": true,
         "unsigned": false,
         "foreignKey": true,
-        "unique": false,
+        "unique": true,
         "optionsList": null,
         "maxTextLength": null
       }

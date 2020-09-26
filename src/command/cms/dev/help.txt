@@ -1,6 +1,7 @@
 [cms dev]
- [Usage:] cms dev
+ [Usage:]
+  · cms dev
  [Info:]
-   · Starts development mode
-     - Listens to file changes 
-     - Opens sublime editor
+  · Starts development mode
+   · Listens to file changes 
+   · Opens sublime editor

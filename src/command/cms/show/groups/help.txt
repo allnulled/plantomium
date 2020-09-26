@@ -5,4 +5,4 @@
   · Displays the groups that:
    · with --where: groups that match certain conditions.
    · with --of-user: groups that some user belongs to.
-   · with --of-permission: groups that own permission.
+   · with --with-permission: groups that own permission.
