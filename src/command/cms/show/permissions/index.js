@@ -52,11 +52,11 @@ module.exports = async function(argv) {
 		const groups = cms.utils.toObjectSql(data, "groups", "id");
 		const permissions = cms.utils.toObjectSql(data, "permissions", "id");
 		console.log("[Users:] " + ((users.length === 0) ? "none" : users.length));
-		if (users.length) cms.utils.printSqlData(users);
+		if (users.length) cms.utils.printSqlData(users, true);
 		console.log("[Groups:] " + ((groups.length === 0) ? "none" : groups.length));
-		if (groups.length) cms.utils.printSqlData(groups);
+		if (groups.length) cms.utils.printSqlData(groups, true);
 		console.log("[Permissions:] " + ((permissions.length === 0) ? "none" : permissions.length));
-		if (permissions.length) cms.utils.printSqlData(permissions);
+		if (permissions.length) cms.utils.printSqlData(permissions, true);
 		cms.deploy.stopServer(cms);
 	} catch (error) {
 		console.error(error);

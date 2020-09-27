@@ -3,6 +3,8 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 
 describe("I18N Test", function() {
 	this.timeout(1000 * 5);
+	
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
 
 	before(function() {
 		//
@@ -12,7 +14,7 @@ describe("I18N Test", function() {
 		// 
 	});
 
-	it("can load hardcoded translations", function(done) {
+	skippable("can load hardcoded translations", function(done) {
 		const _es = cms.i18n.createGetter({}, "es", "project.docs").createFunction();
 		const _ca = cms.i18n.createGetter({}, "ca", "project.docs").createFunction();
 		const _en = cms.i18n.createGetter({}, "en", "project.docs").createFunction();

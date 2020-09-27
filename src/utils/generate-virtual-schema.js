@@ -190,6 +190,9 @@ module.exports = function(cms) {
 		if(!Array.isArray(rules)) {
 			throw new Error("Required <authorizationRules.rules> to be an array on <generateVirtualSchema> [ERR:1310]");
 		}
+		if(!Object.keys(vschema.constraints).length) {
+			return;
+		}
 		for(let indexRule=0; indexRule < rules.length; indexRule++) {
 			const rule = rules[indexRule];
 			const ids = rule.on;

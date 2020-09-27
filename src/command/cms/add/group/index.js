@@ -61,7 +61,7 @@ module.exports = async function(argv) {
 		}
 		for(let index=0; index < allData.length; index++) {
 			const data = allData[index];
-			cms.utils.printSqlData(data);
+			cms.utils.printSqlData(data, true);
 		}
 		cms.deploy.stopServer(cms);
 	} catch(error) {

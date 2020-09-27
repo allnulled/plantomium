@@ -5,6 +5,8 @@ describe("CLI Test", function() {
 	
 	this.timeout(1000 * 5);
 
+	const skippable = require(process.env.PROJECT_ROOT + "/test/skippable.js");
+
 	before(function() {
 		//
 	});
@@ -13,15 +15,15 @@ describe("CLI Test", function() {
 		// 
 	});
 
-	it("can <cms login>", function() {
+	skippable("can <cms login>", function() {
 		cms.utils.execSync("cms login --name administrator --password admin123");
 	});
 		
-	it("can <cms show session>", function() {
+	skippable("can <cms show session>", function() {
 		cms.utils.execSync("cms show session > test/session-1.json");
 	});
 		
-	it("can <cms logout>", function() {
+	skippable("can <cms logout>", function() {
 		cms.utils.execSync("cms logout");
 	});
 

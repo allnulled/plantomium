@@ -15,7 +15,7 @@ describe("REST Test (controllers)", function() {
 	let axiosInstance = undefined;
 	let permissionInsertedId = 0;
 
-	it("can load", async function() {
+	skippable("can load", async function() {
 		try {
 			await cms.initialized;
 		} catch (error) {
@@ -23,7 +23,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can login", async function() {
+	skippable("can login", async function() {
 		try {
 			const loginResponse = await axios.post(Utils.url("/auth/v1/login"), {
 				name: "administrator",
@@ -36,7 +36,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can get schema", async function() {
+	skippable("can get schema", async function() {
 		try {
 			const responsePermissions = await axiosInstance.get(Utils.url("/api/v1/permissions/@"));
 			expect(typeof responsePermissions.data).to.equal("object");
@@ -46,7 +46,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can post one", async function() {
+	skippable("can post one", async function() {
 		try {
 			const responsePermissions = await axiosInstance.post(Utils.url("/api/v1/permissions/0"), {
 				name: "some permission"
@@ -60,7 +60,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can get many", async function() {
+	skippable("can get many", async function() {
 		try {
 			const responsePermissions = await axiosInstance.get(Utils.url("/api/v1/permissions"));
 			expect(typeof responsePermissions.data).to.equal("object");
@@ -72,7 +72,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can get one", async function() {
+	skippable("can get one", async function() {
 		try {
 			const responsePermissions = await axiosInstance.get(Utils.url(`/api/v1/permissions/${permissionInsertedId}`));
 			expect(typeof responsePermissions.data).to.equal("object");
@@ -84,7 +84,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can put one", async function() {
+	skippable("can put one", async function() {
 		this.timeout(999999)
 		try {
 			const responseUpdatePermissions = await axiosInstance.put(Utils.url(`/api/v1/permissions/${permissionInsertedId}`), {
@@ -103,7 +103,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can delete one", async function() {
+	skippable("can delete one", async function() {
 		try {
 			const responseDeletePermissions = await axiosInstance.delete(Utils.url(`/api/v1/permissions/${permissionInsertedId}`));
 			expect(typeof responseDeletePermissions.data).to.equal("object");
@@ -120,7 +120,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can post one file", async function() {
+	skippable("can post one file", async function() {
 		try {
 			const form = new FormData();
 			form.append("file", fs.createReadStream(__dirname + "/assets/ok.png"), { filename: "ok.png" });
@@ -134,7 +134,7 @@ describe("REST Test (controllers)", function() {
 		}
 	});
 
-	it("can get one file", async function() {
+	skippable("can get one file", async function() {
 		try {
 			const response = await axiosInstance.get(Utils.url("/api/v1/users/1/profile_picture/png"));
 			expect(typeof response.data).to.equal("string");

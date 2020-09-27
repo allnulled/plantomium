@@ -51,7 +51,7 @@ module.exports = async function(argv) {
 			}), ["name", "password", "email", "full_name", "description"]);
 			data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)))
 		}
-		cms.utils.printSqlData(data);
+		cms.utils.printSqlData(data, true);
 		cms.deploy.stopServer(cms);
 	} catch(error) {
 		console.error(error);

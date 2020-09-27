@@ -23,6 +23,9 @@ module.exports = async function(argv) {
 			console.log(loginResponse.data);
 		}
 	} catch(error) {
+		if(typeof error === "object" && error.code === "ECONNREFUSED") {
+			return console.error("[ERROR] Connection could not be stablished.");
+		}
 		console.error(error);
 	}
 }

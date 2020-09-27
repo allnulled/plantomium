@@ -31,7 +31,7 @@ module.exports = async function(args) {
 		cms.utils.trace("[SQL] " + arg);
 		const originalResult = await new Promise((ok, fail) => connection.query(arg, asynchandler(ok, fail)));
 		let result = originalResult;
-		cms.utils.printSqlData(result);
+		cms.utils.printSqlData(result, true);
 		connection.end();
 	} catch(error) {
 		if(connection && (connection.state !== "disconnected")) {
