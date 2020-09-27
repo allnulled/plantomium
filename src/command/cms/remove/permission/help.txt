@@ -1,0 +1,15 @@
+[cms remove permission]
+ [Usage:]
+  · cms remove permission
+     --name p
+  · cms remove permission
+     --name p
+     --from-user u
+  · cms remove permission
+     --name p
+     --from-group g
+ [Info:]
+  · Removes a permission from a user, a group or the auth system.
+  · When used with:
+   · --from-group: adds a new permission to a group of the auth system.
+   · --from-user: adds a new permission to a user of the auth system.

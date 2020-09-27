@@ -177,6 +177,7 @@
     [ ] cms remove user
       [ ] --name:array [required]
       [ ] --from-group:array [optional]
+      [ ] --from-permission:array [optional]
     [ ] cms remove group
       [ ] --name:array [required]
     [ ] cms remove permission

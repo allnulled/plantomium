@@ -1,0 +1,12 @@
+[cms remove user]
+ [Usage:]
+  · cms remove user
+     --name u
+  · cms remove user
+     --name u
+     --from-permission p
+  · cms remove user
+     --name u
+     --from-group g
+ [Info:]
+  · Removes a user from a permission, a group or the auth system.

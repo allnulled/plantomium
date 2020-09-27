@@ -13,16 +13,17 @@ module.exports = async function(argv) {
 		if(!("name" in args)) {
 			throw new Error("Required <name> on <cms add permission> [ERR:655]");
 		}
+		cms.utils.hasOnlyKeys(args, ["_", "name", "to-user", "to-group", "toUser", "toGroup"]);
 		cms.deploy.loadAuth(cms);
 		const allData = [];
 		const isToUser = "toUser" in args;
 		const isToGroup = "toGroup" in args;
-		const [{id:id_permission=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
-			SELECT permissions.id
-			FROM permissions
-			WHERE permissions.name = ${sqlString.escape(args.name)};
-		`, asynchandler(ok, fail)));
 		if(isToUser) {
+			const [{id:id_permission=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
+				SELECT permissions.id
+				FROM permissions
+				WHERE permissions.name = ${sqlString.escape(args.name)};
+			`, asynchandler(ok, fail)));
 			const [{id:id_user=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT users.id
 				FROM users
@@ -39,6 +40,11 @@ module.exports = async function(argv) {
 			allData.push(data);
 		}
 		if(isToGroup) {
+			const [{id:id_permission=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
+				SELECT permissions.id
+				FROM permissions
+				WHERE permissions.name = ${sqlString.escape(args.name)};
+			`, asynchandler(ok, fail)));
 			const [{id:id_group=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT groups.id
 				FROM groups

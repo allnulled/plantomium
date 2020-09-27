@@ -11,8 +11,11 @@ module.exports = async function(argv) {
 		const {
 			where = [],
 				ofUser = undefined,
-				ofGroup = undefined
+				ofGroup = undefined,
+				showResults = false,
+				showQuery = false,
 		} = args;
+		cms.utils.hasOnlyKeys(args, ["_", "name", "of-user", "of-group", "ofUser", "ofGroup", "show-query", "showQuery", "show-results", "showResults", "where"]);
 		cms.deploy.loadHigherApi(cms);
 		let ofUserItems = [], ofGroupItems = [];
 		if(typeof ofUser === "string") {
@@ -38,16 +41,20 @@ module.exports = async function(argv) {
 			join: [
 				["combo_user_and_permission", "combo_user_and_permission.id_permission", "=", "permissions.id"],
 				["combo_group_and_permission", "combo_group_and_permission.id_permission", "=", "permissions.id"],
-				["users", "users.id", "=", "combo_user_and_permission.id_user"],
-				["combo_user_and_group", "combo_user_and_group.id_group", "=", "combo_user_and_group.id_group"],
+				["combo_user_and_group", "combo_user_and_group.id_user", "=", "combo_user_and_permission.id_user"],
+				["users", "users.id", "in", [{ref:"combo_user_and_permission.id_user"}, {ref:"combo_user_and_group.id_user"}]],
 				["groups", "groups.id", "in", [{ref:"combo_group_and_permission.id_group"}, {ref:"combo_user_and_group.id_group"}]],
 			],
 			where
 		});
-		if (process.env.DEBUG_SQL === "true") {
-			cms.utils.debug("[SQL] " + query)
+		if (showQuery === true) {
+			console.log("[SQL]" + query + "\n[/SQL]");
 		}
 		const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+		if(showResults) {
+			console.log("[Results:]");
+			cms.utils.printSqlData(data, true);
+		}
 		const users = cms.utils.toObjectSql(data, "users", "id");
 		const groups = cms.utils.toObjectSql(data, "groups", "id");
 		const permissions = cms.utils.toObjectSql(data, "permissions", "id");

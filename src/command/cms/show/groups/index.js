@@ -8,30 +8,43 @@ module.exports = async function(argv) {
 	try {
 		cms.utils.trace("cms show users");
 		const args = require("yargs-parser")(argv);
-		const {
+		let {
 			where = [],
 				ofUser = undefined,
-				withPermission = undefined
+				ofPermission = undefined,
+				showResults = false,
+				showQuery = false,
 		} = args;
+		cms.utils.hasOnlyKeys(args, ["_", "name", "of-user", "of-permission", "ofUser", "ofPermission", "show-query", "showQuery", "show-results", "showResults", "where"]);
 		cms.deploy.loadHigherApi(cms);
-		let ofUserItems = [], withPermissionItems = [];
+		let ofUserItems = [], ofPermissionItems = [];
 		if(typeof ofUser === "string") {
 			ofUserItems.push(ofUser);
 		} else if(Array.isArray(ofUser)) {
 			ofUserItems = ofUser;
 		}
-		if(typeof withPermission === "string") {
-			withPermissionItems.push(withPermission);
-		} else if(Array.isArray(withPermission)) {
-			withPermissionItems = withPermission;
+		if(typeof ofPermission === "string") {
+			ofPermissionItems.push(ofPermission);
+		} else if(Array.isArray(ofPermission)) {
+			ofPermissionItems = ofPermission;
+		}
+		if(typeof where === "string") {
+			try {
+				where = JSON.parse(where);
+			} catch(error) {
+				throw new Error("Required <where> to be a jsonable string on <cms show groups> [ERR:4755]");
+			}
+		}
+		if(!Array.isArray(where)) {
+			throw new Error("Required <where> to be an array on <cms show groups> [ERR:5822]");
 		}
 		for(let index=0; index < ofUserItems.length; index++) {
 			const ofUserItem = ofUserItems[index];
 			where.push(["users.name", "=", ofUserItem]);
 		}
-		for(let index=0; index < withPermissionItems.length; index++) {
-			const withPermissionItem = withPermissionItems[index];
-			where.push(["permissions.name", "=", withPermissionItem]);
+		for(let index=0; index < ofPermissionItems.length; index++) {
+			const ofPermissionItem = ofPermissionItems[index];
+			where.push(["permissions.name", "=", ofPermissionItem]);
 		}
 		const query = await cms.utils.renderSelectFrom({
 			table: ["groups", "combo_user_and_group", "combo_group_and_permission", "combo_user_and_permission", "users", "permissions"],
@@ -44,10 +57,14 @@ module.exports = async function(argv) {
 			],
 			where
 		});
-		if (process.env.DEBUG_SQL === "true") {
-			cms.utils.debug("[SQL] " + query)
+		if (showQuery === true) {
+			console.log("[SQL]" + query + "\n[/SQL]");
 		}
 		const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+		if(showResults) {
+			console.log("[Results:]");
+			cms.utils.printSqlData(data, true);
+		}
 		const users = cms.utils.toObjectSql(data, "users", "id");
 		const groups = cms.utils.toObjectSql(data, "groups", "id");
 		const permissions = cms.utils.toObjectSql(data, "permissions", "id");

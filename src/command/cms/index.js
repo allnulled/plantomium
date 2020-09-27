@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const asynchandler = require("@allnulled/asynchandler");
+process.env.COMMAND_LINE_ENV = true;
 const cms = require(__dirname + "/../../cms.js");
 let message = "";
 

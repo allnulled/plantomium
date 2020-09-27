@@ -8,17 +8,17 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 module.exports = async function(argv) {
 	let connection = undefined;
 	try {
-		cms.utils.trace("cms add user");
+		cms.utils.trace("cms remove user");
 		const args = require("yargs-parser")(argv);
 		if(!("name" in args)) {
-			throw new Error("Required <name> on <cms add user> [ERR:855]");
+			throw new Error("Required <name> on <cms remove user> [ERR:8055]");
 		}
-		cms.utils.hasOnlyKeys(args, ["_", "name", "to-group", "to-permission", "toGroup", "toPermission"]);
+		cms.utils.hasOnlyKeys(args, ["_", "name", "from-group", "from-permission", "fromGroup", "fromPermission"]);
 		cms.deploy.loadAuth(cms);
 		const allData = [];
-		const isToGroup = "toGroup" in args;
-		const isToPermission = "toPermission" in args;
-		if(isToGroup) {
+		const isFromGroup = "fromGroup" in args;
+		const isFromPermission = "fromPermission" in args;
+		if(isFromGroup) {
 			const [{id:id_user=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT users.id
 				FROM users
@@ -27,19 +27,19 @@ module.exports = async function(argv) {
 			const [{id:id_group=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT groups.id
 				FROM groups
-				WHERE groups.name = ${sqlString.escape(args.toGroup)};
+				WHERE groups.name = ${sqlString.escape(args.fromGroup)};
 			`, asynchandler(ok, fail)));
 			if(!id_user) {
-				throw new Error("Required <name> of user to exist on <cms add user> [ERR:1958]");
+				throw new Error("Required <name> of user to exist on <cms remove user> [ERR:1978]");
 			}
 			if(!id_group) {
-				throw new Error("Required <toGroup> to exist on <cms add user> [ERR:2850]");
+				throw new Error("Required <fromGroup> to exist on <cms remove user> [ERR:2050]");
 			}
-			const query = cms.utils.renderInsertInto("combo_user_and_group", { id_user, id_group }, ["id_user", "id_group"]);
+			const query = cms.utils.renderDeleteFrom("combo_user_and_group", { id_user, id_group }, ["id_user", "id_group"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)));
 			allData.push(data);
 		}
-		if(isToPermission) {
+		if(isFromPermission) {
 			const [{id:id_user=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT users.id
 				FROM users
@@ -48,32 +48,20 @@ module.exports = async function(argv) {
 			const [{id:id_group=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT permissions.id
 				FROM permissions
-				WHERE permissions.name = ${sqlString.escape(args.toPermission)};
+				WHERE permissions.name = ${sqlString.escape(args.fromPermission)};
 			`, asynchandler(ok, fail)));
 			if(!id_user) {
-				throw new Error("Required <name> of user to exist on <cms add user> [ERR:1142]");
+				throw new Error("Required <name> of user to exist on <cms remove user> [ERR:1992]");
 			}
 			if(!id_permission) {
-				throw new Error("Required <toPermission> to exist on <cms add user> [ERR:2350]");
+				throw new Error("Required <fromPermission> to exist on <cms remove user> [ERR:9550]");
 			}
-			const query = cms.utils.renderInsertInto("combo_user_and_permission", { id_user, id_permission }, ["id_user", "id_permission"]);
+			const query = cms.utils.renderDeleteFrom("combo_user_and_permission", { id_user, id_permission }, ["id_user", "id_permission"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)));
 			allData.push(data);
 		}
-		if((!isToGroup) && (!isToPermission)) {
-			if(!("password" in args)) {
-				throw new Error("Required <password> on <cms add user> [ERR:985]");
-			}
-			if(!("email" in args)) {
-				throw new Error("Required <email> on <cms add user> [ERR:575]");
-			}
-			if(!("full_name" in args)) {
-				throw new Error("Required <full_name> on <cms add user> [ERR:7955]");
-			}
-			const newPassword = await cms.utils.encryptPassword(args.password);
-			const query = cms.utils.renderInsertInto("users", Object.assign({}, args, {
-				password: newPassword
-			}), ["name", "password", "email", "full_name", "description"]);
+		if((!isFromGroup) && (!isFromPermission)) {
+			const query = cms.utils.renderDeleteFrom("users", Object.assign({}, args, { name: args.name }), ["name"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)));
 			allData.push(data);
 		}

@@ -8,17 +8,19 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 module.exports = async function(argv) {
 	let connection = undefined;
 	try {
-		cms.utils.trace("cms add group");
+		cms.utils.trace("cms remove group");
 		const args = require("yargs-parser")(argv);
 		if(!("name" in args)) {
-			throw new Error("Required <name> on <cms add group> [ERR:1755]");
+			throw new Error("Required <name> on <cms remove group> [ERR:1755]");
 		}
-		cms.utils.hasOnlyKeys(args, ["_", "name", "to-user", "to-permission", "toUser", "toPermission"]);
+		if(typeof args.name !== "string") {
+			throw new Error("Required <name> to be a srting on <cms remove group> [ERR:667]");
+		}
 		cms.deploy.loadAuth(cms);
 		const allData = [];
-		const isToUser = "toUser" in args;
-		const isToPermission = "toPermission" in args;
-		if(isToUser) {
+		const isFromUser = "fromUser" in args;
+		const isFromPermission = "fromPermission" in args;
+		if(isFromUser) {
 			const [{id:id_group=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT groups.id
 				FROM groups
@@ -27,19 +29,19 @@ module.exports = async function(argv) {
 			const [{id:id_user=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT users.id
 				FROM users
-				WHERE users.name = ${sqlString.escape(args.toUser)};
+				WHERE users.name = ${sqlString.escape(args.fromUser)};
 			`, asynchandler(ok, fail)));
 			if(!id_user) {
-				throw new Error("Required <id_user> to exist on <cms add group> [ERR:7850]");
+				throw new Error("Required <id_user> to exist on <cms remove group> [ERR:7850]");
 			}
 			if(!id_group) {
-				throw new Error("Required <id_group> to exist on <cms add group> [ERR:1750]");
+				throw new Error("Required <id_group> to exist on <cms remove group> [ERR:1750]");
 			}
-			const query = cms.utils.renderInsertInto("combo_user_and_group", { id_user, id_group }, ["id_user", "id_group"]);
+			const query = cms.utils.renderDeleteFrom("combo_user_and_group", { id_user, id_group }, ["id_user", "id_group"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)))
 			allData.push(data);
 		}
-		if(isToPermission) {
+		if(isFromPermission) {
 			const [{id:id_group=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT groups.id
 				FROM groups
@@ -48,20 +50,20 @@ module.exports = async function(argv) {
 			const [{id:id_user=false}={}] = await new Promise((ok, fail) => cms.auth.connection.query(`
 				SELECT permissions.id
 				FROM permissions
-				WHERE permissions.name = ${sqlString.escape(args.toPermission)};
+				WHERE permissions.name = ${sqlString.escape(args.fromPermission)};
 			`, asynchandler(ok, fail)));
 			if(!id_permission) {
-				throw new Error("Required <id_permission> to exist on <cms add group> [ERR:1779]");
+				throw new Error("Required <id_permission> to exist on <cms remove group> [ERR:1779]");
 			}
 			if(!id_group) {
-				throw new Error("Required <id_group> to exist on <cms add group> [ERR:7850]");
+				throw new Error("Required <id_group> to exist on <cms remove group> [ERR:7850]");
 			}
-			const query = cms.utils.renderInsertInto("combo_group_and_permission", { id_permission, id_group }, ["id_permission", "id_group"]);
+			const query = cms.utils.renderDeleteFrom("combo_group_and_permission", { id_permission, id_group }, ["id_permission", "id_group"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)))
 			allData.push(data);
 		}
-		if((!isToPermission) && (!isToUser)) {
-			const query = cms.utils.renderInsertInto("groups", args, ["name", "description"]);
+		if((!isFromPermission) && (!isFromUser)) {
+			const query = cms.utils.renderDeleteFrom("groups", args, ["name", "description"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)))
 			allData.push(data);
 		}

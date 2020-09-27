@@ -5023,7 +5023,7 @@ module.exports = {
     slug: '/api/v1',
     slugForAuth: '/auth/v1',
     debugSql: false,
-    debugErrors: true,
+    debugErrors: false,
     debugSqlRestSplitter: '\n[SQL:REST]',
     debugSqlHistorySplitter: '\n[SQL:HISTORY]',
     debugSqlAuthSplitter: '\n[SQL:AUTH]',

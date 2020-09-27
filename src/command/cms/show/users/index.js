@@ -11,27 +11,30 @@ module.exports = async function(argv) {
 		const {
 			where = [],
 				ofGroup = undefined,
-				withPermission = undefined
+				ofPermission = undefined,
+				showResults = false,
+				showQuery = false,
 		} = args;
+		cms.utils.hasOnlyKeys(args, ["_", "name", "of-group", "of-permission", "ofGroup", "ofPermission", "show-query", "showQuery", "show-results", "showResults", "where"]);
 		cms.deploy.loadHigherApi(cms);
-		let ofGroupItems = [], withPermissionItems = [];
+		let ofGroupItems = [], ofPermissionItems = [];
 		if(typeof ofGroup === "string") {
 			ofGroupItems.push(ofGroup);
 		} else if(Array.isArray(ofGroup)) {
 			ofGroupItems = ofGroup;
 		}
-		if(typeof withPermission === "string") {
-			withPermissionItems.push(withPermission);
-		} else if(Array.isArray(withPermission)) {
-			withPermissionItems = withPermission;
+		if(typeof ofPermission === "string") {
+			ofPermissionItems.push(ofPermission);
+		} else if(Array.isArray(ofPermission)) {
+			ofPermissionItems = ofPermission;
 		}
 		for(let index=0; index < ofGroupItems.length; index++) {
 			const ofGroupItem = ofGroupItems[index];
 			where.push(["groups.name", "=", ofGroupItem]);
 		}
-		for(let index=0; index < withPermissionItems.length; index++) {
-			const withPermissionItem = withPermissionItems[index];
-			where.push(["permissions.name", "=", withPermissionItem]);
+		for(let index=0; index < ofPermissionItems.length; index++) {
+			const ofPermissionItem = ofPermissionItems[index];
+			where.push(["permissions.name", "=", ofPermissionItem]);
 		}
 		const query = await cms.utils.renderSelectFrom({
 			table: ["users", "combo_user_and_permission", "combo_user_and_group", "combo_group_and_permission", "groups", "permissions"],
@@ -44,10 +47,14 @@ module.exports = async function(argv) {
 			],
 			where
 		});
-		if (process.env.DEBUG_SQL === "true") {
-			cms.utils.debug("[SQL] " + query)
+		if (showQuery) {
+			console.log("[SQL]" + query + "\n[/SQL]");
 		}
 		const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+		if(showResults) {
+			console.log("[Results:]");
+			cms.utils.printSqlData(data, true);
+		}
 		const users = cms.utils.toObjectSql(data, "users", "id");
 		const groups = cms.utils.toObjectSql(data, "groups", "id");
 		const permissions = cms.utils.toObjectSql(data, "permissions", "id");

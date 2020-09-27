@@ -83,7 +83,6 @@ describe("CLI Test", function() {
 		expect(usersDump1.indexOf("administrator")).to.not.equal(-1);
 		expect(groupsDump1.indexOf("administration")).to.not.equal(-1);
 		expect(permissionsDump1.indexOf("to administrate")).to.not.equal(-1);
-
 		cms.utils.execSync("cms show users --of-permission 'to administrate'> test/assets/bulks/users-attachments-2.txt");
 		cms.utils.execSync("cms show groups --of-permission 'to administrate' > test/assets/bulks/groups-attachments-2.txt");
 		cms.utils.execSync("cms show permissions --of-user administrator > test/assets/bulks/permissions-attachments-2.txt");
@@ -93,6 +92,30 @@ describe("CLI Test", function() {
 		expect(usersDump2.indexOf("administrator")).to.not.equal(-1);
 		expect(groupsDump2.indexOf("administration")).to.not.equal(-1);
 		expect(permissionsDump2.indexOf("to administrate")).to.not.equal(-1);
+	});
+
+	it("can <cms remove user>", function() {
+		cms.utils.execSync("cms remove user --name user5");
+	});
+
+	it("can <cms remove user --from-group --from-permission>", function() {
+		
+	});
+
+	it("can <cms remove group>", function() {
+		
+	});
+
+	it("can <cms remove group --from-user --from-permission>", function() {
+		
+	});
+
+	it("can <cms remove permission>", function() {
+		
+	});
+
+	it("can <cms remove permission --from-group --from-user>", function() {
+		
 	});
 
 });
