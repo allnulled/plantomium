@@ -13,9 +13,6 @@ module.exports = async function(argv) {
 				permissions: showPermissions = false,
 				groups: showGroups = false,
 				users: showUsers = false,
-				permission = false,
-				group = false,
-				user = false,
 				fromUser = false,
 				fromGroup = false,
 				fromPermission = false,
@@ -25,11 +22,8 @@ module.exports = async function(argv) {
 		cms.utils.hasOnlyKeys(args, [
 			"_",
 			"permissions",
-			"permission",
 			"groups",
-			"group",
 			"users",
-			"user",
 			"fromUser",
 			"from-user",
 			"fromGroup",
@@ -44,6 +38,7 @@ module.exports = async function(argv) {
 		]);
 		cms.deploy.loadHigherApi(cms);
 		// ------- Format froms:
+		let allData = [];
 		let fromUserItems = [],
 			fromGroupItems = [],
 			fromPermissionItems = [];
@@ -70,40 +65,34 @@ module.exports = async function(argv) {
 		if (fromGroupItems.length) {
 			where.push(["groups.name", "in", fromGroupItems]);
 		}
-		if(fromUserItems.length && fromGroupItems.length) {
+		if (fromUserItems.length && fromGroupItems.length) {
 			throw new Error("Required to use <fromUser> or <fromGroup> but not both on <cms show auth> [ERR:248]");
 		}
-/*
-select *
-from users
-left join combo_user_and_group
-  on combo_user_and_group.id_user = users.id
-left join combo_user_and_permission
-  on combo_user_and_permission.id_user = users.id
-left join combo_group_and_permission
-  on combo_group_and_permission.id_group = combo_user_and_group.id_group
-left join groups
-  on combo_group_and_permission.id_group = groups.id
-left join permissions
-  on permissions.id in (combo_group_and_permission.id_permission, combo_user_and_permission.id_permission)
-where users.name = 'user5'
-//*/
 		// ------- Compose query:
-		let query = undefined;
-		if(fromUserItems.length) {
-			query = await cms.utils.renderSelectFrom({
+		if (fromUserItems.length) {
+			const query = await cms.utils.renderSelectFrom({
 				table: ["users", "combo_user_and_group", "combo_group_and_permission", "combo_user_and_permission", "permissions", "groups"],
 				join: [
 					["combo_user_and_group", "combo_user_and_group.id_user", "=", "users.id"],
 					["combo_user_and_permission", "combo_user_and_permission.id_user", "=", "users.id"],
 					["combo_group_and_permission", "combo_group_and_permission.id_group", "=", "combo_user_and_group.id_group"],
-					["permissions", "permissions.id", "in", [{ ref: "combo_user_and_permission.id_permission" }, { ref: "combo_group_and_permission.id_permission" }]],
+					["permissions", "permissions.id", "in", [{
+						ref: "combo_user_and_permission.id_permission"
+					}, {
+						ref: "combo_group_and_permission.id_permission"
+					}]],
 					["groups", "groups.id", "=", "combo_user_and_group.id_group"],
 				],
+				limit: 0,
 				where
 			});
-		} else if(fromGroupItems.length) {
-			query = await cms.utils.renderSelectFrom({
+			if (showQuery === true) {
+				console.log("[SQL]" + query + "\n[/SQL]");
+			}
+			const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+			allData = data;
+		} else if (fromGroupItems.length) {
+			const query = await cms.utils.renderSelectFrom({
 				table: ["groups", "combo_user_and_group", "combo_group_and_permission", "combo_user_and_permission", "permissions", "users"],
 				join: [
 					["combo_user_and_group", "combo_user_and_group.id_group", "=", "groups.id"],
@@ -112,31 +101,88 @@ where users.name = 'user5'
 					["permissions", "permissions.id", "=", "combo_group_and_permission.id_permission"],
 					["users", "users.id", "=", "combo_user_and_group.id_user"],
 				],
+				limit: 0,
 				where
 			});
+			if (showQuery === true) {
+				console.log("[SQL]" + query + "\n[/SQL]");
+			}
+			const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+			allData = data;
 		} else {
-			query = await cms.utils.renderSelectFrom({
-				table: ["permissions", "combo_user_and_group", "combo_group_and_permission", "combo_user_and_permission", "groups", "users"],
-				join: [
-					["combo_group_and_permission", "combo_group_and_permission.id_permission", "=", "permissions.id"],
-					["combo_user_and_permission", "combo_user_and_permission.id_permission", "=", "permissions.id"],
-					["groups", "groups.id", "=", "combo_group_and_permission.id_group"],
-					["users", "users.id", "=", "combo_user_and_permission.id_user"],
-				],
-				where
-			});
+			const tempHeaders = [];
+			const tempData = [];
+			const addTempHeaders = function(resultsData) {
+				if(resultsData.length) {
+					const rowData = resultsData[0];
+					const headers = Object.keys(rowData);
+					for(let index=0; index < headers.length; index++) {
+						const item = headers[index];
+						if(tempHeaders.indexOf(item) === -1) {
+							tempHeaders.push(item);
+						}
+					}
+				}
+			}
+			if (showUsers) {
+				const query = await cms.utils.renderSelectFrom({
+					table: ["users"],
+					where,
+					limit: 0,
+				});
+				if (showQuery === true) {
+					console.log("[SQL]" + query + "\n[/SQL]");
+				}
+				const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+				tempData.push(data);
+				addTempHeaders(data);
+			}
+			if (showGroups) {
+				const query = await cms.utils.renderSelectFrom({
+					table: ["groups"],
+					where,
+					limit: 0,
+				});
+				if (showQuery === true) {
+					console.log("[SQL]" + query + "\n[/SQL]");
+				}
+				const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+				tempData.push(data);
+				addTempHeaders(data);
+			}
+			if (showPermissions) {
+				const query = await cms.utils.renderSelectFrom({
+					table: ["permissions"],
+					where,
+					limit: 0,
+				});
+				if (showQuery === true) {
+					console.log("[SQL]" + query + "\n[/SQL]");
+				}
+				const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
+				tempData.push(data);
+				addTempHeaders(data);
+			}
+			const emptyHeaders = tempHeaders.reduce(function(output, header) {
+				output[header] = undefined;
+				return output;
+			}, {});
+			for (let index = 0; index < tempData.length; index++) {
+				const tempResults = tempData[index];
+				for(let indexRow=0; indexRow < tempResults.length; indexRow++) {
+					const tempRow = tempResults[indexRow];
+					const row = Object.assign({}, tempRow, emptyHeaders, tempRow);
+					allData.push(row);
+				}
+			}
 		}
-		if (showQuery === true) {
-			console.log("[SQL]" + query + "\n[/SQL]");
-		}
-		const data = await new Promise((ok, fail) => cms.rest.connection.query(query, asynchandler(ok, fail)));
 		if (showResults) {
 			console.log("[Results:]");
-			cms.utils.printSqlData(data, true);
+			cms.utils.printSqlData(allData, true);
 		}
-		const users = cms.utils.toObjectSql(data, "users", "id");
-		const groups = cms.utils.toObjectSql(data, "groups", "id");
-		const permissions = cms.utils.toObjectSql(data, "permissions", "id");
+		const users = cms.utils.toObjectSql(allData, "users", "id").filter(item => typeof item.id === "number");
+		const groups = cms.utils.toObjectSql(allData, "groups", "id").filter(item => typeof item.id === "number");
+		const permissions = cms.utils.toObjectSql(allData, "permissions", "id").filter(item => typeof item.id === "number");
 		const showAll = (!showUsers) && (!showPermissions) && (!showGroups);
 		if (showUsers || showAll) {
 			console.log("[Users:] " + ((users.length === 0) ? "none" : users.length));

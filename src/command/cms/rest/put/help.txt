@@ -1,0 +1,10 @@
+[cms rest put]
+ [Usage:]
+  · cms rest put
+      --model user
+      --where '[["id","=","1"]]'
+      --values '{"name":"user","password":"xxx"}'
+ [Info:]
+  · Sends a PUT request to the specified model with:
+   · <where>: conditions to match. JSON array of 3 items.
+   · <values>: values to change. JSON object.

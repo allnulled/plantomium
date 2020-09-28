@@ -1,8 +1,0 @@
-[cms show permissions]
- [Usage:]
-  · cms show permissions
- [Info:]
-  · Displays the permissions that:
-   · with --where: permissions that match certain conditions.
-   · with --of-user: permissions that some user owns.
-   · with --of-group: permissions that some group owns.

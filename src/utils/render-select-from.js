@@ -2,48 +2,6 @@ const asynchandler = require("@allnulled/asynchandler");
 const ejs = require("ejs");
 const sqlString = require("sqlstring");
 
-const onReduceFields = function(output, field, index) {
-	if (index !== 0) {
-		output += ",\n  ";
-	}
-	output += sqlString.escapeId(field);
-	return output;
-};
-
-const onReduceJoins = function(output, join) {
-	const [joinOn, whereSubjectColumn, whereOperator, whereObjectColumn, alias = false] = join;
-	output += `  JOIN ${sqlString.escapeId(joinOn)}${alias ? " AS " + sqlString.escapeId(alias) : ""}\n`;
-	output += `    ON ${sqlString.escapeId(whereSubjectColumn)} ${whereOperator} ${sqlString.escapeId(whereObjectColumn)} \n`;
-	return output;
-};
-
-const onReduceWheres = function(output, where, index) {
-	const [whereSubjectColumn, whereOperator, whereObjectColumn, alias = false] = where;
-	if (index === 0) {
-		output += "  WHERE ";
-	} else {
-		output += "\n  AND ";
-	}
-	output += `${sqlString.escapeId(whereSubjectColumn)} ${whereOperator} ${sqlString.escapeId(whereObjectColumn)}`;
-	return output;
-};
-
-const onReduceGroups = function(output, where) {
-	// @TODO...
-};
-
-const onReduceOrders = function(output, where) {
-	// @TODO...
-};
-
-const onReduceLimits = function(output, where) {
-	// @TODO...
-};
-
-const onReduceOffsets = function(output, where) {
-	// @TODO...
-};
-
 module.exports = function(parameters) {
 	const {
 		table = undefined,

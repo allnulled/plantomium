@@ -1,0 +1,8 @@
+[cms rest delete]
+ [Usage:]
+  · cms rest delete
+      --model user
+      --where '[["id","=","1"]]'
+ [Info:]
+  · Sends a DELETE request to the specified model with:
+   · <where>: conditions to match.

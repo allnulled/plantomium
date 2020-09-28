@@ -1,0 +1,18 @@
+[cms rest get]
+ [Usage:]
+  · cms rest get
+      --model user
+      --fields '["user.name","user.email"]'
+      --join '[["group","group.id_administrator","=","user.id"]]'
+      --where '[["name","=","user1"],["name","=","user2"]]'
+      --order '["user.id"]'
+      --page 2
+ [Info:]
+  · Sends a GET request to the specified model with:
+   · <fields>: fields to show. JSON array of "table.column" items.
+   · <joins>: other tables and their bindings. JSON array of ["tableSrc", "tableSrc.column", "operator", "tableDest.column"].
+   · <where>: conditions to match. JSON array of ["table.column","operator","value"].
+   · <order>: column order to show. JSON array of "table.column".
+   · <page>: specific page to show. It ignores <limit> and <offset>. Number.
+   · <limit>: number of items to show. Number.
+   · <offset>: items to ignore. Number.

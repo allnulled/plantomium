@@ -166,24 +166,26 @@
     [✓] cms show session
 
     [✓] cms add user
-      [✓] --name:array [required]
-      [✓] --to-group:array [optional]
+      [✓] --name:string [required]
+      [✓] --to-group:string [optional]
     [✓] cms add group
-      [✓] --name:array [required]
+      [✓] --name:string [required]
     [ ] cms add permission
-      [ ] --name:array [required]
-      [ ] --to-user:array [optional]
-      [ ] --to-group:array [optional]
+      [ ] --name:string [required]
+      [ ] --to-user:string [optional]
+      [ ] --to-group:string [optional]
     [ ] cms remove user
-      [ ] --name:array [required]
-      [ ] --from-group:array [optional]
-      [ ] --from-permission:array [optional]
+      [ ] --name:string [required]
+      [ ] --from-group:string [optional]
+      [ ] --from-permission:string [optional]
     [ ] cms remove group
-      [ ] --name:array [required]
+      [ ] --name:string [required]
+      [ ] --from-user:string [optional]
+      [ ] --from-permission:string [optional]
     [ ] cms remove permission
-      [ ] --name:array [required]
-      [ ] --from-user:array [optional]
-      [ ] --from-group:array [optional]
+      [ ] --name:string [required]
+      [ ] --from-user:string [optional]
+      [ ] --from-group:string [optional]
     [ ] cms rename 
       [ ] --user:string [optional with group and permission]
       [ ] --group:string [optional with user and permission]

@@ -95,7 +95,20 @@ describe("CLI Test", function() {
 	});
 
 	it("can <cms remove user>", function() {
-		cms.utils.execSync("cms remove user --name user5");
+		cms.utils.execSync("cms add user --name user20 --password password20 --email email20@mail.com --full_name user20");
+		cms.utils.execSync("cms add user --name user21 --password password21 --email email21@mail.com --full_name user21");
+		cms.utils.execSync("cms add user --name user22 --password password22 --email email22@mail.com --full_name user22");
+		cms.utils.execSync("cms add user --name user23 --password password23 --email email23@mail.com --full_name user23");
+		cms.utils.execSync("cms add user --name user24 --password password24 --email email24@mail.com --full_name user24");
+		cms.utils.execSync("cms remove user --name user24");
+		cms.utils.execSync("cms remove user --name user23");
+		cms.utils.execSync("cms show auth --users > test/assets/bulks/users-2.txt");
+		const allUsers2 = fs.readFileSync(process.env.PROJECT_ROOT + "/test/assets/bulks/users-2.txt").toString();
+		expect(allUsers2.indexOf("user20")).to.not.equal(-1);
+		expect(allUsers2.indexOf("user21")).to.not.equal(-1);
+		expect(allUsers2.indexOf("user22")).to.not.equal(-1);
+		expect(allUsers2.indexOf("user23")).to.equal(-1);
+		expect(allUsers2.indexOf("user24")).to.equal(-1);
 	});
 
 	it("can <cms remove user --from-group --from-permission>", function() {

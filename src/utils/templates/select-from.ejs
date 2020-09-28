@@ -33,6 +33,6 @@ SELECT
   <%-joinFinal ? (joinFinal) : "# no JOIN..." %>
   <%-whereFinal ? ("WHERE " + whereFinal) : "# no WHERE..." %>
   <%-orderFinal ? ("ORDER BY " + orderFinal) : "# no ORDER BY..." %>
-  <%-limitFinal ? ("LIMIT " + limitFinal) : "LIMIT 20" %>
-  <%-offsetFinal ? ("OFFSET " + offsetFinal) : "# no OFFSET..." %>
+  <%-(limitFinal === 0) ? "" : limitFinal ? ("LIMIT " + limitFinal) : "LIMIT 20" %>
+  <%-(limitFinal === 0) ? "" : offsetFinal ? ("OFFSET " + offsetFinal) : "# no OFFSET..." %>
 ;

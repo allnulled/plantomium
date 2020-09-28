@@ -1,0 +1,26 @@
+[cms show auth]
+ [Usage:]
+  · cms show auth
+    --users
+    --groups
+    --permissions
+    --from-user u
+    --from-group g
+    --from-permission p
+    --show-query
+    --show-results
+ [Info:]
+  · Shows information about the current state of the auth.
+  · You can combine some parameters:
+   · To show or not, mutually inclusively:
+    · --users: will show users.
+    · --groups: will show groups.
+    · --permissions: will show permissions.
+   · To ask about, mutually exclusively:
+    · --from-user name: will show the selected aspects about this user.
+    · --from-group name: will show the selected aspects about this group.
+    · --from-permission name: will show the selected aspects about this permission.
+   · To show the SQL query:
+    · --show-query
+   · To show the SQL results:
+    · --show-results

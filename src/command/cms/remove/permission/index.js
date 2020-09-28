@@ -8,10 +8,13 @@ const cms = require(process.env.PROJECT_ROOT + "/src/cms.js");
 module.exports = async function(argv) {
 	let connection = undefined;
 	try {
-		cms.utils.trace("cms add permission");
+		cms.utils.trace("cms remove permission");
 		const args = require("yargs-parser")(argv);
 		if(!("name" in args)) {
-			throw new Error("Required <name> on <cms add permission> [ERR:655]");
+			throw new Error("Required <name> on <cms remove permission> [ERR:655]");
+		}
+		if(typeof args.name !== "string") {
+			throw new Error("Required <name> to be a srting on <cms remove permission> [ERR:367]");
 		}
 		cms.deploy.loadAuth(cms);
 		const allData = [];
@@ -29,12 +32,12 @@ module.exports = async function(argv) {
 				WHERE users.name = ${sqlString.escape(args.toUser)};
 			`, asynchandler(ok, fail)));
 			if(!id_user) {
-				throw new Error("Required <id_user> to exist on <cms add permission> [ERR:950]");
+				throw new Error("Required <id_user> to exist on <cms remove permission> [ERR:950]");
 			}
 			if(!id_permission) {
-				throw new Error("Required <id_permission> to exist on <cms add permission> [ERR:5750]");
+				throw new Error("Required <id_permission> to exist on <cms remove permission> [ERR:5750]");
 			}
-			const query = cms.utils.renderInsertInto("combo_user_and_permission", { id_user, id_permission }, ["id_user", "id_permission"]);
+			const query = cms.utils.renderDeleteFrom("combo_user_and_permission", { id_user, id_permission }, ["id_user", "id_permission"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)))
 			allData.push(data);
 		}
@@ -45,17 +48,17 @@ module.exports = async function(argv) {
 				WHERE groups.name = ${sqlString.escape(args.toGroup)};
 			`, asynchandler(ok, fail)));
 			if(!id_group) {
-				throw new Error("Required <id_group> to exist on <cms add permission> [ERR:6850]");
+				throw new Error("Required <id_group> to exist on <cms remove permission> [ERR:6850]");
 			}
 			if(!id_permission) {
-				throw new Error("Required <id_permission> to exist on <cms add permission> [ERR:8779]");
+				throw new Error("Required <id_permission> to exist on <cms remove permission> [ERR:8779]");
 			}
-			const query = cms.utils.renderInsertInto("combo_group_and_permission", { id_group, id_permission }, ["id_group", "id_permission"]);
+			const query = cms.utils.renderDeleteFrom("combo_group_and_permission", { id_group, id_permission }, ["id_group", "id_permission"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)))
 			allData.push(data);
 		}
 		if((!isToGroup) && (!isToUser)) {
-			const query = cms.utils.renderInsertInto("permissions", args, ["name", "description"]);
+			const query = cms.utils.renderDeleteFrom("permissions", args, ["name", "description"]);
 			const data = await new Promise((ok, fail) => cms.auth.connection.query(query, asynchandler(ok, fail)))
 			allData.push(data);
 		}

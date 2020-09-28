@@ -1,0 +1,13 @@
+[cms rest post]
+ [Usage:]
+  · cms rest post
+      --model user
+      --values '{"name":"user1"}'
+  · cms rest post
+      --model user
+      --values '[{"name":"user1"},{"name":"user2"}]'
+ [Info:]
+  · Sends a POST request to the specified model with:
+   · <values>: it represents:
+    · singular when it is 1 object. JSON object.
+    · plural when it is 1 array of objects. JSON array.
